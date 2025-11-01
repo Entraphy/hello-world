@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Entraphy — Where Trust Begins</title>
-  <meta name="description" content="Entraphy — quietly building what’s next in digital trust. Join the waitlist." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Entraphy — Where Trust Becomes Measurable</title>
+  <meta name="description" content="Entraphy is quietly redefining digital trust — giving organizations confidence, in real time, that what they trust still deserves it. Join early access." />
   <meta name="robots" content="noindex, nofollow" />
-  <meta property="og:title" content="Entraphy — Where Trust Begins" />
-  <meta property="og:description" content="Quietly building what’s next in digital trust. Join the waitlist." />
+  <meta property="og:title" content="Entraphy — Where Trust Becomes Measurable" />
+  <meta property="og:description" content="Quietly redefining digital trust. Join early access." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -18,9 +18,15 @@
       --accent: #7dd3fc;
       --accent-2: #a78bfa;
       --ring: rgba(125, 211, 252, 0.28);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
-    html, body { height: 100%; margin: 0; }
+    html, body { height: auto; min-height: 100svh; margin: 0; }
+    @supports not (height: 100svh) {
+      html, body { min-height: 100dvh; }
+    }
+
     body {
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: var(--fg);
@@ -28,7 +34,11 @@
         radial-gradient(1200px 800px at 10% 10%, rgba(125, 211, 252, 0.12), transparent 60%),
         radial-gradient(1000px 700px at 90% 20%, rgba(167, 139, 250, 0.10), transparent 60%),
         linear-gradient(180deg, #0b0f14 0%, #0a0d12 40%, #0b0f14 100%);
-      display: flex; align-items: center; justify-content: center; padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(24px + var(--safe-top)) 24px calc(24px + var(--safe-bottom));
+      box-sizing: border-box;
     }
 
     .wrap { width: 100%; max-width: 920px; position: relative; }
@@ -41,7 +51,6 @@
       padding-top: 8px;
     }
 
-    /* Existing bottom dark overlay */
     .card::before {
       content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background: linear-gradient(
@@ -53,7 +62,6 @@
       );
     }
 
-    /* Added: extend dark base another 0.5in lower */
     .card::after {
       content: "";
       position: absolute;
@@ -118,6 +126,13 @@
     footer a { color: var(--muted); text-decoration: none; }
 
     @media (max-width: 640px) {
+      body { align-items: flex-start; padding: calc(14px + var(--safe-top)) 14px calc(18px + var(--safe-bottom)); }
+      .wrap { max-width: 100%; }
+      .card { margin: 0 auto; }
+      header { padding: 14px 16px 0; }
+      .logo-img { width: 56px; }
+      .logo-text { font-size: 28px; margin-top: 2px; }
+      .hero { padding: 22px 16px 18px; }
       .cta { justify-content: center; }
       .input { margin: 0 auto; max-width: 640px; }
       .note { text-align: center; }
@@ -138,36 +153,36 @@
       </header>
 
       <section class="hero">
-        <div class="kicker">Quietly building what’s next</div>
-        <h1><span class="gradient-text">Where Trust Begins</span></h1>
-        <p class="sub">We’re working on a new foundation for digital trust. If your world depends on integrity at scale, you’ll want to know when we emerge.</p>
+        <div class="kicker">Quietly redefining digital trust</div>
+        <h1><span class="gradient-text">Where Trust Becomes Measurable</span></h1>
+        <p class="sub">Entraphy is building a new foundation for confidence in the digital world; a way to verify, in real time, that what you trust still deserves it.</p>
         <form class="cta" action="https://formspree.io/f/your-id" method="POST">
           <div class="input">
             <input type="email" name="email" placeholder="Email for early access" required />
             <button class="btn" type="submit">Request early access</button>
           </div>
         </form>
-        <div class="note">We’ll reach out only when we’re ready to open the door.</div>
+        <div class="note">We’ll reach out only when we’re ready to share more.</div>
       </section>
 
       <div class="divider"></div>
 
-      <section class="cols" aria-label="Signals (intentionally vague)">
+      <section class="cols" aria-label="Signals">
         <div>
-          <span class="pill">Enterprise-first</span>
-          <p class="sub">Designed for teams where downtime isn’t an option.</p>
+          <span class="pill">Integrity at Scale</span>
+          <p class="sub">Confidence in every system, everywhere.</p>
         </div>
         <div>
-          <span class="pill">Security-native</span>
-          <p class="sub">Built with defense-in-depth from day zero.</p>
+          <span class="pill">Continuous Verification</span>
+          <p class="sub">Always-on insight into trust health.</p>
         </div>
         <div>
-          <span class="pill">Beyond Compliance</span>
-          <p class="sub">Exceeds global standards — raising the bar for “secure.”</p>
+          <span class="pill">Resilient by Design</span>
+          <p class="sub">Built to protect what matters next.</p>
         </div>
         <div>
-          <span class="pill">Next-Generation Trust</span>
-          <p class="sub">Built for those who secure what matters next.</p>
+          <span class="pill">Enterprise-Ready</span>
+          <p class="sub">For teams where downtime isn’t an option.</p>
         </div>
       </section>
 

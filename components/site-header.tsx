@@ -3,8 +3,7 @@ import Link from "next/link";
 const navItems = [
   { href: "/reality-bound-systems", label: "Reality-Bound Systems" },
   { href: "/architecture", label: "Architecture" },
-  { href: "/proof", label: "Proof" },
-  { href: "/briefing", label: "Executive Briefing" }
+  { href: "/proof", label: "Proof" }
 ];
 
 export function SiteHeader() {
@@ -14,12 +13,6 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="text-sm font-semibold tracking-[0.24em] uppercase text-fg">
             Entraphy
-          </Link>
-          <Link
-            href="/briefing"
-            className="rounded-full border border-accent/70 px-4 py-2 text-[11px] font-semibold tracking-[0.16em] text-accent uppercase transition hover:border-accent hover:bg-accent/10 md:hidden"
-          >
-            Executive Briefing
           </Link>
         </div>
 
@@ -33,7 +26,7 @@ export function SiteHeader() {
 
         <Link
           href="/briefing"
-          className="hidden rounded-full border border-accent/70 px-4 py-2 text-xs font-semibold tracking-[0.16em] text-accent uppercase transition hover:border-accent hover:bg-accent/10 md:inline-flex"
+          className="inline-flex w-fit rounded-full border border-accent/70 px-4 py-2 text-xs font-semibold tracking-[0.16em] text-accent uppercase transition hover:border-accent hover:bg-accent/10"
         >
           Executive Briefing
         </Link>

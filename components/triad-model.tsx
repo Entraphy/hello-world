@@ -1,7 +1,7 @@
 const pillars = [
   {
     title: "Determine",
-    body: "Compute whether trust conditions hold — now."
+    body: "Compute whether trust conditions hold, now."
   },
   {
     title: "Bind",
@@ -15,7 +15,7 @@ const pillars = [
 
 export function TriadModel() {
   return (
-    <div className="grid gap-12 md:grid-cols-3 md:gap-16">
+    <div className="grid gap-8 md:grid-cols-3 md:gap-16">
       {pillars.map((item) => (
         <article key={item.title} className="space-y-3">
           <h3 className="text-2xl font-semibold tracking-tight">{item.title}</h3>

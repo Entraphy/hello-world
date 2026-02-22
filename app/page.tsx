@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
 import { TriadModel } from "@/components/triad-model";
-import { Callout, GhostButton, PageWrap, PrimaryButton, Section } from "@/components/ui";
+import { PageWrap, PrimaryButton } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Entraphy | Reality-Bound Systems",
@@ -17,58 +16,55 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <PageWrap>
-      <div className="relative overflow-hidden rounded-3xl border border-line/80 p-8 md:p-12">
+      <section className="relative overflow-hidden rounded-3xl border border-line/80 px-8 py-24 md:px-12 md:py-32">
         <ConstraintFieldBackground />
-        <p className="text-sm text-muted">There was a time when trust was implied.</p>
-        <p className="mt-2 text-sm text-muted">A password was enough.</p>
-        <p className="mt-2 text-sm text-muted">A firewall was enough.</p>
-        <p className="mt-2 text-xl font-semibold md:text-2xl">That time is over.</p>
-        <p className="mt-6 max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
-          Machines now decide in zero time. Across zero distance.
-        </p>
+        <h1 className="max-w-4xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
+          <span className="block">Machines now decide in zero time.</span>
+          <span className="mt-2 block">Across zero distance.</span>
+        </h1>
 
-        <div className="mt-8 space-y-1 border-l border-accent/70 pl-4">
-          <p className="text-xl font-semibold">Entraphy</p>
+        <div className="mt-10 space-y-2">
+          <p className="text-2xl font-semibold">Entraphy</p>
           <p className="text-sm tracking-[0.16em] text-muted uppercase">Reality-Bound Systems</p>
-          <p className="text-sm">Nothing is trusted until it is proven.</p>
         </div>
 
-        <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted">
-          Architectures where consequential actions must satisfy authority, policy, and time — before they can occur.
-        </p>
+        <p className="mt-8 text-lg text-fg">Nothing is trusted until it is proven.</p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <GhostButton href="#ontology">Explore the Ontology</GhostButton>
+        <div className="mt-10">
           <PrimaryButton href="/briefing">Executive Briefing</PrimaryButton>
         </div>
-      </div>
+      </section>
 
-      <Section title="The Failure Was Structural" eyebrow="Structural mismatch">
-        <ul className="space-y-2">
-          <li>It wasn’t bad firewalls.</li>
-          <li>It wasn’t weak encryption.</li>
-          <li>It was this: we treated trust as identity or configuration — not as a condition of consequence.</li>
-        </ul>
-        <p className="mt-4 text-fg">Autonomous systems act before review. Governance must precede consequence.</p>
-      </Section>
+      <section className="py-32 md:py-40">
+        <h2 className="max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">The Failure Was Structural.</h2>
+        <div className="mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
+          <p>We treated trust as identity or configuration — not as a condition of consequence.</p>
+          <p>Autonomous systems act before review. Governance must precede consequence.</p>
+        </div>
+      </section>
 
-      <Section id="ontology" title="Determine. Bind. Prove." eyebrow="Model">
-        <TriadModel />
-        <p className="mt-5 text-fg">Trust follows verification.</p>
-      </Section>
+      <section className="py-32 md:py-36">
+        <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Determine. Bind. Prove.</h2>
+        <div className="mt-14">
+          <TriadModel />
+        </div>
+        <p className="mt-14 text-lg text-fg">Trust follows verification.</p>
+      </section>
 
-      <Section title="Reality-Bound Systems" eyebrow="Category">
-        <Callout>
+      <section className="py-32 md:py-36">
+        <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Reality-Bound Systems</h2>
+        <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted">
           Systems in which consequential actions cannot occur unless authority, policy, and temporal constraints are
-          satisfied at decision time — and provable.
-        </Callout>
-      </Section>
+          satisfied — and provable.
+        </p>
+      </section>
 
-      <div className="pt-6">
-        <Link href="/reality-bound-systems" className="text-sm text-accent underline underline-offset-4">
-          Continue to category thesis
-        </Link>
-      </div>
+      <section className="py-24 md:py-32">
+        <p className="text-3xl font-semibold tracking-tight md:text-4xl">Trust follows verification.</p>
+        <div className="mt-10">
+          <PrimaryButton href="/briefing">Executive Briefing</PrimaryButton>
+        </div>
+      </section>
     </PageWrap>
   );
 }

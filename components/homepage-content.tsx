@@ -36,7 +36,13 @@ export function HomePageContent() {
     <PageWrap>
       <HeroHeader mode={mode} setMode={setMode} />
 
-      {mode === "standard" ? (
+      <div
+        role="tabpanel"
+        id="home-standard-view"
+        aria-labelledby="home-tab-standard"
+        hidden={mode !== "standard"}
+        aria-hidden={mode !== "standard"}
+      >
         <>
           <div className="mt-6 rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
             <p className="text-xs tracking-[0.16em] text-muted uppercase">System Status</p>
@@ -46,9 +52,17 @@ export function HomePageContent() {
           </div>
           <StandardView />
         </>
-      ) : (
+      </div>
+
+      <div
+        role="tabpanel"
+        id="home-console-view"
+        aria-labelledby="home-tab-console"
+        hidden={mode !== "console"}
+        aria-hidden={mode !== "console"}
+      >
         <ConsoleView reducedMotion={reducedMotion} />
-      )}
+      </div>
     </PageWrap>
   );
 }

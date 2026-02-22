@@ -1,7 +1,8 @@
 import { AdoptionPattern } from "@/components/home/adoption-pattern";
+import { CoverageMap } from "@/components/home/coverage-map";
 import { PrimaryButton } from "@/components/ui";
 
-const sectionLabels = ["The Turn", "Doctrine", "Model", "Adoption", "Proof"] as const;
+const sectionLabels = ["The Turn", "Doctrine", "Model", "Adoption", "Coverage", "Proof"] as const;
 
 const doctrineItems = [
   {
@@ -104,6 +105,13 @@ export function StandardView() {
             <p className="text-xs tracking-[0.18em] text-muted uppercase">ADOPTION PATTERN</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">How Enterprises Adopt Reality-Bound Systems</h2>
             <AdoptionPattern className="mt-6" />
+          </section>
+
+          <section className="border-l border-line/55 bg-fg/[0.02] px-5 py-5 md:border md:border-line/45 md:px-6">
+            <p className="text-xs tracking-[0.18em] text-muted uppercase">COVERAGE MAP</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">From One Consequence Point to Enterprise Coverage</h2>
+            <p className="mt-3 text-sm text-muted">Coverage expands as more workflows are brought under authority, policy, and time.</p>
+            <CoverageMap className="mt-6" phase={1} />
           </section>
 
           <section className="border-l border-line/55 pl-5 md:border-0 md:pl-0">

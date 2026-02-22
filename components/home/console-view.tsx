@@ -4,10 +4,11 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react"
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
 import { AdoptionPattern, adoptionSteps } from "@/components/home/adoption-pattern";
+import { CoverageMap } from "@/components/home/coverage-map";
 import { ConstraintChips, type ConstraintState } from "@/components/home/constraint-chips";
 import type { TrustFieldState } from "@/components/home/trust-field-state";
 
-type ConsoleMode = "understand" | "inspect" | "architecture" | "proof" | "adoption";
+type ConsoleMode = "understand" | "inspect" | "architecture" | "proof" | "adoption" | "coverage";
 type InspectNode = "determine" | "bind" | "prove";
 
 type ProofEvent = {
@@ -26,7 +27,8 @@ const consoleModes: { id: ConsoleMode; label: string; status: string }[] = [
   { id: "inspect", label: "Inspect Model", status: "Inspecting" },
   { id: "architecture", label: "Architecture", status: "Mapping" },
   { id: "proof", label: "Proof", status: "Emitting" },
-  { id: "adoption", label: "Adoption", status: "Mapping" }
+  { id: "adoption", label: "Adoption", status: "Mapping" },
+  { id: "coverage", label: "Coverage", status: "Mapping" }
 ];
 
 const doctrineItems = [
@@ -132,7 +134,10 @@ function ModePanel({
   onHoverAdoptionStep,
   onAdoptionStepNav,
   adoptionStepRefs,
-  onExportSynthetic
+  onExportSynthetic,
+  coveragePhase,
+  onCoverageStep,
+  onCoverageReset
 }: {
   mode: ConsoleMode;
   highlightNode: InspectNode | null;
@@ -148,6 +153,9 @@ function ModePanel({
   onAdoptionStepNav: (event: KeyboardEvent<HTMLButtonElement>, index: number) => void;
   adoptionStepRefs: Array<HTMLButtonElement | null>;
   onExportSynthetic: () => void;
+  coveragePhase: 0 | 1 | 2 | 3;
+  onCoverageStep: () => void;
+  onCoverageReset: () => void;
 }) {
 
   if (mode === "understand") {
@@ -282,6 +290,34 @@ function ModePanel({
     );
   }
 
+  if (mode === "coverage") {
+    return (
+      <>
+        <p className="text-xs tracking-[0.16em] text-muted uppercase">Coverage</p>
+        <h3 className="mt-2 text-2xl font-semibold tracking-tight">From One Consequence Point to Enterprise Coverage</h3>
+        <p className="mt-3 text-sm text-muted">Coverage expands as more workflows are brought under authority, policy, and time.</p>
+        <div className="mt-4 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onCoverageStep}
+            className="depth-surface rounded-md border border-line/50 px-3 py-1.5 text-xs tracking-[0.12em] text-muted uppercase transition-colors hover:text-fg"
+          >
+            Step
+          </button>
+          <button
+            type="button"
+            onClick={onCoverageReset}
+            className="depth-surface rounded-md border border-line/50 px-3 py-1.5 text-xs tracking-[0.12em] text-muted uppercase transition-colors hover:text-fg"
+          >
+            Reset
+          </button>
+          <p className="text-xs text-muted">Phase {coveragePhase}</p>
+        </div>
+        <CoverageMap className="mt-4" interactive phase={coveragePhase} />
+      </>
+    );
+  }
+
   const terminalLines = proofEvents.map((event) => {
     const rendered = renderProofEvent(event);
     return [
@@ -345,6 +381,7 @@ export function ConsoleView({
   const [statusPulse, setStatusPulse] = useState<ConsoleMode | null>(null);
   const [selectedAdoptionStep, setSelectedAdoptionStep] = useState<string | null>(null);
   const [hoveredAdoptionStep, setHoveredAdoptionStep] = useState<string | null>(null);
+  const [coveragePhase, setCoveragePhase] = useState<0 | 1 | 2 | 3>(0);
   const modeButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const adoptionStepRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const proofSequenceIndexRef = useRef(0);
@@ -367,6 +404,10 @@ export function ConsoleView({
 
     if (activeMode !== "adoption") {
       setHoveredAdoptionStep(null);
+    }
+
+    if (activeMode !== "coverage") {
+      setCoveragePhase(0);
     }
   }, [activeMode]);
 
@@ -573,6 +614,9 @@ export function ConsoleView({
                 setStatusPulse("proof");
                 window.setTimeout(() => setStatusPulse(null), 1000);
               }}
+              coveragePhase={coveragePhase}
+              onCoverageStep={() => setCoveragePhase((current) => (current === 3 ? 3 : ((current + 1) as 0 | 1 | 2 | 3)))}
+              onCoverageReset={() => setCoveragePhase(0)}
             />
           </div>
         </section>

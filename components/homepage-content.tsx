@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
+import { DefinitionBlock } from "@/components/definition-block";
 import { PivotRing } from "@/components/pivot-ring";
+import { SectionRail } from "@/components/section-rail";
 import { TriadModel } from "@/components/triad-model";
 import { PageWrap, PrimaryButton } from "@/components/ui";
 
@@ -12,12 +14,21 @@ type Mode = "idle" | "pivot" | "model" | "category" | "pause" | "cta";
 type Drift = { far: number; mid: number; near: number };
 
 const modeBySection: Record<string, Mode> = {
+  hero: "idle",
   pivot: "pivot",
   model: "model",
   category: "category",
   pause: "pause",
   cta: "cta"
 };
+
+const railSections = [
+  { id: "hero", label: "Hero" },
+  { id: "pivot", label: "Pivot" },
+  { id: "category", label: "Category" },
+  { id: "model", label: "Model" },
+  { id: "cta", label: "Final" }
+];
 
 const sectionCueClasses = "mb-9 h-px w-20 bg-line/65";
 
@@ -127,7 +138,9 @@ export function HomePageContent() {
 
   return (
     <PageWrap>
-      <section className="relative flex min-h-[84vh] items-center overflow-hidden py-[92px] md:min-h-[92vh] md:py-[140px]">
+      <SectionRail items={railSections.map((item) => ({ ...item, active: modeBySection[item.id] === mode }))} />
+
+      <section id="hero" className="relative flex min-h-[84vh] items-center overflow-hidden py-[92px] md:min-h-[92vh] md:py-[140px]">
         <ConstraintFieldBackground mode={mode} drift={drift} reducedMotion={reducedMotion} />
 
         <div className="w-full -translate-y-6">
@@ -147,44 +160,52 @@ export function HomePageContent() {
         </div>
       </section>
 
-      <section id="pivot" className="py-[140px] md:py-[210px]">
+      <section id="pivot" className="border border-line/60 bg-fg/[0.03] px-6 py-[120px] md:px-14 md:py-[170px]">
         <div className={sectionCueClasses} aria-hidden />
-        <div className="relative inline-block">
-          <PivotRing />
-          <h2 className="text-[48px] leading-[0.96] font-semibold tracking-tight md:text-[70px] lg:text-[80px]">
+        <div className="relative inline-block border-l-2 border-line/70 pl-6 md:pl-8">
+          <div className="pointer-events-none absolute -top-24 -left-24 opacity-40">
+            <PivotRing />
+          </div>
+          <h2
+            className={`relative text-[48px] leading-[0.96] font-semibold tracking-tight transition duration-500 md:text-[70px] lg:text-[80px] ${
+              reducedMotion ? "opacity-100" : mode === "pivot" ? "translate-y-0 opacity-100 delay-100" : "translate-y-2 opacity-65"
+            }`}
+          >
             <span className="block">The Failure</span>
             <span className="block">Was Structural</span>
           </h2>
         </div>
 
-        <div className="mt-12 max-w-3xl space-y-7 text-lg leading-relaxed text-muted">
+        <div className="mt-12 max-w-2xl space-y-7 text-lg leading-relaxed text-muted">
           <p>We treated trust as identity or configuration. Not as a condition of consequence.</p>
           <p>Autonomous systems act before review. Governance must precede consequence.</p>
         </div>
       </section>
 
-      <section id="category" className="py-[112px] md:py-[170px]">
+      <section id="category" className="border-x border-b border-line/55 bg-fg/[0.02] px-6 py-[112px] md:px-14 md:py-[150px]">
         <div className={sectionCueClasses} aria-hidden />
         <h2 className="text-[42px] font-semibold tracking-tight md:text-[52px] lg:text-[56px]">Reality-Bound Systems</h2>
-        <p className="mt-14 max-w-3xl text-lg leading-relaxed text-muted">
+        <DefinitionBlock>
           Consequential actions cannot occur unless authority, policy, and temporal constraints are satisfied at decision time, and provable.
-        </p>
+        </DefinitionBlock>
       </section>
 
-      <section id="pause" className="py-[180px] text-center md:py-[220px]">
-        <p className="text-[54px] leading-[0.9] font-semibold tracking-[0.08em] uppercase md:text-[86px]">
-          <span className="block">NOTHING IS TRUSTED</span>
-          <span className="block">UNTIL IT IS PROVEN</span>
-        </p>
+      <section id="pause" className="mx-[calc(50%-50vw)] my-14 border-y border-line/40 bg-fg/[0.015] py-[180px] text-center md:py-[220px]">
+        <div className="mx-auto max-w-content px-6">
+          <p className="text-[54px] leading-[0.9] font-semibold tracking-[0.08em] uppercase md:text-[86px]">
+            <span className="block">NOTHING IS TRUSTED</span>
+            <span className="block">UNTIL IT IS PROVEN</span>
+          </p>
+        </div>
       </section>
 
-      <section id="model" className="py-[108px] md:py-[170px]">
+      <section id="model" className="border border-line/55 bg-fg/[0.02] px-6 py-[108px] md:px-14 md:py-[150px]">
         <div className={sectionCueClasses} aria-hidden />
         <h2 className="sr-only">Determine, Bind, Prove</h2>
-        <TriadModel />
+        <TriadModel mode={mode} reducedMotion={reducedMotion} />
       </section>
 
-      <section id="cta" className="pt-[110px] pb-[150px] md:pt-[150px] md:pb-[210px]">
+      <section id="cta" className="border-t border-line/50 bg-fg/[0.015] px-6 pt-[150px] pb-[150px] md:px-14 md:pt-[190px] md:pb-[210px]">
         <div className={sectionCueClasses} aria-hidden />
         <p className="mt-6 text-[38px] font-semibold tracking-[0.08em] text-fg uppercase md:text-[52px]">TRUST FOLLOWS VERIFICATION.</p>
         <div className="mt-12">

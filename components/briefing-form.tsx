@@ -1,12 +1,23 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function BriefingForm() {
+export function BriefingForm({ onRequestReceived }: { onRequestReceived?: () => void }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
+  const [cooldown, setCooldown] = useState(false);
+
+  useEffect(() => {
+    if (!cooldown) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => setCooldown(false), 1000);
+
+    return () => window.clearTimeout(timer);
+  }, [cooldown]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,18 +57,12 @@ export function BriefingForm() {
 
       form.reset();
       setStatus("success");
+      setCooldown(true);
+      onRequestReceived?.();
     } catch {
       setStatus("error");
       setError("Network error. Please try again.");
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="rounded-2xl border border-accent/60 bg-accent/10 p-6 text-sm">
-        Thank you. Your briefing request has been received.
-      </div>
-    );
   }
 
   return (
@@ -78,10 +83,11 @@ export function BriefingForm() {
       </label>
 
       {status === "error" && error ? <p className="text-sm text-red-300">{error}</p> : null}
+      {status === "success" ? <p className="text-sm text-fg">Request Received</p> : null}
 
       <button
         type="submit"
-        disabled={status === "submitting"}
+        disabled={status === "submitting" || cooldown}
         className="rounded-full border border-accent px-5 py-2 text-xs font-semibold tracking-[0.16em] text-accent uppercase transition hover:bg-accent/10 disabled:opacity-60"
       >
         {status === "submitting" ? "Submitting..." : "Request Briefing"}

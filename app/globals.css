@@ -39,3 +39,76 @@ a {
   outline: 2px solid rgb(var(--color-accent));
   outline-offset: 2px;
 }
+
+.depth-chamber {
+  position: relative;
+  isolation: isolate;
+}
+
+.depth-chamber::before {
+  content: "";
+  position: absolute;
+  inset: -1.5rem;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--depth-x, 50%) var(--depth-y, 50%), rgba(233, 236, 242, 0.06), transparent 56%);
+}
+
+.depth-chamber::after {
+  content: "";
+  position: absolute;
+  inset: -1.5rem;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(233, 236, 242, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(233, 236, 242, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(233, 236, 242, 0.03) 0, rgba(233, 236, 242, 0) 64%),
+    radial-gradient(circle at 22% 28%, rgba(233, 236, 242, 0.03) 0.7px, transparent 0.8px);
+  background-size: 36px 36px, 36px 36px, 100% 100%, 3px 3px;
+  mask-image: radial-gradient(circle at center, black 56%, transparent 100%);
+  opacity: 0.3;
+}
+
+.depth-panel {
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(233, 236, 242, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.24), 0 2px 0 rgba(0, 0, 0, 0.22),
+    0 0 16px rgba(233, 236, 242, 0.05);
+}
+
+.depth-surface {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  transform-origin: center;
+}
+
+.depth-surface:hover,
+.depth-surface:focus-visible {
+  transform: scale(1.01);
+  border-color: rgba(233, 236, 242, 0.56) !important;
+  box-shadow: inset 0 1px 0 rgba(233, 236, 242, 0.2), 0 0 18px rgba(233, 236, 242, 0.08);
+}
+
+
+.control-grid {
+  position: relative;
+  margin-inline: auto;
+  max-width: 1240px;
+}
+
+.control-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(233, 236, 242, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(233, 236, 242, 0.03) 1px, transparent 1px);
+  background-size: 25% 100%, 12.5% 100%;
+  opacity: 0.28;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.system-anchor-line {
+  position: relative;
+  height: 1px;
+  margin-block: 1.1rem;
+  background: linear-gradient(to right, transparent, rgba(233, 236, 242, 0.2) 12%, rgba(233, 236, 242, 0.24) 50%, rgba(233, 236, 242, 0.2) 88%, transparent);
+}

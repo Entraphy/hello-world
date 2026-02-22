@@ -16,8 +16,6 @@ export function HeroHeader({
 }) {
   const calibratingBorder = trustFieldState === "calibrating" && !reducedMotion;
   const heroCopyMuted = mode === "console";
-
-export function HeroHeader({ mode, setMode }: { mode: HomeMode; setMode: (mode: HomeMode) => void }) {
   const [focusedTab, setFocusedTab] = useState<HomeMode>(mode);
   const tablistRef = useRef<HTMLDivElement>(null);
   const standardTabRef = useRef<HTMLButtonElement>(null);

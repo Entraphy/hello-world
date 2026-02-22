@@ -38,13 +38,23 @@ export function HomePageContent() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     const syncMotion = () => setReducedMotion(query.matches);
 
     syncMotion();
-    query.addEventListener("change", syncMotion);
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", syncMotion);
 
-    return () => query.removeEventListener("change", syncMotion);
+      return () => query.removeEventListener("change", syncMotion);
+    }
+
+    query.addListener(syncMotion);
+
+    return () => query.removeListener(syncMotion);
   }, []);
 
   useEffect(() => {

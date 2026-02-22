@@ -11,9 +11,10 @@ export function HeroHeader({ mode, setMode }: { mode: HomeMode; setMode: (mode: 
             <button
               type="button"
               role="tab"
+              id="home-tab-standard"
               aria-selected={mode === "standard"}
               aria-controls="home-standard-view"
-              id="home-mode-standard"
+              tabIndex={mode === "standard" ? 0 : -1}
               onClick={() => setMode("standard")}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.1em] uppercase transition-colors ${
                 mode === "standard" ? "bg-fg text-bg" : "text-muted hover:text-fg"
@@ -24,9 +25,10 @@ export function HeroHeader({ mode, setMode }: { mode: HomeMode; setMode: (mode: 
             <button
               type="button"
               role="tab"
+              id="home-tab-console"
               aria-selected={mode === "console"}
               aria-controls="home-console-view"
-              id="home-mode-console"
+              tabIndex={mode === "console" ? 0 : -1}
               onClick={() => setMode("console")}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.1em] uppercase transition-colors ${
                 mode === "console" ? "bg-fg text-bg" : "text-muted hover:text-fg"

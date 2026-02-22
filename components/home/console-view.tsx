@@ -67,9 +67,10 @@ function renderProofEvent(event: ProofEvent) {
   };
 }
 
-function ModePanel({ mode, selectedNode, onSelectNode, onHoverNode, proofCursor }: {
+function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNode, proofCursor }: {
   mode: ConsoleMode;
-  selectedNode: InspectNode | null;
+  highlightNode: InspectNode | null;
+  inspectorNode: InspectNode | null;
   onSelectNode: (node: InspectNode | null) => void;
   onHoverNode: (node: InspectNode | null) => void;
   proofCursor: number;
@@ -101,14 +102,14 @@ function ModePanel({ mode, selectedNode, onSelectNode, onHoverNode, proofCursor 
                   y1="50"
                   x2={node.x}
                   y2={node.y}
-                  className={`stroke-current transition-opacity ${selectedNode === node.id ? "opacity-60" : selectedNode ? "opacity-20" : "opacity-35"}`}
+                  className={`stroke-current transition-opacity ${highlightNode === node.id ? "opacity-60" : highlightNode ? "opacity-20" : "opacity-35"}`}
                 />
               ))}
             </svg>
             <div className="absolute left-[46%] top-[50%] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-fg/30 bg-fg/40" />
             {inspectNodes.map((node) => {
-              const isSelected = selectedNode === node.id;
-              const isDimmed = selectedNode && !isSelected;
+              const isSelected = highlightNode === node.id;
+              const isDimmed = highlightNode && !isSelected;
 
               return (
                 <button
@@ -132,10 +133,10 @@ function ModePanel({ mode, selectedNode, onSelectNode, onHoverNode, proofCursor 
 
         <aside className="rounded-lg border border-line/45 bg-fg/[0.03] p-4">
           <p className="text-xs tracking-[0.16em] text-muted uppercase">Inspector</p>
-          {selectedNode ? (
+          {inspectorNode ? (
             <div className="mt-3 space-y-2">
-              <p className="text-sm font-semibold tracking-[0.14em] text-fg uppercase">{inspectNodeCopy[selectedNode].title}</p>
-              <p className="text-sm text-muted">{inspectNodeCopy[selectedNode].body}</p>
+              <p className="text-sm font-semibold tracking-[0.14em] text-fg uppercase">{inspectNodeCopy[inspectorNode].title}</p>
+              <p className="text-sm text-muted">{inspectNodeCopy[inspectorNode].body}</p>
             </div>
           ) : (
             <p className="mt-3 text-sm text-muted">Select a node.</p>
@@ -223,10 +224,11 @@ export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
   }, [activeMode]);
 
   const statusValue = useMemo(() => consoleModes.find((mode) => mode.id === activeMode)?.status ?? "Calibrating", [activeMode]);
-  const focusNode = hoveredNode ?? selectedNode;
+  const highlightNode = hoveredNode ?? selectedNode;
+  const inspectorNode = selectedNode;
 
   return (
-    <div id="home-console-view" role="tabpanel" aria-labelledby="home-mode-console" className="pt-10">
+    <div className="pt-10">
       <div className="mb-6 rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
         <p className="text-xs tracking-[0.16em] text-muted uppercase">System Status</p>
         <p className="mt-1 flex items-center gap-2 text-sm text-muted">
@@ -267,7 +269,8 @@ export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
           <div className={`relative z-10 transition-opacity ${reducedMotion ? "duration-0" : "duration-200"} ${panelVisible ? "opacity-100" : "opacity-0"}`}>
             <ModePanel
               mode={panelMode}
-              selectedNode={focusNode}
+              highlightNode={highlightNode}
+              inspectorNode={inspectorNode}
               onSelectNode={setSelectedNode}
               onHoverNode={setHoveredNode}
               proofCursor={proofCursor}

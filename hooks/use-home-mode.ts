@@ -14,9 +14,15 @@ export function useHomeMode() {
       return;
     }
 
-    const storedMode = window.localStorage.getItem(STORAGE_KEY);
-    if (storedMode === "standard" || storedMode === "console") {
-      setMode(storedMode);
+    try {
+      const storedMode = window.localStorage.getItem(STORAGE_KEY);
+      if (storedMode === "standard" || storedMode === "console") {
+        setMode(storedMode);
+      } else {
+        setMode("standard");
+      }
+    } catch {
+      setMode("standard");
     }
   }, []);
 
@@ -25,7 +31,11 @@ export function useHomeMode() {
       return;
     }
 
-    window.localStorage.setItem(STORAGE_KEY, mode);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, mode);
+    } catch {
+      // Ignore storage failures and keep in-memory mode.
+    }
   }, [mode]);
 
   return { mode, setMode };

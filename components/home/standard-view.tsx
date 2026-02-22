@@ -2,7 +2,7 @@ import { PrimaryButton } from "@/components/ui";
 
 export function StandardView() {
   return (
-    <div id="home-standard-view" role="tabpanel" aria-labelledby="home-mode-standard" className="space-y-10 pt-10">
+    <div className="space-y-10 pt-10">
       <section className="border border-line/45 bg-fg/[0.015] px-6 py-12 md:px-10">
         <p className="mb-4 text-xs tracking-[0.18em] text-muted uppercase">The Turn</p>
         <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">The Failure Was Structural</h2>

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
+import type { TrustFieldState } from "@/components/home/trust-field-state";
 
 type ConsoleMode = "understand" | "inspect" | "architecture" | "proof";
 type InspectNode = "determine" | "bind" | "prove";
@@ -67,14 +68,36 @@ function renderProofEvent(event: ProofEvent) {
   };
 }
 
-function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNode, proofCursor }: {
+function ModePanel({
+  mode,
+  highlightNode,
+  inspectorNode,
+  onSelectNode,
+  onHoverNode,
+  proofCursor,
+  shouldAutoScrollProof,
+  onProofAutoScroll
+}: {
   mode: ConsoleMode;
   highlightNode: InspectNode | null;
   inspectorNode: InspectNode | null;
   onSelectNode: (node: InspectNode | null) => void;
   onHoverNode: (node: InspectNode | null) => void;
   proofCursor: number;
+  shouldAutoScrollProof: boolean;
+  onProofAutoScroll: () => void;
 }) {
+  const proofFeedRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!shouldAutoScrollProof || mode !== "proof" || !proofFeedRef.current) {
+      return;
+    }
+
+    proofFeedRef.current.scrollTo({ top: proofFeedRef.current.scrollHeight, behavior: "smooth" });
+    onProofAutoScroll();
+  }, [mode, onProofAutoScroll, shouldAutoScrollProof]);
+
   if (mode === "understand") {
     return (
       <>
@@ -91,9 +114,9 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
   if (mode === "inspect") {
     return (
       <div className="grid gap-4 md:grid-cols-[1.3fr_1fr]" onKeyDown={(event) => event.key === "Escape" && onSelectNode(null)}>
-        <div className="rounded-lg border border-line/45 bg-fg/[0.03] p-4">
+        <div className="depth-panel rounded-lg border border-line/45 bg-fg/[0.03] p-4">
           <h3 className="text-2xl font-semibold tracking-tight">Determine. Bind. Prove.</h3>
-          <div className="relative mt-5 aspect-[5/4] rounded-lg border border-line/35 bg-fg/[0.015]">
+          <div className="depth-panel relative mt-5 aspect-[5/4] rounded-lg border border-line/35 bg-fg/[0.015]">
             <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
               {inspectNodes.map((node) => (
                 <line
@@ -102,7 +125,8 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
                   y1="50"
                   x2={node.x}
                   y2={node.y}
-                  className={`stroke-current transition-opacity ${highlightNode === node.id ? "opacity-60" : highlightNode ? "opacity-20" : "opacity-35"}`}
+                  className={`stroke-current transition-[opacity,stroke-width] duration-150 ${highlightNode === node.id ? "opacity-85" : highlightNode ? "opacity-18" : "opacity-35"}`}
+                  style={{ strokeWidth: highlightNode === node.id ? 1.35 : 1 }}
                 />
               ))}
             </svg>
@@ -120,7 +144,7 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
                   onFocus={() => onHoverNode(node.id)}
                   onBlur={() => onHoverNode(null)}
                   onClick={() => onSelectNode(node.id)}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-md border px-2 py-1 text-xs tracking-[0.12em] uppercase transition-opacity ${isSelected ? "border-fg/75 bg-fg/15 text-fg" : "border-line/45 bg-bg/70 text-muted"} ${isDimmed ? "opacity-45" : "opacity-100"}`}
+                  className={`depth-surface absolute -translate-x-1/2 -translate-y-1/2 rounded-md border px-2 py-1 text-xs tracking-[0.12em] uppercase transition-opacity ${isSelected ? "border-fg/75 bg-fg/15 text-fg" : "border-line/45 bg-bg/70 text-muted"} ${isDimmed ? "opacity-45" : "opacity-100"}`}
                   style={{ left: `${node.x}%`, top: `${node.y}%` }}
                   aria-pressed={isSelected}
                 >
@@ -131,7 +155,7 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
           </div>
         </div>
 
-        <aside className="rounded-lg border border-line/45 bg-fg/[0.03] p-4">
+        <aside className="depth-panel rounded-lg border border-line/45 bg-fg/[0.03] p-4">
           <p className="text-xs tracking-[0.16em] text-muted uppercase">Inspector</p>
           {inspectorNode ? (
             <div className="mt-3 space-y-2">
@@ -167,12 +191,18 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
   return (
     <>
       <h3 className="text-2xl font-semibold tracking-tight">Proof Feed (Synthetic)</h3>
-      <div className="mt-4 space-y-2">
+      <div ref={proofFeedRef} className="mt-4 max-h-[320px] space-y-2 overflow-y-auto pr-1">
         {eventsToShow.map((event, index) => (
-          <div key={`${event.timestamp}-${index}`} className="rounded-md border border-line/35 bg-fg/[0.02] px-3 py-2 text-xs text-muted">
-            <p className="font-medium text-fg/90">{event.timestamp} · {event.outcome}</p>
-            <p>{event.authority} · {event.policy} · {event.time}</p>
-            <p>{event.action} · {event.proof}</p>
+          <div key={`${event.timestamp}-${index}`} className="depth-panel rounded-md border border-line/35 bg-fg/[0.02] px-3 py-2 text-xs text-muted">
+            <p className="font-medium text-fg/90">
+              {event.timestamp} · {event.outcome}
+            </p>
+            <p>
+              {event.authority} · {event.policy} · {event.time}
+            </p>
+            <p>
+              {event.action} · {event.proof}
+            </p>
           </div>
         ))}
       </div>
@@ -180,13 +210,35 @@ function ModePanel({ mode, highlightNode, inspectorNode, onSelectNode, onHoverNo
   );
 }
 
-export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
-  const [activeMode, setActiveMode] = useState<ConsoleMode>("understand");
-  const [panelMode, setPanelMode] = useState<ConsoleMode>("understand");
+export function ConsoleView({
+  reducedMotion,
+  trustFieldState,
+  onPanelChange,
+  isActive
+}: {
+  reducedMotion: boolean;
+  trustFieldState: TrustFieldState;
+  onPanelChange: (panel: ConsoleMode) => void;
+  isActive: boolean;
+}) {
+  const [activeMode, setActiveMode] = useState<ConsoleMode>("inspect");
+  const [panelMode, setPanelMode] = useState<ConsoleMode>("inspect");
   const [panelVisible, setPanelVisible] = useState(true);
   const [selectedNode, setSelectedNode] = useState<InspectNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<InspectNode | null>(null);
   const [proofCursor, setProofCursor] = useState(0);
+  const [proofAutoscrollComplete, setProofAutoscrollComplete] = useState(false);
+  const modeButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  useEffect(() => {
+    onPanelChange(activeMode);
+  }, [activeMode, onPanelChange]);
+
+  useEffect(() => {
+    if (isActive) {
+      setActiveMode("inspect");
+    }
+  }, [isActive]);
 
   useEffect(() => {
     if (activeMode !== "inspect") {
@@ -223,34 +275,63 @@ export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
     return () => window.clearInterval(interval);
   }, [activeMode]);
 
+  useEffect(() => {
+    if (activeMode === "proof") {
+      setProofAutoscrollComplete(false);
+    }
+  }, [activeMode]);
+
   const statusValue = useMemo(() => consoleModes.find((mode) => mode.id === activeMode)?.status ?? "Calibrating", [activeMode]);
   const highlightNode = hoveredNode ?? selectedNode;
-  const inspectorNode = selectedNode;
+  const inspectorNode = hoveredNode ?? selectedNode;
+  const showInspectingGlow = trustFieldState === "inspecting";
+  const showMappingGrid = trustFieldState === "mapping";
+  const shouldAutoScrollProof = trustFieldState === "emitting" && !proofAutoscrollComplete && !reducedMotion;
 
   return (
-    <div className="pt-10">
-      <div className="mb-6 rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
+    <div className="pt-8">
+      <div className="depth-panel mb-6 rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
         <p className="text-xs tracking-[0.16em] text-muted uppercase">System Status</p>
         <p className="mt-1 flex items-center gap-2 text-sm text-muted">
           <span
-            className={`inline-block h-2 w-2 rounded-full bg-fg/80 ${
-              activeMode === "proof" && !reducedMotion ? "animate-[pulse_1.8s_ease-in-out_infinite]" : "opacity-70"
-            }`}
+            className={`inline-block h-2 w-2 rounded-full bg-fg/80 ${activeMode === "proof" ? "opacity-95" : "opacity-70"}`}
           />
           Trust Field Status: <span className="font-semibold text-fg">{statusValue}</span>
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[240px_1fr]">
-        <aside className="rounded-xl border border-line/45 bg-fg/[0.015] p-4">
+      <div className="grid gap-5 md:grid-cols-[248px_1fr]">
+        <aside className="depth-panel rounded-xl border border-line/45 bg-fg/[0.015] p-5">
           <p className="mb-3 text-xs tracking-[0.16em] text-muted uppercase">Mode Panel</p>
-          <div className="flex gap-2 overflow-x-auto md:flex-col">
-            {consoleModes.map((mode) => (
+          <div className="flex gap-2 overflow-x-auto md:flex-col" onKeyDown={(event) => {
+            if (event.key !== "ArrowDown" && event.key !== "ArrowRight" && event.key !== "ArrowUp" && event.key !== "ArrowLeft" && event.key !== "Escape") {
+              return;
+            }
+
+            if (event.key === "Escape") {
+              setSelectedNode(null);
+              setHoveredNode(null);
+              return;
+            }
+
+            event.preventDefault();
+            const direction = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : -1;
+            const currentIndex = consoleModes.findIndex((item) => item.id === activeMode);
+            const nextIndex = (currentIndex + direction + consoleModes.length) % consoleModes.length;
+            const nextMode = consoleModes[nextIndex]?.id ?? "inspect";
+
+            setActiveMode(nextMode);
+            modeButtonRefs.current[nextIndex]?.focus();
+          }}>
+            {consoleModes.map((mode, index) => (
               <button
                 key={mode.id}
                 type="button"
                 onClick={() => setActiveMode(mode.id)}
-                className={`rounded-md border px-3 py-2 text-left text-sm transition-colors ${
+                ref={(element) => {
+                  modeButtonRefs.current[index] = element;
+                }}
+                className={`depth-surface rounded-md border px-3 py-2 text-left text-sm transition-colors ${
                   activeMode === mode.id ? "border-fg/70 bg-fg/10 text-fg" : "border-line/50 text-muted hover:text-fg"
                 } ${reducedMotion ? "duration-0" : "duration-150"}`}
               >
@@ -260,11 +341,26 @@ export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
           </div>
         </aside>
 
-        <section className="relative overflow-hidden rounded-xl border border-line/45 bg-fg/[0.04] p-6 md:p-8">
+        <section className="depth-panel relative overflow-hidden rounded-xl border border-line/45 bg-fg/[0.04] p-7 md:p-9">
+          {showMappingGrid ? (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-35"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
+                backgroundSize: "26px 26px"
+              }}
+            />
+          ) : null}
           <ConstraintFieldBackground
             mode={panelMode === "proof" ? "pivot" : panelMode === "inspect" ? "model" : "idle"}
             reducedMotion={reducedMotion}
             drift={panelMode === "proof" ? { far: 3, mid: 2, near: 1 } : { far: 0, mid: 0, near: 0 }}
+          />
+          <div
+            className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${showInspectingGlow ? "opacity-100" : "opacity-0"}`}
+            style={{ boxShadow: "inset 0 0 70px rgba(255,255,255,0.09)" }}
           />
           <div className={`relative z-10 transition-opacity ${reducedMotion ? "duration-0" : "duration-200"} ${panelVisible ? "opacity-100" : "opacity-0"}`}>
             <ModePanel
@@ -274,6 +370,8 @@ export function ConsoleView({ reducedMotion }: { reducedMotion: boolean }) {
               onSelectNode={setSelectedNode}
               onHoverNode={setHoveredNode}
               proofCursor={proofCursor}
+              shouldAutoScrollProof={shouldAutoScrollProof}
+              onProofAutoScroll={() => setProofAutoscrollComplete(true)}
             />
           </div>
         </section>

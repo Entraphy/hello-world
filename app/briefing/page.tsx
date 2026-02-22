@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-import { BriefingForm } from "@/components/briefing-form";
-import { CalendlyPlaceholder } from "@/components/calendly-placeholder";
-import { PageWrap, Section } from "@/components/ui";
+import { BriefingEntry } from "@/components/briefing-entry";
+import { PageWrap } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Executive Briefing | Entraphy",
@@ -16,14 +15,7 @@ export const metadata: Metadata = {
 export default function BriefingPage() {
   return (
     <PageWrap>
-      <Section title="Executive Briefing" eyebrow="Request">
-        <p>Short sessions for leadership teams evaluating consequence-first governance for autonomous systems.</p>
-      </Section>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <BriefingForm />
-        <CalendlyPlaceholder />
-      </div>
+      <BriefingEntry />
     </PageWrap>
   );
 }

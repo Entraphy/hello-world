@@ -1,6 +1,7 @@
+import { AdoptionPattern } from "@/components/home/adoption-pattern";
 import { PrimaryButton } from "@/components/ui";
 
-const sectionLabels = ["The Turn", "Doctrine", "Model", "Proof"] as const;
+const sectionLabels = ["The Turn", "Doctrine", "Model", "Adoption", "Proof"] as const;
 
 const doctrineItems = [
   {
@@ -99,12 +100,19 @@ export function StandardView() {
             </div>
           </section>
 
+          <section className="border-l border-line/55 bg-fg/[0.02] px-5 py-5 md:border md:border-line/45 md:px-6">
+            <p className="text-xs tracking-[0.18em] text-muted uppercase">ADOPTION PATTERN</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">How Enterprises Adopt Reality-Bound Systems</h2>
+            <AdoptionPattern className="mt-6" />
+          </section>
+
           <section className="border-l border-line/55 pl-5 md:border-0 md:pl-0">
             <p className="mb-3 inline-flex rounded-full border border-line/55 bg-fg/[0.02] px-2 py-1 text-[10px] tracking-[0.2em] text-muted uppercase md:hidden">
               Proof
             </p>
             <p className="text-base text-muted">Portable verification is emitted at the moment of consequence.</p>
           </section>
+
         </div>
       </div>
 

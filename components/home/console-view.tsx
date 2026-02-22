@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
+import { AdoptionPattern, adoptionSteps } from "@/components/home/adoption-pattern";
 import { ConstraintChips, type ConstraintState } from "@/components/home/constraint-chips";
 import type { TrustFieldState } from "@/components/home/trust-field-state";
 
-type ConsoleMode = "understand" | "inspect" | "architecture" | "proof";
+type ConsoleMode = "understand" | "inspect" | "architecture" | "proof" | "adoption";
 type InspectNode = "determine" | "bind" | "prove";
 
 type ProofEvent = {
@@ -24,7 +25,8 @@ const consoleModes: { id: ConsoleMode; label: string; status: string }[] = [
   { id: "understand", label: "Understand", status: "Stable" },
   { id: "inspect", label: "Inspect Model", status: "Inspecting" },
   { id: "architecture", label: "Architecture", status: "Mapping" },
-  { id: "proof", label: "Proof", status: "Emitting" }
+  { id: "proof", label: "Proof", status: "Emitting" },
+  { id: "adoption", label: "Adoption", status: "Mapping" }
 ];
 
 const doctrineItems = [
@@ -124,6 +126,12 @@ function ModePanel({
   onSelectNode,
   onHoverNode,
   proofEvents,
+  selectedAdoptionStep,
+  hoveredAdoptionStep,
+  onSelectAdoptionStep,
+  onHoverAdoptionStep,
+  onAdoptionStepNav,
+  adoptionStepRefs,
   onExportSynthetic
 }: {
   mode: ConsoleMode;
@@ -133,6 +141,12 @@ function ModePanel({
   onSelectNode: (node: InspectNode | null) => void;
   onHoverNode: (node: InspectNode | null) => void;
   proofEvents: ProofTerminalEvent[];
+  selectedAdoptionStep: string | null;
+  hoveredAdoptionStep: string | null;
+  onSelectAdoptionStep: (stepId: string | null) => void;
+  onHoverAdoptionStep: (stepId: string | null) => void;
+  onAdoptionStepNav: (event: KeyboardEvent<HTMLButtonElement>, index: number) => void;
+  adoptionStepRefs: Array<HTMLButtonElement | null>;
   onExportSynthetic: () => void;
 }) {
 
@@ -233,6 +247,41 @@ function ModePanel({
     );
   }
 
+  if (mode === "adoption") {
+    return (
+      <>
+        <p className="text-xs tracking-[0.16em] text-muted uppercase">Adoption Pattern</p>
+        <h3 className="mt-2 text-2xl font-semibold tracking-tight">How Enterprises Adopt Reality-Bound Systems</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-[1.4fr_1fr] md:items-start">
+          <AdoptionPattern
+            interactive
+            selectedStepId={selectedAdoptionStep}
+            hoveredStepId={hoveredAdoptionStep}
+            className="min-w-0"
+            showInspector={false}
+            buttonRefs={adoptionStepRefs}
+            onSelectStep={(stepId) => onSelectAdoptionStep(stepId)}
+            onHoverStep={onHoverAdoptionStep}
+            onKeyNavigate={onAdoptionStepNav}
+          />
+          <aside className="rounded-lg border border-line/45 bg-fg/[0.03] p-4">
+            <p className="text-xs tracking-[0.16em] text-muted uppercase">Selection</p>
+            {selectedAdoptionStep ? (
+              <div className="mt-3 space-y-2">
+                <p className="text-sm tracking-[0.14em] text-fg uppercase">
+                  {adoptionSteps.find((step) => step.id === selectedAdoptionStep)?.number}. {adoptionSteps.find((step) => step.id === selectedAdoptionStep)?.title}
+                </p>
+                <p className="text-sm text-muted">{adoptionSteps.find((step) => step.id === selectedAdoptionStep)?.description}</p>
+              </div>
+            ) : (
+              <p className="mt-3 text-sm text-muted">Select a step.</p>
+            )}
+          </aside>
+        </div>
+      </>
+    );
+  }
+
   const terminalLines = proofEvents.map((event) => {
     const rendered = renderProofEvent(event);
     return [
@@ -294,7 +343,10 @@ export function ConsoleView({
   const [hoveredNode, setHoveredNode] = useState<InspectNode | null>(null);
   const [proofEvents, setProofEvents] = useState<ProofTerminalEvent[]>([]);
   const [statusPulse, setStatusPulse] = useState<ConsoleMode | null>(null);
+  const [selectedAdoptionStep, setSelectedAdoptionStep] = useState<string | null>(null);
+  const [hoveredAdoptionStep, setHoveredAdoptionStep] = useState<string | null>(null);
   const modeButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const adoptionStepRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const proofSequenceIndexRef = useRef(0);
 
   useEffect(() => {
@@ -311,6 +363,10 @@ export function ConsoleView({
     if (activeMode !== "inspect") {
       setSelectedNode(null);
       setHoveredNode(null);
+    }
+
+    if (activeMode !== "adoption") {
+      setHoveredAdoptionStep(null);
     }
   }, [activeMode]);
 
@@ -465,6 +521,42 @@ export function ConsoleView({
               onHoverNode={setHoveredNode}
               selectedInspectNode={selectedNode}
               proofEvents={proofEvents}
+              selectedAdoptionStep={selectedAdoptionStep}
+              hoveredAdoptionStep={hoveredAdoptionStep}
+              onSelectAdoptionStep={setSelectedAdoptionStep}
+              onHoverAdoptionStep={setHoveredAdoptionStep}
+              adoptionStepRefs={adoptionStepRefs.current}
+              onAdoptionStepNav={(event, index) => {
+                if (event.key === "Escape") {
+                  setSelectedAdoptionStep(null);
+                  setHoveredAdoptionStep(null);
+                  return;
+                }
+
+                if (event.key === "Enter") {
+                  const targetStep = adoptionSteps[index];
+                  if (targetStep) {
+                    setSelectedAdoptionStep(targetStep.id);
+                  }
+                  return;
+                }
+
+                if (event.key !== "ArrowRight" && event.key !== "ArrowLeft" && event.key !== "ArrowDown" && event.key !== "ArrowUp") {
+                  return;
+                }
+
+                event.preventDefault();
+                const direction = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+                const nextIndex = (index + direction + adoptionSteps.length) % adoptionSteps.length;
+                const nextStep = adoptionSteps[nextIndex];
+
+                if (!nextStep) {
+                  return;
+                }
+
+                setHoveredAdoptionStep(nextStep.id);
+                adoptionStepRefs.current[nextIndex]?.focus();
+              }}
               onExportSynthetic={() => {
                 const terminalText = proofEvents
                   .map((event) => {

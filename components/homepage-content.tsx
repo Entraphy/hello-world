@@ -135,7 +135,7 @@ export function HomePageContent() {
 
   const statusLabel = `${trustFieldState.slice(0, 1).toUpperCase()}${trustFieldState.slice(1)}`;
 
-  const handlePanelChange = useCallback((panel: "understand" | "inspect" | "architecture" | "proof") => {
+  const handlePanelChange = useCallback((panel: "understand" | "inspect" | "architecture" | "proof" | "adoption") => {
     dispatchTrustField({ type: "PANEL_UPDATED", panel });
   }, []);
 

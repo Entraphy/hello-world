@@ -16,6 +16,7 @@ export function HeroHeader({
 }) {
   const calibratingBorder = trustFieldState === "calibrating" && !reducedMotion;
   const heroCopyMuted = mode === "console";
+  const consoleCompact = mode === "console";
   const [focusedTab, setFocusedTab] = useState<HomeMode>(mode);
   const tablistRef = useRef<HTMLDivElement>(null);
   const standardTabRef = useRef<HTMLButtonElement>(null);
@@ -80,9 +81,9 @@ export function HeroHeader({
 
   return (
     <section
-      className={`depth-panel relative overflow-hidden border border-line/50 bg-fg/[0.02] px-6 py-10 md:px-10 md:py-14 ${calibratingBorder ? "before:pointer-events-none before:absolute before:inset-0 before:border before:border-fg/20 before:opacity-50" : ""}`}
+      className={`depth-panel relative overflow-hidden border border-line/50 bg-fg/[0.02] px-6 py-8 md:px-10 ${consoleCompact ? "md:py-6" : "md:py-14"} ${calibratingBorder ? "before:pointer-events-none before:absolute before:inset-0 before:border before:border-fg/20 before:opacity-50" : ""}`}
     >
-      <div className="flex flex-col gap-8">
+      <div className={`flex flex-col ${consoleCompact ? "gap-5" : "gap-8"}`}>
         <div className="flex items-start justify-between gap-6">
           <p className="text-xs tracking-[0.2em] text-muted uppercase">Nothing is trusted until it is proven.</p>
 
@@ -136,24 +137,24 @@ export function HeroHeader({
           </div>
         </div>
 
-        <div className={`transition-opacity duration-200 ${heroCopyMuted ? "opacity-[0.78]" : "opacity-100"}`}>
-          <h1 className="text-[44px] leading-[0.94] font-semibold tracking-tight md:text-[70px]">
+        <div className={`transition-opacity duration-200 ${heroCopyMuted ? "opacity-[0.82]" : "opacity-100"}`}>
+          <h1 className={`leading-[0.94] font-semibold tracking-tight ${consoleCompact ? "text-2xl md:text-[34px]" : "text-[44px] md:text-[70px]"}`}>
             <span className="block">MACHINES NOW DECIDE</span>
-            <span className="block">IN ZERO TIME</span>
+            {consoleCompact ? null : <span className="block">IN ZERO TIME</span>}
           </h1>
-          <p className="mt-4 text-lg text-muted">Across zero distance.</p>
+          {consoleCompact ? null : <p className="mt-4 text-lg text-muted">Across zero distance.</p>}
         </div>
 
-        <div className={`space-y-4 transition-opacity duration-200 ${heroCopyMuted ? "opacity-80" : "opacity-100"}`}>
+        <div className={`transition-opacity duration-200 ${consoleCompact ? "space-y-2" : "space-y-4"} ${heroCopyMuted ? "opacity-80" : "opacity-100"}`}>
           <div>
             <p className="text-xs tracking-[0.18em] text-muted uppercase">Category Name</p>
-            <p className="mt-1 text-3xl font-semibold tracking-tight md:text-4xl">Reality-Bound Systems</p>
+            <p className={`mt-1 font-semibold tracking-tight ${consoleCompact ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}>Reality-Bound Systems</p>
           </div>
-          <p className="max-w-4xl text-base leading-relaxed text-muted">
+          <p className={`max-w-4xl leading-relaxed text-muted ${consoleCompact ? "text-sm md:text-base" : "text-base"}`}>
             Consequential actions cannot occur unless authority, policy, and temporal constraints are satisfied at decision time, and
             provable.
           </p>
-          <p className="text-sm text-muted">Entraphy implements Reality-Bound Systems.</p>
+          {consoleCompact ? null : <p className="text-sm text-muted">Entraphy implements Reality-Bound Systems.</p>}
         </div>
       </div>
     </section>

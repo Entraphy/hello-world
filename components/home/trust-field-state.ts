@@ -3,11 +3,11 @@ export type TrustFieldState = "calibrating" | "stable" | "inspecting" | "mapping
 export type TrustFieldAction =
   | { type: "SCROLL_UPDATED"; depth: number }
   | { type: "MODE_UPDATED"; mode: "standard" | "console" }
-  | { type: "PANEL_UPDATED"; panel: "understand" | "inspect" | "architecture" | "proof" | "adoption" };
+  | { type: "PANEL_UPDATED"; panel: "understand" | "inspect" | "architecture" | "proof" | "adoption" | "coverage" };
 
 export type TrustFieldContext = {
   mode: "standard" | "console";
-  panel: "understand" | "inspect" | "architecture" | "proof" | "adoption";
+  panel: "understand" | "inspect" | "architecture" | "proof" | "adoption" | "coverage";
   scrollDepth: number;
 };
 
@@ -23,7 +23,7 @@ export function resolveTrustFieldState(context: TrustFieldContext): TrustFieldSt
       return "emitting";
     }
 
-    if (context.panel === "architecture" || context.panel === "adoption") {
+    if (context.panel === "architecture" || context.panel === "adoption" || context.panel === "coverage") {
       return "mapping";
     }
 

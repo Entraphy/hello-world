@@ -1,16 +1,16 @@
 const pillars = [
   {
-    title: "DETERMINE",
+    title: "Determine",
     body: "Compute whether trust conditions hold, now.",
     slot: "md:left-1/2 md:top-[10%] md:-translate-x-1/2"
   },
   {
-    title: "BIND",
+    title: "Bind",
     body: "Permit only actions that satisfy authority, policy, and time.",
     slot: "md:left-[18%] md:top-[78%] md:-translate-x-1/2 md:-translate-y-1/2"
   },
   {
-    title: "PROVE",
+    title: "Prove",
     body: "Emit verifiable evidence at the moment of consequence.",
     slot: "md:left-[82%] md:top-[78%] md:-translate-x-1/2 md:-translate-y-1/2"
   }
@@ -25,26 +25,22 @@ export function TriadModel() {
           <path d="M 500 395 L 180 593" />
           <path d="M 500 395 L 820 593" />
         </g>
-        <g fill="currentColor" opacity="0.1">
-          <circle cx="500" cy="76" r="4" />
-          <circle cx="180" cy="593" r="4" />
-          <circle cx="820" cy="593" r="4" />
+        <g fill="currentColor" opacity="0.16">
+          <circle cx="500" cy="76" r="2.8" />
+          <circle cx="180" cy="593" r="2.8" />
+          <circle cx="820" cy="593" r="2.8" />
         </g>
-        <g fill="currentColor" opacity="0.2">
-          <circle cx="500" cy="395" r="3.5" />
-          <circle cx="500" cy="395" r="9" opacity="0.08" />
+        <g fill="currentColor" opacity="0.28">
+          <circle cx="500" cy="395" r="4" />
+          <circle cx="500" cy="395" r="10" opacity="0.12" />
         </g>
       </svg>
-
-      <p className="absolute left-1/2 top-[52%] hidden -translate-x-1/2 -translate-y-1/2 text-xs tracking-[0.1em] text-fg/45 uppercase md:block">
-        Decision
-      </p>
 
       <div className="grid gap-12 md:block">
         {pillars.map((item) => (
           <article key={item.title} className={`md:absolute md:w-[280px] md:max-w-[32%] ${item.slot}`}>
-            <h3 className="text-[24px] font-semibold tracking-[0.08em] md:text-[30px]">{item.title}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted">{item.body}</p>
+            <h3 className="text-[28px] font-semibold tracking-[0.04em] md:text-[34px]">{item.title}</h3>
+            <p className="mt-2 text-[15px] leading-relaxed text-muted/90">{item.body}</p>
           </article>
         ))}
       </div>

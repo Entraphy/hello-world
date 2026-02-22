@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
+import { PivotRing } from "@/components/pivot-ring";
 import { TriadModel } from "@/components/triad-model";
 import { PageWrap, PrimaryButton } from "@/components/ui";
 
@@ -18,7 +19,7 @@ const modeBySection: Record<string, Mode> = {
   cta: "cta"
 };
 
-const sectionCueClasses = "mb-8 h-px w-16 bg-line/45";
+const sectionCueClasses = "mb-9 h-px w-20 bg-line/65";
 
 export function HomePageContent() {
   const [mode, setMode] = useState<Mode>("idle");
@@ -132,16 +133,16 @@ export function HomePageContent() {
         <div className="w-full -translate-y-6">
           <h1 className="max-w-6xl text-[56px] leading-[0.92] font-semibold tracking-tight sm:text-[66px] md:text-[84px] lg:text-[96px]">
             <span className="block">MACHINES NOW DECIDE</span>
-            <span className="mt-4 block text-[34px] leading-[1.02] sm:text-[38px] md:text-[42px] lg:text-[44px]">IN ZERO TIME</span>
+            <span className="mt-4 block text-[40px] leading-[1.02] sm:text-[44px] md:text-[48px] lg:text-[52px]">IN ZERO TIME</span>
           </h1>
 
           <div className="mt-10 space-y-6">
-            <p className="text-base text-muted md:text-lg">Across zero distance.</p>
+            <p className="text-lg text-muted md:text-[22px]">Across zero distance.</p>
             <p className="text-center text-[40px] font-semibold tracking-[0.14em] text-fg uppercase md:text-[56px] lg:text-[62px]">
               REALITY-BOUND SYSTEMS
             </p>
-            <p className="text-xl font-medium tracking-[0.16em] text-fg/70 uppercase md:text-2xl">Entraphy</p>
-            <p className="text-sm leading-relaxed text-muted">Nothing is trusted until it is proven.</p>
+            <p className="text-[30px] font-semibold tracking-[0.14em] text-fg/85 md:text-[38px]">Entraphy</p>
+            <p className="text-sm leading-relaxed text-muted/90 uppercase">NOTHING IS TRUSTED UNTIL IT IS PROVEN</p>
           </div>
         </div>
       </section>
@@ -149,16 +150,10 @@ export function HomePageContent() {
       <section id="pivot" className="py-[140px] md:py-[210px]">
         <div className={sectionCueClasses} aria-hidden />
         <div className="relative inline-block">
-          <svg
-            aria-hidden
-            viewBox="0 0 320 320"
-            className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-56 w-56 -translate-x-1/2 text-accent/15"
-          >
-            <circle cx="160" cy="160" r="118" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.16" />
-          </svg>
-          <h2 className="text-[56px] leading-[0.92] font-semibold tracking-tight md:text-[84px] lg:text-[96px]">
-            <span className="block">THE FAILURE</span>
-            <span className="block">WAS STRUCTURAL</span>
+          <PivotRing />
+          <h2 className="text-[48px] leading-[0.96] font-semibold tracking-tight md:text-[70px] lg:text-[80px]">
+            <span className="block">The Failure</span>
+            <span className="block">Was Structural</span>
           </h2>
         </div>
 
@@ -170,8 +165,8 @@ export function HomePageContent() {
 
       <section id="category" className="py-[112px] md:py-[170px]">
         <div className={sectionCueClasses} aria-hidden />
-        <h2 className="text-[46px] font-semibold tracking-[0.12em] uppercase md:text-[58px] lg:text-[64px]">REALITY-BOUND SYSTEMS</h2>
-        <p className="mt-10 max-w-4xl text-lg leading-relaxed text-muted">
+        <h2 className="text-[42px] font-semibold tracking-tight md:text-[52px] lg:text-[56px]">Reality-Bound Systems</h2>
+        <p className="mt-14 max-w-3xl text-lg leading-relaxed text-muted">
           Consequential actions cannot occur unless authority, policy, and temporal constraints are satisfied at decision time, and provable.
         </p>
       </section>
@@ -191,8 +186,8 @@ export function HomePageContent() {
 
       <section id="cta" className="pt-[110px] pb-[150px] md:pt-[150px] md:pb-[210px]">
         <div className={sectionCueClasses} aria-hidden />
-        <p className="text-[34px] font-semibold tracking-[0.08em] text-fg uppercase md:text-[46px]">TRUST FOLLOWS VERIFICATION.</p>
-        <div className="mt-10">
+        <p className="mt-6 text-[38px] font-semibold tracking-[0.08em] text-fg uppercase md:text-[52px]">TRUST FOLLOWS VERIFICATION.</p>
+        <div className="mt-12">
           <PrimaryButton href="/briefing">Executive Briefing</PrimaryButton>
         </div>
       </section>

@@ -21,11 +21,34 @@ type ProofTerminalEvent = ProofEvent & {
 };
 
 const consoleModes: { id: ConsoleMode; label: string; status: string }[] = [
-  { id: "understand", label: "Understand", status: "Calibrating" },
+  { id: "understand", label: "Understand", status: "Stable" },
   { id: "inspect", label: "Inspect Model", status: "Inspecting" },
   { id: "architecture", label: "Architecture", status: "Mapping" },
   { id: "proof", label: "Proof", status: "Emitting" }
 ];
+
+const doctrineItems = [
+  {
+    numeral: "I",
+    title: "Consequence Precedes Trust.",
+    body: "Trust is not assumed. It is established at the moment consequence becomes possible."
+  },
+  {
+    numeral: "II",
+    title: "Authority Must Be Explicit.",
+    body: "Identity is context. Authority is constraint."
+  },
+  {
+    numeral: "III",
+    title: "Policy Must Bind in Time.",
+    body: "Rules evaluated after execution are reports, not governance."
+  },
+  {
+    numeral: "IV",
+    title: "Proof Must Travel With Consequence.",
+    body: "Verification is not archival. It is emitted."
+  }
+] as const;
 
 const inspectNodeCopy: Record<InspectNode, { title: string; body: string }> = {
   determine: {
@@ -116,13 +139,22 @@ function ModePanel({
   if (mode === "understand") {
     return (
       <>
-        <h3 className="text-2xl font-semibold tracking-tight">Definition</h3>
+        <p className="text-xs tracking-[0.16em] text-muted uppercase">System Doctrine</p>
         <ConstraintChips authority="unknown" policy="unknown" time="unknown" className="mt-3" />
-        <div className="mt-4 space-y-2 text-base leading-relaxed text-muted">
-          <p>Reality-Bound Systems govern consequence before it exists.</p>
-          <p>Trust is evaluated at the moment an action becomes real.</p>
-          <p>Verification is a precondition, not a postmortem.</p>
-        </div>
+        <ol className="mt-5 space-y-6 border-l border-line/55 pl-4" aria-label="System doctrine">
+          {doctrineItems.map((item) => (
+            <li key={item.numeral} className="space-y-2">
+              <p className="text-base leading-relaxed text-fg md:text-lg">
+                <span aria-hidden className="mr-2 inline-block text-lg md:text-xl">
+                  {item.numeral}.
+                </span>
+                <span className="sr-only">{item.numeral}. </span>
+                {item.title}
+              </p>
+              <p className="text-sm leading-relaxed text-muted md:text-base">{item.body}</p>
+            </li>
+          ))}
+        </ol>
       </>
     );
   }
@@ -261,10 +293,9 @@ export function ConsoleView({
   const [selectedNode, setSelectedNode] = useState<InspectNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<InspectNode | null>(null);
   const [proofEvents, setProofEvents] = useState<ProofTerminalEvent[]>([]);
-  const [proofSequenceIndex, setProofSequenceIndex] = useState(0);
-  const [proofSequenceCounter, setProofSequenceCounter] = useState(0);
   const [statusPulse, setStatusPulse] = useState<ConsoleMode | null>(null);
   const modeButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const proofSequenceIndexRef = useRef(0);
 
   useEffect(() => {
     onPanelChange(activeMode);
@@ -304,38 +335,38 @@ export function ConsoleView({
       return;
     }
 
-    const interval = window.setInterval(() => {
-      setProofSequenceIndex((index) => {
-        const nextIndex = (index + 1) % proofSequence.length;
-        const event = proofSequence[nextIndex] ?? proofSequence[0];
-
-        setProofSequenceCounter((counter) => {
-          const nextCounter = counter + 1;
-          setProofEvents((events) => [...events, { ...event, sequence: nextCounter }].slice(-10));
-          return nextCounter;
-        });
-
-        return nextIndex;
-      });
-    }, 1500);
-
-    return () => window.clearInterval(interval);
-  }, [activeMode]);
-
-  useEffect(() => {
-    if (activeMode !== "proof") {
-      return;
-    }
-
-    const initialEvent = proofSequence[proofSequenceIndex] ?? proofSequence[0];
     setProofEvents((events) => {
       if (events.length > 0) {
         return events;
       }
 
-      return [{ ...initialEvent, sequence: 0 }];
+      proofSequenceIndexRef.current = 0;
+      const firstEvent = proofSequence[0];
+      if (!firstEvent) {
+        return events;
+      }
+
+      return [{ ...firstEvent, sequence: 0 }];
     });
-  }, [activeMode, proofSequenceIndex]);
+
+    const interval = window.setInterval(() => {
+      // Strict Mode safe: one updater, no nested state updates inside updater callbacks.
+      setProofEvents((events) => {
+        const nextIndex = (proofSequenceIndexRef.current + 1) % proofSequence.length;
+        proofSequenceIndexRef.current = nextIndex;
+
+        const event = proofSequence[nextIndex] ?? proofSequence[0];
+        if (!event) {
+          return events;
+        }
+        const nextSequence = (events.at(-1)?.sequence ?? -1) + 1;
+
+        return [...events, { ...event, sequence: nextSequence }].slice(-10);
+      });
+    }, 1500);
+
+    return () => window.clearInterval(interval);
+  }, [activeMode]);
 
   const statusValue = useMemo(() => {
     if (statusPulse === "proof") {

@@ -2,18 +2,17 @@ import { PrimaryButton } from "@/components/ui";
 
 export function StandardView() {
   return (
-    <div className="space-y-8 pt-8">
-      <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <section className="depth-panel border border-line/45 bg-fg/[0.015] px-6 py-14 md:px-10">
-          <p className="mb-4 text-xs tracking-[0.18em] text-muted uppercase">The Turn</p>
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">The Failure Was Structural</h2>
-          <div className="mt-6 space-y-2 text-base leading-relaxed text-muted">
-            <p>We treated trust as identity or configuration.</p>
-            <p>Not as a condition of consequence.</p>
-            <p>Autonomous systems act before review.</p>
-            <p>Governance must precede consequence.</p>
-          </div>
-        </section>
+    <div className="space-y-10 pt-10">
+      <section className="border border-line/45 bg-fg/[0.015] px-6 py-12 md:px-10">
+        <p className="mb-4 text-xs tracking-[0.18em] text-muted uppercase">The Turn</p>
+        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">The Failure Was Structural</h2>
+        <div className="mt-6 space-y-2 text-base leading-relaxed text-muted">
+          <p>We treated trust as identity or configuration.</p>
+          <p>Not as a condition of consequence.</p>
+          <p>Autonomous systems act before review.</p>
+          <p>Governance must precede consequence.</p>
+        </div>
+      </section>
 
         <section className="depth-panel border border-line/45 bg-fg/[0.03] px-6 py-14 md:px-10">
           <p className="mb-4 text-xs tracking-[0.18em] text-muted uppercase">Model</p>

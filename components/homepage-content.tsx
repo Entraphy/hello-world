@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 
 import { ConsoleView } from "@/components/home/console-view";
+import { ConstraintChips } from "@/components/home/constraint-chips";
 import { HeroHeader } from "@/components/home/hero-header";
 import { initialTrustFieldContext, resolveTrustFieldState, trustFieldReducer } from "@/components/home/trust-field-state";
 import { StandardView } from "@/components/home/standard-view";
@@ -145,20 +146,21 @@ export function HomePageContent() {
           <span className={`pointer-events-none absolute top-3 right-3 z-20 h-2 w-2 rounded-full bg-fg transition-opacity ${indicatorOpacityClass}`} />
           <HeroHeader mode={mode} setMode={setMode} trustFieldState={trustFieldState} reducedMotion={reducedMotion} />
         </div>
-
-
-        <section className="depth-panel border-l border-line/65 bg-fg/[0.015] px-8 py-10 md:px-12 md:py-12">
-          <p className="text-xs tracking-[0.18em] text-muted uppercase">Category Definition</p>
-          <h2 className="mt-4 max-w-4xl text-2xl leading-tight font-semibold tracking-tight md:text-3xl">
-            Reality-Bound Systems are systems where consequential action is impossible unless verification is satisfied at the moment of
-            decision.
-          </h2>
-          <div className="mt-6 space-y-2 text-sm leading-relaxed text-muted md:text-base">
-            <p>Consequence is gated by authority, policy, and time.</p>
-            <p>Proof is emitted with consequence.</p>
-            <p>Trust follows verification.</p>
-          </div>
-        </section>
+        {mode === "standard" ? (
+          <section className="depth-panel border-l border-line/65 bg-fg/[0.015] px-8 py-10 md:px-12 md:py-12">
+            <p className="text-xs tracking-[0.18em] text-muted uppercase">Category Definition</p>
+            <h2 className="mt-4 max-w-4xl text-2xl leading-tight font-semibold tracking-tight md:text-3xl">
+              Reality-Bound Systems are systems where consequential action is impossible unless verification is satisfied at the moment of
+              decision.
+            </h2>
+            <ConstraintChips authority="unknown" policy="unknown" time="unknown" className="mt-5" />
+            <div className="mt-6 space-y-2 text-sm leading-relaxed text-muted md:text-base">
+              <p>Consequence is gated by authority, policy, and time.</p>
+              <p>Proof is emitted with consequence.</p>
+              <p>Trust follows verification.</p>
+            </div>
+          </section>
+        ) : null}
 
         <div className="system-anchor-line" aria-hidden />
 

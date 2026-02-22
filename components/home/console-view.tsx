@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ConstraintFieldBackground } from "@/components/constraint-field";
+import { ConstraintChips, type ConstraintState } from "@/components/home/constraint-chips";
 import type { TrustFieldState } from "@/components/home/trust-field-state";
 
 type ConsoleMode = "understand" | "inspect" | "architecture" | "proof";
@@ -13,6 +14,10 @@ type ProofEvent = {
   authoritySatisfied: boolean;
   policySatisfied: boolean;
   timeValid: boolean;
+};
+
+type ProofTerminalEvent = ProofEvent & {
+  sequence: number;
 };
 
 const consoleModes: { id: ConsoleMode; label: string; status: string }[] = [
@@ -64,44 +69,55 @@ function renderProofEvent(event: ProofEvent) {
     policy: event.policySatisfied ? "Policy satisfied" : "Policy not satisfied",
     time: event.timeValid ? "Time valid" : "Time invalid",
     action: allowed ? "Action permitted" : "Action prevented",
-    proof: allowed ? "Verification emitted" : "Action prevented"
+    proof: allowed ? "Verification emitted" : "Action prevented",
+    authoritySatisfied: event.authoritySatisfied,
+    policySatisfied: event.policySatisfied,
+    timeValid: event.timeValid
   };
+}
+
+
+function inspectConstraintState(node: InspectNode | null): { authority: ConstraintState; policy: ConstraintState; time: ConstraintState } {
+  if (node === "determine") {
+    return { authority: "satisfied", policy: "unknown", time: "satisfied" };
+  }
+
+  if (node === "bind") {
+    return { authority: "unknown", policy: "satisfied", time: "unknown" };
+  }
+
+  if (node === "prove") {
+    return { authority: "satisfied", policy: "satisfied", time: "satisfied" };
+  }
+
+  return { authority: "unknown", policy: "unknown", time: "unknown" };
 }
 
 function ModePanel({
   mode,
   highlightNode,
   inspectorNode,
+  selectedInspectNode,
   onSelectNode,
   onHoverNode,
-  proofCursor,
-  shouldAutoScrollProof,
-  onProofAutoScroll
+  proofEvents,
+  onExportSynthetic
 }: {
   mode: ConsoleMode;
   highlightNode: InspectNode | null;
   inspectorNode: InspectNode | null;
+  selectedInspectNode: InspectNode | null;
   onSelectNode: (node: InspectNode | null) => void;
   onHoverNode: (node: InspectNode | null) => void;
-  proofCursor: number;
-  shouldAutoScrollProof: boolean;
-  onProofAutoScroll: () => void;
+  proofEvents: ProofTerminalEvent[];
+  onExportSynthetic: () => void;
 }) {
-  const proofFeedRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!shouldAutoScrollProof || mode !== "proof" || !proofFeedRef.current) {
-      return;
-    }
-
-    proofFeedRef.current.scrollTo({ top: proofFeedRef.current.scrollHeight, behavior: "smooth" });
-    onProofAutoScroll();
-  }, [mode, onProofAutoScroll, shouldAutoScrollProof]);
 
   if (mode === "understand") {
     return (
       <>
         <h3 className="text-2xl font-semibold tracking-tight">Definition</h3>
+        <ConstraintChips authority="unknown" policy="unknown" time="unknown" className="mt-3" />
         <div className="mt-4 space-y-2 text-base leading-relaxed text-muted">
           <p>Reality-Bound Systems govern consequence before it exists.</p>
           <p>Trust is evaluated at the moment an action becomes real.</p>
@@ -157,6 +173,7 @@ function ModePanel({
 
         <aside className="depth-panel rounded-lg border border-line/45 bg-fg/[0.03] p-4">
           <p className="text-xs tracking-[0.16em] text-muted uppercase">Inspector</p>
+          <ConstraintChips {...inspectConstraintState(selectedInspectNode)} className="mt-3" />
           {inspectorNode ? (
             <div className="mt-3 space-y-2">
               <p className="text-sm font-semibold tracking-[0.14em] text-fg uppercase">{inspectNodeCopy[inspectorNode].title}</p>
@@ -174,6 +191,7 @@ function ModePanel({
     return (
       <>
         <h3 className="text-2xl font-semibold tracking-tight">Placement</h3>
+        <ConstraintChips authority="unknown" policy="unknown" time="unknown" className="mt-3" />
         <div className="mt-4 space-y-2 text-base leading-relaxed text-muted">
           <p>Entraphy is a control plane for autonomous consequence.</p>
           <p>It integrates with existing infrastructure and enforcement points.</p>
@@ -183,29 +201,45 @@ function ModePanel({
     );
   }
 
-  const eventsToShow = Array.from({ length: 8 }, (_, index) => {
-    const event = proofSequence[(proofCursor + index) % proofSequence.length];
-    return renderProofEvent(event);
+  const terminalLines = proofEvents.map((event) => {
+    const rendered = renderProofEvent(event);
+    return [
+      `${rendered.timestamp}  ${rendered.action}`,
+      `${rendered.authority}  ${rendered.policy}  ${rendered.time}`,
+      rendered.proof
+    ].join("\n");
   });
 
   return (
     <>
-      <h3 className="text-2xl font-semibold tracking-tight">Proof Feed (Synthetic)</h3>
-      <div ref={proofFeedRef} className="mt-4 max-h-[320px] space-y-2 overflow-y-auto pr-1">
-        {eventsToShow.map((event, index) => (
-          <div key={`${event.timestamp}-${index}`} className="depth-panel rounded-md border border-line/35 bg-fg/[0.02] px-3 py-2 text-xs text-muted">
-            <p className="font-medium text-fg/90">
-              {event.timestamp} · {event.outcome}
-            </p>
-            <p>
-              {event.authority} · {event.policy} · {event.time}
-            </p>
-            <p>
-              {event.action} · {event.proof}
-            </p>
-          </div>
-        ))}
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-2xl font-semibold tracking-tight">Proof Feed (Synthetic)</h3>
+        <button
+          type="button"
+          onClick={onExportSynthetic}
+          className="depth-surface rounded-md border border-line/50 px-3 py-1.5 text-xs tracking-[0.12em] text-muted uppercase transition-colors hover:text-fg"
+        >
+          Export (Synthetic)
+        </button>
       </div>
+      <div className="depth-panel mt-4 h-[340px] overflow-hidden rounded-lg border border-line/35 bg-bg/60 px-4 py-3 font-mono text-[11px] leading-5 text-muted">
+        <div className="h-full space-y-2 overflow-hidden">
+          {proofEvents.map((event, index) => {
+            const rendered = renderProofEvent(event);
+            const age = proofEvents.length - 1 - index;
+            const opacityClass = age <= 2 ? "opacity-100" : age <= 5 ? "opacity-75" : "opacity-45";
+
+            return (
+              <div key={event.sequence} className={`transition-opacity duration-200 ${opacityClass}`}>
+                <p className="text-fg/90">{rendered.timestamp}  {rendered.action}</p>
+                <p>{rendered.authority}  {rendered.policy}  {rendered.time}</p>
+                <p>{rendered.proof}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <textarea readOnly aria-hidden value={terminalLines.join("\n\n")} className="sr-only" />
     </>
   );
 }
@@ -226,8 +260,10 @@ export function ConsoleView({
   const [panelVisible, setPanelVisible] = useState(true);
   const [selectedNode, setSelectedNode] = useState<InspectNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<InspectNode | null>(null);
-  const [proofCursor, setProofCursor] = useState(0);
-  const [proofAutoscrollComplete, setProofAutoscrollComplete] = useState(false);
+  const [proofEvents, setProofEvents] = useState<ProofTerminalEvent[]>([]);
+  const [proofSequenceIndex, setProofSequenceIndex] = useState(0);
+  const [proofSequenceCounter, setProofSequenceCounter] = useState(0);
+  const [statusPulse, setStatusPulse] = useState<ConsoleMode | null>(null);
   const modeButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
@@ -258,7 +294,7 @@ export function ConsoleView({
     const modeTimer = window.setTimeout(() => {
       setPanelMode(activeMode);
       setPanelVisible(true);
-    }, 170);
+    }, 180);
 
     return () => window.clearTimeout(modeTimer);
   }, [activeMode, reducedMotion]);
@@ -269,41 +305,67 @@ export function ConsoleView({
     }
 
     const interval = window.setInterval(() => {
-      setProofCursor((cursor) => (cursor + 1) % proofSequence.length);
+      setProofSequenceIndex((index) => {
+        const nextIndex = (index + 1) % proofSequence.length;
+        const event = proofSequence[nextIndex] ?? proofSequence[0];
+
+        setProofSequenceCounter((counter) => {
+          const nextCounter = counter + 1;
+          setProofEvents((events) => [...events, { ...event, sequence: nextCounter }].slice(-10));
+          return nextCounter;
+        });
+
+        return nextIndex;
+      });
     }, 1500);
 
     return () => window.clearInterval(interval);
   }, [activeMode]);
 
   useEffect(() => {
-    if (activeMode === "proof") {
-      setProofAutoscrollComplete(false);
+    if (activeMode !== "proof") {
+      return;
     }
-  }, [activeMode]);
 
-  const statusValue = useMemo(() => consoleModes.find((mode) => mode.id === activeMode)?.status ?? "Calibrating", [activeMode]);
+    const initialEvent = proofSequence[proofSequenceIndex] ?? proofSequence[0];
+    setProofEvents((events) => {
+      if (events.length > 0) {
+        return events;
+      }
+
+      return [{ ...initialEvent, sequence: 0 }];
+    });
+  }, [activeMode, proofSequenceIndex]);
+
+  const statusValue = useMemo(() => {
+    if (statusPulse === "proof") {
+      return "Emitting";
+    }
+
+    return consoleModes.find((mode) => mode.id === activeMode)?.status ?? "Calibrating";
+  }, [activeMode, statusPulse]);
   const highlightNode = hoveredNode ?? selectedNode;
   const inspectorNode = hoveredNode ?? selectedNode;
   const showInspectingGlow = trustFieldState === "inspecting";
   const showMappingGrid = trustFieldState === "mapping";
-  const shouldAutoScrollProof = trustFieldState === "emitting" && !proofAutoscrollComplete && !reducedMotion;
 
   return (
-    <div className="pt-8">
-      <div className="depth-panel mb-6 rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
-        <p className="text-xs tracking-[0.16em] text-muted uppercase">System Status</p>
-        <p className="mt-1 flex items-center gap-2 text-sm text-muted">
-          <span
-            className={`inline-block h-2 w-2 rounded-full bg-fg/80 ${activeMode === "proof" ? "opacity-95" : "opacity-70"}`}
-          />
-          Trust Field Status: <span className="font-semibold text-fg">{statusValue}</span>
-        </p>
-      </div>
+    <div className="pt-5 md:pt-4">
+      <div className="grid gap-4 md:h-[min(68vh,620px)] md:grid-cols-[248px_minmax(0,1fr)] md:items-start">
+        <aside className="space-y-4 md:sticky md:top-4">
+          <div className="depth-panel rounded-xl border border-line/45 bg-fg/[0.02] px-5 py-4">
+            <p className="text-xs tracking-[0.16em] text-muted uppercase">System Status</p>
+            <p className="mt-1 flex items-center gap-2 text-sm text-muted">
+              <span
+                className={`inline-block h-2 w-2 rounded-full bg-fg/80 ${activeMode === "proof" ? "opacity-95" : "opacity-70"}`}
+              />
+              Trust Field Status: <span className="font-semibold text-fg">{statusValue}</span>
+            </p>
+          </div>
 
-      <div className="grid gap-5 md:grid-cols-[248px_1fr]">
-        <aside className="depth-panel rounded-xl border border-line/45 bg-fg/[0.015] p-5">
-          <p className="mb-3 text-xs tracking-[0.16em] text-muted uppercase">Mode Panel</p>
-          <div className="flex gap-2 overflow-x-auto md:flex-col" onKeyDown={(event) => {
+          <div className="depth-panel rounded-xl border border-line/45 bg-fg/[0.015] p-4 md:p-5">
+            <p className="mb-3 text-xs tracking-[0.16em] text-muted uppercase">Mode Panel</p>
+            <div className="grid grid-cols-2 gap-2 md:flex md:flex-col" onKeyDown={(event) => {
             if (event.key !== "ArrowDown" && event.key !== "ArrowRight" && event.key !== "ArrowUp" && event.key !== "ArrowLeft" && event.key !== "Escape") {
               return;
             }
@@ -331,7 +393,7 @@ export function ConsoleView({
                 ref={(element) => {
                   modeButtonRefs.current[index] = element;
                 }}
-                className={`depth-surface rounded-md border px-3 py-2 text-left text-sm transition-colors ${
+                className={`depth-surface rounded-md border px-3 py-2 text-center text-sm transition-colors md:text-left ${
                   activeMode === mode.id ? "border-fg/70 bg-fg/10 text-fg" : "border-line/50 text-muted hover:text-fg"
                 } ${reducedMotion ? "duration-0" : "duration-150"}`}
               >
@@ -339,9 +401,10 @@ export function ConsoleView({
               </button>
             ))}
           </div>
+          </div>
         </aside>
 
-        <section className="depth-panel relative overflow-hidden rounded-xl border border-line/45 bg-fg/[0.04] p-7 md:p-9">
+        <section className="depth-panel relative overflow-hidden rounded-xl border border-line/45 bg-fg/[0.04] p-6 md:h-full md:overflow-y-auto md:p-8">
           {showMappingGrid ? (
             <div
               aria-hidden
@@ -362,16 +425,31 @@ export function ConsoleView({
             className={`pointer-events-none absolute inset-0 transition-opacity duration-200 ${showInspectingGlow ? "opacity-100" : "opacity-0"}`}
             style={{ boxShadow: "inset 0 0 70px rgba(255,255,255,0.09)" }}
           />
-          <div className={`relative z-10 transition-opacity ${reducedMotion ? "duration-0" : "duration-200"} ${panelVisible ? "opacity-100" : "opacity-0"}`}>
+          <div className={`relative z-10 transition-opacity ${reducedMotion ? "duration-0" : "duration-[180ms]"} ${panelVisible ? "opacity-100" : "opacity-0"}`}>
             <ModePanel
               mode={panelMode}
               highlightNode={highlightNode}
               inspectorNode={inspectorNode}
               onSelectNode={setSelectedNode}
               onHoverNode={setHoveredNode}
-              proofCursor={proofCursor}
-              shouldAutoScrollProof={shouldAutoScrollProof}
-              onProofAutoScroll={() => setProofAutoscrollComplete(true)}
+              selectedInspectNode={selectedNode}
+              proofEvents={proofEvents}
+              onExportSynthetic={() => {
+                const terminalText = proofEvents
+                  .map((event) => {
+                    const rendered = renderProofEvent(event);
+                    return [
+                      `${rendered.timestamp}  ${rendered.action}`,
+                      `${rendered.authority}  ${rendered.policy}  ${rendered.time}`,
+                      rendered.proof
+                    ].join("\n");
+                  })
+                  .join("\n\n");
+
+                navigator.clipboard?.writeText(terminalText);
+                setStatusPulse("proof");
+                window.setTimeout(() => setStatusPulse(null), 1000);
+              }}
             />
           </div>
         </section>

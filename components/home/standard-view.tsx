@@ -60,7 +60,7 @@ export function StandardView() {
             </div>
           </section>
 
-          <section id="doctrine" className="border-l border-line/55 pl-5 md:pl-6">
+          <section id="doctrine-section" className="border-l border-line/55 pl-5 md:pl-6">
             <p className="text-xs tracking-[0.18em] text-muted uppercase">Foundational Doctrine</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Doctrine</h2>
             <ol className="mt-6 space-y-7" aria-label="Foundational doctrine">

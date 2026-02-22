@@ -15,7 +15,7 @@ const pillars = [
 
 export function TriadModel() {
   return (
-    <div className="grid gap-8 md:grid-cols-3 md:gap-16">
+    <div className="grid gap-8 md:grid-cols-3 md:gap-12 md:[&>article:not(:last-child)]:border-r md:[&>article:not(:last-child)]:border-line/30 md:[&>article:not(:last-child)]:pr-10">
       {pillars.map((item) => (
         <article key={item.title} className="space-y-3">
           <h3 className="text-2xl font-semibold tracking-tight">{item.title}</h3>

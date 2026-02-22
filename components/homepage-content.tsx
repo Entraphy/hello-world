@@ -122,6 +122,32 @@ export function HomePageContent() {
     return () => window.clearTimeout(fadeTimer);
   }, [consoleVisible, mode]);
 
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const handleDoctrineHash = () => {
+      if (window.location.hash !== "#doctrine") {
+        return;
+      }
+
+      if (mode !== "standard") {
+        setMode("standard");
+      }
+
+      window.requestAnimationFrame(() => {
+        document.getElementById("doctrine-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    };
+
+    handleDoctrineHash();
+    window.addEventListener("hashchange", handleDoctrineHash);
+
+    return () => window.removeEventListener("hashchange", handleDoctrineHash);
+  }, [mode, setMode]);
+
   const indicatorOpacityClass =
     trustFieldState === "calibrating"
       ? "opacity-45"
@@ -141,6 +167,7 @@ export function HomePageContent() {
 
   return (
     <PageWrap>
+      <span id="doctrine" className="sr-only" />
       <div ref={chamberRef} className="depth-chamber control-grid">
         <div className="relative">
           <span className={`pointer-events-none absolute top-3 right-3 z-20 h-2 w-2 rounded-full bg-fg transition-opacity ${indicatorOpacityClass}`} />

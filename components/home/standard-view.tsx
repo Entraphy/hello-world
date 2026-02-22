@@ -1,6 +1,29 @@
 import { PrimaryButton } from "@/components/ui";
 
-const sectionLabels = ["The Turn", "Model", "Proof"] as const;
+const sectionLabels = ["The Turn", "Doctrine", "Model", "Proof"] as const;
+
+const doctrineItems = [
+  {
+    numeral: "I",
+    title: "Consequence Precedes Trust.",
+    body: "Trust is not assumed. It is established at the moment consequence becomes possible."
+  },
+  {
+    numeral: "II",
+    title: "Authority Must Be Explicit.",
+    body: "Identity is context. Authority is constraint."
+  },
+  {
+    numeral: "III",
+    title: "Policy Must Bind in Time.",
+    body: "Rules evaluated after execution are reports, not governance."
+  },
+  {
+    numeral: "IV",
+    title: "Proof Must Travel With Consequence.",
+    body: "Verification is not archival. It is emitted."
+  }
+] as const;
 
 export function StandardView() {
   return (
@@ -34,6 +57,25 @@ export function StandardView() {
               <p>Autonomous systems act before review.</p>
               <p>Governance must precede consequence.</p>
             </div>
+          </section>
+
+          <section id="doctrine" className="border-l border-line/55 pl-5 md:pl-6">
+            <p className="text-xs tracking-[0.18em] text-muted uppercase">Foundational Doctrine</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Doctrine</h2>
+            <ol className="mt-6 space-y-7" aria-label="Foundational doctrine">
+              {doctrineItems.map((item) => (
+                <li key={item.numeral} className="space-y-2">
+                  <p className="text-base leading-relaxed text-fg md:text-lg">
+                    <span aria-hidden className="mr-2 inline-block text-lg text-fg md:text-xl">
+                      {item.numeral}.
+                    </span>
+                    <span className="sr-only">{item.numeral}. </span>
+                    {item.title}
+                  </p>
+                  <p className="text-sm leading-relaxed text-muted md:text-base">{item.body}</p>
+                </li>
+              ))}
+            </ol>
           </section>
 
           <section className="border-l border-line/55 pl-5 md:border-0 md:pl-0">

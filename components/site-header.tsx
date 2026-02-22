@@ -8,7 +8,7 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/85 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-line/35 bg-bg/85 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-content flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="text-sm font-semibold tracking-[0.24em] uppercase text-fg">

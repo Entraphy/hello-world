@@ -15,6 +15,8 @@ const modeBySection: Record<string, Mode> = {
   cta: "cta"
 };
 
+const sectionCueClasses = "mb-8 h-px w-16 bg-line/45";
+
 export function HomePageContent() {
   const [mode, setMode] = useState<Mode>("idle");
 
@@ -23,6 +25,11 @@ export function HomePageContent() {
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((node): node is HTMLElement => Boolean(node));
+    const intersectionRatios = new Map<string, number>();
+
+    sections.forEach((section) => {
+      intersectionRatios.set(section.id, 0);
+    });
 
     if (!sections.length) {
       return;
@@ -30,17 +37,29 @@ export function HomePageContent() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        entries.forEach((entry) => {
+          intersectionRatios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
 
-        if (visibleEntries.length === 0) {
+        const [activeSectionId, highestRatio] = Array.from(intersectionRatios.entries()).reduce<
+          [string | null, number]
+        >(
+          (currentHighest, [id, ratio]) => {
+            if (ratio > currentHighest[1]) {
+              return [id, ratio];
+            }
+
+            return currentHighest;
+          },
+          [null, 0]
+        );
+
+        if (!activeSectionId || highestRatio === 0) {
           setMode("idle");
           return;
         }
 
-        const id = visibleEntries[0].target.id;
-        setMode(modeBySection[id] ?? "idle");
+        setMode(modeBySection[activeSectionId] ?? "idle");
       },
       {
         rootMargin: "-28% 0px -36% 0px",
@@ -63,30 +82,35 @@ export function HomePageContent() {
           <span className="block">Across zero distance.</span>
         </h1>
 
-        <div className="mt-14 space-y-2">
-          <p className="text-2xl font-semibold">Entraphy</p>
-          <p className="text-sm tracking-[0.16em] text-muted uppercase">Reality-Bound Systems</p>
+        <div className="mt-14 space-y-3">
+          <p className="text-base font-semibold tracking-[0.24em] text-fg uppercase md:text-lg">Reality-Bound Systems</p>
+          <p className="text-xl font-medium tracking-[0.16em] text-fg/70 uppercase md:text-2xl">Entraphy</p>
+          <p className="pt-2 text-sm leading-relaxed text-muted">Nothing is trusted until it is proven.</p>
         </div>
-
-        <p className="mt-8 text-lg leading-relaxed">Nothing is trusted until it is proven.</p>
       </section>
 
       <section id="pivot" className="py-[112px] md:py-[164px]">
+        <div className={sectionCueClasses} aria-hidden />
         <div className="relative inline-block">
-          <svg aria-hidden viewBox="0 0 300 300" className="pointer-events-none absolute -top-20 left-1/2 -z-10 h-44 w-44 -translate-x-1/2 text-accent/20">
-            <circle cx="150" cy="150" r="90" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.24" />
-            <path d="M 60 150 A 90 90 0 0 1 240 150" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.18" />
+          <svg
+            aria-hidden
+            viewBox="0 0 300 300"
+            className="pointer-events-none absolute -top-20 left-1/2 -z-10 h-44 w-44 -translate-x-1/2 text-accent/10"
+          >
+            <circle cx="150" cy="150" r="90" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.14" />
+            <path d="M 60 150 A 90 90 0 0 1 240 150" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.1" />
           </svg>
           <h2 className="max-w-4xl text-[40px] font-semibold tracking-tight md:text-[50px]">The Failure Was Structural.</h2>
         </div>
 
         <div className="mt-10 max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
           <p>We treated trust as identity or configuration, not as a condition of consequence.</p>
-          <p>Autonomous systems act before review. Governance must precede consequence.</p>
+          <p>Autonomous systems act before review. Control must execute before consequence.</p>
         </div>
       </section>
 
       <section id="model" className="py-[88px] md:py-[140px]">
+        <div className={sectionCueClasses} aria-hidden />
         <h2 className="text-[40px] font-semibold tracking-tight md:text-[50px]">Determine. Bind. Prove.</h2>
         <div className="mt-14">
           <TriadModel />
@@ -94,14 +118,17 @@ export function HomePageContent() {
       </section>
 
       <section id="category" className="py-[88px] md:py-[140px]">
+        <div className={sectionCueClasses} aria-hidden />
         <h2 className="text-[40px] font-semibold tracking-tight md:text-[50px]">Reality-Bound Systems</h2>
         <p className="mt-10 max-w-4xl text-lg leading-relaxed text-muted">
           Consequential actions cannot occur unless authority, policy, and temporal constraints are satisfied and provable.
         </p>
+        <p className="mt-5 max-w-4xl text-base leading-relaxed text-fg/80">Entraphy implements Reality-Bound Systems at runtime.</p>
       </section>
 
-      <section id="cta" className="pt-[88px] pb-[96px] md:pt-[140px] md:pb-[140px]">
-        <p className="text-3xl font-semibold tracking-tight md:text-4xl">Trust follows verification.</p>
+      <section id="cta" className="pt-[88px] pb-[120px] md:pt-[140px] md:pb-[180px]">
+        <div className={sectionCueClasses} aria-hidden />
+        <p className="text-[34px] font-semibold tracking-[0.04em] text-fg uppercase md:text-[44px]">Trust follows verification.</p>
         <div className="mt-10">
           <PrimaryButton href="/briefing">Executive Briefing</PrimaryButton>
         </div>

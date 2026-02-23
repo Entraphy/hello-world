@@ -10,12 +10,12 @@ const nextConfig = {
       },
       {
         source: "/architecture",
-        destination: "/?mode=console&panel=architecture",
+        destination: "/",
         permanent: true
       },
       {
         source: "/proof",
-        destination: "/?mode=console&panel=proof",
+        destination: "/",
         permanent: true
       }
     ];

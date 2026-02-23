@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type KeyboardEvent } from "react";
+import { useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 const GRID_COLUMNS = 5;
 const GRID_ROWS = 4;
@@ -34,6 +34,7 @@ function statusForNode(index: number, phase: 0 | 1 | 2 | 3): "Uncovered" | "In P
 }
 
 export function CoverageMap({ phase = 1, interactive = false, className = "" }: CoverageMapProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
   const [pinnedNode, setPinnedNode] = useState<number | null>(null);
 
@@ -83,12 +84,12 @@ export function CoverageMap({ phase = 1, interactive = false, className = "" }: 
       nextIndex = index - GRID_COLUMNS >= 0 ? index - GRID_COLUMNS : index;
     }
 
-    const nextElement = document.querySelector<HTMLButtonElement>(`[data-coverage-node=\"${nextIndex}\"]`);
+    const nextElement = containerRef.current?.querySelector<HTMLButtonElement>(`[data-coverage-node=\"${nextIndex}\"]`);
     nextElement?.focus();
   };
 
   return (
-    <div className={className} onKeyDown={(event) => {
+    <div ref={containerRef} className={className} onKeyDown={(event) => {
       if (event.key === "Escape") {
         setPinnedNode(null);
       }

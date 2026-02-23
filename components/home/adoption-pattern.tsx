@@ -119,7 +119,7 @@ export function AdoptionPattern({
         })}
       </ol>
 
-      {interactive ? (
+      {interactive && showInspector ? (
         <aside className="mt-4 rounded-lg border border-line/45 bg-fg/[0.03] p-4 md:mt-5" aria-live="polite">
           <p className="text-xs tracking-[0.16em] text-muted uppercase">Inspector</p>
           {activeStep ? (

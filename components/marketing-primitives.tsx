@@ -105,11 +105,13 @@ export function Hero({
 export function ButtonLink({
   href,
   children,
-  variant = "primary"
+  variant = "primary",
+  onClick
 }: {
   href: string;
   children: ReactNode;
   variant?: "primary" | "secondary" | "tertiary";
+  onClick?: () => void;
 }) {
   const base =
     "inline-flex min-h-11 items-center justify-center rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
@@ -121,14 +123,14 @@ export function ButtonLink({
 
   if (/^(mailto:|https?:\/\/)/.test(href)) {
     return (
-      <a href={href} className={cx(base, styles[variant])}>
+      <a href={href} onClick={onClick} className={cx(base, styles[variant])}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={cx(base, styles[variant])}>
+    <Link href={href} onClick={onClick} className={cx(base, styles[variant])}>
       {children}
     </Link>
   );

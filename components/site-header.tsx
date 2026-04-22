@@ -1,14 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import { ButtonLink, LogoBadge } from "@/components/marketing-primitives";
 import { site } from "@/components/site-data";
 
-function NavLink({ href, children }: { href: string; children: string }) {
+function NavLink({ href, children, onClick }: { href: string; children: string; onClick?: () => void }) {
   return (
-    <Link
-      href={href}
-      className="text-sm text-fg/72 transition hover:text-fg focus-visible:text-fg"
-    >
+    <Link href={href} onClick={onClick} className="text-sm text-fg/72 transition hover:text-fg focus-visible:text-fg">
       {children}
     </Link>
   );
@@ -16,12 +17,18 @@ function NavLink({ href, children }: { href: string; children: string }) {
 
 export function SiteHeader() {
   const [platform, products, howItWorks, useCases, docs, company] = site.nav.primary;
+  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-bg/80 backdrop-blur-xl">
       <div className="mx-auto w-full max-w-content px-6">
         <div className="flex items-center justify-between gap-4 py-4">
-          <Link href="/" aria-label="Entraphy home">
+          <Link href="/" aria-label="Entraphy home" onClick={() => setMobileMenuOpen(false)}>
             <LogoBadge />
           </Link>
 
@@ -32,7 +39,10 @@ export function SiteHeader() {
                 {products.label}
               </summary>
               <div className="menu-panel absolute left-0 top-full z-50 mt-4 hidden w-[20rem] rounded-[1.4rem] border border-white/10 bg-bg/96 p-2 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl">
-                <Link href={products.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link
+                  href={products.href}
+                  className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg"
+                >
                   {products.label}
                 </Link>
                 <div className="my-2 h-px bg-white/8" />
@@ -57,49 +67,61 @@ export function SiteHeader() {
             </ButtonLink>
           </nav>
 
-          <details className="relative lg:hidden">
-            <summary className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase">
+          <div className="relative lg:hidden">
+            <button
+              type="button"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-primary-menu"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase"
+            >
               Menu
-            </summary>
-            <div className="menu-panel absolute right-0 top-full z-50 mt-3 hidden w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/15 bg-[rgb(6,9,14)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)] backdrop-blur-none">
-              <div className="space-y-1">
-                <Link href={platform.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                  {platform.label}
-                </Link>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-1">
-                  <Link href={products.href} className="block rounded-2xl px-3 py-2 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                    {products.label}
-                  </Link>
-                  {products.children?.map((child) => (
-                    <Link
-                      key={child.label}
-                      href={child.href}
-                      className="block rounded-2xl px-3 py-2 text-sm text-fg/85 transition hover:bg-white/[0.06] hover:text-fg"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-                <Link href={howItWorks.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                  {howItWorks.label}
-                </Link>
-                <Link href={useCases.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                  {useCases.label}
-                </Link>
-                <Link href={docs.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                  {docs.label}
-                </Link>
-                <Link href={company.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
-                  {company.label}
-                </Link>
-                <div className="pt-2">
-                  <ButtonLink href={site.nav.cta.href} variant="secondary">
-                    {site.nav.cta.label}
-                  </ButtonLink>
+            </button>
+            {mobileMenuOpen ? (
+              <div
+                id="mobile-primary-menu"
+                className="menu-panel absolute right-0 top-full z-50 mt-3 w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/15 bg-[rgb(6,9,14)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)]"
+              >
+                <div className="space-y-1">
+                  <NavLink href={platform.href} onClick={() => setMobileMenuOpen(false)}>
+                    {platform.label}
+                  </NavLink>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-1">
+                    <NavLink href={products.href} onClick={() => setMobileMenuOpen(false)}>
+                      {products.label}
+                    </NavLink>
+                    {products.children?.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block rounded-2xl px-3 py-2 text-sm text-fg/85 transition hover:bg-white/[0.06] hover:text-fg"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <NavLink href={howItWorks.href} onClick={() => setMobileMenuOpen(false)}>
+                    {howItWorks.label}
+                  </NavLink>
+                  <NavLink href={useCases.href} onClick={() => setMobileMenuOpen(false)}>
+                    {useCases.label}
+                  </NavLink>
+                  <NavLink href={docs.href} onClick={() => setMobileMenuOpen(false)}>
+                    {docs.label}
+                  </NavLink>
+                  <NavLink href={company.href} onClick={() => setMobileMenuOpen(false)}>
+                    {company.label}
+                  </NavLink>
+                  <div className="pt-2">
+                    <ButtonLink href={site.nav.cta.href} variant="secondary" onClick={() => setMobileMenuOpen(false)}>
+                      {site.nav.cta.label}
+                    </ButtonLink>
+                  </div>
                 </div>
               </div>
-            </div>
-          </details>
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

@@ -61,35 +61,35 @@ export function SiteHeader() {
             <summary className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase">
               Menu
             </summary>
-            <div className="menu-panel absolute right-0 top-full z-50 mt-3 hidden w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/10 bg-bg/96 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl">
+            <div className="menu-panel absolute right-0 top-full z-50 mt-3 hidden w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/15 bg-[rgb(6,9,14)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)] backdrop-blur-none">
               <div className="space-y-1">
-                <Link href={platform.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link href={platform.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                   {platform.label}
                 </Link>
-                <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-1">
-                  <Link href={products.href} className="block rounded-2xl px-3 py-2 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-1">
+                  <Link href={products.href} className="block rounded-2xl px-3 py-2 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                     {products.label}
                   </Link>
                   {products.children?.map((child) => (
                     <Link
                       key={child.label}
                       href={child.href}
-                      className="block rounded-2xl px-3 py-2 text-sm text-fg/72 transition hover:bg-white/[0.04] hover:text-fg"
+                      className="block rounded-2xl px-3 py-2 text-sm text-fg/85 transition hover:bg-white/[0.06] hover:text-fg"
                     >
                       {child.label}
                     </Link>
                   ))}
                 </div>
-                <Link href={howItWorks.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link href={howItWorks.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                   {howItWorks.label}
                 </Link>
-                <Link href={useCases.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link href={useCases.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                   {useCases.label}
                 </Link>
-                <Link href={docs.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link href={docs.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                   {docs.label}
                 </Link>
-                <Link href={company.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
+                <Link href={company.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/90 transition hover:bg-white/[0.06] hover:text-fg">
                   {company.label}
                 </Link>
                 <div className="pt-2">

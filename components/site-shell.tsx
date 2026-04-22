@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 
 export function SiteShell({ children }: PropsWithChildren) {
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col overflow-x-clip">
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />

@@ -1,0 +1,274 @@
+{
+  "site": {
+    "brand": "Entraphy",
+    "version": "phase-1-company-site",
+    "positioning": {
+      "headline": "Trust infrastructure for consequential AI and software systems",
+      "subheadline": "Entraphy helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
+      "one_line_summary": "Entraphy makes machine-speed trust provable."
+    },
+    "nav": {
+      "primary": [
+        {"label": "Platform", "href": "/platform"},
+        {"label": "Products", "href": "/products", "children": [
+          {"label": "Entraphy Trust Flight Recorder for AI", "href": "/products/trust-flight-recorder-ai"},
+          {"label": "Blacksmith", "href": "/products/blacksmith"}
+        ]},
+        {"label": "How It Works", "href": "/how-it-works"},
+        {"label": "Use Cases", "href": "/use-cases"},
+        {"label": "Docs", "href": "/docs"},
+        {"label": "Company", "href": "/company"}
+      ],
+      "cta": {"label": "See the demo", "href": "/demo"}
+    },
+    "pages": {
+      "home": {
+        "seo": {
+          "title": "Entraphy | Trust infrastructure for consequential AI and software systems",
+          "description": "Entraphy makes machine-speed trust provable with evidence-backed trust infrastructure, replayable proof, and portable verification."
+        },
+        "sections": [
+          {
+            "id": "hero",
+            "component": "Hero",
+            "eyebrow": "Evidence-backed trust for machine-speed systems",
+            "headline": "Trust infrastructure for consequential AI and software systems",
+            "subheadline": "Entraphy helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
+            "primaryCta": {"label": "Explore the platform", "href": "/platform"},
+            "secondaryCta": {"label": "See the demo", "href": "/demo"},
+            "supportingItems": [
+              "No raw-data gravity",
+              "No rip-and-replace deployment",
+              "Portable proof beyond runtime"
+            ]
+          },
+          {
+            "id": "value-strip",
+            "component": "ValueStrip",
+            "sectionLabel": "What Entraphy does",
+            "headline": "Turn trust into evidence",
+            "items": [
+              {
+                "title": "Determine when trust is warranted",
+                "body": "Entraphy evaluates trust-relevant conditions at the point of consequence, not only after something goes wrong."
+              },
+              {
+                "title": "Preserve proof at decision time",
+                "body": "Entraphy captures whether an action was acceptable when it happened and preserves the evidence behind that judgment."
+              },
+              {
+                "title": "Make consequential decisions replayable",
+                "body": "Entraphy preserves proof that supports later replay, reconstruction, and review."
+              },
+              {
+                "title": "Carry trust beyond the original system",
+                "body": "Entraphy makes trust portable, durable, and independently verifiable across time, teams, and boundaries."
+              }
+            ]
+          },
+          {
+            "id": "founder-principle",
+            "component": "NarrativePanel",
+            "sectionLabel": "Why Entraphy exists",
+            "headline": "In consequential environments, trust is earned.",
+            "paragraphs": [
+              "In high-stakes environments, trust is not a story you tell. It is a judgment you make under uncertainty using evidence.",
+              "You establish identity. You verify origin. You examine behavior. You compare independent signals. And you watch whether the story holds up over time.",
+              "Entraphy brings that same discipline into the digital world, where AI and autonomous systems now act faster than human verification can keep up."
+            ],
+            "closingLine": "We are not manufacturing certainty. We are determining when trust has actually been earned."
+          },
+          {
+            "id": "company-explainer",
+            "component": "RichTextBlock",
+            "sectionLabel": "The company in one minute",
+            "headline": "Entraphy makes machine-speed trust provable.",
+            "body": [
+              "When AI or autonomous systems act, organizations often cannot answer basic questions: What happened? Was it allowed? What trust state existed at the moment of action? Can that be proven later to security, legal, regulators, or partners?",
+              "Entraphy exists to answer those questions with evidence.",
+              "At the point of consequence, Entraphy evaluates trust state, preserves proof, supports replay, and makes consequential decisions independently verifiable later.",
+              "This is not just observability. It is not just logging. And it is not a generic governance wrapper.",
+              "It is trust proof infrastructure for systems that can no longer rely on assumption."
+            ]
+          },
+          {
+            "id": "product-family",
+            "component": "ProductFamilyCards",
+            "sectionLabel": "Product lines",
+            "headline": "Two product planes. One trust system.",
+            "cards": [
+              {
+                "name": "Entraphy Trust Flight Recorder for AI",
+                "tagline": "Prove what happened. Prove it was allowed.",
+                "body": "The proof layer for AI-native systems. Preserve legality at decision time, seal witnesses, replay consequential actions, and export portable trust artifacts.",
+                "href": "/products/trust-flight-recorder-ai"
+              },
+              {
+                "name": "Blacksmith",
+                "tagline": "Continuously harden what must be trusted.",
+                "body": "The autonomous hardening engine for modern software. Pressure boundaries, validate what is real, repair what is admissible, and preserve witness-grade hardening evidence over time.",
+                "href": "/products/blacksmith"
+              }
+            ],
+            "bridgeLine": "Blacksmith hardens. Entraphy proves."
+          },
+          {
+            "id": "how-it-works",
+            "component": "ThreeStepProcess",
+            "sectionLabel": "How it works",
+            "headline": "Evidence first. Decision second. Proof always.",
+            "steps": [
+              {
+                "title": "Observe trust-relevant conditions",
+                "body": "Entraphy gathers the signals that matter at the point of consequence — the evidence that helps determine whether an action should proceed."
+              },
+              {
+                "title": "Evaluate what is admissible",
+                "body": "Entraphy computes trust state, applies policy, and determines whether the action should proceed, be constrained, be held for review, or be stopped."
+              },
+              {
+                "title": "Preserve what matters",
+                "body": "Entraphy preserves proof records that support later replay, investigation, and independent verification."
+              }
+            ]
+          },
+          {
+            "id": "stack-fit",
+            "component": "ArchitectureBridge",
+            "sectionLabel": "Stack fit",
+            "headline": "Built to work with the systems you already trust",
+            "body": "Entraphy is designed to sit alongside your existing observability, workflow, AI, and control systems. It does not require centralizing all telemetry. It does not become a runtime bottleneck. And it does not replace your current stack. Instead, Entraphy adds a trust-state and proof layer around selected consequential decision points.",
+            "bullets": [
+              "Bridge-first integration",
+              "Bounded evidence, not raw-data gravity",
+              "Overlay, not replacement",
+              "Proof objects that can flow back into existing tools"
+            ]
+          },
+          {
+            "id": "differentiation",
+            "component": "CompareBlock",
+            "sectionLabel": "Why Entraphy is different",
+            "headline": "Not another logging tool. Not another AI governance wrapper.",
+            "leftLabel": "Traditional tools",
+            "leftItems": [
+              "show telemetry",
+              "record events",
+              "document policy",
+              "track model behavior after the fact"
+            ],
+            "rightLabel": "Entraphy",
+            "rightItems": [
+              "proves whether actions were trusted and legal when they occurred",
+              "preserves replayable evidence",
+              "captures trust state at decision time",
+              "produces portable proof artifacts"
+            ],
+            "footer": "Entraphy focuses on provable trust, not just monitoring or policy documentation."
+          },
+          {
+            "id": "use-cases",
+            "component": "UseCaseCards",
+            "sectionLabel": "Where Entraphy matters most",
+            "headline": "Built for environments where later defensibility matters",
+            "cards": [
+              {"title": "AI-native systems", "body": "Prove and replay consequential actions taken by copilots, agents, or automated workflows."},
+              {"title": "Security and incident response", "body": "Preserve evidence that can support investigation, defensibility, and post-incident reconstruction."},
+              {"title": "Regulated environments", "body": "Carry trust artifacts into audits, oversight, and review without forcing crude centralization."},
+              {"title": "Sovereign and cross-boundary systems", "body": "Preserve portable proof that remains meaningful outside the original runtime."},
+              {"title": "Autonomous and industrial systems", "body": "Capture trust state at the point of action in environments where consequence is real and hard to reverse."}
+            ]
+          },
+          {
+            "id": "interface-philosophy",
+            "component": "RichTextBlock",
+            "sectionLabel": "Interface philosophy",
+            "headline": "Entraphy is not a dashboard. It is a stability instrument.",
+            "body": [
+              "Traditional interfaces show alerts, logs, and panels. Entraphy is designed to make the stability of intelligent systems visible, navigable, and provable.",
+              "It shows causality before metrics. It separates evidence, trust, control, execution, and proof. And it is built so a user should understand the system’s condition in seconds, not after hunting through screens."
+            ]
+          },
+          {
+            "id": "final-cta",
+            "component": "FinalCTA",
+            "headline": "When systems act, trust should not be assumed.",
+            "subheadline": "Entraphy helps organizations turn trust into evidence — and evidence into action.",
+            "primaryCta": {"label": "See the demo", "href": "/demo"},
+            "secondaryCta": {"label": "Talk to Entraphy", "href": "/contact"}
+          }
+        ]
+      },
+      "platform": {
+        "hero": {
+          "headline": "Trust proof infrastructure for AI-native systems",
+          "subheadline": "Entraphy makes consequential actions auditable, replayable, and independently verifiable without centralized raw-data dependency or rip-and-replace architecture."
+        }
+      },
+      "products": {
+        "hero": {
+          "headline": "Two product planes. One trust system.",
+          "subheadline": "Entraphy Trust Flight Recorder for AI proves consequential actions. Blacksmith continuously hardens the software those actions depend on."
+        },
+        "products": [
+          {
+            "name": "Entraphy Trust Flight Recorder for AI",
+            "summary": "Proof at decision time, legality proofs, replayable evidence, and portable verification."
+          },
+          {
+            "name": "Blacksmith",
+            "summary": "Autonomous hardening infrastructure for modern software, with validation, safe repair, and witness-grade evidence."
+          }
+        ]
+      },
+      "company": {
+        "hero": {
+          "headline": "Why Entraphy exists",
+          "subheadline": "Trust should be earned through evidence, not assumed through narrative."
+        }
+      },
+      "docs": {
+        "hero": {
+          "headline": "Documentation",
+          "subheadline": "Start with plain-English explanations of what Entraphy is, how it works, why proof at decision time matters, and how it fits into your stack."
+        },
+        "priorityPages": [
+          "What Is Entraphy?",
+          "How Entraphy Works",
+          "Why Proof at Decision Time Matters",
+          "Entraphy in Your Existing Stack",
+          "Proof Pilot Overview",
+          "FAQ",
+          "Glossary"
+        ]
+      }
+    },
+    "designSystem": {
+      "mood": ["dark", "premium", "restrained", "consequential"],
+      "rules": [
+        "futuristic by behavior, not decoration",
+        "no cyberpunk cliches",
+        "no giant dashboard screenshots",
+        "no doctrine wall above the fold",
+        "overlay-not-replacement visuals",
+        "causality before metrics"
+      ]
+    },
+    "codexNotes": {
+      "buildOrder": [
+        "Homepage",
+        "Platform page",
+        "Products index page",
+        "Company page",
+        "Docs landing page"
+      ],
+      "futureOverlayHooks": [
+        "Product hero template",
+        "Proof flow timeline",
+        "Hardening loop component",
+        "Shared CTA banner",
+        "Docs callout component"
+      ]
+    }
+  }
+}

@@ -12,10 +12,13 @@ const config: Config = {
         fg: "rgb(var(--color-fg) / <alpha-value>)",
         muted: "rgb(var(--color-muted) / <alpha-value>)",
         line: "rgb(var(--color-line) / <alpha-value>)",
-        accent: "rgb(var(--color-accent) / <alpha-value>)"
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        signal: "rgb(var(--color-signal) / <alpha-value>)"
       },
       fontFamily: {
-        sans: ["Inter", "Avenir Next", "Segoe UI", "sans-serif"]
+        sans: ["var(--font-body)", "Avenir Next", "Segoe UI", "sans-serif"],
+        display: ["var(--font-display)", "Avenir Next", "Segoe UI", "sans-serif"],
+        mono: ["var(--font-mono)", "SFMono-Regular", "Consolas", "monospace"]
       },
       maxWidth: {
         content: "72rem"

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
-import { HomePageContent } from "@/components/homepage-content";
+import { HomePageContent } from "@/components/marketing-home";
+import { site } from "@/components/site-data";
 
 export const metadata: Metadata = {
-  title: "Entraphy | Reality-Bound Systems",
-  description: "Architectures where consequential actions must satisfy authority, policy, and time before they can occur.",
+  title: site.pages.home.seo.title,
+  description: site.pages.home.seo.description,
   openGraph: {
-    title: "Entraphy | Reality-Bound Systems",
-    description: "Nothing is trusted until it is proven."
+    title: site.pages.home.seo.title,
+    description: site.pages.home.seo.description
   }
 };
 

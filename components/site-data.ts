@@ -25,7 +25,7 @@ export const routeMetadata = {
   },
   docs: {
     title: "Docs | Entraphy",
-    description: site.pages.docs.hero.subheadline
+    description: "Company-first docs for Entraphy, Trust Flight Recorder for AI, and Blacksmith."
   },
   "how-it-works": {
     title: "How It Works | Entraphy",

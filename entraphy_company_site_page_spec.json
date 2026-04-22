@@ -230,7 +230,7 @@
       "docs": {
         "hero": {
           "headline": "Documentation",
-          "subheadline": "Start with plain-English explanations of what Entraphy is, how it works, why proof at decision time matters, and how it fits into your stack."
+          "subheadline": "Start with the company thesis, then separate Trust Flight Recorder for AI and Blacksmith into their own reading paths."
         },
         "priorityPages": [
           {
@@ -675,6 +675,492 @@
               {
                 "term": "Trust State",
                 "definition": "The evaluated condition derived from trust-relevant inputs at decision time."
+              }
+            ]
+          }
+        ],
+        "companyPages": [
+          {
+            "title": "What Is Entraphy?",
+            "href": "#what-is-entraphy",
+            "summary": "Entraphy is the company and trust-proof platform."
+          },
+          {
+            "title": "How Entraphy Works",
+            "href": "#how-entraphy-works",
+            "summary": "Entraphy gathers signals, evaluates trust state, applies policy, determines outcome, and preserves proof."
+          },
+          {
+            "title": "Entraphy in Your Existing Stack",
+            "href": "#entraphy-in-your-existing-stack",
+            "summary": "Entraphy overlays your current systems instead of replacing them."
+          },
+          {
+            "title": "Products Overview",
+            "href": "#products-overview",
+            "summary": "See how Entraphy, Trust Flight Recorder for AI, and Blacksmith fit together."
+          },
+          {
+            "title": "Getting Started with Entraphy",
+            "href": "#getting-started-with-entraphy",
+            "summary": "Most buyers begin with one meaningful workflow or decision surface."
+          },
+          {
+            "title": "FAQ",
+            "href": "#faq",
+            "summary": "Answers grouped by company, product, hardening, and buying."
+          },
+          {
+            "title": "Glossary",
+            "href": "#glossary",
+            "summary": "Core terms grouped by company, product, and hardening scope."
+          }
+        ],
+        "companyArticles": [
+          {
+            "anchor": "what-is-entraphy",
+            "title": "What Is Entraphy?",
+            "summary": "Entraphy is the company and trust-proof platform for consequential AI and software systems.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "Entraphy is the umbrella company and trust-proof platform behind a small set of focused product lines.",
+                  "It helps organizations determine whether an important action was acceptable when it happened, preserve the evidence behind that judgment, and verify it later across time, teams, and boundaries."
+                ],
+                "callout": {
+                  "title": "Product lines",
+                  "items": ["Trust Flight Recorder for AI", "Blacksmith"]
+                }
+              },
+              {
+                "headline": "Why it matters",
+                "paragraphs": [
+                  "Most organizations can observe that something happened. Far fewer can prove whether it should have happened.",
+                  "That gap matters when AI systems, agents, workflows, or automated controls begin to make consequential decisions."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "how-entraphy-works",
+            "title": "How Entraphy Works",
+            "summary": "Entraphy works as a trust checkpoint on consequential decision paths.",
+            "blocks": [
+              {
+                "headline": "The operating model",
+                "paragraphs": [
+                  "Entraphy gathers trust-relevant signals, evaluates trust state, applies policy, determines the action outcome, and preserves proof."
+                ],
+                "bullets": [
+                  "Gather trust-relevant signals",
+                  "Evaluate trust state",
+                  "Apply policy",
+                  "Determine action outcome",
+                  "Preserve proof"
+                ]
+              },
+              {
+                "headline": "Why this matters",
+                "paragraphs": [
+                  "Most systems explain events after they occur. Entraphy is designed to evaluate and preserve proof at the point of consequence."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "entraphy-in-your-existing-stack",
+            "title": "Entraphy in Your Existing Stack",
+            "summary": "Entraphy overlays your current systems instead of replacing them.",
+            "blocks": [
+              {
+                "headline": "Why buyers care",
+                "paragraphs": [
+                  "Entraphy is built for bounded evidence, not raw-data gravity.",
+                  "It does not ask you to centralize every event."
+                ]
+              },
+              {
+                "headline": "Where Entraphy sits",
+                "paragraphs": [
+                  "Entraphy works alongside observability, SIEM, workflow engines, AI runtimes, cloud control-plane logs, and existing governance systems."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "products-overview",
+            "title": "Products Overview",
+            "summary": "See how Entraphy, Trust Flight Recorder for AI, and Blacksmith fit together.",
+            "blocks": [
+              {
+                "headline": "Three layers, clear roles",
+                "paragraphs": [
+                  "Entraphy is the company and trust-proof platform.",
+                  "Trust Flight Recorder for AI is the proof product.",
+                  "Blacksmith is the autonomous hardening product."
+                ]
+              },
+              {
+                "headline": "How they differ",
+                "paragraphs": [
+                  "Trust Flight Recorder for AI proves what happened and whether it was allowed.",
+                  "Blacksmith pressures boundaries, validates what is real, and repairs what is admissible."
+                ]
+              },
+              {
+                "headline": "How they work together",
+                "paragraphs": [
+                  "Blacksmith hardens. Entraphy proves."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "getting-started-with-entraphy",
+            "title": "Getting Started with Entraphy",
+            "summary": "Most buyers begin with one meaningful workflow or decision surface.",
+            "blocks": [
+              {
+                "headline": "The usual starting point",
+                "paragraphs": [
+                  "Customers usually start with one consequential workflow, agent, service, or decision surface.",
+                  "That keeps the first conversation narrow enough to be credible and useful."
+                ]
+              },
+              {
+                "headline": "Typical next steps",
+                "paragraphs": [
+                  "Some teams start with the company platform view, some start with Trust Flight Recorder for AI, and some start with Blacksmith."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "faq",
+            "title": "FAQ",
+            "summary": "Answers grouped by company, product, hardening, and buying.",
+            "blocks": [
+              {
+                "headline": "Entraphy company / platform",
+                "entries": [
+                  {
+                    "question": "What is Entraphy?",
+                    "answer": "Entraphy is the company and trust-proof platform behind the product lines."
+                  },
+                  {
+                    "question": "Does Entraphy replace existing systems?",
+                    "answer": "No. Entraphy overlays existing observability, workflow, AI, and control systems."
+                  }
+                ]
+              },
+              {
+                "headline": "Trust Flight Recorder for AI",
+                "entries": [
+                  {
+                    "question": "What does Trust Flight Recorder for AI do?",
+                    "answer": "It proves what happened, whether it was allowed, and preserves replayable evidence."
+                  },
+                  {
+                    "question": "Is it the same as Entraphy?",
+                    "answer": "No. It is the proof product line inside the Entraphy platform."
+                  }
+                ]
+              },
+              {
+                "headline": "Blacksmith",
+                "entries": [
+                  {
+                    "question": "What is Blacksmith?",
+                    "answer": "Blacksmith is the autonomous hardening product line."
+                  },
+                  {
+                    "question": "How does it relate to Entraphy?",
+                    "answer": "Blacksmith hardens. Entraphy proves."
+                  }
+                ]
+              },
+              {
+                "headline": "Buying / getting started",
+                "entries": [
+                  {
+                    "question": "How do customers usually start?",
+                    "answer": "Most start with one meaningful workflow or decision surface, then choose the lightest credible next step."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "glossary",
+            "title": "Glossary",
+            "summary": "Core terms grouped by company, product, and hardening scope.",
+            "blocks": [
+              {
+                "headline": "Company / platform terms",
+                "terms": [
+                  {
+                    "term": "Trust proof layer",
+                    "definition": "The platform layer that helps prove consequential decisions were acceptable under the conditions that existed at the time."
+                  },
+                  {
+                    "term": "Trust checkpoint",
+                    "definition": "The point where Entraphy evaluates evidence, applies policy, determines outcome, and preserves proof."
+                  }
+                ]
+              },
+              {
+                "headline": "Trust Flight Recorder for AI terms",
+                "terms": [
+                  {
+                    "term": "Decision-time proof",
+                    "definition": "Proof created at the moment of consequence, not after the fact."
+                  },
+                  {
+                    "term": "Portable verification",
+                    "definition": "Evidence that remains meaningful outside the originating runtime or environment."
+                  }
+                ]
+              },
+              {
+                "headline": "Blacksmith terms",
+                "terms": [
+                  {
+                    "term": "Hardening loop",
+                    "definition": "The repeatable cycle of pressure, challenge, validate, govern, repair, verify, witness, and remember."
+                  },
+                  {
+                    "term": "Witness-grade evidence",
+                    "definition": "Evidence preserved well enough to support later review and defensibility."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "trustFlightRecorderPages": [
+          {
+            "title": "What Is Trust Flight Recorder for AI?",
+            "href": "#what-is-trust-flight-recorder-for-ai",
+            "summary": "The proof product for AI-native systems and consequential automated actions."
+          },
+          {
+            "title": "How Trust Flight Recorder for AI Works",
+            "href": "#how-trust-flight-recorder-for-ai-works",
+            "summary": "How the proof layer computes trust state, generates legality proof, and preserves replayable evidence."
+          },
+          {
+            "title": "Why Proof at Decision Time Matters",
+            "href": "#why-proof-at-decision-time-matters",
+            "summary": "Why the moment of consequence matters more than retrospective reconstruction."
+          },
+          {
+            "title": "Replay, Proof Artifacts, and Portable Verification",
+            "href": "#replay-proof-artifacts-and-portable-verification",
+            "summary": "What happens after the decision and how proof travels beyond the runtime."
+          },
+          {
+            "title": "Proof Pilot Overview",
+            "href": "#proof-pilot-overview",
+            "summary": "A fixed-scope pilot for one meaningful workflow or decision surface."
+          }
+        ],
+        "trustFlightRecorderArticles": [
+          {
+            "anchor": "what-is-trust-flight-recorder-for-ai",
+            "title": "What Is Trust Flight Recorder for AI?",
+            "summary": "The proof product for AI-native systems and consequential automated actions.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "Trust Flight Recorder for AI is the proof product inside Entraphy.",
+                  "It helps prove what happened, whether it was allowed, and what evidence supported the decision at the moment of consequence."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "how-trust-flight-recorder-for-ai-works",
+            "title": "How Trust Flight Recorder for AI Works",
+            "summary": "How the proof layer computes trust state, generates legality proof, and preserves replayable evidence.",
+            "blocks": [
+              {
+                "headline": "The flow",
+                "paragraphs": [
+                  "An action occurs. Trust state is computed. Legality or proof is generated. A witness is sealed. Replay stays supported. The proof is exported. Verification remains possible beyond the runtime."
+                ],
+                "bullets": [
+                  "Action occurs",
+                  "Trust state computed",
+                  "Legality/proof generated",
+                  "Witness sealed",
+                  "Replay supported",
+                  "Proof exported",
+                  "Verification beyond runtime"
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "why-proof-at-decision-time-matters",
+            "title": "Why Proof at Decision Time Matters",
+            "summary": "Why the moment of consequence matters more than retrospective reconstruction.",
+            "blocks": [
+              {
+                "headline": "The problem",
+                "paragraphs": [
+                  "Logs, dashboards, and tickets can show traces of an event, but they often cannot prove whether the action was allowed when it happened."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "replay-proof-artifacts-and-portable-verification",
+            "title": "Replay, Proof Artifacts, and Portable Verification",
+            "summary": "What happens after the decision and how proof travels beyond the runtime.",
+            "blocks": [
+              {
+                "headline": "Replay",
+                "paragraphs": [
+                  "Replay lets a reviewer revisit a preserved decision path and examine what happened later."
+                ]
+              },
+              {
+                "headline": "Portable verification",
+                "paragraphs": [
+                  "The record should remain meaningful outside the originating runtime, team, or system boundary."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "proof-pilot-overview",
+            "title": "Proof Pilot Overview",
+            "summary": "A fixed-scope pilot for one meaningful workflow or decision surface.",
+            "blocks": [
+              {
+                "headline": "What it is",
+                "paragraphs": [
+                  "The Proof Pilot is the standard starting point for Trust Flight Recorder for AI."
+                ]
+              },
+              {
+                "headline": "What it includes",
+                "paragraphs": [
+                  "One consequential workflow, decision-time instrumentation, replay and proof demonstration, and a portable artifact discussion."
+                ],
+                "bullets": [
+                  "One consequential workflow",
+                  "Decision-time instrumentation",
+                  "Replay / proof demonstration",
+                  "Portable artifact discussion"
+                ]
+              }
+            ]
+          }
+        ],
+        "blacksmithPages": [
+          {
+            "title": "What Is Blacksmith?",
+            "href": "#what-is-blacksmith",
+            "summary": "The autonomous hardening product line."
+          },
+          {
+            "title": "How Blacksmith Works",
+            "href": "#how-blacksmith-works",
+            "summary": "How the hardening engine pressures boundaries and compounds hardening memory."
+          },
+          {
+            "title": "The Hardening Loop",
+            "href": "#the-hardening-loop",
+            "summary": "Pressure, challenge, validate, govern, repair, verify, witness, remember."
+          },
+          {
+            "title": "What Blacksmith Is Not",
+            "href": "#what-blacksmith-is-not",
+            "summary": "Not a scanner, patch bot, generic AppSec wrapper, or autonomous pentest toy."
+          },
+          {
+            "title": "How Blacksmith Works with Entraphy",
+            "href": "#how-blacksmith-works-with-entraphy",
+            "summary": "Blacksmith hardens. Entraphy proves."
+          }
+        ],
+        "blacksmithArticles": [
+          {
+            "anchor": "what-is-blacksmith",
+            "title": "What Is Blacksmith?",
+            "summary": "The autonomous hardening product line.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "Blacksmith is the autonomous hardening product line inside Entraphy.",
+                  "It is a governed hardening engine, not a passive detector."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "how-blacksmith-works",
+            "title": "How Blacksmith Works",
+            "summary": "How the hardening engine pressures boundaries and compounds hardening memory.",
+            "blocks": [
+              {
+                "headline": "Operating pattern",
+                "paragraphs": [
+                  "Blacksmith pressures trust boundaries, validates what is real, repairs what is admissible, and preserves witness-grade evidence as hardening memory compounds over time."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "the-hardening-loop",
+            "title": "The Hardening Loop",
+            "summary": "Pressure, challenge, validate, govern, repair, verify, witness, remember.",
+            "blocks": [
+              {
+                "headline": "Sequence",
+                "paragraphs": [
+                  "Pressure. Challenge. Validate. Govern. Repair. Verify. Witness. Remember."
+                ],
+                "bullets": [
+                  "Pressure",
+                  "Challenge",
+                  "Validate",
+                  "Govern",
+                  "Repair",
+                  "Verify",
+                  "Witness",
+                  "Remember"
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "what-blacksmith-is-not",
+            "title": "What Blacksmith Is Not",
+            "summary": "Not a scanner, patch bot, generic AppSec wrapper, or autonomous pentest toy.",
+            "blocks": [
+              {
+                "headline": "Not these things",
+                "paragraphs": [
+                  "Blacksmith is not a scanner, not a patch bot, not a generic AppSec wrapper, and not an autonomous pentest toy."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "how-blacksmith-works-with-entraphy",
+            "title": "How Blacksmith Works with Entraphy",
+            "summary": "Blacksmith hardens. Entraphy proves.",
+            "blocks": [
+              {
+                "headline": "The relationship",
+                "paragraphs": [
+                  "Blacksmith hardens the system. Entraphy proves the consequential decisions around it."
+                ]
               }
             ]
           }

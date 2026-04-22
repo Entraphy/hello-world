@@ -142,21 +142,134 @@ function CompanyPage() {
   );
 }
 
-function DocsPage() {
-  const hero = site.pages.docs.hero;
-  const priorityPages = site.pages.docs.priorityPages as Array<{ title: string; href: string; summary: string }>;
-  const articles = site.pages.docs.articles as Array<{
+function DocsCard({ index, title, summary, href }: { index: number; title: string; summary: string; href: string }) {
+  return (
+    <Surface className="flex h-full flex-col justify-between p-5 sm:p-6">
+      <div className="space-y-3">
+        <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">0{index + 1}</p>
+        <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{title}</h3>
+        <p className="text-sm leading-7 text-muted">{summary}</p>
+      </div>
+      <div className="mt-6">
+        <ButtonLink href={href} variant="secondary">
+          Read section
+        </ButtonLink>
+      </div>
+    </Surface>
+  );
+}
+
+function DocsArticle({
+  article
+}: {
+  article: {
     anchor: string;
     title: string;
     summary: string;
-    blocks?: Array<{
+    blocks: Array<{
       headline: string;
-      paragraphs: string[];
+      paragraphs?: string[];
+      bullets?: string[];
+      callout?: { title: string; body?: string; items?: string[] };
+      entries?: Array<{ question: string; answer: string }>;
+      terms?: Array<{ term: string; definition: string }>;
+    }>;
+  };
+}) {
+  return (
+    <SectionFrame
+      id={article.anchor}
+      className="scroll-mt-28"
+      eyebrow="Read these first"
+      headline={article.title}
+      subheadline={article.summary}
+    >
+      <div className="space-y-4">
+        {article.blocks.map((block) => {
+          const hasCallout = Boolean(block.callout);
+          return (
+            <Surface key={block.headline} className="p-5 sm:p-6">
+              <div className={hasCallout ? "grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start" : "space-y-4"}>
+                <div className="space-y-4">
+                  <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-fg">{block.headline}</h3>
+                  {block.paragraphs ? (
+                    <div className="space-y-4 text-base leading-8 text-muted sm:text-lg">
+                      {block.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ) : null}
+                  {block.bullets ? <BulletedPanel title={block.headline} items={block.bullets} /> : null}
+                  {block.entries ? (
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {block.entries.map((entry) => (
+                        <Surface key={entry.question} className="p-4 sm:p-5">
+                          <p className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{entry.question}</p>
+                          <p className="mt-3 text-sm leading-7 text-muted sm:text-base sm:leading-8">{entry.answer}</p>
+                        </Surface>
+                      ))}
+                    </div>
+                  ) : null}
+                  {block.terms ? (
+                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                      {block.terms.map((term) => (
+                        <Surface key={term.term} className="p-4 sm:p-5">
+                          <p className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{term.term}</p>
+                          <p className="mt-3 text-sm leading-7 text-muted">{term.definition}</p>
+                        </Surface>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+                {block.callout ? <SummaryPanel title={block.callout.title} body={block.callout.body} items={block.callout.items} /> : null}
+              </div>
+            </Surface>
+          );
+        })}
+      </div>
+    </SectionFrame>
+  );
+}
+
+function DocsPage() {
+  const hero = site.pages.docs.hero;
+  const companyPages = site.pages.docs.companyPages as Array<{ title: string; href: string; summary: string }>;
+  const companyArticles = site.pages.docs.companyArticles as Array<{
+    anchor: string;
+    title: string;
+    summary: string;
+    blocks: Array<{
+      headline: string;
+      paragraphs?: string[];
+      bullets?: string[];
+      callout?: { title: string; body?: string; items?: string[] };
+      entries?: Array<{ question: string; answer: string }>;
+      terms?: Array<{ term: string; definition: string }>;
+    }>;
+  }>;
+  const trustFlightRecorderPages = site.pages.docs.trustFlightRecorderPages as Array<{ title: string; href: string; summary: string }>;
+  const trustFlightRecorderArticles = site.pages.docs.trustFlightRecorderArticles as Array<{
+    anchor: string;
+    title: string;
+    summary: string;
+    blocks: Array<{
+      headline: string;
+      paragraphs?: string[];
       bullets?: string[];
       callout?: { title: string; body?: string; items?: string[] };
     }>;
-    entries?: Array<{ question: string; answer: string }>;
-    terms?: Array<{ term: string; definition: string }>;
+  }>;
+  const blacksmithPages = site.pages.docs.blacksmithPages as Array<{ title: string; href: string; summary: string }>;
+  const blacksmithArticles = site.pages.docs.blacksmithArticles as Array<{
+    anchor: string;
+    title: string;
+    summary: string;
+    blocks: Array<{
+      headline: string;
+      paragraphs?: string[];
+      bullets?: string[];
+      callout?: { title: string; body?: string; items?: string[] };
+    }>;
   }>;
 
   return (
@@ -168,94 +281,57 @@ function DocsPage() {
           subheadline={hero.subheadline}
           primaryCta={{ label: "Request a demo", href: "/demo" }}
           secondaryCta={{ label: "Explore the platform", href: "/platform" }}
-          visual={
-            <SummaryPanel
-              title="Reading order"
-              items={priorityPages.slice(0, 4).map((page) => page.title)}
-            />
-          }
+          visual={<SummaryPanel title="Reading order" items={companyPages.slice(0, 4).map((page) => page.title)} />}
         />
-        <SectionFrame eyebrow="Priority pages" headline="Read these first" subheadline="The docs are arranged so the company thesis comes first, then the operating pattern, then the pilot motion and glossary." >
+
+        <SectionFrame
+          eyebrow="Company / platform"
+          headline="Read these first"
+          subheadline="Start with the company thesis, then the platform model, then the product line separation."
+        >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {priorityPages.map((title, index) => (
-              <Surface key={title.title} className="flex h-full flex-col justify-between p-5 sm:p-6">
-                <div className="space-y-3">
-                  <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">0{index + 1}</p>
-                  <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{title.title}</h3>
-                  <p className="text-sm leading-7 text-muted">{title.summary}</p>
-                </div>
-                <div className="mt-6">
-                  <ButtonLink href={title.href} variant="secondary">
-                    Read section
-                  </ButtonLink>
-                </div>
-              </Surface>
+            {companyPages.map((page, index) => (
+              <DocsCard key={page.title} index={index} title={page.title} summary={page.summary} href={page.href} />
             ))}
           </div>
         </SectionFrame>
-        {articles.map((article) => (
-          <SectionFrame
-            key={article.anchor}
-            id={article.anchor}
-            className="scroll-mt-28"
-            eyebrow="Read these first"
-            headline={article.title}
-            subheadline={article.summary}
-          >
-            {article.blocks ? (
-              <div className="space-y-4">
-                {article.blocks.map((block) => (
-                  <Surface key={block.headline} className="p-5 sm:p-6">
-                    <div
-                      className={
-                        block.callout
-                          ? "grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start"
-                          : "space-y-4"
-                      }
-                    >
-                      <div className="space-y-4">
-                        <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-fg">
-                          {block.headline}
-                        </h3>
-                        <div className="space-y-4 text-base leading-8 text-muted sm:text-lg">
-                          {block.paragraphs.map((paragraph) => (
-                            <p key={paragraph}>{paragraph}</p>
-                          ))}
-                        </div>
-                        {block.bullets ? <BulletedPanel title={block.headline} items={block.bullets} /> : null}
-                      </div>
-                      {block.callout ? (
-                        <SummaryPanel title={block.callout.title} body={block.callout.body} items={block.callout.items} />
-                      ) : null}
-                    </div>
-                  </Surface>
-                ))}
-              </div>
-            ) : null}
 
-            {article.entries ? (
-              <div className="grid gap-4 md:grid-cols-2">
-                {article.entries.map((entry) => (
-                  <Surface key={entry.question} className="p-5 sm:p-6">
-                    <p className="font-display text-xl leading-tight tracking-[-0.03em] text-fg">{entry.question}</p>
-                    <p className="mt-3 text-sm leading-7 text-muted sm:text-base sm:leading-8">{entry.answer}</p>
-                  </Surface>
-                ))}
-              </div>
-            ) : null}
-
-            {article.terms ? (
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {article.terms.map((term) => (
-                  <Surface key={term.term} className="p-5 sm:p-6">
-                    <p className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{term.term}</p>
-                    <p className="mt-3 text-sm leading-7 text-muted">{term.definition}</p>
-                  </Surface>
-                ))}
-              </div>
-            ) : null}
-          </SectionFrame>
+        {companyArticles.map((article) => (
+          <DocsArticle key={article.anchor} article={article} />
         ))}
+
+        <SectionFrame
+          eyebrow="Trust Flight Recorder for AI"
+          headline="Product docs"
+          subheadline="The proof product gets its own reading path so it does not collapse into the company narrative."
+        >
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {trustFlightRecorderPages.map((page, index) => (
+              <DocsCard key={page.title} index={index} title={page.title} summary={page.summary} href={page.href} />
+            ))}
+          </div>
+        </SectionFrame>
+
+        {trustFlightRecorderArticles.map((article) => (
+          <DocsArticle key={article.anchor} article={article} />
+        ))}
+
+        <SectionFrame
+          eyebrow="Blacksmith"
+          headline="Product docs"
+          subheadline="The hardening product gets its own reading path and stays distinct from the proof layer."
+        >
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {blacksmithPages.map((page, index) => (
+              <DocsCard key={page.title} index={index} title={page.title} summary={page.summary} href={page.href} />
+            ))}
+          </div>
+        </SectionFrame>
+
+        {blacksmithArticles.map((article) => (
+          <DocsArticle key={article.anchor} article={article} />
+        ))}
+
         <SectionFrame
           eyebrow="Next step"
           headline="If the docs answer the first questions, the next conversation can stay narrow."

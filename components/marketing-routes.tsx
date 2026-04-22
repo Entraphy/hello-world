@@ -166,6 +166,7 @@ function DocsArticle({
     anchor: string;
     title: string;
     summary: string;
+    relatedPages?: Array<{ title: string; href: string }>;
     blocks: Array<{
       headline: string;
       paragraphs?: string[];
@@ -209,11 +210,11 @@ function DocsArticle({
                         </Surface>
                       ))}
                     </div>
-                  ) : null}
-                  {block.terms ? (
-                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                      {block.terms.map((term) => (
-                        <Surface key={term.term} className="p-4 sm:p-5">
+                ) : null}
+                {block.terms ? (
+                  <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {block.terms.map((term) => (
+                      <Surface key={term.term} className="p-4 sm:p-5">
                           <p className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{term.term}</p>
                           <p className="mt-3 text-sm leading-7 text-muted">{term.definition}</p>
                         </Surface>
@@ -226,6 +227,15 @@ function DocsArticle({
             </Surface>
           );
         })}
+        {article.relatedPages?.length ? (
+          <div className="flex flex-wrap gap-3">
+            {article.relatedPages.map((page) => (
+              <ButtonLink key={page.title} href={page.href} variant="secondary">
+                {page.title}
+              </ButtonLink>
+            ))}
+          </div>
+        ) : null}
       </div>
     </SectionFrame>
   );
@@ -238,6 +248,7 @@ function DocsPage() {
     anchor: string;
     title: string;
     summary: string;
+    relatedPages?: Array<{ title: string; href: string }>;
     blocks: Array<{
       headline: string;
       paragraphs?: string[];
@@ -252,6 +263,7 @@ function DocsPage() {
     anchor: string;
     title: string;
     summary: string;
+    relatedPages?: Array<{ title: string; href: string }>;
     blocks: Array<{
       headline: string;
       paragraphs?: string[];
@@ -264,6 +276,7 @@ function DocsPage() {
     anchor: string;
     title: string;
     summary: string;
+    relatedPages?: Array<{ title: string; href: string }>;
     blocks: Array<{
       headline: string;
       paragraphs?: string[];

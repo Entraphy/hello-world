@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { RoutePageContent, marketingRouteMetadata, marketingRoutes } from "@/components/marketing-routes";
 
@@ -36,7 +36,7 @@ export default function MarketingRoutePage({ params }: PageProps) {
   const routeKey = params.slug.join("/");
 
   if (routeKey === "contact") {
-    redirect("/demo#intake");
+    permanentRedirect("/demo#intake");
   }
 
   if (!marketingRouteMetadata[routeKey as keyof typeof marketingRouteMetadata]) {

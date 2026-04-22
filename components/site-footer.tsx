@@ -46,8 +46,8 @@ export function SiteFooter() {
               <Link href="/legal/terms" className="hover:text-fg">
                 Terms
               </Link>
-              <Link href="/contact" className="hover:text-fg">
-                Contact
+              <Link href="/demo#intake" className="hover:text-fg">
+                Request a demo
               </Link>
             </div>
           </div>

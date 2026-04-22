@@ -50,11 +50,11 @@ export async function POST(request: Request) {
   }
 
   submissions.push({
-    name: body.name,
-    email: body.email,
-    org: body.org,
-    role: body.role,
-    message: body.message,
+    name: body.name.trim(),
+    email: body.email.trim(),
+    org: body.org.trim(),
+    role: body.role.trim(),
+    message: body.message.trim(),
     submittedAt: new Date().toISOString()
   });
 

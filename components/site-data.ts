@@ -39,10 +39,6 @@ export const routeMetadata = {
     title: "Demo / Proof Pilot | Entraphy",
     description: "See how Trust Flight Recorder for AI fits a demo or Proof Pilot, with replayable evidence and verification across your stack."
   },
-  contact: {
-    title: "Contact | Entraphy",
-    description: "Talk to Entraphy about proof infrastructure for consequential systems."
-  },
   "products/trust-flight-recorder-ai": {
     title: `${trustFlightRecorderName} | Entraphy`,
     description: "Proof at decision time, legality proofs, replayable evidence, and portable verification."

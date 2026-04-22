@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { PageWrap, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Terms | Entraphy",
-  description: "Terms placeholder for Entraphy public site."
+  title: "Terms | Entraphy Systems",
+  description: "Terms placeholder for Entraphy Systems public site."
 };
 
 export default function TermsPage() {

@@ -143,8 +143,7 @@ export function LogoBadge() {
         <Image src={logoMark} alt="Entraphy Systems logo mark" width={44} height={44} className="h-full w-full object-contain" />
       </div>
       <div className="leading-tight">
-        <p className="font-display text-sm tracking-[0.28em] text-fg uppercase">Entraphy</p>
-        <p className="mt-1 text-[11px] tracking-[0.24em] text-muted uppercase">Systems</p>
+        <p className="font-display text-sm tracking-[0.28em] text-fg uppercase">Entraphy Systems</p>
       </div>
     </div>
   );

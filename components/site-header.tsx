@@ -42,7 +42,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/8 bg-bg/80 backdrop-blur-xl">
       <div className="mx-auto w-full max-w-content px-6">
         <div className="flex items-center justify-between gap-4 py-4">
-          <Link href="/" aria-label="Entraphy home" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/" aria-label="Entraphy Systems home" onClick={() => setMobileMenuOpen(false)}>
             <LogoBadge />
           </Link>
 

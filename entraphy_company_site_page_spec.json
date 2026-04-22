@@ -1,11 +1,11 @@
 {
   "site": {
-    "brand": "Entraphy",
+    "brand": "Entraphy Systems",
     "version": "phase-1-company-site",
     "positioning": {
       "headline": "Trust infrastructure for consequential AI and software systems",
-      "subheadline": "Entraphy helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
-      "one_line_summary": "Entraphy makes machine-speed trust provable."
+      "subheadline": "Entraphy Systems helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
+      "one_line_summary": "Entraphy Systems makes machine-speed trust provable."
     },
     "nav": {
       "primary": [
@@ -24,8 +24,8 @@
     "pages": {
       "home": {
         "seo": {
-          "title": "Entraphy | Trust infrastructure for consequential AI and software systems",
-          "description": "Entraphy makes machine-speed trust provable with evidence-backed trust infrastructure, replayable proof, and portable verification."
+          "title": "Entraphy Systems | Trust infrastructure for consequential AI and software systems",
+          "description": "Entraphy Systems makes machine-speed trust provable with evidence-backed trust infrastructure, replayable proof, and portable verification."
         },
         "sections": [
           {
@@ -33,7 +33,7 @@
             "component": "Hero",
             "eyebrow": "Evidence-backed trust for machine-speed systems",
             "headline": "Trust infrastructure for consequential AI and software systems",
-            "subheadline": "Entraphy helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
+            "subheadline": "Entraphy Systems helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
             "primaryCta": {"label": "Request a demo", "href": "/demo"},
             "secondaryCta": {"label": "Explore the platform", "href": "/platform"},
             "supportingItems": [
@@ -45,36 +45,36 @@
           {
             "id": "value-strip",
             "component": "ValueStrip",
-            "sectionLabel": "What Entraphy does",
+            "sectionLabel": "What Entraphy Systems does",
             "headline": "Turn trust into evidence",
             "items": [
               {
                 "title": "Determine when trust is warranted",
-                "body": "Entraphy evaluates trust-relevant conditions at the point of consequence, not only after something goes wrong."
+                "body": "Entraphy Systems evaluates trust-relevant conditions at the point of consequence, not only after something goes wrong."
               },
               {
                 "title": "Preserve proof at decision time",
-                "body": "Entraphy captures whether an action was acceptable when it happened and preserves the evidence behind that judgment."
+                "body": "Entraphy Systems captures whether an action was acceptable when it happened and preserves the evidence behind that judgment."
               },
               {
                 "title": "Make consequential decisions replayable",
-                "body": "Entraphy preserves proof that supports later replay, reconstruction, and review."
+                "body": "Entraphy Systems preserves proof that supports later replay, reconstruction, and review."
               },
               {
                 "title": "Carry trust beyond the original system",
-                "body": "Entraphy makes trust portable, durable, and independently verifiable across time, teams, and boundaries."
+                "body": "Entraphy Systems makes trust portable, durable, and independently verifiable across time, teams, and boundaries."
               }
             ]
           },
           {
             "id": "founder-principle",
             "component": "NarrativePanel",
-            "sectionLabel": "Why Entraphy exists",
+            "sectionLabel": "Why Entraphy Systems exists",
             "headline": "In consequential environments, trust is earned.",
             "paragraphs": [
               "In high-stakes environments, trust is not a story you tell. It is a judgment you make under uncertainty using evidence.",
               "You establish identity. You verify origin. You examine behavior. You compare independent signals. And you watch whether the story holds up over time.",
-              "Entraphy brings that same discipline into the digital world, where AI and autonomous systems now act faster than human verification can keep up."
+              "Entraphy Systems brings that same discipline into the digital world, where AI and autonomous systems now act faster than human verification can keep up."
             ],
             "closingLine": "We are not manufacturing certainty. We are determining when trust has actually been earned."
           },
@@ -82,11 +82,11 @@
             "id": "company-explainer",
             "component": "RichTextBlock",
             "sectionLabel": "The company in one minute",
-            "headline": "Entraphy makes machine-speed trust provable.",
+            "headline": "Entraphy Systems makes machine-speed trust provable.",
             "body": [
               "When AI or autonomous systems act, organizations often cannot answer basic questions: What happened? Was it allowed? What trust state existed at the moment of action? Can that be proven later to security, legal, regulators, or partners?",
-              "Entraphy exists to answer those questions with evidence.",
-              "At the point of consequence, Entraphy evaluates trust state, preserves proof, supports replay, and makes consequential decisions independently verifiable later.",
+              "Entraphy Systems exists to answer those questions with evidence.",
+              "At the point of consequence, Entraphy Systems evaluates trust state, preserves proof, supports replay, and makes consequential decisions independently verifiable later.",
               "This is not just observability. It is not just logging. And it is not a generic governance wrapper.",
               "It is trust proof infrastructure for systems that can no longer rely on assumption."
             ]
@@ -120,15 +120,15 @@
             "steps": [
               {
                 "title": "Observe trust-relevant conditions",
-                "body": "Entraphy gathers the signals that matter at the point of consequence — the evidence that helps determine whether an action should proceed."
+                "body": "Entraphy Systems gathers the signals that matter at the point of consequence — the evidence that helps determine whether an action should proceed."
               },
               {
                 "title": "Evaluate what is admissible",
-                "body": "Entraphy computes trust state, applies policy, and determines whether the action should proceed, be constrained, be held for review, or be stopped."
+                "body": "Entraphy Systems computes trust state, applies policy, and determines whether the action should proceed, be constrained, be held for review, or be stopped."
               },
               {
                 "title": "Preserve what matters",
-                "body": "Entraphy preserves proof records that support later replay, investigation, and independent verification."
+                "body": "Entraphy Systems preserves proof records that support later replay, investigation, and independent verification."
               }
             ]
           },
@@ -137,7 +137,7 @@
             "component": "ArchitectureBridge",
             "sectionLabel": "Stack fit",
             "headline": "Built to work with the systems you already trust",
-            "body": "Entraphy is designed to sit alongside your existing observability, workflow, AI, and control systems. It does not require centralizing all telemetry. It does not become a runtime bottleneck. And it does not replace your current stack. Instead, Entraphy adds a trust-state and proof layer around selected consequential decision points.",
+            "body": "Entraphy Systems is designed to sit alongside your existing observability, workflow, AI, and control systems. It does not require centralizing all telemetry. It does not become a runtime bottleneck. And it does not replace your current stack. Instead, Entraphy Systems adds a trust-state and proof layer around selected consequential decision points.",
             "bullets": [
               "Bridge-first integration",
               "Bounded evidence, not raw-data gravity",
@@ -148,7 +148,7 @@
           {
             "id": "differentiation",
             "component": "CompareBlock",
-            "sectionLabel": "Why Entraphy is different",
+            "sectionLabel": "Why Entraphy Systems is different",
             "headline": "Not another logging tool. Not another AI governance wrapper.",
             "leftLabel": "Traditional tools",
             "leftItems": [
@@ -157,19 +157,19 @@
               "document policy",
               "track model behavior after the fact"
             ],
-            "rightLabel": "Entraphy",
+            "rightLabel": "Entraphy Systems",
             "rightItems": [
               "proves whether actions were trusted and legal when they occurred",
               "preserves replayable evidence",
               "captures trust state at decision time",
               "produces portable proof artifacts"
             ],
-            "footer": "Entraphy focuses on provable trust, not just monitoring or policy documentation."
+            "footer": "Entraphy Systems focuses on provable trust, not just monitoring or policy documentation."
           },
           {
             "id": "use-cases",
             "component": "UseCaseCards",
-            "sectionLabel": "Where Entraphy matters most",
+            "sectionLabel": "Where Entraphy Systems matters most",
             "headline": "Built for environments where later defensibility matters",
             "cards": [
               {"title": "AI-native systems", "body": "Prove and replay consequential actions taken by copilots, agents, or automated workflows."},
@@ -183,9 +183,9 @@
             "id": "interface-philosophy",
             "component": "RichTextBlock",
             "sectionLabel": "Interface philosophy",
-            "headline": "Entraphy is not a dashboard. It is a stability instrument.",
+            "headline": "Entraphy Systems is not a dashboard. It is a stability instrument.",
             "body": [
-              "Traditional interfaces show alerts, logs, and panels. Entraphy is designed to make the stability of intelligent systems visible, navigable, and provable.",
+              "Traditional interfaces show alerts, logs, and panels. Entraphy Systems is designed to make the stability of intelligent systems visible, navigable, and provable.",
               "It shows causality before metrics. It separates evidence, trust, control, execution, and proof. And it is built so a user should understand the system’s condition in seconds, not after hunting through screens."
             ]
           },
@@ -193,7 +193,7 @@
             "id": "final-cta",
             "component": "FinalCTA",
             "headline": "When systems act, trust should not be assumed.",
-            "subheadline": "Entraphy helps organizations turn trust into evidence — and evidence into action.",
+            "subheadline": "Entraphy Systems helps organizations turn trust into evidence — and evidence into action.",
             "primaryCta": {"label": "Request a demo", "href": "/demo"},
             "secondaryCta": {"label": "Explore products", "href": "/products"}
           }
@@ -202,7 +202,7 @@
       "platform": {
         "hero": {
           "headline": "Trust proof infrastructure for AI-native systems",
-          "subheadline": "Entraphy makes consequential actions auditable, replayable, and independently verifiable without centralized raw-data dependency or rip-and-replace architecture."
+          "subheadline": "Entraphy Systems makes consequential actions auditable, replayable, and independently verifiable without centralized raw-data dependency or rip-and-replace architecture."
         }
       },
       "products": {
@@ -223,7 +223,7 @@
       },
       "company": {
         "hero": {
-          "headline": "Why Entraphy exists",
+          "headline": "Why Entraphy Systems exists",
           "subheadline": "Trust should be earned through evidence, not assumed through narrative."
         }
       },
@@ -234,13 +234,13 @@
         },
         "priorityPages": [
           {
-            "title": "What Is Entraphy?",
-            "href": "#what-is-entraphy",
-            "summary": "Entraphy is a trust proof layer for consequential AI and software systems."
+            "title": "What Is Entraphy Systems?",
+            "href": "#what-is-entraphy-systems",
+            "summary": "Entraphy Systems is a trust proof layer for consequential AI and software systems."
           },
           {
-            "title": "How Entraphy Works",
-            "href": "#how-entraphy-works",
+            "title": "How Entraphy Systems Works",
+            "href": "#how-entraphy-systems-works",
             "summary": "A simple trust checkpoint flow: gather signals, evaluate trust state, apply policy, preserve proof."
           },
           {
@@ -249,9 +249,9 @@
             "summary": "Decision-time proof closes the gap between what happened and what was allowed."
           },
           {
-            "title": "Entraphy in Your Existing Stack",
-            "href": "#entraphy-in-your-existing-stack",
-            "summary": "Entraphy works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems."
+            "title": "Entraphy Systems in Your Existing Stack",
+            "href": "#entraphy-systems-in-your-existing-stack",
+            "summary": "Entraphy Systems works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems."
           },
           {
             "title": "Proof Pilot Overview",
@@ -266,20 +266,20 @@
           {
             "title": "Glossary",
             "href": "#glossary",
-            "summary": "The core terms used across the Entraphy site and documentation."
+            "summary": "The core terms used across the Entraphy Systems site and documentation."
           }
         ],
         "articles": [
           {
-            "anchor": "what-is-entraphy",
-            "title": "What Is Entraphy?",
-            "summary": "Entraphy is a trust proof layer for consequential AI and software systems.",
+            "anchor": "what-is-entraphy-systems",
+            "title": "What Is Entraphy Systems?",
+            "summary": "Entraphy Systems is a trust proof layer for consequential AI and software systems.",
             "blocks": [
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "Entraphy is a trust proof layer for consequential AI and software systems. It helps organizations determine whether an important action was acceptable when it happened, preserve the evidence behind that decision, and verify it later across time, teams, and boundaries.",
-                  "In plain English: Entraphy turns trust into evidence."
+                  "Entraphy Systems is a trust proof layer for consequential AI and software systems. It helps organizations determine whether an important action was acceptable when it happened, preserve the evidence behind that decision, and verify it later across time, teams, and boundaries.",
+                  "In plain English: Entraphy Systems turns trust into evidence."
                 ],
                 "callout": {
                   "title": "What output the customer gets",
@@ -297,51 +297,51 @@
                 "headline": "The problem it solves",
                 "paragraphs": [
                   "Existing tools are useful, but they usually solve adjacent problems.",
-                  "Observability platforms show telemetry. SIEMs collect security events. Model monitoring tracks performance and drift. Governance tools document policy and oversight. Entraphy sits in a different place. It focuses on consequential decision paths and preserves proof that an action was trusted and acceptable under the conditions that existed when it occurred."
+                  "Observability platforms show telemetry. SIEMs collect security events. Model monitoring tracks performance and drift. Governance tools document policy and oversight. Entraphy Systems sits in a different place. It focuses on consequential decision paths and preserves proof that an action was trusted and acceptable under the conditions that existed when it occurred."
                 ]
               },
               {
                 "headline": "How it works",
                 "paragraphs": [
-                  "At a high level, Entraphy gathers trust-relevant signals, evaluates trust state, applies policy, determines whether the action should proceed, and preserves a proof artifact for later review.",
-                  "That means Entraphy is concerned with evidence, admissibility, and defensibility, not just visibility."
+                  "At a high level, Entraphy Systems gathers trust-relevant signals, evaluates trust state, applies policy, determines whether the action should proceed, and preserves a proof artifact for later review.",
+                  "That means Entraphy Systems is concerned with evidence, admissibility, and defensibility, not just visibility."
                 ]
               },
               {
                 "headline": "Where it fits in the stack",
                 "paragraphs": [
-                  "Entraphy is designed to work alongside existing systems rather than replace them. It adds a trust-state and proof layer around important decision points."
+                  "Entraphy Systems is designed to work alongside existing systems rather than replace them. It adds a trust-state and proof layer around important decision points."
                 ]
               },
               {
                 "headline": "What it is not",
                 "paragraphs": [
-                  "Entraphy is not just logging, not just observability, not just a governance dashboard, and not just another AI monitoring tool."
+                  "Entraphy Systems is not just logging, not just observability, not just a governance dashboard, and not just another AI monitoring tool."
                 ]
               },
               {
                 "headline": "Example workflow",
                 "paragraphs": [
-                  "An AI system proposes an action. Entraphy evaluates the trust-relevant conditions around that action, applies policy, determines whether it should proceed, and preserves proof of the decision. Later, a reviewer can replay and examine what happened."
+                  "An AI system proposes an action. Entraphy Systems evaluates the trust-relevant conditions around that action, applies policy, determines whether it should proceed, and preserves proof of the decision. Later, a reviewer can replay and examine what happened."
                 ]
               }
             ]
           },
           {
-            "anchor": "how-entraphy-works",
-            "title": "How Entraphy Works",
+            "anchor": "how-entraphy-systems-works",
+            "title": "How Entraphy Systems Works",
             "summary": "A simple trust checkpoint flow: gather signals, evaluate trust state, apply policy, preserve proof.",
             "blocks": [
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "This page explains Entraphy’s core operating pattern in simple terms."
+                  "This page explains Entraphy Systems’s core operating pattern in simple terms."
                 ]
               },
               {
                 "headline": "The end-to-end flow",
                 "paragraphs": [
-                  "Entraphy works as a trust checkpoint on consequential decision paths."
+                  "Entraphy Systems works as a trust checkpoint on consequential decision paths."
                 ],
                 "bullets": [
                   "Gather trust-relevant signals",
@@ -355,7 +355,7 @@
                 "headline": "Why this matters",
                 "paragraphs": [
                   "The most important difference is timing.",
-                  "Most systems explain events after they occur. Entraphy is designed to evaluate and preserve proof at the point of consequence. That is why Entraphy can help answer not only what happened, but whether the action was acceptable when it happened."
+                  "Most systems explain events after they occur. Entraphy Systems is designed to evaluate and preserve proof at the point of consequence. That is why Entraphy Systems can help answer not only what happened, but whether the action was acceptable when it happened."
                 ]
               },
               {
@@ -367,7 +367,7 @@
               {
                 "headline": "Where it fits in the stack",
                 "paragraphs": [
-                  "Entraphy is typically applied to selected high-value or high-risk decision points, not to every event in an environment."
+                  "Entraphy Systems is typically applied to selected high-value or high-risk decision points, not to every event in an environment."
                 ]
               },
               {
@@ -379,7 +379,7 @@
               {
                 "headline": "Example workflow",
                 "paragraphs": [
-                  "A workflow engine proposes a high-consequence action. Entraphy evaluates trust-relevant evidence, applies policy, produces an outcome, and preserves proof for replay and review."
+                  "A workflow engine proposes a high-consequence action. Entraphy Systems evaluates trust-relevant evidence, applies policy, produces an outcome, and preserves proof for replay and review."
                 ]
               }
             ]
@@ -392,7 +392,7 @@
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "This page explains Entraphy’s core wedge: decision-time proof."
+                  "This page explains Entraphy Systems’s core wedge: decision-time proof."
                 ]
               },
               {
@@ -412,7 +412,7 @@
               {
                 "headline": "How it works",
                 "paragraphs": [
-                  "Entraphy evaluates trust-relevant conditions before or at the moment an action occurs, applies policy, and preserves the resulting proof.",
+                  "Entraphy Systems evaluates trust-relevant conditions before or at the moment an action occurs, applies policy, and preserves the resulting proof.",
                   "This creates a defensible record that supports replay, review, and later verification."
                 ]
               },
@@ -437,27 +437,27 @@
             ]
           },
           {
-            "anchor": "entraphy-in-your-existing-stack",
-            "title": "Entraphy in Your Existing Stack",
-            "summary": "Entraphy works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems.",
+            "anchor": "entraphy-systems-in-your-existing-stack",
+            "title": "Entraphy Systems in Your Existing Stack",
+            "summary": "Entraphy Systems works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems.",
             "blocks": [
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "This page explains where Entraphy fits relative to the tools a customer already has."
+                  "This page explains where Entraphy Systems fits relative to the tools a customer already has."
                 ]
               },
               {
                 "headline": "Why it matters",
                 "paragraphs": [
-                  "One of the most common objections is fear of rip-and-replace. Buyers want to know whether Entraphy requires them to centralize all telemetry, replace their observability stack, or accept a new control bottleneck.",
+                  "One of the most common objections is fear of rip-and-replace. Buyers want to know whether Entraphy Systems requires them to centralize all telemetry, replace their observability stack, or accept a new control bottleneck.",
                   "The answer is no."
                 ]
               },
               {
-                "headline": "Where Entraphy sits",
+                "headline": "Where Entraphy Systems sits",
                 "paragraphs": [
-                  "Entraphy is designed to work alongside the systems customers already trust for telemetry, operations, and execution."
+                  "Entraphy Systems is designed to work alongside the systems customers already trust for telemetry, operations, and execution."
                 ],
                 "bullets": [
                   "Observability platforms",
@@ -471,8 +471,8 @@
               {
                 "headline": "How it works with existing systems",
                 "paragraphs": [
-                  "Entraphy ingests relevant evidence from surrounding systems, normalizes it into trust-relevant inputs, evaluates consequential decisions, and emits proof artifacts, trust outcomes, and replayable records.",
-                  "That means customers keep the systems they already trust for telemetry, operations, and execution while Entraphy adds defensible proof around what matters most."
+                  "Entraphy Systems ingests relevant evidence from surrounding systems, normalizes it into trust-relevant inputs, evaluates consequential decisions, and emits proof artifacts, trust outcomes, and replayable records.",
+                  "That means customers keep the systems they already trust for telemetry, operations, and execution while Entraphy Systems adds defensible proof around what matters most."
                 ]
               },
               {
@@ -484,13 +484,13 @@
               {
                 "headline": "What it is not",
                 "paragraphs": [
-                  "Entraphy is not meant to replace Splunk, Datadog, OpenTelemetry, workflow systems, or every control surface in the environment."
+                  "Entraphy Systems is not meant to replace Splunk, Datadog, OpenTelemetry, workflow systems, or every control surface in the environment."
                 ]
               },
               {
                 "headline": "Example workflow",
                 "paragraphs": [
-                  "A customer keeps their existing observability and AI runtime stack. Entraphy is added to one high-value decision path to preserve legality-at-decision and portable proof."
+                  "A customer keeps their existing observability and AI runtime stack. Entraphy Systems is added to one high-value decision path to preserve legality-at-decision and portable proof."
                 ]
               }
             ]
@@ -509,13 +509,13 @@
               {
                 "headline": "Why it matters",
                 "paragraphs": [
-                  "Entraphy is easiest to understand when it is applied to one real workflow. The pilot gives customers a bounded way to evaluate fit, see actual proof outputs, and validate whether the system solves a meaningful evidence problem."
+                  "Entraphy Systems is easiest to understand when it is applied to one real workflow. The pilot gives customers a bounded way to evaluate fit, see actual proof outputs, and validate whether the system solves a meaningful evidence problem."
                 ]
               },
               {
                 "headline": "What the pilot is",
                 "paragraphs": [
-                  "The Entraphy Proof Pilot is a fixed-scope pilot for one production-like AI workflow, agent, service, or high-value decision surface."
+                  "The Entraphy Systems Proof Pilot is a fixed-scope pilot for one production-like AI workflow, agent, service, or high-value decision surface."
                 ]
               },
               {
@@ -535,7 +535,7 @@
               {
                 "headline": "Success criteria",
                 "paragraphs": [
-                  "A successful pilot should show that Entraphy can prove what happened, prove whether it was allowed, show the trust state at the point of action, reconstruct at least one action or incident path, and produce a trust artifact that remains meaningful later."
+                  "A successful pilot should show that Entraphy Systems can prove what happened, prove whether it was allowed, show the trust state at the point of action, reconstruct at least one action or incident path, and produce a trust artifact that remains meaningful later."
                 ]
               },
               {
@@ -558,28 +558,28 @@
             "summary": "Answers to the most common questions about observability, logging, governance, and proof.",
             "entries": [
               {
-                "question": "Is Entraphy just observability?",
-                "answer": "No. Observability helps you understand what happened in a system. Entraphy focuses on whether a consequential action was acceptable when it happened, and on preserving proof that supports later replay and independent verification."
+                "question": "Is Entraphy Systems just observability?",
+                "answer": "No. Observability helps you understand what happened in a system. Entraphy Systems focuses on whether a consequential action was acceptable when it happened, and on preserving proof that supports later replay and independent verification."
               },
               {
-                "question": "Is Entraphy just logging?",
-                "answer": "No. Logs are usually retrospective. Entraphy is built to evaluate trust-relevant conditions at decision time and preserve proof that supports later review."
+                "question": "Is Entraphy Systems just logging?",
+                "answer": "No. Logs are usually retrospective. Entraphy Systems is built to evaluate trust-relevant conditions at decision time and preserve proof that supports later review."
               },
               {
-                "question": "Is Entraphy governance software?",
+                "question": "Is Entraphy Systems governance software?",
                 "answer": "Not in the usual sense. It is not a generic policy wrapper or documentation layer. It operates on consequential decision paths and preserves proof that can be reviewed, replayed, and independently verified."
               },
               {
-                "question": "Does Entraphy replace our existing stack?",
-                "answer": "No. Entraphy works alongside observability, SIEM, workflow systems, AI tooling, and existing controls. It adds a trust-state and proof layer around important decisions."
+                "question": "Does Entraphy Systems replace our existing stack?",
+                "answer": "No. Entraphy Systems works alongside observability, SIEM, workflow systems, AI tooling, and existing controls. It adds a trust-state and proof layer around important decisions."
               },
               {
-                "question": "Does Entraphy require centralizing all telemetry?",
-                "answer": "No. Entraphy is designed around bounded evidence and compact artifacts, not raw-data gravity."
+                "question": "Does Entraphy Systems require centralizing all telemetry?",
+                "answer": "No. Entraphy Systems is designed around bounded evidence and compact artifacts, not raw-data gravity."
               },
               {
-                "question": "Does Entraphy become a bottleneck?",
-                "answer": "Not in the way buyers usually fear. Entraphy is intended to sit on selected high-value decision points, not on every event in the environment."
+                "question": "Does Entraphy Systems become a bottleneck?",
+                "answer": "Not in the way buyers usually fear. Entraphy Systems is intended to sit on selected high-value decision points, not on every event in the environment."
               },
               {
                 "question": "What does decision-time proof mean?",
@@ -587,7 +587,7 @@
               },
               {
                 "question": "What is a trust checkpoint?",
-                "answer": "A trust checkpoint is the point where Entraphy evaluates whether a consequential action should proceed, produces an outcome, and preserves proof."
+                "answer": "A trust checkpoint is the point where Entraphy Systems evaluates whether a consequential action should proceed, produces an outcome, and preserves proof."
               },
               {
                 "question": "What is replay?",
@@ -614,7 +614,7 @@
           {
             "anchor": "glossary",
             "title": "Glossary",
-            "summary": "The core terms used across the Entraphy site and documentation.",
+            "summary": "The core terms used across the Entraphy Systems site and documentation.",
             "terms": [
               {
                 "term": "Acceptable Action",
@@ -646,7 +646,7 @@
               },
               {
                 "term": "Proof Pilot",
-                "definition": "A bounded engagement focused on applying Entraphy to one meaningful workflow or decision path to demonstrate fit and value."
+                "definition": "A bounded engagement focused on applying Entraphy Systems to one meaningful workflow or decision path to demonstrate fit and value."
               },
               {
                 "term": "Replay",
@@ -658,15 +658,15 @@
               },
               {
                 "term": "Stack Fit",
-                "definition": "How Entraphy works alongside existing tools and systems rather than replacing them."
+                "definition": "How Entraphy Systems works alongside existing tools and systems rather than replacing them."
               },
               {
                 "term": "Trust Checkpoint",
-                "definition": "The point where Entraphy evaluates evidence, applies policy, determines whether an action should proceed, and preserves proof."
+                "definition": "The point where Entraphy Systems evaluates evidence, applies policy, determines whether an action should proceed, and preserves proof."
               },
               {
                 "term": "Trust Proof Layer",
-                "definition": "A high-level description of Entraphy: a layer that helps prove consequential decisions were acceptable under the conditions that existed at the time."
+                "definition": "A high-level description of Entraphy Systems: a layer that helps prove consequential decisions were acceptable under the conditions that existed at the time."
               },
               {
                 "term": "Trust-Relevant Signal",
@@ -681,18 +681,18 @@
         ],
         "companyPages": [
           {
-            "title": "What Is Entraphy?",
-            "href": "#what-is-entraphy",
-            "summary": "Entraphy is the company and trust-proof platform."
+            "title": "What Is Entraphy Systems?",
+            "href": "#what-is-entraphy-systems",
+            "summary": "Entraphy Systems is the company and trust-proof platform."
           },
           {
-            "title": "How Entraphy Works",
-            "href": "#how-entraphy-works",
-            "summary": "Entraphy gathers signals, evaluates trust state, applies policy, determines outcome, and preserves proof."
+            "title": "How Entraphy Systems Works",
+            "href": "#how-entraphy-systems-works",
+            "summary": "Entraphy Systems gathers signals, evaluates trust state, applies policy, determines outcome, and preserves proof."
           },
           {
-            "title": "Entraphy in Your Existing Stack",
-            "href": "#entraphy-in-your-existing-stack",
+            "title": "Entraphy Systems in Your Existing Stack",
+            "href": "#entraphy-systems-in-your-existing-stack",
             "summary": "Entraphy Systems overlays your current systems instead of replacing them."
           },
           {
@@ -701,8 +701,8 @@
             "summary": "See how Entraphy Systems, Trust Flight Recorder for AI, and Blacksmith fit together."
           },
           {
-            "title": "Getting Started with Entraphy",
-            "href": "#getting-started-with-entraphy",
+            "title": "Getting Started with Entraphy Systems",
+            "href": "#getting-started-with-entraphy-systems",
             "summary": "Most buyers begin with one meaningful workflow or decision surface."
           },
           {
@@ -718,12 +718,12 @@
         ],
         "companyArticles": [
         {
-          "anchor": "what-is-entraphy",
-          "title": "What Is Entraphy?",
-          "summary": "Entraphy is a trust infrastructure platform for consequential AI and software systems.",
+          "anchor": "what-is-entraphy-systems",
+          "title": "What Is Entraphy Systems?",
+          "summary": "Entraphy Systems is a trust infrastructure platform for consequential AI and software systems.",
           "relatedPages": [
-            {"title": "How Entraphy Works", "href": "#how-entraphy-works"},
-            {"title": "Entraphy in Your Existing Stack", "href": "#entraphy-in-your-existing-stack"},
+            {"title": "How Entraphy Systems Works", "href": "#how-entraphy-systems-works"},
+            {"title": "Entraphy Systems in Your Existing Stack", "href": "#entraphy-systems-in-your-existing-stack"},
             {"title": "Products Overview", "href": "#products-overview"},
             {"title": "FAQ", "href": "#faq"},
             {"title": "Glossary", "href": "#glossary"}
@@ -744,25 +744,25 @@
                 "headline": "Why it matters",
                 "paragraphs": [
                   "Most organizations can observe AI or software activity, but still cannot reliably answer the harder questions after something consequential happens: What did the system do? Was it allowed? What trust state existed at that moment? Can we still prove it later?",
-                  "Entraphy exists to close that gap between visibility and verifiability."
+                  "Entraphy Systems exists to close that gap between visibility and verifiability."
                 ]
               },
               {
                 "headline": "The problem it solves",
                 "paragraphs": [
                   "Existing tools usually solve adjacent problems. Observability platforms show telemetry. SIEMs collect events. Model monitoring tracks behavior. Governance tools document process.",
-                  "Entraphy focuses on decision-time legality, trust state, replayable evidence, and portable proof. It is positioned as a system of record and proof substrate, not just another dashboard, gateway, or monitoring product."
+                  "Entraphy Systems focuses on decision-time legality, trust state, replayable evidence, and portable proof. It is positioned as a system of record and proof substrate, not just another dashboard, gateway, or monitoring product."
                 ]
               }
             ]
           },
         {
-          "anchor": "how-entraphy-works",
-          "title": "How Entraphy Works",
+          "anchor": "how-entraphy-systems-works",
+          "title": "How Entraphy Systems Works",
           "summary": "Signals, trust state, policy, action, and proof.",
           "relatedPages": [
-            {"title": "What Is Entraphy?", "href": "#what-is-entraphy"},
-            {"title": "Entraphy in Your Existing Stack", "href": "#entraphy-in-your-existing-stack"},
+            {"title": "What Is Entraphy Systems?", "href": "#what-is-entraphy-systems"},
+            {"title": "Entraphy Systems in Your Existing Stack", "href": "#entraphy-systems-in-your-existing-stack"},
             {"title": "Trust Flight Recorder for AI", "href": "#what-is-trust-flight-recorder-for-ai"},
             {"title": "FAQ", "href": "#faq"}
           ],
@@ -770,8 +770,8 @@
               {
                 "headline": "The operating model",
                 "paragraphs": [
-                  "This page explains the Entraphy platform operating model, not just one product feature.",
-                  "Buyers need to understand Entraphy as a control-and-proof system, not just a monitoring tool. The core model is: signals → trust state → policy → action → proof."
+                  "This page explains the Entraphy Systems platform operating model, not just one product feature.",
+                  "Buyers need to understand Entraphy Systems as a control-and-proof system, not just a monitoring tool. The core model is: signals → trust state → policy → action → proof."
                 ],
                 "bullets": [
                   "Gather trust-relevant signals",
@@ -784,7 +784,7 @@
               {
                 "headline": "Why this matters",
                 "paragraphs": [
-                  "Most systems explain events after they occur. Entraphy is designed to evaluate and preserve proof at the point of consequence, so later review is grounded in what was true when the action happened, not just in what logs survived later."
+                  "Most systems explain events after they occur. Entraphy Systems is designed to evaluate and preserve proof at the point of consequence, so later review is grounded in what was true when the action happened, not just in what logs survived later."
                 ]
               },
               {
@@ -796,12 +796,12 @@
             ]
           },
         {
-          "anchor": "entraphy-in-your-existing-stack",
-          "title": "Entraphy in Your Existing Stack",
-          "summary": "Entraphy sits beside observability, SIEM, workflow engines, and AI runtimes.",
+          "anchor": "entraphy-systems-in-your-existing-stack",
+          "title": "Entraphy Systems in Your Existing Stack",
+          "summary": "Entraphy Systems sits beside observability, SIEM, workflow engines, and AI runtimes.",
           "relatedPages": [
-            {"title": "What Is Entraphy?", "href": "#what-is-entraphy"},
-            {"title": "How Entraphy Works", "href": "#how-entraphy-works"},
+            {"title": "What Is Entraphy Systems?", "href": "#what-is-entraphy-systems"},
+            {"title": "How Entraphy Systems Works", "href": "#how-entraphy-systems-works"},
             {"title": "Products Overview", "href": "#products-overview"},
             {"title": "FAQ", "href": "#faq"}
           ],
@@ -809,11 +809,11 @@
               {
                 "headline": "Why buyers care",
                 "paragraphs": [
-                  "One of the biggest objections is fear of rip-and-replace. Customers want to know whether Entraphy requires them to centralize all telemetry, replace Splunk, Datadog, or OpenTelemetry, or accept a new runtime bottleneck. The answer is no."
+                  "One of the biggest objections is fear of rip-and-replace. Customers want to know whether Entraphy Systems requires them to centralize all telemetry, replace Splunk, Datadog, or OpenTelemetry, or accept a new runtime bottleneck. The answer is no."
                 ]
               },
               {
-                "headline": "Where Entraphy sits",
+                "headline": "Where Entraphy Systems sits",
                 "paragraphs": [
                   "Organizations already have telemetry, logs, and controls, but they often lack a defensible proof layer around consequential actions."
                 ]
@@ -821,7 +821,7 @@
               {
                 "headline": "How it works",
                 "paragraphs": [
-                  "Entraphy ingests bounded evidence from surrounding systems, normalizes those inputs into canonical evidence objects, evaluates trust-relevant decisions, and emits proof artifacts, trust outcomes, and replayable records. It is designed around bounded evidence and compact artifacts, not raw-data gravity."
+                  "Entraphy Systems ingests bounded evidence from surrounding systems, normalizes those inputs into canonical evidence objects, evaluates trust-relevant decisions, and emits proof artifacts, trust outcomes, and replayable records. It is designed around bounded evidence and compact artifacts, not raw-data gravity."
                 ]
               }
             ]
@@ -829,9 +829,9 @@
         {
           "anchor": "products-overview",
           "title": "Products Overview",
-          "summary": "Entraphy, Trust Flight Recorder for AI, and Blacksmith stay distinct.",
+          "summary": "Entraphy Systems, Trust Flight Recorder for AI, and Blacksmith stay distinct.",
           "relatedPages": [
-            {"title": "What Is Entraphy?", "href": "#what-is-entraphy"},
+            {"title": "What Is Entraphy Systems?", "href": "#what-is-entraphy-systems"},
             {"title": "What Is Trust Flight Recorder for AI?", "href": "#what-is-trust-flight-recorder-for-ai"},
             {"title": "What Is Blacksmith?", "href": "#what-is-blacksmith"},
             {"title": "FAQ", "href": "#faq"}
@@ -840,7 +840,7 @@
               {
                 "headline": "Three layers, clear roles",
                 "paragraphs": [
-                  "Entraphy is the company and trust-proof platform.",
+                  "Entraphy Systems is the company and trust-proof platform.",
                   "Trust Flight Recorder for AI is the proof product.",
                   "Blacksmith is the autonomous hardening product."
                 ]
@@ -861,8 +861,8 @@
             ]
           },
         {
-          "anchor": "getting-started-with-entraphy",
-          "title": "Getting Started with Entraphy",
+          "anchor": "getting-started-with-entraphy-systems",
+          "title": "Getting Started with Entraphy Systems",
           "summary": "Most buyers begin with one meaningful workflow or decision surface.",
           "relatedPages": [
             {"title": "Products Overview", "href": "#products-overview"},
@@ -892,15 +892,15 @@
             "summary": "Answers grouped by company, product, hardening, and buying.",
             "blocks": [
               {
-                "headline": "Entraphy company / platform",
+                "headline": "Entraphy Systems company / platform",
                 "entries": [
                   {
-                    "question": "What is Entraphy?",
-                    "answer": "Entraphy is the company and trust-proof platform behind the product lines."
+                    "question": "What is Entraphy Systems?",
+                    "answer": "Entraphy Systems is the company and trust-proof platform behind the product lines."
                   },
                   {
-                    "question": "Does Entraphy replace existing systems?",
-                    "answer": "No. Entraphy overlays existing observability, workflow, AI, and control systems."
+                    "question": "Does Entraphy Systems replace existing systems?",
+                    "answer": "No. Entraphy Systems overlays existing observability, workflow, AI, and control systems."
                   }
                 ]
               },
@@ -912,8 +912,8 @@
                     "answer": "It proves what happened, whether it was allowed, and preserves replayable evidence."
                   },
                   {
-                    "question": "Is it the same as Entraphy?",
-                    "answer": "No. It is the proof product line inside the Entraphy platform."
+                    "question": "Is it the same as Entraphy Systems?",
+                    "answer": "No. It is the proof product line inside the Entraphy Systems platform."
                   }
                 ]
               },
@@ -925,7 +925,7 @@
                     "answer": "Blacksmith is the autonomous hardening product line."
                   },
                   {
-                    "question": "How does it relate to Entraphy?",
+                    "question": "How does it relate to Entraphy Systems?",
                     "answer": "Blacksmith hardens. Trust Flight Recorder for AI proves."
                   }
                 ]
@@ -955,7 +955,7 @@
                   },
                   {
                     "term": "Trust checkpoint",
-                    "definition": "The point where Entraphy evaluates evidence, applies policy, determines outcome, and preserves proof."
+                    "definition": "The point where Entraphy Systems evaluates evidence, applies policy, determines outcome, and preserves proof."
                   }
                 ]
               },
@@ -1177,8 +1177,8 @@
             "summary": "Not a scanner, patch bot, generic AppSec wrapper, or autonomous pentest toy."
           },
           {
-            "title": "How Blacksmith Works with Entraphy",
-            "href": "#how-blacksmith-works-with-entraphy",
+            "title": "How Blacksmith Works with Entraphy Systems",
+            "href": "#how-blacksmith-works-with-entraphy-systems",
             "summary": "Blacksmith hardens. Trust Flight Recorder for AI proves."
           }
         ],
@@ -1190,13 +1190,13 @@
           "relatedPages": [
             {"title": "How Blacksmith Works", "href": "#how-blacksmith-works"},
             {"title": "The Hardening Loop", "href": "#the-hardening-loop"},
-            {"title": "How Blacksmith Works with Entraphy", "href": "#how-blacksmith-works-with-entraphy"}
+            {"title": "How Blacksmith Works with Entraphy Systems", "href": "#how-blacksmith-works-with-entraphy-systems"}
           ],
           "blocks": [
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "Blacksmith is the autonomous hardening product line inside Entraphy.",
+                  "Blacksmith is the autonomous hardening product line inside Entraphy Systems.",
                   "It is a governed hardening engine, not a passive detector."
                 ]
               },
@@ -1289,8 +1289,8 @@
             ]
           },
           {
-            "anchor": "how-blacksmith-works-with-entraphy",
-            "title": "How Blacksmith Works with Entraphy",
+            "anchor": "how-blacksmith-works-with-entraphy-systems",
+            "title": "How Blacksmith Works with Entraphy Systems",
             "summary": "Blacksmith hardens. Trust Flight Recorder for AI proves.",
             "relatedPages": [
             {"title": "What Is Blacksmith?", "href": "#what-is-blacksmith"},
@@ -1344,3 +1344,5 @@
     }
   }
 }
+
+

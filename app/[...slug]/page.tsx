@@ -17,7 +17,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 
   if (!meta) {
     return {
-      title: "Entraphy",
+      title: "Entraphy Systems",
       description: "Trust infrastructure for consequential AI and software systems."
     };
   }

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { PageWrap, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Privacy | Entraphy",
-  description: "Privacy placeholder for Entraphy public site."
+  title: "Privacy | Entraphy Systems",
+  description: "Privacy placeholder for Entraphy Systems public site."
 };
 
 export default function PrivacyPage() {

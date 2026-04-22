@@ -233,13 +233,451 @@
           "subheadline": "Start with plain-English explanations of what Entraphy is, how it works, why proof at decision time matters, and how it fits into your stack."
         },
         "priorityPages": [
-          "What Is Entraphy?",
-          "How Entraphy Works",
-          "Why Proof at Decision Time Matters",
-          "Entraphy in Your Existing Stack",
-          "Proof Pilot Overview",
-          "FAQ",
-          "Glossary"
+          {
+            "title": "What Is Entraphy?",
+            "href": "#what-is-entraphy",
+            "summary": "Entraphy is a trust proof layer for consequential AI and software systems."
+          },
+          {
+            "title": "How Entraphy Works",
+            "href": "#how-entraphy-works",
+            "summary": "A simple trust checkpoint flow: gather signals, evaluate trust state, apply policy, preserve proof."
+          },
+          {
+            "title": "Why Proof at Decision Time Matters",
+            "href": "#why-proof-at-decision-time-matters",
+            "summary": "Decision-time proof closes the gap between what happened and what was allowed."
+          },
+          {
+            "title": "Entraphy in Your Existing Stack",
+            "href": "#entraphy-in-your-existing-stack",
+            "summary": "Entraphy works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems."
+          },
+          {
+            "title": "Proof Pilot Overview",
+            "href": "#proof-pilot-overview",
+            "summary": "A fixed-scope pilot for one meaningful workflow or decision surface."
+          },
+          {
+            "title": "FAQ",
+            "href": "#faq",
+            "summary": "Answers to the most common questions about observability, logging, governance, and proof."
+          },
+          {
+            "title": "Glossary",
+            "href": "#glossary",
+            "summary": "The core terms used across the Entraphy site and documentation."
+          }
+        ],
+        "articles": [
+          {
+            "anchor": "what-is-entraphy",
+            "title": "What Is Entraphy?",
+            "summary": "Entraphy is a trust proof layer for consequential AI and software systems.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "Entraphy is a trust proof layer for consequential AI and software systems. It helps organizations determine whether an important action was acceptable when it happened, preserve the evidence behind that decision, and verify it later across time, teams, and boundaries.",
+                  "In plain English: Entraphy turns trust into evidence."
+                ],
+                "callout": {
+                  "title": "What output the customer gets",
+                  "body": "Preserved proof artifacts, replayable evidence, trust-state outcomes, and the ability to support later review or independent verification."
+                }
+              },
+              {
+                "headline": "Why it matters",
+                "paragraphs": [
+                  "Most organizations can observe that something happened. Far fewer can prove whether it should have happened.",
+                  "That gap becomes dangerous when AI systems, agents, workflows, or automated controls begin to act in ways that are consequential, sensitive, expensive, or hard to reverse. When something goes wrong, leaders need a different class of answer: what did the system do, was it allowed at the moment it acted, what trust state existed at that moment, and what evidence supported the decision?"
+                ]
+              },
+              {
+                "headline": "The problem it solves",
+                "paragraphs": [
+                  "Existing tools are useful, but they usually solve adjacent problems.",
+                  "Observability platforms show telemetry. SIEMs collect security events. Model monitoring tracks performance and drift. Governance tools document policy and oversight. Entraphy sits in a different place. It focuses on consequential decision paths and preserves proof that an action was trusted and acceptable under the conditions that existed when it occurred."
+                ]
+              },
+              {
+                "headline": "How it works",
+                "paragraphs": [
+                  "At a high level, Entraphy gathers trust-relevant signals, evaluates trust state, applies policy, determines whether the action should proceed, and preserves a proof artifact for later review.",
+                  "That means Entraphy is concerned with evidence, admissibility, and defensibility, not just visibility."
+                ]
+              },
+              {
+                "headline": "Where it fits in the stack",
+                "paragraphs": [
+                  "Entraphy is designed to work alongside existing systems rather than replace them. It adds a trust-state and proof layer around important decision points."
+                ]
+              },
+              {
+                "headline": "What it is not",
+                "paragraphs": [
+                  "Entraphy is not just logging, not just observability, not just a governance dashboard, and not just another AI monitoring tool."
+                ]
+              },
+              {
+                "headline": "Example workflow",
+                "paragraphs": [
+                  "An AI system proposes an action. Entraphy evaluates the trust-relevant conditions around that action, applies policy, determines whether it should proceed, and preserves proof of the decision. Later, a reviewer can replay and examine what happened."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "how-entraphy-works",
+            "title": "How Entraphy Works",
+            "summary": "A simple trust checkpoint flow: gather signals, evaluate trust state, apply policy, preserve proof.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "This page explains Entraphy’s core operating pattern in simple terms."
+                ]
+              },
+              {
+                "headline": "The end-to-end flow",
+                "paragraphs": [
+                  "Entraphy works as a trust checkpoint on consequential decision paths."
+                ],
+                "bullets": [
+                  "Gather trust-relevant signals",
+                  "Evaluate trust state",
+                  "Apply policy",
+                  "Determine the outcome",
+                  "Preserve proof"
+                ]
+              },
+              {
+                "headline": "Why this matters",
+                "paragraphs": [
+                  "The most important difference is timing.",
+                  "Most systems explain events after they occur. Entraphy is designed to evaluate and preserve proof at the point of consequence. That is why Entraphy can help answer not only what happened, but whether the action was acceptable when it happened."
+                ]
+              },
+              {
+                "headline": "What output the customer gets",
+                "paragraphs": [
+                  "The result can include a proof artifact, replayable evidence, trust-state outcome, and supporting materials for later review or portability."
+                ]
+              },
+              {
+                "headline": "Where it fits in the stack",
+                "paragraphs": [
+                  "Entraphy is typically applied to selected high-value or high-risk decision points, not to every event in an environment."
+                ]
+              },
+              {
+                "headline": "What it is not",
+                "paragraphs": [
+                  "It is not a giant centralization project, not a generic inline bottleneck, and not an after-the-fact reporting layer."
+                ]
+              },
+              {
+                "headline": "Example workflow",
+                "paragraphs": [
+                  "A workflow engine proposes a high-consequence action. Entraphy evaluates trust-relevant evidence, applies policy, produces an outcome, and preserves proof for replay and review."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "why-proof-at-decision-time-matters",
+            "title": "Why Proof at Decision Time Matters",
+            "summary": "Decision-time proof closes the gap between what happened and what was allowed.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "This page explains Entraphy’s core wedge: decision-time proof."
+                ]
+              },
+              {
+                "headline": "Why it matters",
+                "paragraphs": [
+                  "When organizations investigate a consequential event, they usually start with logs, dashboards, tickets, or scattered telemetry. Those tools may show pieces of what happened, but they often fail to prove whether the action was acceptable when it occurred.",
+                  "If a system makes an important decision, the real question is not only what happened. It is whether that action was allowed under the conditions that existed at that exact moment."
+                ]
+              },
+              {
+                "headline": "The problem it solves",
+                "paragraphs": [
+                  "Retrospective evidence is often incomplete, noisy, or hard to defend.",
+                  "Logs can be missing context. Observability may show symptoms without legality. Governance tools may show policy without proving runtime adherence. Model monitoring may show drift without telling you whether a specific action should have proceeded. Decision-time proof closes that gap."
+                ]
+              },
+              {
+                "headline": "How it works",
+                "paragraphs": [
+                  "Entraphy evaluates trust-relevant conditions before or at the moment an action occurs, applies policy, and preserves the resulting proof.",
+                  "This creates a defensible record that supports replay, review, and later verification."
+                ]
+              },
+              {
+                "headline": "What output the customer gets",
+                "paragraphs": [
+                  "Customers gain stronger defensibility, replayable evidence, and a preserved answer to whether an action was acceptable when it happened."
+                ]
+              },
+              {
+                "headline": "What it is not",
+                "paragraphs": [
+                  "Decision-time proof is not just a better log. It is proof created at the moment of consequence."
+                ]
+              },
+              {
+                "headline": "Example workflow",
+                "paragraphs": [
+                  "A customer asks why an AI-driven action was allowed. Instead of reconstructing the event from fragments, the team can review the preserved proof, trust state, and policy outcome associated with that decision."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "entraphy-in-your-existing-stack",
+            "title": "Entraphy in Your Existing Stack",
+            "summary": "Entraphy works alongside observability, SIEM, workflow engines, AI runtimes, and governance systems.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "This page explains where Entraphy fits relative to the tools a customer already has."
+                ]
+              },
+              {
+                "headline": "Why it matters",
+                "paragraphs": [
+                  "One of the most common objections is fear of rip-and-replace. Buyers want to know whether Entraphy requires them to centralize all telemetry, replace their observability stack, or accept a new control bottleneck.",
+                  "The answer is no."
+                ]
+              },
+              {
+                "headline": "Where Entraphy sits",
+                "paragraphs": [
+                  "Entraphy is designed to work alongside the systems customers already trust for telemetry, operations, and execution."
+                ],
+                "bullets": [
+                  "Observability platforms",
+                  "SIEM and security tooling",
+                  "Workflow engines",
+                  "AI tooling and runtimes",
+                  "Cloud control-plane logs",
+                  "Existing governance and control systems"
+                ]
+              },
+              {
+                "headline": "How it works with existing systems",
+                "paragraphs": [
+                  "Entraphy ingests relevant evidence from surrounding systems, normalizes it into trust-relevant inputs, evaluates consequential decisions, and emits proof artifacts, trust outcomes, and replayable records.",
+                  "That means customers keep the systems they already trust for telemetry, operations, and execution while Entraphy adds defensible proof around what matters most."
+                ]
+              },
+              {
+                "headline": "What output the customer gets",
+                "paragraphs": [
+                  "Customers get bounded evidence, proof artifacts, replay support, and stronger defensibility without forcing crude raw-data gravity."
+                ]
+              },
+              {
+                "headline": "What it is not",
+                "paragraphs": [
+                  "Entraphy is not meant to replace Splunk, Datadog, OpenTelemetry, workflow systems, or every control surface in the environment."
+                ]
+              },
+              {
+                "headline": "Example workflow",
+                "paragraphs": [
+                  "A customer keeps their existing observability and AI runtime stack. Entraphy is added to one high-value decision path to preserve legality-at-decision and portable proof."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "proof-pilot-overview",
+            "title": "Proof Pilot Overview",
+            "summary": "A fixed-scope pilot for one meaningful workflow or decision surface.",
+            "blocks": [
+              {
+                "headline": "What this is",
+                "paragraphs": [
+                  "The Proof Pilot is the standard starting point for customers."
+                ]
+              },
+              {
+                "headline": "Why it matters",
+                "paragraphs": [
+                  "Entraphy is easiest to understand when it is applied to one real workflow. The pilot gives customers a bounded way to evaluate fit, see actual proof outputs, and validate whether the system solves a meaningful evidence problem."
+                ]
+              },
+              {
+                "headline": "What the pilot is",
+                "paragraphs": [
+                  "The Entraphy Proof Pilot is a fixed-scope pilot for one production-like AI workflow, agent, service, or high-value decision surface."
+                ]
+              },
+              {
+                "headline": "Pilot scope",
+                "paragraphs": [
+                  "A typical pilot is designed to stay narrow so the evidence stays real and the next step stays easy to understand."
+                ],
+                "bullets": [
+                  "Instrument one meaningful action surface",
+                  "Generate legality proofs at decision time",
+                  "Preserve evidence for replay",
+                  "Show trust evidence for selected actions",
+                  "Export portable proof artifacts",
+                  "Demonstrate later verification outside the originating runtime"
+                ]
+              },
+              {
+                "headline": "Success criteria",
+                "paragraphs": [
+                  "A successful pilot should show that Entraphy can prove what happened, prove whether it was allowed, show the trust state at the point of action, reconstruct at least one action or incident path, and produce a trust artifact that remains meaningful later."
+                ]
+              },
+              {
+                "headline": "Pilot outputs",
+                "paragraphs": [
+                  "Customers should leave the pilot with a pilot summary, evidence examples, one replay walkthrough, one portable proof artifact, and a recommendation for production rollout."
+                ]
+              },
+              {
+                "headline": "What it is not",
+                "paragraphs": [
+                  "The Proof Pilot is not a giant enterprise transformation. It is a bounded engagement designed to demonstrate value quickly and credibly."
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "faq",
+            "title": "FAQ",
+            "summary": "Answers to the most common questions about observability, logging, governance, and proof.",
+            "entries": [
+              {
+                "question": "Is Entraphy just observability?",
+                "answer": "No. Observability helps you understand what happened in a system. Entraphy focuses on whether a consequential action was acceptable when it happened, and on preserving proof that supports later replay and independent verification."
+              },
+              {
+                "question": "Is Entraphy just logging?",
+                "answer": "No. Logs are usually retrospective. Entraphy is built to evaluate trust-relevant conditions at decision time and preserve proof that supports later review."
+              },
+              {
+                "question": "Is Entraphy governance software?",
+                "answer": "Not in the usual sense. It is not a generic policy wrapper or documentation layer. It operates on consequential decision paths and preserves proof that can be reviewed, replayed, and independently verified."
+              },
+              {
+                "question": "Does Entraphy replace our existing stack?",
+                "answer": "No. Entraphy works alongside observability, SIEM, workflow systems, AI tooling, and existing controls. It adds a trust-state and proof layer around important decisions."
+              },
+              {
+                "question": "Does Entraphy require centralizing all telemetry?",
+                "answer": "No. Entraphy is designed around bounded evidence and compact artifacts, not raw-data gravity."
+              },
+              {
+                "question": "Does Entraphy become a bottleneck?",
+                "answer": "Not in the way buyers usually fear. Entraphy is intended to sit on selected high-value decision points, not on every event in the environment."
+              },
+              {
+                "question": "What does decision-time proof mean?",
+                "answer": "It means evaluating trust-relevant conditions before or at the moment an action occurs, applying policy, and preserving proof that supports later review."
+              },
+              {
+                "question": "What is a trust checkpoint?",
+                "answer": "A trust checkpoint is the point where Entraphy evaluates whether a consequential action should proceed, produces an outcome, and preserves proof."
+              },
+              {
+                "question": "What is replay?",
+                "answer": "Replay is the ability to revisit a preserved decision and examine the evidence and outcome later."
+              },
+              {
+                "question": "What are sealed witnesses?",
+                "answer": "Sealed witnesses are preserved evidence records associated with an important decision. In many customer conversations, it is simpler to introduce them as preserved proof records first."
+              },
+              {
+                "question": "What makes proof portable?",
+                "answer": "Portable proof remains meaningful outside the original runtime or environment and can support later review or verification."
+              },
+              {
+                "question": "What is independent verification?",
+                "answer": "Independent verification means someone outside the original decision path can examine the proof and assess what happened."
+              },
+              {
+                "question": "How do customers usually start?",
+                "answer": "The standard starting point is the Proof Pilot."
+              }
+            ]
+          },
+          {
+            "anchor": "glossary",
+            "title": "Glossary",
+            "summary": "The core terms used across the Entraphy site and documentation.",
+            "terms": [
+              {
+                "term": "Acceptable Action",
+                "definition": "An action that is allowed to proceed because the relevant conditions support it at the time of decision."
+              },
+              {
+                "term": "Consequential Action",
+                "definition": "An action important enough that an organization may need stronger control, evidence, and later defensibility around it."
+              },
+              {
+                "term": "Decision-Time Proof",
+                "definition": "Proof created by evaluating trust-relevant conditions before or at the moment an action occurs, then preserving the result for later review."
+              },
+              {
+                "term": "Independent Verification",
+                "definition": "The ability for a party outside the original decision path to examine proof and assess what happened."
+              },
+              {
+                "term": "Policy",
+                "definition": "The rules or conditions used to determine whether an action should proceed."
+              },
+              {
+                "term": "Portable Proof",
+                "definition": "Proof that remains meaningful outside the original runtime or environment."
+              },
+              {
+                "term": "Proof Artifact",
+                "definition": "The preserved output of a trust-relevant decision, including the evidence and outcome needed to support later review."
+              },
+              {
+                "term": "Proof Pilot",
+                "definition": "A bounded engagement focused on applying Entraphy to one meaningful workflow or decision path to demonstrate fit and value."
+              },
+              {
+                "term": "Replay",
+                "definition": "The ability to revisit a preserved decision path and examine what happened later."
+              },
+              {
+                "term": "Sealed Witness",
+                "definition": "A preserved evidence record associated with a consequential decision."
+              },
+              {
+                "term": "Stack Fit",
+                "definition": "How Entraphy works alongside existing tools and systems rather than replacing them."
+              },
+              {
+                "term": "Trust Checkpoint",
+                "definition": "The point where Entraphy evaluates evidence, applies policy, determines whether an action should proceed, and preserves proof."
+              },
+              {
+                "term": "Trust Proof Layer",
+                "definition": "A high-level description of Entraphy: a layer that helps prove consequential decisions were acceptable under the conditions that existed at the time."
+              },
+              {
+                "term": "Trust-Relevant Signal",
+                "definition": "Any input, context, or evidence source that helps determine whether an action should proceed."
+              },
+              {
+                "term": "Trust State",
+                "definition": "The evaluated condition derived from trust-relevant inputs at decision time."
+              }
+            ]
+          }
         ]
       }
     },

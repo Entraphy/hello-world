@@ -448,7 +448,7 @@ function DemoPage() {
               <Surface key={option.title} className="flex h-full flex-col p-6">
                 <div className="space-y-3">
                   <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">{option.kind}</p>
-                  <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-fg">{option.title}</h3>
+                  <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{option.title}</h3>
                   <p className="text-sm leading-7 text-muted">{option.body}</p>
                 </div>
                 <div className="mt-6">
@@ -469,7 +469,7 @@ function DemoPage() {
           subheadline="Choose the intent, add the context, and we will route the request to the lightest credible next step."
         >
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div className="space-y-4">
+            <div className="order-2 space-y-4 lg:order-1">
               <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
                 The intent you choose travels with the request, so the follow-up starts in the right place.
               </p>
@@ -483,14 +483,16 @@ function DemoPage() {
                 ]}
               />
             </div>
-            <DemoIntakeForm
-              choices={engagementOptions.map(({ kind, title, body }) => ({
-                category: kind,
-                label: title,
-                detail: body,
-                value: title
-              }))}
-            />
+            <div className="order-1 lg:order-2">
+              <DemoIntakeForm
+                choices={engagementOptions.map(({ kind, title, body }) => ({
+                  category: kind,
+                  label: title,
+                  detail: body,
+                  value: title
+                }))}
+              />
+            </div>
           </div>
         </SectionFrame>
       </div>

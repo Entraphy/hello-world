@@ -58,10 +58,10 @@ export function SiteHeader() {
           </nav>
 
           <details className="relative lg:hidden">
-            <summary className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase">
+            <summary className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase">
               Menu
             </summary>
-            <div className="menu-panel absolute right-0 top-full z-50 mt-3 hidden w-[min(92vw,20rem)] rounded-[1.4rem] border border-white/10 bg-bg/96 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl">
+            <div className="menu-panel absolute right-0 top-full z-50 mt-3 hidden w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/10 bg-bg/96 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.38)] backdrop-blur-xl">
               <div className="space-y-1">
                 <Link href={platform.href} className="block rounded-2xl px-4 py-3 text-sm text-fg/80 transition hover:bg-white/[0.04] hover:text-fg">
                   {platform.label}

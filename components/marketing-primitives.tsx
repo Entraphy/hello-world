@@ -31,7 +31,7 @@ export function SectionFrame({
     <section id={id} className={cx("space-y-8", className)}>
       <header className="space-y-4">
         {eyebrow ? <p className="font-mono text-[11px] tracking-[0.32em] text-signal/80 uppercase">{eyebrow}</p> : null}
-        <h2 className="max-w-4xl font-display text-3xl leading-[1.05] tracking-[-0.03em] text-fg sm:text-4xl lg:text-5xl">
+        <h2 className="max-w-4xl font-display text-2xl leading-[1.08] tracking-[-0.03em] text-fg sm:text-3xl lg:text-5xl">
           {headline}
         </h2>
         {subheadline ? <p className="max-w-3xl text-base leading-8 text-muted sm:text-lg">{subheadline}</p> : null}
@@ -75,10 +75,10 @@ export function Hero({
     <section className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
       <div className="space-y-7">
         <p className="font-mono text-[11px] tracking-[0.32em] text-signal/80 uppercase">{eyebrow}</p>
-        <h1 className="max-w-4xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-fg sm:text-6xl lg:text-[4.7rem]">
+        <h1 className="max-w-4xl font-display text-4xl leading-[0.96] tracking-[-0.05em] text-fg sm:text-5xl lg:text-[4.7rem]">
           {headline}
         </h1>
-        <p className="max-w-2xl text-lg leading-8 text-muted sm:text-xl">{subheadline}</p>
+        <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">{subheadline}</p>
         <div className="flex flex-wrap gap-3">
           {primaryCta ? <ButtonLink href={primaryCta.href}>{primaryCta.label}</ButtonLink> : null}
           {secondaryCta ? (
@@ -112,7 +112,7 @@ export function ButtonLink({
   variant?: "primary" | "secondary" | "tertiary";
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
+    "inline-flex min-h-11 items-center justify-center rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
   const styles = {
     primary: "border-signal/70 bg-signal text-bg hover:border-signal hover:bg-signal/90",
     secondary: "border-white/12 bg-white/[0.03] text-fg hover:border-white/24 hover:bg-white/[0.06]",
@@ -227,7 +227,7 @@ export function ProductCard({
       <div className="space-y-4">
         <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">Product preview</p>
         <div className="space-y-2">
-          <h3 className="font-display text-2xl leading-tight tracking-[-0.03em] text-fg">{name}</h3>
+          <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{name}</h3>
           <p className="text-sm font-medium tracking-[0.08em] text-fg/75 uppercase">{tagline}</p>
         </div>
         <p className="text-sm leading-7 text-muted">{body}</p>
@@ -245,7 +245,7 @@ export function StepCard({ index, title, body }: { index: number; title: string;
   return (
     <Surface className="flex h-full flex-col p-6">
       <p className="font-mono text-[10px] tracking-[0.3em] text-signal/70 uppercase">0{index + 1}</p>
-      <h3 className="mt-4 font-display text-2xl leading-tight tracking-[-0.03em] text-fg">{title}</h3>
+      <h3 className="mt-4 font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </Surface>
   );
@@ -254,7 +254,7 @@ export function StepCard({ index, title, body }: { index: number; title: string;
 export function UseCaseCard({ title, body }: { title: string; body: string }) {
   return (
     <Surface className="flex h-full flex-col p-6">
-      <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg">{title}</h3>
+      <h3 className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </Surface>
   );

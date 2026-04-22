@@ -11,7 +11,7 @@
       "primary": [
         {"label": "Platform", "href": "/platform"},
         {"label": "Products", "href": "/products", "children": [
-          {"label": "Entraphy Trust Flight Recorder for AI", "href": "/products/trust-flight-recorder-ai"},
+          {"label": "Trust Flight Recorder for AI", "href": "/products/trust-flight-recorder-ai"},
           {"label": "Blacksmith", "href": "/products/blacksmith"}
         ]},
         {"label": "How It Works", "href": "/how-it-works"},
@@ -19,7 +19,7 @@
         {"label": "Docs", "href": "/docs"},
         {"label": "Company", "href": "/company"}
       ],
-      "cta": {"label": "See the demo", "href": "/demo"}
+      "cta": {"label": "Request a demo", "href": "/demo"}
     },
     "pages": {
       "home": {
@@ -34,8 +34,8 @@
             "eyebrow": "Evidence-backed trust for machine-speed systems",
             "headline": "Trust infrastructure for consequential AI and software systems",
             "subheadline": "Entraphy helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, boundary, and challenge.",
-            "primaryCta": {"label": "Explore the platform", "href": "/platform"},
-            "secondaryCta": {"label": "See the demo", "href": "/demo"},
+            "primaryCta": {"label": "Request a demo", "href": "/demo"},
+            "secondaryCta": {"label": "Explore the platform", "href": "/platform"},
             "supportingItems": [
               "No raw-data gravity",
               "No rip-and-replace deployment",
@@ -98,7 +98,7 @@
             "headline": "Two product planes. One trust system.",
             "cards": [
               {
-                "name": "Entraphy Trust Flight Recorder for AI",
+                "name": "Trust Flight Recorder for AI",
                 "tagline": "Prove what happened. Prove it was allowed.",
                 "body": "The proof layer for AI-native systems. Preserve legality at decision time, seal witnesses, replay consequential actions, and export portable trust artifacts.",
                 "href": "/products/trust-flight-recorder-ai"
@@ -194,8 +194,8 @@
             "component": "FinalCTA",
             "headline": "When systems act, trust should not be assumed.",
             "subheadline": "Entraphy helps organizations turn trust into evidence — and evidence into action.",
-            "primaryCta": {"label": "See the demo", "href": "/demo"},
-            "secondaryCta": {"label": "Talk to Entraphy", "href": "/contact"}
+            "primaryCta": {"label": "Request a demo", "href": "/demo"},
+            "secondaryCta": {"label": "Explore products", "href": "/products"}
           }
         ]
       },
@@ -208,11 +208,11 @@
       "products": {
         "hero": {
           "headline": "Two product planes. One trust system.",
-          "subheadline": "Entraphy Trust Flight Recorder for AI proves consequential actions. Blacksmith continuously hardens the software those actions depend on."
+          "subheadline": "Trust Flight Recorder for AI proves consequential actions. Blacksmith continuously hardens the software those actions depend on."
         },
         "products": [
           {
-            "name": "Entraphy Trust Flight Recorder for AI",
+            "name": "Trust Flight Recorder for AI",
             "summary": "Proof at decision time, legality proofs, replayable evidence, and portable verification."
           },
           {

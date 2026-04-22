@@ -7,6 +7,8 @@ type AnySection = {
 
 export const site = siteSpec.site;
 export const homeSections = site.pages.home.sections as AnySection[];
+const productFamilySection = site.pages.home.sections[4] as AnySection;
+export const trustFlightRecorderName = productFamilySection.cards[0].name as string;
 
 export const routeMetadata = {
   platform: {
@@ -34,15 +36,15 @@ export const routeMetadata = {
     description: "Built for environments where later defensibility matters."
   },
   demo: {
-    title: "Demo | Entraphy",
-    description: "See how Entraphy turns trust into evidence."
+    title: "Demo / Proof Pilot | Entraphy",
+    description: "See how Trust Flight Recorder for AI fits a demo or Proof Pilot, with replayable evidence and verification across your stack."
   },
   contact: {
     title: "Contact | Entraphy",
     description: "Talk to Entraphy about proof infrastructure for consequential systems."
   },
   "products/trust-flight-recorder-ai": {
-    title: "Entraphy Trust Flight Recorder for AI | Entraphy",
+    title: `${trustFlightRecorderName} | Entraphy`,
     description: "Proof at decision time, legality proofs, replayable evidence, and portable verification."
   },
   "products/blacksmith": {

@@ -234,7 +234,7 @@ export function ProductCard({
       </div>
       <div className="mt-6">
         <ButtonLink href={href} variant="secondary">
-          View preview
+          Explore product
         </ButtonLink>
       </div>
     </Surface>

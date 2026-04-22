@@ -25,7 +25,7 @@ function PlatformPage() {
           headline={hero.headline}
           subheadline={hero.subheadline}
           primaryCta={{ label: "Request a demo", href: "/demo" }}
-          secondaryCta={{ label: "Explore the products", href: "/products" }}
+          secondaryCta={{ label: "Explore products", href: "/products" }}
           visual={
             <SummaryPanel title="Platform focus" body="Trust proof infrastructure that makes consequential actions auditable, replayable, and independently verifiable." />
           }
@@ -73,7 +73,7 @@ function ProductsPage() {
           headline={hero.headline}
           subheadline={hero.subheadline}
           primaryCta={{ label: "Request a demo", href: "/demo" }}
-          secondaryCta={{ label: "Explore platform", href: "/platform" }}
+          secondaryCta={{ label: "Explore the platform", href: "/platform" }}
           visual={<SummaryPanel title="Company-first architecture" body="The company stays the umbrella brand. Product planes layer in cleanly as separate surfaces." />}
         />
         <SectionFrame
@@ -155,7 +155,7 @@ function DocsPage() {
           headline={hero.headline}
           subheadline={hero.subheadline}
           primaryCta={{ label: "Request a demo", href: "/demo" }}
-          secondaryCta={{ label: "Explore platform", href: "/platform" }}
+          secondaryCta={{ label: "Explore the platform", href: "/platform" }}
           visual={<SummaryPanel title="Start here" body="The docs landing page is organized as plain-English guidance before deep technical detail." />}
         />
         <SectionFrame eyebrow="Priority pages" headline="Read these first">
@@ -493,44 +493,6 @@ function DemoPage() {
             />
           </div>
         </SectionFrame>
-      </div>
-    </PageFrame>
-  );
-}
-
-function ContactPage() {
-  return (
-    <PageFrame>
-      <div className="space-y-20">
-        <Hero
-          eyebrow="Contact"
-          headline="Talk to Entraphy"
-          subheadline="If you need trust infrastructure for a consequential environment, the fastest path is a direct conversation."
-          primaryCta={{ label: "Email us", href: "mailto:contact@entraphy.com" }}
-          secondaryCta={{ label: "Request a demo", href: "/demo" }}
-          visual={<SummaryPanel title="Contact" body="contact@entraphy.com" />}
-        />
-        <Surface className="p-6 sm:p-8">
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-            <div className="space-y-4">
-              <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">How to start</p>
-              <h2 className="font-display text-3xl leading-tight tracking-[-0.03em] text-fg sm:text-4xl">
-                Tell us what you are trying to prove.
-              </h2>
-              <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
-                We will help map the trust state, evidence, replay, and verification boundaries that matter in your environment.
-              </p>
-            </div>
-            <SummaryPanel
-              title="Good reasons to reach out"
-              items={[
-                "You need defensible AI or autonomous operations",
-                "You need portable proof without raw-data gravity",
-                "You need a trust overlay that fits an existing stack"
-              ]}
-            />
-          </div>
-        </Surface>
       </div>
     </PageFrame>
   );
@@ -1030,8 +992,6 @@ export function RoutePageContent({ slug }: { slug: string[] }) {
       return <UseCasesPage />;
     case "demo":
       return <DemoPage />;
-    case "contact":
-      return <ContactPage />;
     case "products/trust-flight-recorder-ai":
       return <TrustFlightRecorderPage />;
     case "products/blacksmith":

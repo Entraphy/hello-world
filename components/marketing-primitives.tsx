@@ -194,7 +194,7 @@ export function ProofConsole() {
 
 export function SummaryPanel({ title, body, items }: { title: string; body?: string; items?: string[] }) {
   return (
-    <Surface className="p-5">
+    <Surface className="p-4 sm:p-5">
       <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">{title}</p>
       {body ? <p className="mt-3 text-sm leading-7 text-muted">{body}</p> : null}
       {items ? (
@@ -223,7 +223,7 @@ export function ProductCard({
   href: string;
 }) {
   return (
-    <Surface className="group flex h-full flex-col justify-between p-6 transition duration-150 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.045]">
+    <Surface className="group flex h-full flex-col justify-between p-5 sm:p-6 transition duration-150 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.045]">
       <div className="space-y-4">
         <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">Product preview</p>
         <div className="space-y-2">
@@ -243,7 +243,7 @@ export function ProductCard({
 
 export function StepCard({ index, title, body }: { index: number; title: string; body: string }) {
   return (
-    <Surface className="flex h-full flex-col p-6">
+    <Surface className="flex h-full flex-col p-5 sm:p-6">
       <p className="font-mono text-[10px] tracking-[0.3em] text-signal/70 uppercase">0{index + 1}</p>
       <h3 className="mt-4 font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
@@ -253,7 +253,7 @@ export function StepCard({ index, title, body }: { index: number; title: string;
 
 export function UseCaseCard({ title, body }: { title: string; body: string }) {
   return (
-    <Surface className="flex h-full flex-col p-6">
+    <Surface className="flex h-full flex-col p-5 sm:p-6">
       <h3 className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </Surface>
@@ -276,7 +276,7 @@ export function DocCard({ index, title }: { index: number; title: string }) {
 
 export function BulletedPanel({ title, items }: { title: string; items: string[] }) {
   return (
-    <Surface className="p-5">
+    <Surface className="p-4 sm:p-5">
       <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">{title}</p>
       <ul className="mt-4 space-y-3">
         {items.map((item) => (

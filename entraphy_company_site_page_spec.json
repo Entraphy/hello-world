@@ -110,7 +110,7 @@
                 "href": "/products/blacksmith"
               }
             ],
-            "bridgeLine": "Blacksmith hardens. Entraphy proves."
+            "bridgeLine": "Blacksmith hardens. Trust Flight Recorder for AI proves."
           },
           {
             "id": "how-it-works",
@@ -693,12 +693,12 @@
           {
             "title": "Entraphy in Your Existing Stack",
             "href": "#entraphy-in-your-existing-stack",
-            "summary": "Entraphy overlays your current systems instead of replacing them."
+            "summary": "Entraphy Systems overlays your current systems instead of replacing them."
           },
           {
             "title": "Products Overview",
             "href": "#products-overview",
-            "summary": "See how Entraphy, Trust Flight Recorder for AI, and Blacksmith fit together."
+            "summary": "See how Entraphy Systems, Trust Flight Recorder for AI, and Blacksmith fit together."
           },
           {
             "title": "Getting Started with Entraphy",
@@ -732,8 +732,8 @@
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "Entraphy is a trust infrastructure platform for consequential AI and software systems. It helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, teams, and boundaries.",
-                  "In plain terms: Entraphy turns trust into evidence. Entraphy is the company and platform. Its products include Trust Flight Recorder for AI, the proof product, and Blacksmith, the autonomous hardening product."
+                  "Entraphy Systems is a trust infrastructure platform for consequential AI and software systems. It helps organizations determine whether trust was warranted, preserve the evidence behind that judgment, and verify it later across time, teams, and boundaries.",
+                  "In plain terms: Entraphy Systems turns trust into evidence. Entraphy Systems is the company and platform. Its products include Trust Flight Recorder for AI, the proof product, and Blacksmith, the autonomous hardening product."
                 ],
                 "callout": {
                   "title": "Product lines",
@@ -855,7 +855,7 @@
               {
                 "headline": "How they work together",
                 "paragraphs": [
-                  "Blacksmith hardens. Entraphy proves."
+                  "Blacksmith hardens. Trust Flight Recorder for AI proves."
                 ]
               }
             ]
@@ -926,7 +926,7 @@
                   },
                   {
                     "question": "How does it relate to Entraphy?",
-                    "answer": "Blacksmith hardens. Entraphy proves."
+                    "answer": "Blacksmith hardens. Trust Flight Recorder for AI proves."
                   }
                 ]
               },
@@ -1030,7 +1030,7 @@
               {
                 "headline": "What this is",
                 "paragraphs": [
-                  "Trust Flight Recorder for AI is Entraphy’s proof product. It preserves a cryptographically verifiable timeline of trust history so organizations can prove what happened, whether it was allowed, what trust state existed at the point of action, and whether that proof still holds later.",
+                  "Trust Flight Recorder for AI is Entraphy Systems' proof product. It preserves a cryptographically verifiable timeline of trust history so organizations can prove what happened, whether it was allowed, what trust state existed at the point of action, and whether that proof still holds later.",
                   "The approved shorthand is: the black box recorder for trust."
                 ]
               },
@@ -1179,7 +1179,7 @@
           {
             "title": "How Blacksmith Works with Entraphy",
             "href": "#how-blacksmith-works-with-entraphy",
-            "summary": "Blacksmith hardens. Entraphy proves."
+            "summary": "Blacksmith hardens. Trust Flight Recorder for AI proves."
           }
         ],
         "blacksmithArticles": [
@@ -1291,7 +1291,7 @@
           {
             "anchor": "how-blacksmith-works-with-entraphy",
             "title": "How Blacksmith Works with Entraphy",
-            "summary": "Blacksmith hardens. Entraphy proves.",
+            "summary": "Blacksmith hardens. Trust Flight Recorder for AI proves.",
             "relatedPages": [
             {"title": "What Is Blacksmith?", "href": "#what-is-blacksmith"},
             {"title": "Products Overview", "href": "#products-overview"}
@@ -1300,8 +1300,8 @@
               {
                 "headline": "The relationship",
                 "paragraphs": [
-                  "Blacksmith is the implementation-pressure and remediation system. Entraphy is the trust, inquiry, and proof substrate. Blacksmith attacks and hardens. Entraphy records, proves, and exports the evidence.",
-                  "Blacksmith hardens. Entraphy proves."
+                  "Blacksmith is the implementation-pressure and remediation system. Trust Flight Recorder for AI is the trust, inquiry, and proof substrate. Blacksmith attacks and hardens. Trust Flight Recorder for AI records, proves, and exports the evidence.",
+                  "Blacksmith hardens. Trust Flight Recorder for AI proves."
                 ]
               },
               {

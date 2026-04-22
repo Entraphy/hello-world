@@ -38,7 +38,7 @@ function PlatformPage() {
             <Surface className="p-5">
               <h3 className="font-display text-xl text-fg">Auditable</h3>
               <p className="mt-3 text-sm leading-7 text-muted">
-                Entraphy makes consequential actions auditable without demanding centralized raw telemetry.
+                Entraphy Systems makes consequential actions auditable without demanding centralized raw telemetry.
               </p>
             </Surface>
             <Surface className="p-5">
@@ -91,7 +91,9 @@ function ProductsPage() {
               />
             ))}
           </div>
-          <p className="mt-5 font-mono text-[10px] tracking-[0.3em] text-signal/70 uppercase">Blacksmith hardens. Entraphy proves.</p>
+          <p className="mt-5 font-mono text-[10px] tracking-[0.3em] text-signal/70 uppercase">
+            Blacksmith hardens. Trust Flight Recorder for AI proves.
+          </p>
         </SectionFrame>
       </div>
     </PageFrame>
@@ -400,7 +402,7 @@ function UseCasesPage() {
         <Hero
           eyebrow="Use cases"
           headline={section.headline}
-          subheadline="Entraphy is built for environments where the consequences of later defensibility are real."
+          subheadline="Entraphy Systems is built for environments where the consequences of later defensibility are real."
           primaryCta={{ label: "Request a demo", href: "/demo" }}
           secondaryCta={{ label: "Read the docs", href: "/docs" }}
           visual={
@@ -434,7 +436,7 @@ function DemoPage() {
     },
     {
       title: "Architecture fit",
-      body: "How Entraphy overlays your current stack without centralizing every event or asking for rip-and-replace."
+      body: "How Entraphy Systems overlays your current stack without centralizing every event or asking for rip-and-replace."
     },
     {
       title: "Use-case discussion",
@@ -542,7 +544,7 @@ function DemoPage() {
       kind: "Company conversation",
       title: "General company conversation",
       body: "Best when the right first step is broader than one product or one workflow.",
-      cta: "Talk to Entraphy",
+      cta: "Talk to Entraphy Systems",
       href: "/demo#intake",
       variant: "primary" as const
     }
@@ -554,7 +556,7 @@ function DemoPage() {
         <Hero
           eyebrow="Demo / Proof Pilot"
           headline={`See ${trustFlightRecorderName} in context.`}
-          subheadline={`A high-trust walkthrough of how Entraphy proves what happened, proves it was allowed, and preserves replayable evidence. If a pilot is the better next step, we will shape it around one consequential workflow.`}
+          subheadline={`A high-trust walkthrough of how Trust Flight Recorder for AI proves what happened, proves it was allowed, and preserves replayable evidence. If a pilot is the better next step, we will shape it around one consequential workflow.`}
           primaryCta={{ label: "Request a demo", href: "/demo#intake" }}
           secondaryCta={{ label: "Explore products", href: "/products" }}
           visual={
@@ -622,7 +624,7 @@ function DemoPage() {
         <SectionFrame
           eyebrow="Expected outcomes"
           headline="Clearer trust, replay, defensibility, and fit."
-          subheadline="The goal is to leave with an operational view of whether Entraphy belongs in your stack."
+          subheadline="The goal is to leave with an operational view of whether Entraphy Systems belongs in your stack."
         >
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <BulletedPanel title="Outcomes" items={expectedOutcomes} />
@@ -874,7 +876,7 @@ function TrustFlightRecorderPage() {
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="space-y-4 text-base leading-8 text-muted sm:text-lg">
               <p>
-                Entraphy adds a proof layer around selected consequential decision points. It does not ask you to rebuild your stack,
+                Trust Flight Recorder for AI adds a proof layer around selected consequential decision points. It does not ask you to rebuild your stack,
                 turn all telemetry into a single lake, or absorb new runtime weight just to preserve evidence.
               </p>
               <p>
@@ -1087,14 +1089,14 @@ function BlacksmithPage() {
         </SectionFrame>
 
         <SectionFrame
-          eyebrow="Why it works with Entraphy"
-          headline="Blacksmith hardens. Entraphy proves."
-          subheadline="Blacksmith changes the surface. Entraphy preserves the proof record around consequential action."
+          eyebrow="Why it works with Entraphy Systems"
+          headline="Blacksmith hardens. Trust Flight Recorder for AI proves."
+          subheadline="Blacksmith changes the surface. Trust Flight Recorder for AI preserves the proof record around consequential action."
         >
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="space-y-4 text-base leading-8 text-muted sm:text-lg">
               <p>
-                Blacksmith is the active hardening plane. Entraphy is the proof plane. One works on the software itself; the other keeps
+                Blacksmith is the active hardening plane. Trust Flight Recorder for AI is the proof plane. One works on the software itself; the other keeps
                 the evidence portable, replayable, and independently verifiable.
               </p>
               <p>
@@ -1105,7 +1107,7 @@ function BlacksmithPage() {
               title="Tandem"
               items={[
                 "Blacksmith hardens the software",
-                "Entraphy proves the consequential record",
+                "Trust Flight Recorder for AI proves the consequential record",
                 "Hardening memory and proof move together"
               ]}
             />

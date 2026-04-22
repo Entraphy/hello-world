@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div className="space-y-3">
-            <p className="font-display text-lg tracking-[0.24em] text-fg uppercase">Entraphy</p>
+            <p className="font-display text-lg tracking-[0.24em] text-fg uppercase">Entraphy Systems</p>
             <p className="max-w-md text-sm leading-7 text-muted">{site.positioning.one_line_summary}</p>
             <p className="text-sm text-fg/70">contact@entraphy.com</p>
           </div>

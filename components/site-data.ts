@@ -12,39 +12,39 @@ export const trustFlightRecorderName = productFamilySection.cards[0].name as str
 
 export const routeMetadata = {
   platform: {
-    title: "Platform | Entraphy",
+    title: "Platform | Entraphy Systems",
     description: site.pages.platform.hero.subheadline
   },
   products: {
-    title: "Products | Entraphy",
+    title: "Products | Entraphy Systems",
     description: site.pages.products.hero.subheadline
   },
   company: {
-    title: "Company | Entraphy",
+    title: "Company | Entraphy Systems",
     description: site.pages.company.hero.subheadline
   },
   docs: {
-    title: "Docs | Entraphy",
-    description: "Company-first docs for Entraphy, Trust Flight Recorder for AI, and Blacksmith."
+    title: "Docs | Entraphy Systems",
+    description: "Company-first docs for Entraphy Systems, Trust Flight Recorder for AI, and Blacksmith."
   },
   "how-it-works": {
-    title: "How It Works | Entraphy",
+    title: "How It Works | Entraphy Systems",
     description: "Evidence first. Decision second. Proof always."
   },
   "use-cases": {
-    title: "Use Cases | Entraphy",
+    title: "Use Cases | Entraphy Systems",
     description: "Built for environments where later defensibility matters."
   },
   demo: {
-    title: "Demo / Proof Pilot | Entraphy",
+    title: "Demo / Proof Pilot | Entraphy Systems",
     description: "See how Trust Flight Recorder for AI fits a demo or Proof Pilot, with replayable evidence and verification across your stack."
   },
   "products/trust-flight-recorder-ai": {
-    title: `${trustFlightRecorderName} | Entraphy`,
+    title: `${trustFlightRecorderName} | Entraphy Systems`,
     description: "Proof at decision time, legality proofs, replayable evidence, and portable verification."
   },
   "products/blacksmith": {
-    title: "Blacksmith | Entraphy",
+    title: "Blacksmith | Entraphy Systems",
     description: "Autonomous hardening infrastructure for modern software, with validation, safe repair, and witness-grade evidence."
   }
 } as const;

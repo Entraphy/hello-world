@@ -27,12 +27,12 @@ const monoFont = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://entraphy.com"),
   title: {
-    default: "Entraphy",
+    default: "Entraphy Systems",
     template: "%s"
   },
   description: site.positioning.one_line_summary,
   openGraph: {
-    title: "Entraphy",
+    title: "Entraphy Systems",
     description: site.positioning.one_line_summary,
     type: "website"
   }

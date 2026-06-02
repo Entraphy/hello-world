@@ -25,16 +25,34 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://entraphy.com"),
+  metadataBase: new URL("https://www.entraphy.com"),
   title: {
-    default: "Entraphy Systems",
+    default: site.pages.home.seo.title,
     template: "%s"
   },
   description: site.positioning.one_line_summary,
+  icons: {
+    icon: "/icon.svg"
+  },
   openGraph: {
-    title: "Entraphy Systems",
-    description: site.positioning.one_line_summary,
-    type: "website"
+    title: "Trust cannot be self-prescribed.",
+    description: "A patent-pending foundation for trusted autonomy in AI-native systems.",
+    url: "https://www.entraphy.com/",
+    type: "website",
+    images: [
+      {
+        url: "/images/entraphy-og.jpg",
+        width: 1200,
+        height: 675,
+        alt: "Entraphy signal field"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trust cannot be self-prescribed.",
+    description: "A patent-pending foundation for trusted autonomy in AI-native systems.",
+    images: ["/images/entraphy-og.jpg"]
   }
 };
 

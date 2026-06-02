@@ -1,6 +1,7 @@
 export const site = {
   positioning: {
-    one_line_summary: "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems."
+    one_line_summary:
+      "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems. Private development. Selective access."
   },
   nav: {
     primary: [
@@ -14,8 +15,9 @@ export const site = {
   pages: {
     home: {
       seo: {
-        title: "Entraphy Systems | Trusted Autonomy",
-        description: "Patent-pending trusted autonomy for AI-native systems. Private development. Selective access."
+        title: "Entraphy Systems | Patent-Pending Foundation for Trusted Autonomy",
+        description:
+          "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems. Private development. Selective access."
       }
     }
   }

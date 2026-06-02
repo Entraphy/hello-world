@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import logoMark from "../Entraphy_logo.png";
-
 function cx(...classes: Array<string | undefined | false | null>) {
   return classes.filter(Boolean).join(" ");
 }
@@ -137,19 +135,18 @@ export function ButtonLink({
   );
 }
 
-export function LogoBadge() {
+export function LogoBadge({ variant = "header" }: { variant?: "header" | "footer" }) {
+  const isFooter = variant === "footer";
+
   return (
-    <div className="flex items-center gap-4">
-      <div className="flex h-7 w-5 shrink-0 flex-col justify-center gap-1" aria-hidden="true">
-        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
-        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
-        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
-        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
-      </div>
-      <div className="leading-tight">
-        <p className="font-display text-sm tracking-[0.44em] text-fg uppercase">Entraphy</p>
-      </div>
-    </div>
+    <Image
+      src="/brand/entraphy-logo-lockup.png"
+      alt={isFooter ? "Entraphy Systems" : "Entraphy"}
+      width={815}
+      height={320}
+      priority={!isFooter}
+      className={cx("block h-auto shrink-0", isFooter ? "w-[13.5rem] max-w-full" : "w-[10.75rem]")}
+    />
   );
 }
 
@@ -165,8 +162,8 @@ export function ProofConsole() {
     <Surface className="overflow-hidden">
       <div className="border-b border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
         <div className="flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-bg/80 p-1.5">
-            <Image src={logoMark} alt="" width={40} height={40} className="h-full w-full object-contain" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-bg/80 p-2">
+            <Image src="/brand/entraphy-logo-mark.png" alt="" width={300} height={330} className="h-full w-full object-contain" />
           </div>
           <div className="min-w-0">
             <p className="font-mono text-[10px] tracking-[0.3em] text-muted uppercase">Private briefing</p>

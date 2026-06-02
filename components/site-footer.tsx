@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-content px-6 py-9">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr_1.1fr] lg:items-center">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-            <LogoBadge />
+            <LogoBadge variant="footer" />
             <div className="font-mono text-[10px] leading-5 tracking-[0.22em] text-signal uppercase">
               <p>Private Development</p>
               <p>Patent Pending</p>

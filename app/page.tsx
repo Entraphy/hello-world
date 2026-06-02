@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     url: "https://www.entraphy.com/",
     images: [
       {
-        url: "/images/entraphy-og.jpg",
+        url: "/brand/entraphy-og-image.png",
         width: 1200,
         height: 675,
-        alt: "Entraphy signal field"
+        alt: "Trust cannot be self-prescribed."
       }
     ]
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Trust cannot be self-prescribed.",
     description: "A patent-pending foundation for trusted autonomy in AI-native systems.",
-    images: ["/images/entraphy-og.jpg"]
+    images: ["/brand/entraphy-og-image.png"]
   }
 };
 

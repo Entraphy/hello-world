@@ -45,7 +45,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-signal/24 bg-black/92 backdrop-blur-xl">
       <div className="mx-auto w-full max-w-content px-6">
         <div className="flex min-h-[4.5rem] items-center justify-between gap-4">
-          <Link href="/" aria-label="Entraphy Systems home" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="shrink-0">
             <LogoBadge />
           </Link>
 

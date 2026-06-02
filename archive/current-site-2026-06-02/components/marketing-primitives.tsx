@@ -41,10 +41,9 @@ export function SectionFrame({
   );
 }
 
-export function Surface({ children, className, id }: { children: ReactNode; className?: string; id?: string }) {
+export function Surface({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div
-      id={id}
       className={cx(
         "rounded-[1.6rem] border border-white/10 bg-white/[0.03] shadow-[0_24px_70px_rgba(0,0,0,0.32)] backdrop-blur-xl",
         className

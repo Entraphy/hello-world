@@ -5,34 +5,7 @@ type AnySection = {
   [key: string]: any;
 };
 
-const publicNav = {
-  primary: [
-    { label: "Thesis", href: "/#thesis" },
-    { label: "Partners", href: "/#partners" },
-    { label: "Team", href: "/#team" },
-    { label: "Access", href: "/#access" }
-  ],
-  cta: { label: "Request Private Access", href: "/#access" }
-};
-
-export const site = {
-  ...siteSpec.site,
-  positioning: {
-    ...siteSpec.site.positioning,
-    one_line_summary: "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems."
-  },
-  nav: publicNav,
-  pages: {
-    ...siteSpec.site.pages,
-    home: {
-      ...siteSpec.site.pages.home,
-      seo: {
-        title: "Entraphy Systems | Trusted Autonomy",
-        description: "Patent-pending trusted autonomy for AI-native systems. Private development. Selective access."
-      }
-    }
-  }
-};
+export const site = siteSpec.site;
 export const homeSections = site.pages.home.sections as AnySection[];
 const productFamilySection = site.pages.home.sections[4] as AnySection;
 export const trustFlightRecorderName = productFamilySection.cards[0].name as string;
@@ -52,7 +25,7 @@ export const routeMetadata = {
   },
   docs: {
     title: "Docs | Entraphy Systems",
-    description: "Company-first docs for Entraphy Systems."
+    description: "Company-first docs for Entraphy Systems, Trust Flight Recorder for AI, and Blacksmith."
   },
   "how-it-works": {
     title: "How It Works | Entraphy Systems",
@@ -71,8 +44,8 @@ export const routeMetadata = {
     description: "Proof at decision time, legality proofs, replayable evidence, and portable verification."
   },
   "products/blacksmith": {
-    title: "Private Development | Entraphy Systems",
-    description: "Entraphy product details remain in private development."
+    title: "Blacksmith | Entraphy Systems",
+    description: "Autonomous hardening infrastructure for modern software, with validation, safe repair, and witness-grade evidence."
   }
 } as const;
 

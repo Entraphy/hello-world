@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: 8 10 10;
-  --color-fg: 241 238 229;
-  --color-muted: 165 169 162;
-  --color-line: 58 63 58;
-  --color-accent: 196 157 84;
-  --color-signal: 196 157 84;
+  --color-bg: 7 10 15;
+  --color-fg: 236 240 246;
+  --color-muted: 161 170 184;
+  --color-line: 55 64 78;
+  --color-accent: 129 161 255;
+  --color-signal: 92 221 195;
 }
 
 * {
@@ -32,8 +32,10 @@ body {
   position: relative;
   overflow-x: clip;
   background:
-    linear-gradient(90deg, rgba(196, 157, 84, 0.06), transparent 34%, rgba(78, 105, 89, 0.08)),
-    linear-gradient(180deg, rgb(8 10 10), rgb(6 8 8) 58%, rgb(4 5 5));
+    radial-gradient(circle at 16% 0%, rgba(129, 161, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 82% 8%, rgba(92, 221, 195, 0.1), transparent 22%),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 28%),
+    linear-gradient(180deg, rgb(7 10 15), rgb(5 7 11) 66%, rgb(4 5 8));
   background-attachment: fixed;
   color: rgb(var(--color-fg));
   font-family: theme("fontFamily.sans");
@@ -50,7 +52,7 @@ body::before {
   background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: 0.08;
+  opacity: 0.12;
   mask-image: linear-gradient(to bottom, transparent, black 10%, black 92%, transparent);
 }
 
@@ -59,8 +61,8 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(241, 238, 229, 0.045), transparent 36%);
-  opacity: 0.7;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 30%);
+  opacity: 0.6;
 }
 
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {

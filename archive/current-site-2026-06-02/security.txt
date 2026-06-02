@@ -1,0 +1,9 @@
+# Entraphy security.txt
+# See: https://securitytxt.org/
+
+Contact: mailto:jarvis.taylor@taylogitech.com
+Policy: https://entraphy.com/security
+Hiring: https://entraphy.com/careers
+Preferred-Languages: en
+Expires: 2026-11-01T12:22:20Z
+Canonical: https://entraphy.com/.well-known/security.txt

@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: "/briefing",
-        destination: "/demo",
+        destination: "/#access",
         permanent: true
       },
       {

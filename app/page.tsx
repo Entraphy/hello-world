@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     description: "A patent-pending foundation for trusted autonomy in AI-native systems.",
     type: "website",
     url: "https://www.entraphy.com/",
+    siteName: "Entraphy Systems",
+    locale: "en_US",
     images: [
       {
         url: "/brand/entraphy-og-image.png",

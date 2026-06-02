@@ -39,7 +39,9 @@ export const metadata: Metadata = {
     title: "Trust cannot be self-prescribed.",
     description: "A patent-pending foundation for trusted autonomy in AI-native systems.",
     url: "https://www.entraphy.com/",
+    siteName: "Entraphy Systems",
     type: "website",
+    locale: "en_US",
     images: [
       {
         url: "/brand/entraphy-og-image.png",
@@ -58,9 +60,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Entraphy Systems",
+    url: "https://www.entraphy.com/",
+    description: "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems."
+  };
+
   return (
     <html lang="en">
       <body className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} bg-bg text-fg antialiased`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

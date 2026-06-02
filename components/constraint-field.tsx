@@ -24,7 +24,7 @@ const modeStyles: Record<
   cta: { triadAlpha: 0.16, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.05, offsetScale: 0.7 }
 };
 
-export function ConstraintFieldBackground({
+export function SignalFieldBackground({
   mode = "idle",
   motionOffset = { far: 0, mid: 0, near: 0 },
   reducedMotion = false
@@ -74,7 +74,7 @@ export function ConstraintFieldBackground({
         viewBox="0 0 1200 800"
         preserveAspectRatio="xMidYMid slice"
         role="img"
-        aria-label="Constraint triad field"
+        aria-label="Signal field"
         className="absolute inset-0 h-full w-full text-accent/40 transition duration-500 ease-out motion-reduce:transition-none [opacity:var(--triad-alpha)] [transform:translate3d(0,var(--mid-y),0)_scale(var(--triad-scale))_rotate(var(--triad-rotate))]"
       >
         <defs>

@@ -19,7 +19,37 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: "/products",
+        destination: "/#access",
+        permanent: true
+      },
+      {
         source: "/products/:path*",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/docs",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/docs/:path*",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/platform",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/how-it-works",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/use-cases",
         destination: "/#access",
         permanent: true
       },

@@ -155,7 +155,7 @@ export function ProofConsole() {
     { label: "Access", value: "Reviewed" },
     { label: "Development", value: "Private" },
     { label: "Status", value: "Patent pending" },
-    { label: "Signal", value: "Constrained" }
+    { label: "Signal", value: "Reviewed" }
   ];
 
   return (

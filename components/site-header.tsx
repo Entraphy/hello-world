@@ -4,25 +4,29 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import { ButtonLink, LogoBadge } from "@/components/marketing-primitives";
+import { LogoBadge } from "@/components/marketing-primitives";
 import { site } from "@/components/site-data";
 
 function NavLink({
   href,
   children,
   onClick,
-  className
+  className,
+  active = false
 }: {
   href: string;
   children: string;
   onClick?: () => void;
   className?: string;
+  active?: boolean;
 }) {
   return (
     <Link
       href={href}
       onClick={onClick}
-      className={`text-sm text-fg/72 transition hover:text-fg focus-visible:text-fg ${className ?? ""}`}
+      className={`relative text-[0.68rem] font-semibold tracking-[0.28em] text-fg/78 uppercase transition hover:text-fg focus-visible:text-fg ${
+        active ? "text-fg after:absolute after:-bottom-5 after:left-0 after:h-px after:w-full after:bg-signal" : ""
+      } ${className ?? ""}`}
     >
       {children}
     </Link>
@@ -38,22 +42,19 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/8 bg-bg/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-signal/24 bg-black/92 backdrop-blur-xl">
       <div className="mx-auto w-full max-w-content px-6">
-        <div className="flex items-center justify-between gap-4 py-4">
+        <div className="flex min-h-[4.5rem] items-center justify-between gap-4">
           <Link href="/" aria-label="Entraphy Systems home" onClick={() => setMobileMenuOpen(false)}>
             <LogoBadge />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
-            {site.nav.primary.map((item) => (
-              <NavLink key={item.href} href={item.href}>
+          <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex">
+            {site.nav.primary.map((item, index) => (
+              <NavLink key={item.href} href={item.href} active={index === 0}>
                 {item.label}
               </NavLink>
             ))}
-            <ButtonLink href={site.nav.cta.href} variant="secondary">
-              {site.nav.cta.label}
-            </ButtonLink>
           </nav>
 
           <div className="relative lg:hidden">
@@ -62,26 +63,21 @@ export function SiteHeader() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-primary-menu"
               onClick={() => setMobileMenuOpen((open) => !open)}
-              className="cursor-pointer list-none rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase"
+              className="cursor-pointer list-none border border-white/14 bg-white/[0.03] px-4 py-3 text-[0.7rem] tracking-[0.24em] text-fg/78 uppercase"
             >
               Menu
             </button>
             {mobileMenuOpen ? (
               <div
                 id="mobile-primary-menu"
-                className="menu-panel absolute right-0 top-full z-50 mt-3 w-[min(92vw,20rem)] max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-[1.4rem] border border-white/15 bg-[rgb(6,9,14)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)]"
+                className="menu-panel absolute right-0 top-full z-50 mt-3 max-h-[calc(100vh-6rem)] w-[min(92vw,20rem)] overflow-y-auto overscroll-contain border border-white/15 bg-[rgb(6,9,8)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)]"
               >
                 <div className="flex flex-col gap-1">
                   {site.nav.primary.map((item) => (
-                    <NavLink key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className="block w-full rounded-2xl px-3 py-2.5">
+                    <NavLink key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className="block w-full px-3 py-2.5 after:hidden">
                       {item.label}
                     </NavLink>
                   ))}
-                  <div className="pt-2">
-                    <ButtonLink href={site.nav.cta.href} variant="secondary" onClick={() => setMobileMenuOpen(false)}>
-                      {site.nav.cta.label}
-                    </ButtonLink>
-                  </div>
                 </div>
               </div>
             ) : null}

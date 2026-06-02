@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 
 import "./globals.css";
 
@@ -12,10 +12,10 @@ const bodyFont = IBM_Plex_Sans({
   weight: ["400", "500", "600", "700"]
 });
 
-const displayFont = Space_Grotesk({
+const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "700"]
+  weight: ["400", "500", "600", "700"]
 });
 
 const monoFont = IBM_Plex_Mono({

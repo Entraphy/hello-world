@@ -1,47 +1,36 @@
 import Link from "next/link";
 
+import { LogoBadge } from "@/components/marketing-primitives";
 import { site } from "@/components/site-data";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/8 bg-bg/50">
-      <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr_1fr]">
-          <div className="space-y-3">
-            <p className="font-display text-lg tracking-[0.24em] text-fg uppercase">Entraphy Systems</p>
-            <p className="max-w-md text-sm leading-7 text-muted">{site.positioning.one_line_summary}</p>
-            <div className="flex flex-wrap gap-2 text-[11px] tracking-[0.2em] text-fg/70 uppercase">
-              <span>Private Development</span>
-              <span>Patent Pending</span>
+    <footer className="border-t border-white/12 bg-black">
+      <div className="mx-auto w-full max-w-content px-6 py-9">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr_1.1fr] lg:items-center">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+            <LogoBadge />
+            <div className="font-mono text-[10px] leading-5 tracking-[0.22em] text-signal uppercase">
+              <p>Private Development</p>
+              <p>Patent Pending</p>
             </div>
           </div>
-          <div className="space-y-3 text-sm">
-            <p className="font-mono text-[10px] tracking-[0.24em] text-signal/70 uppercase">Access</p>
-            <div className="flex flex-col gap-2 text-muted">
-              <Link href="/#partners" className="hover:text-fg">
-                Partners
-              </Link>
-              <Link href="/#team" className="hover:text-fg">
-                Team
-              </Link>
-              <Link href="/#access" className="hover:text-fg">
-                Access
-              </Link>
-            </div>
-          </div>
-          <div className="space-y-3 text-sm">
-            <p className="font-mono text-[10px] tracking-[0.24em] text-signal/70 uppercase">Legal</p>
-            <div className="flex flex-col gap-2 text-muted">
-              <Link href="/legal/privacy" className="hover:text-fg">
-                Privacy
-              </Link>
-              <Link href="/legal/terms" className="hover:text-fg">
-                Terms
-              </Link>
-              <Link href="/#access" className="hover:text-fg">
-                Request Private Access
-              </Link>
-            </div>
+          <nav aria-label="Footer" className="flex flex-wrap gap-8 font-mono text-[10px] tracking-[0.24em] text-fg uppercase">
+            <Link href="/#partners" className="hover:text-fg">
+              Partners
+            </Link>
+            <Link href="/#team" className="hover:text-fg">
+              Team
+            </Link>
+            <Link href="/#access" className="hover:text-fg">
+              Access
+            </Link>
+            <Link href="/legal/privacy" className="hover:text-fg">
+              Legal
+            </Link>
+          </nav>
+          <div className="text-sm leading-6 text-muted lg:text-right">
+            <p>{site.positioning.one_line_summary}</p>
           </div>
         </div>
       </div>

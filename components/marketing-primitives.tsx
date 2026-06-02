@@ -31,7 +31,7 @@ export function SectionFrame({
     <section id={id} className={cx("space-y-8", className)}>
       <header className="space-y-4">
         {eyebrow ? <p className="font-mono text-[11px] tracking-[0.32em] text-signal/80 uppercase">{eyebrow}</p> : null}
-        <h2 className="max-w-4xl font-display text-2xl leading-[1.08] tracking-[-0.03em] text-fg sm:text-3xl lg:text-5xl">
+        <h2 className="max-w-4xl font-display text-2xl leading-[1.08] text-fg sm:text-3xl lg:text-5xl">
           {headline}
         </h2>
         {subheadline ? <p className="max-w-3xl text-base leading-8 text-muted sm:text-lg">{subheadline}</p> : null}
@@ -46,7 +46,7 @@ export function Surface({ children, className, id }: { children: ReactNode; clas
     <div
       id={id}
       className={cx(
-        "rounded-[1.6rem] border border-white/10 bg-white/[0.03] shadow-[0_24px_70px_rgba(0,0,0,0.32)] backdrop-blur-xl",
+        "rounded-lg border border-white/10 bg-white/[0.03] shadow-[0_24px_70px_rgba(0,0,0,0.32)] backdrop-blur-xl",
         className
       )}
     >
@@ -76,7 +76,7 @@ export function Hero({
     <section className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
       <div className="space-y-7">
         <p className="font-mono text-[11px] tracking-[0.32em] text-signal/80 uppercase">{eyebrow}</p>
-        <h1 className="max-w-4xl font-display text-4xl leading-[0.96] tracking-[-0.05em] text-fg sm:text-5xl lg:text-[4.7rem]">
+        <h1 className="max-w-4xl font-display text-4xl leading-[0.96] text-fg sm:text-5xl lg:text-[4.7rem]">
           {headline}
         </h1>
         <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">{subheadline}</p>
@@ -115,10 +115,10 @@ export function ButtonLink({
   onClick?: () => void;
 }) {
   const base =
-    "inline-flex min-h-11 items-center justify-center rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
+    "inline-flex min-h-11 items-center justify-center border px-5 py-2.5 text-[0.68rem] font-semibold tracking-[0.22em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
   const styles = {
-    primary: "border-signal/70 bg-signal text-bg hover:border-signal hover:bg-signal/90",
-    secondary: "border-white/12 bg-white/[0.03] text-fg hover:border-white/24 hover:bg-white/[0.06]",
+    primary: "border-signal/75 bg-transparent text-fg hover:border-signal hover:bg-signal/10",
+    secondary: "border-white/18 bg-transparent text-fg hover:border-signal/70 hover:bg-white/[0.04]",
     tertiary: "border-transparent bg-transparent px-0 py-0 text-muted hover:text-fg"
   } as const;
 
@@ -139,12 +139,15 @@ export function ButtonLink({
 
 export function LogoBadge() {
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] p-1.5 shadow-[0_18px_45px_rgba(0,0,0,0.28)]">
-        <Image src={logoMark} alt="Entraphy Systems logo mark" width={44} height={44} className="h-full w-full object-contain" />
+    <div className="flex items-center gap-4">
+      <div className="flex h-7 w-5 shrink-0 flex-col justify-center gap-1" aria-hidden>
+        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
+        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
+        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
+        <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
       </div>
       <div className="leading-tight">
-        <p className="font-display text-sm tracking-[0.28em] text-fg uppercase">Entraphy Systems</p>
+        <p className="font-display text-sm tracking-[0.44em] text-fg uppercase">Entraphy</p>
       </div>
     </div>
   );
@@ -229,7 +232,7 @@ export function ProductCard({
       <div className="space-y-4">
         <p className="font-mono text-[10px] tracking-[0.28em] text-signal/70 uppercase">Product preview</p>
         <div className="space-y-2">
-          <h3 className="font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{name}</h3>
+          <h3 className="font-display text-xl leading-tight text-fg sm:text-2xl">{name}</h3>
           <p className="text-sm font-medium tracking-[0.08em] text-fg/75 uppercase">{tagline}</p>
         </div>
         <p className="text-sm leading-7 text-muted">{body}</p>
@@ -247,7 +250,7 @@ export function StepCard({ index, title, body }: { index: number; title: string;
   return (
     <Surface className="flex h-full flex-col p-5 sm:p-6">
       <p className="font-mono text-[10px] tracking-[0.3em] text-signal/70 uppercase">0{index + 1}</p>
-      <h3 className="mt-4 font-display text-xl leading-tight tracking-[-0.03em] text-fg sm:text-2xl">{title}</h3>
+      <h3 className="mt-4 font-display text-xl leading-tight text-fg sm:text-2xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </Surface>
   );
@@ -256,7 +259,7 @@ export function StepCard({ index, title, body }: { index: number; title: string;
 export function UseCaseCard({ title, body }: { title: string; body: string }) {
   return (
     <Surface className="flex h-full flex-col p-5 sm:p-6">
-      <h3 className="font-display text-lg leading-tight tracking-[-0.03em] text-fg sm:text-xl">{title}</h3>
+      <h3 className="font-display text-lg leading-tight text-fg sm:text-xl">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </Surface>
   );

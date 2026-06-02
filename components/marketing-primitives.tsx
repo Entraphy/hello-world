@@ -140,7 +140,7 @@ export function ButtonLink({
 export function LogoBadge() {
   return (
     <div className="flex items-center gap-4">
-      <div className="flex h-7 w-5 shrink-0 flex-col justify-center gap-1" aria-hidden>
+      <div className="flex h-7 w-5 shrink-0 flex-col justify-center gap-1" aria-hidden="true">
         <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
         <span className="h-px w-5 -skew-y-[24deg] bg-signal" />
         <span className="h-px w-5 -skew-y-[24deg] bg-signal" />

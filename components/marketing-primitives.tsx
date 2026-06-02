@@ -150,50 +150,6 @@ export function LogoBadge({ variant = "header" }: { variant?: "header" | "footer
   );
 }
 
-export function ProofConsole() {
-  const rows = [
-    { label: "Access", value: "Reviewed" },
-    { label: "Development", value: "Private" },
-    { label: "Status", value: "Patent pending" },
-    { label: "Signal", value: "Reviewed" }
-  ];
-
-  return (
-    <Surface className="overflow-hidden">
-      <div className="border-b border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
-        <div className="flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-bg/80 p-2">
-            <Image src="/brand/entraphy-logo-mark.png" alt="" width={300} height={330} className="h-full w-full object-contain" />
-          </div>
-          <div className="min-w-0">
-            <p className="font-mono text-[10px] tracking-[0.3em] text-muted uppercase">Private briefing</p>
-            <p className="mt-2 text-sm leading-6 text-fg/80">A controlled-access doorway for serious conversations.</p>
-          </div>
-        </div>
-      </div>
-      <div className="space-y-3 p-5">
-        {rows.map((row) => (
-          <div key={row.label} className="flex items-center justify-between rounded-2xl border border-white/10 bg-bg/40 px-4 py-3">
-            <span className="text-sm text-muted">{row.label}</span>
-            <span className="text-sm font-medium text-fg">{row.value}</span>
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-2 border-t border-white/10 px-5 py-4">
-        <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          Private development
-        </span>
-        <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          Selective access
-        </span>
-        <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          Patent pending
-        </span>
-      </div>
-    </Surface>
-  );
-}
-
 export function SummaryPanel({ title, body, items }: { title: string; body?: string; items?: string[] }) {
   return (
     <Surface className="p-4 sm:p-5">

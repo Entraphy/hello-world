@@ -9,6 +9,21 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: "/demo",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/contact",
+        destination: "/#access",
+        permanent: true
+      },
+      {
+        source: "/products/:path*",
+        destination: "/#access",
+        permanent: true
+      },
+      {
         source: "/reality-bound-systems",
         destination: "/",
         permanent: true

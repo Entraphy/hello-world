@@ -1,31 +1,18 @@
-import siteSpec from "@/entraphy_company_site_page_spec.json";
-
-type AnySection = {
-  component: string;
-  [key: string]: any;
-};
-
-const publicNav = {
-  primary: [
-    { label: "Thesis", href: "/#thesis" },
-    { label: "Partners", href: "/#partners" },
-    { label: "Team", href: "/#team" },
-    { label: "Access", href: "/#access" }
-  ],
-  cta: { label: "Request Private Access", href: "/#access" }
-};
-
 export const site = {
-  ...siteSpec.site,
   positioning: {
-    ...siteSpec.site.positioning,
     one_line_summary: "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems."
   },
-  nav: publicNav,
+  nav: {
+    primary: [
+      { label: "Thesis", href: "/#thesis" },
+      { label: "Partners", href: "/#partners" },
+      { label: "Team", href: "/#team" },
+      { label: "Access", href: "/#access" }
+    ],
+    cta: { label: "Request Private Access", href: "/#access" }
+  },
   pages: {
-    ...siteSpec.site.pages,
     home: {
-      ...siteSpec.site.pages.home,
       seo: {
         title: "Entraphy Systems | Trusted Autonomy",
         description: "Patent-pending trusted autonomy for AI-native systems. Private development. Selective access."
@@ -33,50 +20,3 @@ export const site = {
     }
   }
 };
-export const homeSections = site.pages.home.sections as AnySection[];
-const productFamilySection = site.pages.home.sections[4] as AnySection;
-export const trustFlightRecorderName = productFamilySection.cards[0].name as string;
-
-export const routeMetadata = {
-  platform: {
-    title: "Platform | Entraphy Systems",
-    description: site.pages.platform.hero.subheadline
-  },
-  products: {
-    title: "Products | Entraphy Systems",
-    description: site.pages.products.hero.subheadline
-  },
-  company: {
-    title: "Company | Entraphy Systems",
-    description: site.pages.company.hero.subheadline
-  },
-  docs: {
-    title: "Docs | Entraphy Systems",
-    description: "Company-first docs for Entraphy Systems."
-  },
-  "how-it-works": {
-    title: "How It Works | Entraphy Systems",
-    description: "Evidence first. Decision second. Proof always."
-  },
-  "use-cases": {
-    title: "Use Cases | Entraphy Systems",
-    description: "Built for environments where later defensibility matters."
-  },
-  demo: {
-    title: "Demo / Proof Pilot | Entraphy Systems",
-    description: "See how Trust Flight Recorder for AI fits a demo or Proof Pilot, with replayable evidence and verification across your stack."
-  },
-  "products/trust-flight-recorder-ai": {
-    title: `${trustFlightRecorderName} | Entraphy Systems`,
-    description: "Proof at decision time, legality proofs, replayable evidence, and portable verification."
-  },
-  "products/blacksmith": {
-    title: "Private Development | Entraphy Systems",
-    description: "Entraphy product details remain in private development."
-  }
-} as const;
-
-export const routeSlugs = Object.keys(routeMetadata).map((route) => route.split("/"));
-
-export type RouteKey = keyof typeof routeMetadata;
-export type { AnySection };

@@ -152,10 +152,10 @@ export function LogoBadge() {
 
 export function ProofConsole() {
   const rows = [
-    { label: "Trust state", value: "Warranted" },
-    { label: "Evidence", value: "Sealed" },
-    { label: "Replay", value: "Portable" },
-    { label: "Boundary", value: "Bounded confidence" }
+    { label: "Access", value: "Reviewed" },
+    { label: "Development", value: "Private" },
+    { label: "Status", value: "Patent pending" },
+    { label: "Signal", value: "Constrained" }
   ];
 
   return (
@@ -166,8 +166,8 @@ export function ProofConsole() {
             <Image src={logoMark} alt="" width={40} height={40} className="h-full w-full object-contain" />
           </div>
           <div className="min-w-0">
-            <p className="font-mono text-[10px] tracking-[0.3em] text-muted uppercase">Proof console</p>
-            <p className="mt-2 text-sm leading-6 text-fg/80">Evidence-backed trust at the point of consequence.</p>
+            <p className="font-mono text-[10px] tracking-[0.3em] text-muted uppercase">Private briefing</p>
+            <p className="mt-2 text-sm leading-6 text-fg/80">A controlled-access doorway for serious conversations.</p>
           </div>
         </div>
       </div>
@@ -181,13 +181,13 @@ export function ProofConsole() {
       </div>
       <div className="flex flex-wrap gap-2 border-t border-white/10 px-5 py-4">
         <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          No raw-data gravity
+          Private development
         </span>
         <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          No rip-and-replace
+          Selective access
         </span>
         <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] tracking-[0.18em] text-fg/70 uppercase">
-          Portable proof beyond runtime
+          Patent pending
         </span>
       </div>
     </Surface>

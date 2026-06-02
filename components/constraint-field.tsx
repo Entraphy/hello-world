@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 
 type FieldMode = "idle" | "pivot" | "model" | "category" | "pause" | "cta";
 
-type Drift = { far: number; mid: number; near: number };
+type Offset = { far: number; mid: number; near: number };
 
 const modeStyles: Record<
   FieldMode,
@@ -13,28 +13,28 @@ const modeStyles: Record<
     ringAlpha: number;
     nodeAlpha: number;
     nearAlpha: number;
-    driftScale: number;
+    offsetScale: number;
   }
 > = {
-  idle: { triadAlpha: 0.16, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.05, driftScale: 1 },
-  pivot: { triadAlpha: 0.21, triadScale: 1.03, triadRotate: "-3deg", ringAlpha: 0.3, nodeAlpha: 0.28, nearAlpha: 0.14, driftScale: 1 },
-  model: { triadAlpha: 0.19, triadScale: 1.01, triadRotate: "-3deg", ringAlpha: 0.24, nodeAlpha: 0.24, nearAlpha: 0.06, driftScale: 1 },
-  category: { triadAlpha: 0.18, triadScale: 1.01, triadRotate: "-4deg", ringAlpha: 0.22, nodeAlpha: 0.22, nearAlpha: 0.06, driftScale: 0.8 },
-  pause: { triadAlpha: 0.17, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.04, driftScale: 0 },
-  cta: { triadAlpha: 0.16, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.05, driftScale: 0.7 }
+  idle: { triadAlpha: 0.16, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.05, offsetScale: 1 },
+  pivot: { triadAlpha: 0.21, triadScale: 1.03, triadRotate: "-3deg", ringAlpha: 0.3, nodeAlpha: 0.28, nearAlpha: 0.14, offsetScale: 1 },
+  model: { triadAlpha: 0.19, triadScale: 1.01, triadRotate: "-3deg", ringAlpha: 0.24, nodeAlpha: 0.24, nearAlpha: 0.06, offsetScale: 1 },
+  category: { triadAlpha: 0.18, triadScale: 1.01, triadRotate: "-4deg", ringAlpha: 0.22, nodeAlpha: 0.22, nearAlpha: 0.06, offsetScale: 0.8 },
+  pause: { triadAlpha: 0.17, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.04, offsetScale: 0 },
+  cta: { triadAlpha: 0.16, triadScale: 1, triadRotate: "-4deg", ringAlpha: 0.2, nodeAlpha: 0.2, nearAlpha: 0.05, offsetScale: 0.7 }
 };
 
 export function ConstraintFieldBackground({
   mode = "idle",
-  drift = { far: 0, mid: 0, near: 0 },
+  motionOffset = { far: 0, mid: 0, near: 0 },
   reducedMotion = false
 }: {
   mode?: FieldMode;
-  drift?: Drift;
+  motionOffset?: Offset;
   reducedMotion?: boolean;
 }) {
   const vars = modeStyles[mode];
-  const driftScale = reducedMotion ? 0 : vars.driftScale;
+  const offsetScale = reducedMotion ? 0 : vars.offsetScale;
 
   return (
     <div
@@ -48,9 +48,9 @@ export function ConstraintFieldBackground({
           "--ring-alpha": vars.ringAlpha,
           "--node-alpha": vars.nodeAlpha,
           "--near-alpha": vars.nearAlpha,
-          "--far-y": `${drift.far * driftScale}px`,
-          "--mid-y": `${drift.mid * driftScale}px`,
-          "--near-y": `${drift.near * driftScale}px`
+          "--far-y": `${motionOffset.far * offsetScale}px`,
+          "--mid-y": `${motionOffset.mid * offsetScale}px`,
+          "--near-y": `${motionOffset.near * offsetScale}px`
         } as CSSProperties
       }
     >

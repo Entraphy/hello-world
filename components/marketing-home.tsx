@@ -13,6 +13,9 @@ const relationshipTypes = ["founder-track", "employee", "advisor", "contractor",
 
 type FormKind = "access" | "team";
 
+const inputClass =
+  "mt-2 w-full rounded-lg border border-white/10 bg-[rgb(10,13,12)] px-4 py-3 text-fg outline-none transition placeholder:text-muted/50 focus:border-signal/70 focus:bg-[rgb(12,16,14)]";
+
 function Field({
   label,
   name,
@@ -34,7 +37,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="mt-2 w-full rounded-xl border border-white/10 bg-bg/55 px-4 py-3 text-fg outline-none transition placeholder:text-muted/50 focus:border-signal/70"
+        className={inputClass}
       />
     </label>
   );
@@ -48,7 +51,7 @@ function TextArea({ label, name }: { label: string; name: string }) {
         name={name}
         required
         rows={4}
-        className="mt-2 w-full rounded-xl border border-white/10 bg-bg/55 px-4 py-3 text-fg outline-none transition placeholder:text-muted/50 focus:border-signal/70"
+        className={inputClass}
       />
     </label>
   );
@@ -61,7 +64,7 @@ function SelectField({ label, name, options }: { label: string; name: string; op
       <select
         name={name}
         required
-        className="mt-2 w-full rounded-xl border border-white/10 bg-bg/55 px-4 py-3 text-fg outline-none transition focus:border-signal/70"
+        className={inputClass}
       >
         {options.map((option) => (
           <option key={option} value={option}>
@@ -83,7 +86,7 @@ function IntakeForm({ kind }: { kind: FormKind }) {
 
   if (kind === "team") {
     return (
-      <Surface className="p-5 sm:p-6" id="team">
+      <Surface className="border-white/12 bg-[rgb(9,12,11)]/80 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.42)] sm:p-6">
         <form onSubmit={onSubmit} className="space-y-5">
           <div className="space-y-2">
             <p className="font-mono text-[10px] tracking-[0.28em] text-signal/80 uppercase">Early team</p>
@@ -98,7 +101,12 @@ function IntakeForm({ kind }: { kind: FormKind }) {
           <TextArea label="What have you built?" name="team-built" />
           <TextArea label="What problem can you not stop thinking about?" name="team-problem" />
           <SelectField label="Preferred relationship" name="team-relationship" options={relationshipTypes} />
-          {submitted ? <p className="text-sm leading-6 text-fg">Introduction received. Entraphy reviews introductions manually.</p> : null}
+          <p className="text-xs leading-6 text-muted">This static intake preview does not transmit information yet.</p>
+          {submitted ? (
+            <p className="text-sm leading-6 text-fg" aria-live="polite">
+              Introduction noted for this session. Entraphy reviews introductions manually when intake is connected.
+            </p>
+          ) : null}
           <button
             type="submit"
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-signal/70 bg-signal px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] text-bg uppercase transition hover:bg-signal/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
@@ -111,11 +119,11 @@ function IntakeForm({ kind }: { kind: FormKind }) {
   }
 
   return (
-    <Surface className="p-5 sm:p-6" id="access">
-      <form onSubmit={onSubmit} className="space-y-5">
+      <Surface className="border-white/12 bg-[rgb(9,12,11)]/80 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.42)] sm:p-6">
+        <form onSubmit={onSubmit} className="space-y-5">
         <div className="space-y-2">
           <p className="font-mono text-[10px] tracking-[0.28em] text-signal/80 uppercase">Private access</p>
-          <h3 className="font-display text-2xl leading-tight text-fg">Request a private review.</h3>
+          <h3 className="font-display text-2xl leading-tight text-fg">Request private access.</h3>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Name" name="access-name" autoComplete="name" />
@@ -127,7 +135,12 @@ function IntakeForm({ kind }: { kind: FormKind }) {
         <TextArea label="What problem are you trying to solve?" name="access-problem" />
         <TextArea label="Why Entraphy?" name="access-why" />
         <Field label="Optional LinkedIn / website" name="access-profile" type="url" required={false} />
-        {submitted ? <p className="text-sm leading-6 text-fg">Access request received. Entraphy reviews requests manually.</p> : null}
+        <p className="text-xs leading-6 text-muted">This static intake preview does not transmit information yet.</p>
+        {submitted ? (
+          <p className="text-sm leading-6 text-fg" aria-live="polite">
+            Access request noted for this session. Entraphy reviews requests manually when intake is connected.
+          </p>
+        ) : null}
         <button
           type="submit"
           className="inline-flex min-h-11 items-center justify-center rounded-full border border-signal/70 bg-signal px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.2em] text-bg uppercase transition hover:bg-signal/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
@@ -151,7 +164,7 @@ function TextSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.72fr_1.28fr] lg:pt-16">
+    <section id={id} className="scroll-mt-24 grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.72fr_1.28fr] lg:pt-16">
       <div className="space-y-3">
         <p className="font-mono text-[10px] tracking-[0.28em] text-signal/80 uppercase">{eyebrow}</p>
         <h2 className="font-display text-2xl leading-tight text-fg sm:text-4xl">{headline}</h2>
@@ -164,8 +177,9 @@ function TextSection({
 export function HomePageContent() {
   return (
     <PageFrame>
-      <div className="space-y-16">
-        <section className="min-h-[calc(100vh-11rem)] border-b border-white/10 pb-12 pt-8 sm:pt-14 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12">
+      <div className="space-y-16 sm:space-y-20">
+        <section className="relative min-h-[calc(100vh-11rem)] overflow-hidden border-b border-white/10 pb-14 pt-8 sm:pt-14 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(196,157,84,0.72),transparent)]" />
           <div className="space-y-7">
             <p className="font-mono text-[11px] tracking-[0.32em] text-signal/80 uppercase">
               Private development. Selective access. Patent pending.
@@ -182,8 +196,10 @@ export function HomePageContent() {
             </div>
           </div>
           <div className="mt-12 lg:mt-0">
-            <Surface className="relative overflow-hidden p-6 sm:p-8">
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(196,157,84,0.12),transparent_44%,rgba(90,119,101,0.14))]" />
+            <Surface className="relative overflow-hidden border-white/12 bg-[rgb(9,12,11)]/88 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.52)] sm:p-8">
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(196,157,84,0.14),transparent_38%,rgba(67,91,75,0.18))]" />
+              <div className="absolute left-8 right-8 top-20 h-px bg-signal/35" />
+              <div className="absolute bottom-8 left-8 right-8 h-px bg-white/10" />
               <div className="relative space-y-14">
                 <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
                   <span className="font-mono text-[10px] tracking-[0.28em] text-muted uppercase">Threshold</span>
@@ -224,11 +240,11 @@ export function HomePageContent() {
           <p>Entraphy begins there.</p>
         </TextSection>
 
-        <TextSection id="partners" eyebrow="Coming soon" headline="Private development is intentional.">
-          <p>Our first product remains in private development. Public details are limited by design.</p>
+        <TextSection id="partners" eyebrow="Private development" headline="Public detail is limited by design.">
+          <p>Our first product remains in private development. The public site is a threshold, not the room.</p>
         </TextSection>
 
-        <section className="grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.88fr_1.12fr] lg:pt-16">
+        <section id="access" className="scroll-mt-24 grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.88fr_1.12fr] lg:pt-16">
           <div className="space-y-5">
             <p className="font-mono text-[10px] tracking-[0.28em] text-signal/80 uppercase">Access</p>
             <h2 className="font-display text-3xl leading-tight text-fg sm:text-5xl">Private access is reviewed, not opened.</h2>
@@ -237,8 +253,9 @@ export function HomePageContent() {
               through the private briefing room.
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
-              {accessPaths.map((path) => (
-                <div key={path} className="border-l border-signal/60 bg-white/[0.025] px-4 py-3 text-sm text-fg/85">
+              {accessPaths.map((path, index) => (
+                <div key={path} className="border-l border-signal/60 bg-[rgb(11,15,13)] px-4 py-4 text-sm text-fg/85">
+                  <span className="mb-2 block font-mono text-[9px] tracking-[0.22em] text-muted uppercase">0{index + 1}</span>
                   {path}
                 </div>
               ))}
@@ -247,7 +264,7 @@ export function HomePageContent() {
           <IntakeForm kind="access" />
         </section>
 
-        <section className="grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.88fr_1.12fr] lg:pt-16">
+        <section id="team" className="scroll-mt-24 grid gap-8 border-t border-white/10 pt-12 lg:grid-cols-[0.88fr_1.12fr] lg:pt-16">
           <div className="space-y-5">
             <p className="font-mono text-[10px] tracking-[0.28em] text-signal/80 uppercase">Team</p>
             <h2 className="font-display text-3xl leading-tight text-fg sm:text-5xl">Build before the category has a name.</h2>

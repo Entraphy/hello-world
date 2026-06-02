@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: 8 10 10;
-  --color-fg: 241 238 229;
-  --color-muted: 165 169 162;
-  --color-line: 58 63 58;
+  --color-bg: 7 9 8;
+  --color-fg: 242 239 230;
+  --color-muted: 166 169 160;
+  --color-line: 58 64 58;
   --color-accent: 196 157 84;
   --color-signal: 196 157 84;
 }
@@ -32,8 +32,8 @@ body {
   position: relative;
   overflow-x: clip;
   background:
-    linear-gradient(90deg, rgba(196, 157, 84, 0.06), transparent 34%, rgba(78, 105, 89, 0.08)),
-    linear-gradient(180deg, rgb(8 10 10), rgb(6 8 8) 58%, rgb(4 5 5));
+    linear-gradient(90deg, rgba(196, 157, 84, 0.055), transparent 32%, rgba(61, 84, 69, 0.1)),
+    linear-gradient(180deg, rgb(7 9 8), rgb(6 8 7) 58%, rgb(3 4 4));
   background-attachment: fixed;
   color: rgb(var(--color-fg));
   font-family: theme("fontFamily.sans");
@@ -47,10 +47,10 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 56px 56px;
-  opacity: 0.08;
+  background-image: linear-gradient(rgba(242, 239, 230, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 239, 230, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.1;
   mask-image: linear-gradient(to bottom, transparent, black 10%, black 92%, transparent);
 }
 
@@ -59,8 +59,8 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(241, 238, 229, 0.045), transparent 36%);
-  opacity: 0.7;
+  background: linear-gradient(180deg, rgba(242, 239, 230, 0.05), transparent 34%);
+  opacity: 0.68;
 }
 
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {
@@ -91,6 +91,16 @@ select {
   font: inherit;
 }
 
+select option {
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-fg));
+}
+
+::selection {
+  background: rgba(196, 157, 84, 0.32);
+  color: rgb(var(--color-fg));
+}
+
 summary {
   list-style: none;
 }
@@ -102,6 +112,21 @@ summary::-webkit-details-marker {
 :focus-visible {
   outline: 2px solid rgb(var(--color-accent));
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 details[open] .menu-panel {

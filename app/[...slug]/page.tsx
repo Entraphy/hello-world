@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, permanentRedirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 import { PageFrame, Surface } from "@/components/marketing-primitives";
 
@@ -19,20 +19,11 @@ const privateDevelopmentRoutes = [
   ["products", "trusted-autonomy"]
 ];
 
-const privateDevelopmentRouteKeys = new Set(privateDevelopmentRoutes.map((route) => route.join("/")));
-
 export function generateStaticParams() {
   return privateDevelopmentRoutes.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  if (!privateDevelopmentRouteKeys.has(params.slug.join("/"))) {
-    return {
-      title: "Entraphy Systems",
-      description: "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems."
-    };
-  }
-
+export function generateMetadata(): Metadata {
   return {
     title: "Private Development | Entraphy Systems",
     description: "Entraphy product and briefing materials are available through selective private access.",
@@ -48,10 +39,6 @@ export default function MarketingRoutePage({ params }: PageProps) {
 
   if (routeKey === "contact" || routeKey === "demo" || routeKey.startsWith("products/")) {
     permanentRedirect("/#access");
-  }
-
-  if (!privateDevelopmentRouteKeys.has(routeKey)) {
-    notFound();
   }
 
   return (

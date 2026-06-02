@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { permanentRedirect } from "next/navigation";
 
 import { PageFrame, Surface } from "@/components/marketing-primitives";
-
-type PageProps = {
-  params: { slug: string[] };
-};
 
 const privateDevelopmentRoutes = [
   ["platform"],
@@ -14,9 +9,7 @@ const privateDevelopmentRoutes = [
   ["company"],
   ["docs"],
   ["how-it-works"],
-  ["use-cases"],
-  ["demo"],
-  ["products", "trusted-autonomy"]
+  ["use-cases"]
 ];
 
 export function generateStaticParams() {
@@ -34,13 +27,7 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function MarketingRoutePage({ params }: PageProps) {
-  const routeKey = params.slug.join("/");
-
-  if (routeKey === "contact" || routeKey === "demo" || routeKey.startsWith("products/")) {
-    permanentRedirect("/#access");
-  }
-
+export default function MarketingRoutePage() {
   return (
     <PageFrame>
       <section className="min-h-[calc(100vh-15rem)] py-16">

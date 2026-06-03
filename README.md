@@ -12,6 +12,22 @@ The current public site is being migrated to Entraphy's stealth-safe positioning
 
 ## Private Access Intake
 
-The `/access` page contains a polished static-preview intake form. It validates inputs locally and clearly tells visitors that submissions are not transmitted yet.
+The `/access` page contains a lightweight private-access intake form backed by `POST /api/access`.
 
-TODO: connect `/access` to durable private submission handling before opening intake. Preferred options are a Next.js route or server action backed by an existing email/form provider configured through environment variables, with no provider secrets exposed to the client.
+The API route validates submissions server-side, applies a hidden honeypot field, and sends a concise email notification through the Resend HTTP API using server-only environment variables. No access portal, authentication, CRM, analytics, database, or local browser storage is implemented.
+
+Required environment variables:
+
+- `RESEND_API_KEY`
+- `ENTRAPHY_ACCESS_INTAKE_TO`
+- `ENTRAPHY_ACCESS_INTAKE_FROM`
+
+If any required variable is missing, valid submissions fail gracefully with a user-facing retry message and no sensitive form content is logged. Local testing can verify validation and graceful configuration errors without email credentials; configure all three variables to send a real notification.
+
+Future hardening checkpoints:
+
+- rate limiting
+- durable storage
+- CRM integration
+- admin review queue
+- private briefing room / access portal later

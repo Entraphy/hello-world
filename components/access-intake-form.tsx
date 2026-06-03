@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 
 type FormState = {
   name: string;
@@ -32,6 +32,7 @@ const initialFormState: FormState = {
 
 const accessTypes = ["Strategic Partner", "Pilot Customer", "Advisor", "Early Builder", "Other"];
 const referralOptions = ["Selected introduction", "Entraphy team", "Partner", "Research", "Other"];
+const submissionError = "We could not submit the request. Please try again or contact Entraphy directly.";
 
 function FieldLabel({ htmlFor, children, required = false }: { htmlFor: string; children: string; required?: boolean }) {
   return (
@@ -52,14 +53,14 @@ function fieldClass(error?: boolean) {
 
 export function AccessIntakeForm() {
   const [form, setForm] = useState<FormState>(initialFormState);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const [errors, setErrors] = useState<Partial<Record<keyof FormState | "narrative", string>>>({});
-
-  const hasNarrative = useMemo(() => Boolean(form.problem.trim() || form.why.trim()), [form.problem, form.why]);
 
   function updateField(field: keyof FormState, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
-    setSubmitted(false);
+    setStatus("idle");
+    setStatusMessage("");
     setErrors((current) => {
       const next = { ...current };
       delete next[field];
@@ -70,43 +71,66 @@ export function AccessIntakeForm() {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const nextErrors: Partial<Record<keyof FormState | "narrative", string>> = {};
 
     if (!form.name.trim()) nextErrors.name = "Name is required.";
-    if (!form.organization.trim()) nextErrors.organization = "Organization is required.";
-    if (!form.role.trim()) nextErrors.role = "Role is required.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) nextErrors.email = "Enter a valid work email.";
     if (!form.accessType) nextErrors.accessType = "Select an access path.";
-    if (!hasNarrative) nextErrors.narrative = "Share either the problem you are solving or why Entraphy is relevant now.";
+    if (!form.problem.trim() && !form.why.trim()) {
+      nextErrors.narrative = "Share either the problem you are solving or why Entraphy is relevant now.";
+    }
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setSubmitted(false);
+      setStatus("idle");
+      setStatusMessage("");
       return;
     }
 
-    if (form.companyUrl.trim()) {
+    setStatus("submitting");
+    setStatusMessage("");
+
+    try {
+      const response = await fetch("/api/access", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+      });
+
+      const result = (await response.json()) as {
+        ok?: boolean;
+        errors?: Partial<Record<keyof FormState | "narrative", string>>;
+      };
+
+      if (!response.ok || !result.ok) {
+        if (result.errors) {
+          setErrors(result.errors);
+          setStatus("idle");
+          return;
+        }
+
+        setStatus("error");
+        setStatusMessage(submissionError);
+        return;
+      }
+
       setForm(initialFormState);
-      setSubmitted(true);
-      return;
+      setErrors({});
+      setStatus("success");
+      setStatusMessage("Access request received. Entraphy reviews requests manually.");
+    } catch {
+      setStatus("error");
+      setStatusMessage(submissionError);
     }
-
-    // Static checkpoint: no network request is made until durable submission handling is connected.
-    setSubmitted(true);
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5" aria-describedby="access-preview-note">
-      <div
-        id="access-preview-note"
-        className="border border-signal/28 bg-signal/[0.06] px-4 py-3 text-sm leading-6 text-muted"
-      >
-        Static intake preview. This form validates locally and does not transmit data yet.
-      </div>
-
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <FieldLabel htmlFor="access-name" required>
@@ -126,7 +150,7 @@ export function AccessIntakeForm() {
         </div>
 
         <div>
-          <FieldLabel htmlFor="access-organization" required>
+          <FieldLabel htmlFor="access-organization">
             Organization
           </FieldLabel>
           <input
@@ -143,7 +167,7 @@ export function AccessIntakeForm() {
         </div>
 
         <div>
-          <FieldLabel htmlFor="access-role" required>
+          <FieldLabel htmlFor="access-role">
             Role
           </FieldLabel>
           <input
@@ -278,10 +302,8 @@ export function AccessIntakeForm() {
         </select>
       </div>
 
-      <div className="flex items-center gap-4">
-        <label htmlFor="access-company-url" className="text-sm text-fg/82">
-          Leave blank
-        </label>
+      <div aria-hidden="true" className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="access-company-url">Company URL</label>
         <input
           id="access-company-url"
           name="companyUrl"
@@ -289,21 +311,21 @@ export function AccessIntakeForm() {
           autoComplete="off"
           value={form.companyUrl}
           onChange={(event) => updateField("companyUrl", event.target.value)}
-          className="h-8 w-full max-w-[13rem] border border-white/24 bg-black/20 px-2 text-sm text-fg"
+          className="h-px w-px"
         />
-        <p className="hidden text-xs leading-5 text-muted sm:block">This helps us prevent spam.</p>
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <button
           type="submit"
-          className="inline-flex min-h-12 items-center justify-center border border-signal/75 bg-transparent px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
+          disabled={status === "submitting"}
+          className="inline-flex min-h-12 items-center justify-center border border-signal/75 bg-transparent px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 disabled:cursor-not-allowed disabled:border-white/18 disabled:text-muted"
         >
-          Request Access -&gt;
+          {status === "submitting" ? "Submitting..." : "Request Access"}
         </button>
-        {submitted ? (
-          <p role="status" className="text-sm leading-6 text-signal">
-            Static preview complete. This request was not transmitted.
+        {statusMessage ? (
+          <p role="status" className={`text-sm leading-6 ${status === "error" ? "text-red-200" : "text-signal"}`}>
+            {statusMessage}
           </p>
         ) : null}
       </div>

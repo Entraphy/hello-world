@@ -52,7 +52,7 @@ export function HomePageContent() {
             <Eyebrow>Private development. Selective access. Patent pending.</Eyebrow>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
               <ButtonLink href="/access">Request Private Access -&gt;</ButtonLink>
-              <ButtonLink href="/team" variant="secondary">
+              <ButtonLink href="#team" variant="secondary">
                 Join the Early Team -&gt;
               </ButtonLink>
             </div>
@@ -107,6 +107,12 @@ export function HomePageContent() {
               <Eyebrow>Private development</Eyebrow>
               <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Our first product remains in private development.</h2>
               <p className="text-base leading-8 text-muted">Public details are limited by design.</p>
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                <ButtonLink href="/access?type=partner">Request Partner Access -&gt;</ButtonLink>
+                <ButtonLink href="/access?type=pilot" variant="secondary">
+                  Pilot Candidate Access -&gt;
+                </ButtonLink>
+              </div>
             </div>
           </div>
         </div>
@@ -145,9 +151,12 @@ export function HomePageContent() {
               Entraphy is assembling a small early team to help turn a patent-pending foundation into a company worthy of the systems it intends to
               serve.
             </h2>
-            <ButtonLink href="/team" variant="secondary">
-              Introduce Yourself -&gt;
-            </ButtonLink>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+              <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+              <ButtonLink href="/team" variant="secondary">
+                Read Team Invitation -&gt;
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>

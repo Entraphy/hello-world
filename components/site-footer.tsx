@@ -5,7 +5,7 @@ const companyStatement = "Entraphy is building a patent-pending foundation for t
 const footerLinks = [
   { label: "Thesis", href: "/#thesis" },
   { label: "Partners", href: "/#partners" },
-  { label: "Team", href: "/team" },
+  { label: "Team", href: "/#team" },
   { label: "Access", href: "/access" },
   { label: "Legal", href: "/legal/privacy" }
 ];

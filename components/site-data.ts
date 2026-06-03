@@ -7,7 +7,7 @@ export const site = {
     primary: [
       { label: "Thesis", href: "/#thesis" },
       { label: "Partners", href: "/#partners" },
-      { label: "Team", href: "/team" },
+      { label: "Team", href: "/#team" },
       { label: "Access", href: "/access" }
     ],
     cta: { label: "Request Private Access", href: "/access" }

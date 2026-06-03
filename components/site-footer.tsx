@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-import { LogoBadge } from "@/components/marketing-primitives";
-
-const companyStatement = "Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems.";
+const companyStatement = "Entraphy is building a patent-pending foundation for the systems that must earn trust before they act.";
 
 const footerLinks = [
   { label: "Thesis", href: "/#thesis" },
@@ -15,10 +13,10 @@ const footerLinks = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/12 bg-black">
-      <div className="mx-auto flex w-full max-w-content flex-col gap-5 px-6 py-6">
-        <div className="flex flex-col items-center gap-3 text-center md:flex-row md:justify-between md:text-left">
-          <LogoBadge variant="footer" />
-          <p className="max-w-2xl text-xs leading-6 text-muted md:text-right">
+      <div className="mx-auto flex w-full max-w-content flex-col gap-4 px-6 py-6">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-2 text-center">
+          <p className="font-display text-lg leading-6 text-fg">Entraphy Systems</p>
+          <p className="text-sm leading-6 text-muted lg:whitespace-nowrap">
             {companyStatement}
           </p>
         </div>

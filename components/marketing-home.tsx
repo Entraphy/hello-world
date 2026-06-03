@@ -5,11 +5,11 @@ import { ButtonLink } from "@/components/marketing-primitives";
 const accessPaths = [
   {
     title: "Strategic Partners",
-    body: "For institutions shaping trusted autonomy where institutional confidence matters."
+    body: "For institutions shaping what trusted autonomy will require before scale."
   },
   {
     title: "Pilot Candidates",
-    body: "For high-consequence environments preparing for selected conversations."
+    body: "For high-consequence environments preparing for private evaluation."
   },
   {
     title: "Advisors",
@@ -24,19 +24,19 @@ const accessPaths = [
 const teamArchetypes = [
   {
     title: "Systems Builders",
-    body: "People who can turn ambiguity into secure, reliable, usable systems."
+    body: "Turn ambiguity into secure, reliable, usable systems."
   },
   {
     title: "Design Engineers",
-    body: "People who believe powerful technology should feel precise, restrained, and inevitable."
+    body: "Make powerful technology feel precise, restrained, and inevitable."
   },
   {
     title: "Strategic Operators",
-    body: "People who can shape early partnerships, confidential access, and disciplined market entry."
+    body: "Shape early partnerships, confidential access, and disciplined market entry."
   },
   {
     title: "Infrastructure Stewards",
-    body: "People who understand that trust begins with operational discipline."
+    body: "Ensure trust is practiced before it is promised."
   }
 ];
 
@@ -66,13 +66,13 @@ export function HomePageContent() {
           <div className="max-w-4xl space-y-8">
             <h1 className="font-display text-5xl leading-[0.96] text-fg sm:text-7xl lg:text-8xl">Trust cannot be self-prescribed.</h1>
             <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              Entraphy is building a patent-pending foundation for trusted autonomy in AI-native systems.
+              Entraphy is building a patent-pending foundation for the systems that must earn trust before they act.
             </p>
             <Eyebrow>Private development. Selective access. Patent pending.</Eyebrow>
-            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-              <ButtonLink href="/access">Request Private Access -&gt;</ButtonLink>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <ButtonLink href="/access">Request Private Access</ButtonLink>
               <ButtonLink href="#team" variant="secondary">
-                Join the Early Team -&gt;
+                Join the Early Team
               </ButtonLink>
             </div>
           </div>
@@ -91,13 +91,13 @@ export function HomePageContent() {
               <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Imagine if trust could move at the speed of intelligence.</h2>
               <div className="space-y-4 text-sm leading-7 text-muted sm:text-base">
                 <p>
-                  The next era will ask systems to act inside decisions that carry real consequence. Capability alone will not give institutions the
-                  confidence to let that happen.
+                  The next generation of systems will not wait for human review before they reason, connect, and act. They will move through
+                  institutions, infrastructure, markets, missions, and machines, carrying consequence with them.
                 </p>
-                <p>Trust cannot be granted by announcement, branding, or optimism. It has to be earned before action becomes consequence.</p>
+                <p>The old model asks us to trust too early and discover too late.</p>
                 <p>
-                  Entraphy begins from that standard: quiet work, careful access, and a foundation for trusted autonomy built to serve institutions
-                  before it seeks attention.
+                  Entraphy is working toward a different future: one where intelligent systems earn trust before they act, and autonomy becomes more
+                  governable as it becomes more powerful.
                 </p>
               </div>
             </div>
@@ -106,35 +106,31 @@ export function HomePageContent() {
       </section>
 
       <section id="partners" className="scroll-mt-24 border-b border-white/12">
-        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:py-20">
-          <div className="space-y-6 lg:pr-8">
-            <Eyebrow>Selected conversations</Eyebrow>
-            <h2 className="max-w-xl font-display text-3xl leading-tight text-fg sm:text-4xl">An executive briefing for institutions moving carefully.</h2>
-            <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-              <ButtonLink href="/access?type=partner">Request Partner Access -&gt;</ButtonLink>
-              <ButtonLink href="/access?type=pilot" variant="secondary">
-                Pilot Candidate Access -&gt;
-              </ButtonLink>
-            </div>
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-14 lg:grid-cols-[0.86fr_0.08fr_1.06fr] lg:items-center lg:py-20">
+          <div className="space-y-5">
+            <Eyebrow>A new foundation is required.</Eyebrow>
+            <p className="max-w-md text-base leading-8 text-muted">
+              The next era will not be defined only by more capable models. It will be defined by whether those models, systems, and institutions can
+              operate with confidence when action carries consequence.
+            </p>
+            <p className="text-base leading-8 text-fg/82">Entraphy begins there.</p>
           </div>
-          <div className="border-t border-white/16 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-            <div className="max-w-3xl space-y-7">
-              <p className="font-display text-2xl leading-snug text-fg sm:text-3xl">
-                Entraphy is engaging strategic partners and pilot candidates where trusted autonomy has institutional consequence.
-              </p>
-              <div className="grid gap-6 text-sm leading-7 text-muted sm:grid-cols-2">
-                <p>
-                  The right conversations begin with context: the environment, the stakes, and why institutional confidence must be established before
-                  broader deployment.
-                </p>
-                <p>
-                  Access remains selective while the foundation is in private development. Deeper materials are shared only after manual review.
-                </p>
-              </div>
-              <div className="border-t border-white/12 pt-6">
-                <p className="font-mono text-[10px] leading-6 tracking-[0.24em] text-signal uppercase">
-                  Strategic partners · Pilot candidates · Selected conversations
-                </p>
+          <div className="hidden h-40 w-px bg-white/18 lg:block" />
+          <div className="grid gap-6 sm:grid-cols-[7rem_1fr] sm:items-center">
+            <div className="relative h-20 w-24 text-signal">
+              <span className="absolute left-3 top-2 h-10 w-16 rotate-[-25deg] border border-current opacity-60" />
+              <span className="absolute left-6 top-6 h-10 w-16 rotate-[-25deg] border border-current opacity-85" />
+              <span className="absolute left-9 top-10 h-10 w-16 rotate-[-25deg] border border-current opacity-45" />
+            </div>
+            <div className="space-y-4">
+              <Eyebrow>Private development</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Our first product remains in private development.</h2>
+              <p className="text-base leading-8 text-muted">Public details are limited by design.</p>
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+                <ButtonLink href="/access?type=partner">Request Partner Access</ButtonLink>
+                <ButtonLink href="/access?type=pilot" variant="secondary">
+                  Pilot Candidate Access
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -144,14 +140,15 @@ export function HomePageContent() {
       <section id="access" className="scroll-mt-24 border-b border-white/12 bg-[linear-gradient(90deg,rgb(5,7,7),rgb(13,22,18))]">
         <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:py-16">
           <div className="space-y-6">
-            <Eyebrow>Manual review</Eyebrow>
-            <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">One private access path, reviewed manually.</h2>
+            <Eyebrow>Private access is reviewed, not opened.</Eyebrow>
+            <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">
+              Selected partners, pilot candidates, advisors, and early builders enter through one controlled path.
+            </h2>
             <p className="max-w-md text-sm leading-7 text-muted">
-              The role-aware intake at /access routes selected partners, pilot candidates, advisors, early builders, and careful inquiries through
-              one controlled desk.
+              Deeper materials are available only through the private briefing room. Not every request will move forward. The work requires
+              discretion, timing, and alignment before more is shared.
             </p>
-            <p className="max-w-md text-sm leading-7 text-muted">Deeper materials remain private.</p>
-            <ButtonLink href="/access">Request Private Access -&gt;</ButtonLink>
+            <ButtonLink href="/access">Request Private Access</ButtonLink>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {accessPaths.map((path, index) => (
@@ -173,16 +170,17 @@ export function HomePageContent() {
             <Eyebrow>Build before the category has a name</Eyebrow>
             <h2 className="max-w-3xl font-display text-3xl leading-tight text-fg sm:text-4xl">This is early company-formation work, not a standard startup role.</h2>
             <p className="max-w-xl text-base leading-8 text-muted">
-              The first people in the room will help shape product judgment, design restraint, operating discipline, and the way Entraphy shows up in
-              the world.
+              Entraphy is looking for a small number of early builders with unusual judgment, discretion, and taste: people who can help shape the
+              company before the market fully understands the category.
             </p>
             <p className="max-w-xl text-sm leading-7 text-muted">
-              Lean in if you can build with discretion, make sharp choices in ambiguity, and care about foundations more than noise.
+              The first people in the room will influence product judgment, operating discipline, partner posture, and the way Entraphy shows up in
+              the world.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-              <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+              <ButtonLink href="/access?type=builder">Introduce Yourself</ButtonLink>
               <ButtonLink href="/team" variant="secondary">
-                Read Team Invitation -&gt;
+                Read Team Invitation
               </ButtonLink>
             </div>
           </div>

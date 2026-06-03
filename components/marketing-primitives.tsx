@@ -113,9 +113,9 @@ export function ButtonLink({
   onClick?: () => void;
 }) {
   const base =
-    "inline-flex min-h-11 items-center justify-center border px-5 py-2.5 text-[0.68rem] font-semibold tracking-[0.22em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
+    "inline-flex min-h-11 max-w-full items-center justify-center border px-5 py-2.5 text-center text-[0.68rem] font-semibold tracking-[0.22em] uppercase transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70";
   const styles = {
-    primary: "border-signal/75 bg-transparent text-fg hover:border-signal hover:bg-signal/10",
+    primary: "border-signal/85 bg-signal/[0.045] text-fg shadow-[0_0_0_1px_rgba(196,157,84,0.08)] hover:border-signal hover:bg-signal/[0.085]",
     secondary: "border-white/18 bg-transparent text-fg hover:border-signal/70 hover:bg-white/[0.04]",
     tertiary: "border-transparent bg-transparent px-0 py-0 text-muted hover:text-fg"
   } as const;

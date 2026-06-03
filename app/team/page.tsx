@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { ButtonLink } from "@/components/marketing-primitives";
-import { TeamIntroductionForm } from "@/components/team-introduction-form";
 
 export const metadata: Metadata = {
   title: "Team | Entraphy Systems",
@@ -186,7 +185,7 @@ export default function TeamPage() {
             <p className="max-w-2xl text-base leading-8 text-muted">
               We are looking for people with unusual judgment, discretion, and builder energy.
             </p>
-            <ButtonLink href="#introduce">Introduce Yourself -&gt;</ButtonLink>
+            <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
           </div>
         </div>
       </section>
@@ -237,12 +236,17 @@ export default function TeamPage() {
       </section>
 
       <section id="introduce" className="scroll-mt-24 border-b border-white/12">
-        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1.42fr_0.58fr] lg:py-14">
-          <div className="border border-white/20 bg-black/18 p-5 sm:p-7">
-            <div className="mb-5">
-              <Eyebrow>Introduce yourself.</Eyebrow>
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-14">
+          <div className="border border-white/20 bg-black/18 p-6 sm:p-8">
+            <div className="max-w-2xl space-y-5">
+              <Eyebrow>Private access path.</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Introduce yourself through private access.</h2>
+              <p className="text-base leading-8 text-muted">
+                Entraphy reviews early-builder introductions through the same private access path used for selected partners, advisors, and pilot
+                candidates.
+              </p>
+              <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
             </div>
-            <TeamIntroductionForm />
           </div>
           <aside className="border-t border-white/18 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-12">
             <div className="space-y-7">
@@ -257,7 +261,6 @@ export default function TeamPage() {
                 <p className="text-base leading-8 text-muted">
                   Submitting an introduction does not create an employment relationship or guarantee a response.
                 </p>
-                <p className="text-base leading-8 text-muted">Entraphy reviews early-builder introductions manually.</p>
               </div>
               <div className="border-t border-white/14 pt-7">
                 <p className="text-base leading-8 text-muted">Private development.</p>

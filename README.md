@@ -22,6 +22,20 @@ Required environment variables:
 - `ENTRAPHY_ACCESS_INTAKE_TO`
 - `ENTRAPHY_ACCESS_INTAKE_FROM`
 
+Temporary deployment values:
+
+- `ENTRAPHY_ACCESS_INTAKE_TO=jarvis.taylor@taylogictech.com`
+- `ENTRAPHY_ACCESS_INTAKE_FROM=jarvis.taylor@taylogictech.com`
+
+`ENTRAPHY_ACCESS_INTAKE_FROM` must be a sender address or domain verified in Resend. If `jarvis.taylor@taylogictech.com` or `taylogictech.com` is not verified in Resend, live delivery may fail.
+
+Intended future deployment values:
+
+- `ENTRAPHY_ACCESS_INTAKE_TO=jarvis.taylor@taylogictech.com`
+- `ENTRAPHY_ACCESS_INTAKE_FROM=access@entraphy.com` or `ENTRAPHY_ACCESS_INTAKE_FROM=no-reply@entraphy.com`
+
+Use `access@entraphy.com` or `no-reply@entraphy.com` only after `entraphy.com` is configured and verified for sending in Resend.
+
 If any required variable is missing, valid submissions fail gracefully with a user-facing retry message and no sensitive form content is logged. Local testing can verify validation and graceful configuration errors without email credentials; configure all three variables to send a real notification.
 
 Future hardening checkpoints:

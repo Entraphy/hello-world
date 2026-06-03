@@ -10,7 +10,7 @@ export const site = {
       { label: "Join the Team", href: "/team" },
       { label: "Private Access", href: "/access" }
     ],
-    cta: { label: "Request Private Access", href: "/request-access" }
+    cta: { label: "Partner With Us", href: "/partners" }
   },
   pages: {
     home: {

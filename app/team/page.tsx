@@ -158,17 +158,22 @@ function ArchetypeIcon({ index }: { index: number }) {
   );
 }
 
+function ClosingMark() {
+  return (
+    <span aria-hidden className="block h-20 w-px bg-signal/80" />
+  );
+}
+
 export default function TeamPage() {
   return (
     <div className="bg-bg text-fg">
-      <section className="relative overflow-hidden border-b border-white/12">
+      <section className="relative min-h-[38rem] overflow-hidden border-b border-white/12">
         <Image src="/images/entraphy-signal-field.png" alt="" fill priority className="object-cover object-center opacity-28" sizes="100vw" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,5,5)_0%,rgba(4,5,5,0.95)_38%,rgba(4,5,5,0.62)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,5,0.1),rgba(4,5,5,0.72))]" />
-        <div className="absolute right-0 top-0 hidden h-full w-1/2 bg-[radial-gradient(circle_at_72%_26%,rgba(196,157,84,0.12),transparent_34%)] lg:block" />
-        <div className="relative mx-auto w-full max-w-content px-6 py-14 sm:py-16 lg:py-20">
-          <div className="max-w-3xl space-y-6">
-            <Eyebrow>Join the Team</Eyebrow>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,5,5)_0%,rgba(4,5,5,0.96)_36%,rgba(4,5,5,0.58)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(196,157,84,0.12),transparent_32%),linear-gradient(180deg,rgba(4,5,5,0.06),rgba(4,5,5,0.68))]" />
+        <div className="relative mx-auto flex min-h-[38rem] w-full max-w-content items-center px-6 py-16 sm:py-20 lg:py-24">
+          <div className="max-w-3xl space-y-7">
+            <Eyebrow>Join the early team</Eyebrow>
             <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Build before the category has a name.</h1>
             <div className="h-px w-10 bg-signal" />
             <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
@@ -184,9 +189,9 @@ export default function TeamPage() {
       </section>
 
       <section className="border-b border-white/12 bg-[rgb(8,10,10)]">
-        <div className="mx-auto w-full max-w-content px-6 py-8 sm:py-10">
+        <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
           <div className="border-l border-signal/80 py-1 pl-7">
-            <Eyebrow>Not a standard startup role.</Eyebrow>
+            <Eyebrow>Not a standard startup role</Eyebrow>
             <p className="mt-4 max-w-2xl text-base leading-8 text-muted">
               This is early company-formation work. The first people in the room will help shape product direction, operating discipline, partner
               posture, and the way Entraphy shows up in the world.
@@ -196,13 +201,13 @@ export default function TeamPage() {
       </section>
 
       <section className="border-b border-white/12">
-        <div className="mx-auto w-full max-w-content px-6 py-12">
+        <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
           <div className="mb-6">
-            <Eyebrow>Who we need now.</Eyebrow>
+            <Eyebrow>Who we&apos;re looking for</Eyebrow>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {archetypes.map((archetype, index) => (
-              <article key={archetype.title} className="min-h-64 border border-white/22 bg-black/18 p-6 transition hover:border-signal/48 hover:bg-white/[0.025]">
+              <article key={archetype.title} className="min-h-72 border border-white/22 bg-black/18 p-6 transition hover:border-signal/48 hover:bg-white/[0.025]">
                 <ArchetypeIcon index={index} />
                 <h2 className="mt-6 font-display text-2xl leading-tight text-fg">{archetype.title}</h2>
                 <p className="mt-4 text-sm leading-7 text-muted">{archetype.body}</p>
@@ -213,13 +218,13 @@ export default function TeamPage() {
       </section>
 
       <section className="border-b border-white/12 bg-[rgb(6,8,8)]">
-        <div className="mx-auto w-full max-w-content px-6 py-8 sm:py-10">
+        <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
           <div className="mb-6">
-            <Eyebrow>How we work.</Eyebrow>
+            <Eyebrow>How we work</Eyebrow>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-5">
             {principles.map((principle, index) => (
-              <div key={principle} className="border-white/18 lg:border-r lg:last:border-r-0">
+              <div key={principle} className="border-white/18 lg:border-r lg:pr-7 lg:last:border-r-0">
                 <RuleIcon index={index} />
                 <p className="mt-2 max-w-40 text-sm leading-6 text-fg/82">{principle}</p>
               </div>
@@ -228,40 +233,40 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section id="introduce" className="scroll-mt-24 border-b border-white/12">
-        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-14">
-          <div className="border border-white/20 bg-black/18 p-6 sm:p-8">
-            <div className="max-w-2xl space-y-5">
-              <Eyebrow>Request access path.</Eyebrow>
-              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Introduce yourself through request access.</h2>
-              <p className="text-base leading-8 text-muted">
-                Entraphy reviews early-builder introductions through the same private access path used for selected partners, advisors, and pilot
-                candidates.
-              </p>
-              <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+      <section className="relative overflow-hidden border-b border-white/12">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5,7,7),rgb(8,12,11))]" />
+        <div className="relative mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.52fr_0.48fr] lg:items-stretch lg:py-16">
+          <div className="max-w-xl space-y-6">
+            <Eyebrow>What to expect</Eyebrow>
+            <p className="text-base leading-8 text-muted">Small team. High trust. Real consequence.</p>
+            <p className="text-base leading-8 text-muted">
+              You won&apos;t find big titles or public roadmaps here. You will find meaningful problems, careful execution, and the chance to help build a
+              category-defining company.
+            </p>
+            <p className="text-base leading-8 text-muted">We move slowly in public so we can move decisively in private.</p>
+          </div>
+          <div className="relative min-h-[18rem] overflow-hidden">
+            <Image src="/images/entraphy-threshold-doorway.png" alt="" fill className="object-cover object-center opacity-70" sizes="(min-width: 1024px) 48vw, 100vw" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,7,0.7),rgba(5,7,7,0.08),rgba(5,7,7,0.44))]" />
+          </div>
+
+          <div id="introduce" className="scroll-mt-24 border border-white/22 bg-black/18 p-7 sm:p-9 lg:col-span-2">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div className="flex gap-7">
+                <ClosingMark />
+                <div>
+                  <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Help build what comes next.</h2>
+                  <p className="mt-4 max-w-xl text-base leading-8 text-muted">
+                    If you operate with judgment, discretion, and builder energy, we invite you to introduce yourself.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+                <p className="text-xs leading-5 text-muted">For early builders&nbsp;&nbsp;/&nbsp;&nbsp;Request Builder Access</p>
+              </div>
             </div>
           </div>
-          <aside className="border-t border-white/18 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-12">
-            <div className="space-y-7">
-              <span aria-hidden className="relative block h-16 w-16 text-signal">
-                <span className="absolute inset-x-2 top-0 h-14 rounded-b-[1.75rem] border border-current" />
-                <span className="absolute left-1/2 top-7 h-5 w-5 -translate-x-1/2 rounded-sm border border-current" />
-                <span className="absolute left-1/2 top-5 h-4 w-3 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
-                <span className="absolute left-1/2 top-10 h-2 w-px -translate-x-1/2 bg-current" />
-              </span>
-              <div className="space-y-4">
-                <Eyebrow>Expectations.</Eyebrow>
-                <p className="text-base leading-8 text-muted">
-                  Submitting an introduction does not create an employment relationship or guarantee a response.
-                </p>
-              </div>
-              <div className="border-t border-white/14 pt-7">
-                <p className="text-base leading-8 text-muted">Private development.</p>
-                <p className="text-base leading-8 text-muted">Selective access.</p>
-                <p className="text-base leading-8 text-muted">Patent pending.</p>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
     </div>

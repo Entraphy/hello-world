@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 
-type AccessType = "Strategic Partner" | "Pilot Customer" | "Advisor" | "Early Builder" | "Other";
+type AccessType = "Strategic Partner" | "Pilot Candidate" | "Advisor" | "Early Builder" | "Other";
 
 type AccessPath = {
   slug: string;
@@ -44,8 +44,8 @@ const accessPaths: AccessPath[] = [
   },
   {
     slug: "pilot",
-    accessType: "Pilot Customer",
-    title: "Pilot Customer",
+    accessType: "Pilot Candidate",
+    title: "Pilot Candidate",
     body: "For teams preparing a careful private evaluation.",
     intro: "For high-consequence environments considering whether a private evaluation would be useful.",
     questions: ["What kind of environment are you preparing for?", "What would make a private evaluation useful?", "Why Entraphy?"]

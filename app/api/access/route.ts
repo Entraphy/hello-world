@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 
-const accessTypes = new Set(["Strategic Partner", "Pilot Customer", "Advisor", "Early Builder", "Other"]);
+const accessTypes = new Set(["Strategic Partner", "Pilot Candidate", "Advisor", "Early Builder", "Other"]);
 const maxBodyLength = 16_000;
 const resendEndpoint = "https://api.resend.com/emails";
 

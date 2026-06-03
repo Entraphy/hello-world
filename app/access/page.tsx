@@ -4,13 +4,13 @@ import { AccessIntakeForm } from "@/components/access-intake-form";
 
 export const metadata: Metadata = {
   title: "Private Access | Entraphy Systems",
-  description: "Request private access to Entraphy briefing materials for selected partners, pilot customers, advisors, and early builders.",
+  description: "Request private access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
   alternates: {
     canonical: "https://www.entraphy.com/access"
   },
   openGraph: {
     title: "Private Access | Entraphy Systems",
-    description: "Request private access to Entraphy briefing materials for selected partners, pilot customers, advisors, and early builders.",
+    description: "Request private access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
     type: "website",
     url: "https://www.entraphy.com/access",
     siteName: "Entraphy Systems",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Private Access | Entraphy Systems",
-    description: "Request private access to Entraphy briefing materials for selected partners, pilot customers, advisors, and early builders.",
+    description: "Request private access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
     images: ["/brand/entraphy-og-image.png"]
   }
 };
@@ -48,7 +48,7 @@ export default function AccessPage({ searchParams }: { searchParams?: { type?: s
           <div className="max-w-2xl space-y-6">
             <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Private Access</h1>
             <p className="text-base leading-8 text-muted sm:text-lg">
-              Entraphy operates a single controlled access desk for selected partners, pilot customers, advisors, early builders, and careful
+              Entraphy operates a single controlled access desk for selected partners, pilot candidates, advisors, early builders, and careful
               inquiries.
             </p>
             <p className="max-w-xl text-sm leading-7 text-muted">

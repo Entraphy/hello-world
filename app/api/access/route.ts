@@ -17,6 +17,7 @@ type AccessPayload = {
   note?: unknown;
   referral?: unknown;
   companyUrl?: unknown;
+  sourcePath?: unknown;
 };
 
 type CleanAccessPayload = {
@@ -30,6 +31,7 @@ type CleanAccessPayload = {
   website: string;
   note: string;
   referral: string;
+  sourcePath: string;
   submittedAt: string;
 };
 
@@ -45,7 +47,8 @@ const fieldLimits: Record<Exclude<keyof AccessPayload, "companyUrl">, number> = 
   why: 1_500,
   website: 300,
   note: 1_500,
-  referral: 120
+  referral: 120,
+  sourcePath: 80
 };
 
 function isObject(value: unknown): value is AccessPayload {
@@ -68,6 +71,7 @@ function validatePayload(payload: AccessPayload) {
     website: cleanString(payload.website, fieldLimits.website),
     note: cleanString(payload.note, fieldLimits.note),
     referral: cleanString(payload.referral, fieldLimits.referral),
+    sourcePath: cleanString(payload.sourcePath, fieldLimits.sourcePath),
     submittedAt: new Date().toISOString()
   };
 
@@ -112,7 +116,7 @@ function formatEmailBody(payload: CleanAccessPayload) {
     `Optional note: ${payload.note || "Not provided"}`,
     `Referral: ${payload.referral || "Not provided"}`,
     `Submitted timestamp: ${payload.submittedAt}`,
-    "Source path: /access"
+    `Source path: ${payload.sourcePath || "/access"}`
   ].join("\n");
 }
 
@@ -136,7 +140,9 @@ async function sendAccessEmail(payload: CleanAccessPayload) {
       from,
       to,
       reply_to: payload.email,
-      subject: `New Entraphy private access request: ${payload.accessType} — ${payload.organization || payload.name}`,
+      subject: `New Entraphy ${payload.accessType === "Early Builder" ? "early builder introduction" : "private access request"}: ${
+        payload.organization || payload.name
+      }`,
       text: formatEmailBody(payload)
     })
   });

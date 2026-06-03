@@ -38,7 +38,11 @@ export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   function isActiveNavItem(href: string, index: number) {
-    return href === "/access" ? pathname === "/access" : pathname === "/" && index === 0;
+    if (href.includes("#")) {
+      return pathname === "/" && index === 0;
+    }
+
+    return pathname === href;
   }
 
   useEffect(() => {

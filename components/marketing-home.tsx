@@ -8,7 +8,7 @@ const accessPaths = [
     body: "For institutions shaping what trusted autonomy will require before scale."
   },
   {
-    title: "Pilot Candidates",
+    title: "Pilot Customers",
     body: "For high-consequence environments preparing for private evaluation."
   },
   {
@@ -71,7 +71,7 @@ export function HomePageContent() {
             <Eyebrow>Private development. Selective access. Patent pending.</Eyebrow>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <ButtonLink href="/access">Request Private Access</ButtonLink>
-              <ButtonLink href="#team" variant="secondary">
+              <ButtonLink href="/#team" variant="secondary">
                 Join the Early Team
               </ButtonLink>
             </div>

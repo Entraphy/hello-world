@@ -4,8 +4,8 @@ const companyStatement = "Entraphy is building a patent-pending foundation for t
 
 const footerLinks = [
   { label: "Thesis", href: "/#thesis" },
-  { label: "Partners", href: "/#partners" },
-  { label: "Team", href: "/#team" },
+  { label: "Partners", href: "/#thesis" },
+  { label: "Join the Team", href: "/team" },
   { label: "Access", href: "/access" },
   { label: "Legal", href: "/legal/privacy" }
 ];
@@ -36,7 +36,7 @@ export function SiteFooter() {
             className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[10px] tracking-[0.24em] text-fg uppercase md:flex-nowrap md:justify-end"
           >
             {footerLinks.map((link, index) => (
-              <span key={link.href} className="inline-flex items-center gap-x-3 whitespace-nowrap">
+              <span key={link.label} className="inline-flex items-center gap-x-3 whitespace-nowrap">
                 <Link href={link.href} className="hover:text-fg">
                   {link.label}
                 </Link>

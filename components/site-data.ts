@@ -6,8 +6,8 @@ export const site = {
   nav: {
     primary: [
       { label: "Thesis", href: "/#thesis" },
-      { label: "Partners", href: "/#partners" },
-      { label: "Team", href: "/#team" },
+      { label: "Partners", href: "/#thesis" },
+      { label: "Join the Team", href: "/team" },
       { label: "Access", href: "/access" }
     ],
     cta: { label: "Request Private Access", href: "/access" }

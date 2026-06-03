@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/marketing-primitives";
 
 export const metadata: Metadata = {
-  title: "Team | Entraphy Systems",
+  title: "Join the Team | Entraphy Systems",
   description:
     "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
   alternates: {
     canonical: "https://www.entraphy.com/team"
   },
   openGraph: {
-    title: "Team | Entraphy Systems",
+    title: "Join the Team | Entraphy Systems",
     description:
       "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Team | Entraphy Systems",
+    title: "Join the Team | Entraphy Systems",
     description:
       "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
     images: ["/brand/entraphy-og-image.png"]
@@ -165,17 +165,10 @@ export default function TeamPage() {
         <Image src="/images/entraphy-signal-field.png" alt="" fill priority className="object-cover object-center opacity-28" sizes="100vw" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,5,5)_0%,rgba(4,5,5,0.95)_38%,rgba(4,5,5,0.62)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,5,0.1),rgba(4,5,5,0.72))]" />
-        <div className="absolute right-0 top-0 hidden h-full w-1/2 overflow-hidden lg:block">
-          <div className="absolute right-[-8rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full border border-signal/38" />
-          <div className="absolute right-12 top-16 h-72 w-72 border border-white/[0.05]" />
-          <div className="absolute right-10 top-10 h-px w-20 bg-white/18" />
-          <div className="absolute right-20 top-0 h-20 w-px bg-white/18" />
-          <div className="absolute right-36 top-36 h-px w-24 bg-white/14" />
-          <div className="absolute right-48 top-28 h-24 w-px bg-white/14" />
-        </div>
+        <div className="absolute right-0 top-0 hidden h-full w-1/2 bg-[radial-gradient(circle_at_72%_26%,rgba(196,157,84,0.12),transparent_34%)] lg:block" />
         <div className="relative mx-auto w-full max-w-content px-6 py-14 sm:py-16 lg:py-20">
           <div className="max-w-3xl space-y-6">
-            <Eyebrow>Join the early team</Eyebrow>
+            <Eyebrow>Join the Team</Eyebrow>
             <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Build before the category has a name.</h1>
             <div className="h-px w-10 bg-signal" />
             <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
@@ -185,7 +178,7 @@ export default function TeamPage() {
             <p className="max-w-2xl text-base leading-8 text-muted">
               We are looking for people with unusual judgment, discretion, and builder energy.
             </p>
-            <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+            <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
           </div>
         </div>
       </section>
@@ -239,13 +232,13 @@ export default function TeamPage() {
         <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-14">
           <div className="border border-white/20 bg-black/18 p-6 sm:p-8">
             <div className="max-w-2xl space-y-5">
-              <Eyebrow>Private access path.</Eyebrow>
-              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Introduce yourself through private access.</h2>
+              <Eyebrow>Request access path.</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Introduce yourself through request access.</h2>
               <p className="text-base leading-8 text-muted">
                 Entraphy reviews early-builder introductions through the same private access path used for selected partners, advisors, and pilot
                 candidates.
               </p>
-              <ButtonLink href="/access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+              <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
             </div>
           </div>
           <aside className="border-t border-white/18 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-12">

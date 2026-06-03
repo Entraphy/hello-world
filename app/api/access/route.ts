@@ -116,7 +116,7 @@ function formatEmailBody(payload: CleanAccessPayload) {
     `Optional note: ${payload.note || "Not provided"}`,
     `Referral: ${payload.referral || "Not provided"}`,
     `Submitted timestamp: ${payload.submittedAt}`,
-    `Source path: ${payload.sourcePath || "/access"}`
+    `Source path: ${payload.sourcePath || "/request-access"}`
   ].join("\n");
 }
 

@@ -6,11 +6,11 @@ export const site = {
   nav: {
     primary: [
       { label: "Thesis", href: "/#thesis" },
-      { label: "Partners", href: "/#thesis" },
+      { label: "Partner With Us", href: "/partners" },
       { label: "Join the Team", href: "/team" },
-      { label: "Access", href: "/access" }
+      { label: "Private Access", href: "/access" }
     ],
-    cta: { label: "Request Private Access", href: "/access" }
+    cta: { label: "Request Private Access", href: "/request-access" }
   },
   pages: {
     home: {

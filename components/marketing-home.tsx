@@ -21,7 +21,7 @@ export function HomePageContent() {
             </p>
             <Eyebrow>Private development. Selective access. Patent pending.</Eyebrow>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="/access">Request Private Access</ButtonLink>
+              <ButtonLink href="/request-access">Request Private Access</ButtonLink>
               <ButtonLink href="/team" variant="secondary">
                 Join the Team
               </ButtonLink>
@@ -77,7 +77,7 @@ export function HomePageContent() {
               <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Our first product remains in private development.</h2>
               <p className="text-base leading-8 text-muted">Public details are limited by design.</p>
               <p className="max-w-md text-sm leading-7 text-muted">Deeper materials remain available only through private access.</p>
-              <ButtonLink href="/access">Request Private Access</ButtonLink>
+              <ButtonLink href="/request-access">Request Private Access</ButtonLink>
             </div>
           </div>
         </div>

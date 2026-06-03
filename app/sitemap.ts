@@ -15,6 +15,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7
     },
     {
+      url: `${siteUrl}/request-access`,
+      changeFrequency: "monthly",
+      priority: 0.6
+    },
+    {
+      url: `${siteUrl}/partners`,
+      changeFrequency: "monthly",
+      priority: 0.6
+    },
+    {
+      url: `${siteUrl}/team`,
+      changeFrequency: "monthly",
+      priority: 0.5
+    },
+    {
       url: `${siteUrl}/legal/privacy`,
       changeFrequency: "yearly",
       priority: 0.2

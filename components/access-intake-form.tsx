@@ -133,7 +133,7 @@ function buildNarrative(question: string, answer: string) {
 }
 
 function sourcePathFor(accessPath: AccessPath) {
-  return `/access?type=${accessPath.slug}`;
+  return `/request-access?type=${accessPath.slug}`;
 }
 
 function updateUrl(accessPath: AccessPath) {
@@ -144,7 +144,7 @@ function updateUrl(accessPath: AccessPath) {
 export function AccessIntakeForm({ initialType }: { initialType?: string }) {
   const initialPath = useMemo(() => pathFromType(initialType), [initialType]);
   const [selectedPath, setSelectedPath] = useState<AccessPath>(initialPath);
-  const [sourcePath, setSourcePath] = useState(isKnownType(initialType) ? sourcePathFor(initialPath) : "/access");
+  const [sourcePath, setSourcePath] = useState(isKnownType(initialType) ? sourcePathFor(initialPath) : "/request-access");
   const [form, setForm] = useState<FormState>(() => createInitialForm(initialPath));
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");

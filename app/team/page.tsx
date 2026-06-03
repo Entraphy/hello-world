@@ -183,7 +183,7 @@ export default function TeamPage() {
             <p className="max-w-2xl text-base leading-8 text-muted">
               We are looking for people with unusual judgment, discretion, and builder energy.
             </p>
-            <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
+            <ButtonLink href="/introduce-yourself">Introduce Yourself -&gt;</ButtonLink>
           </div>
         </div>
       </section>
@@ -262,8 +262,8 @@ export default function TeamPage() {
                 </div>
               </div>
               <div className="space-y-3">
-                <ButtonLink href="/request-access?type=builder">Introduce Yourself -&gt;</ButtonLink>
-                <p className="text-xs leading-5 text-muted">For early builders&nbsp;&nbsp;/&nbsp;&nbsp;Request Builder Access</p>
+                <ButtonLink href="/introduce-yourself">Introduce Yourself -&gt;</ButtonLink>
+                <p className="text-xs leading-5 text-muted">For early builders&nbsp;&nbsp;/&nbsp;&nbsp;Introduce yourself</p>
               </div>
             </div>
           </div>

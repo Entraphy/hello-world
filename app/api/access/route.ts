@@ -18,6 +18,8 @@ type AccessPayload = {
   referral?: unknown;
   companyUrl?: unknown;
   sourcePath?: unknown;
+  requestCategory?: unknown;
+  helpArea?: unknown;
 };
 
 type CleanAccessPayload = {
@@ -32,6 +34,8 @@ type CleanAccessPayload = {
   note: string;
   referral: string;
   sourcePath: string;
+  requestCategory: string;
+  helpArea: string;
   submittedAt: string;
 };
 
@@ -48,7 +52,9 @@ const fieldLimits: Record<Exclude<keyof AccessPayload, "companyUrl">, number> = 
   website: 300,
   note: 1_500,
   referral: 120,
-  sourcePath: 80
+  sourcePath: 120,
+  requestCategory: 40,
+  helpArea: 120
 };
 
 function isObject(value: unknown): value is AccessPayload {
@@ -72,6 +78,8 @@ function validatePayload(payload: AccessPayload) {
     note: cleanString(payload.note, fieldLimits.note),
     referral: cleanString(payload.referral, fieldLimits.referral),
     sourcePath: cleanString(payload.sourcePath, fieldLimits.sourcePath),
+    requestCategory: cleanString(payload.requestCategory, fieldLimits.requestCategory),
+    helpArea: cleanString(payload.helpArea, fieldLimits.helpArea),
     submittedAt: new Date().toISOString()
   };
 
@@ -98,13 +106,15 @@ function validatePayload(payload: AccessPayload) {
 
 function formatEmailBody(payload: CleanAccessPayload) {
   return [
-    "New Entraphy private access request",
+    payload.requestCategory === "builder" ? "New Entraphy team introduction" : "New Entraphy partner request",
     "",
     `Name: ${payload.name}`,
     `Organization: ${payload.organization || "Not provided"}`,
     `Role: ${payload.role || "Not provided"}`,
     `Work email: ${payload.email}`,
     `Access type: ${payload.accessType}`,
+    `Request category: ${payload.requestCategory || "Not provided"}`,
+    `Help area: ${payload.helpArea || "Not provided"}`,
     "",
     "Primary context:",
     payload.problem || "Not provided",
@@ -118,6 +128,14 @@ function formatEmailBody(payload: CleanAccessPayload) {
     `Submitted timestamp: ${payload.submittedAt}`,
     `Source path: ${payload.sourcePath || "/request-access"}`
   ].join("\n");
+}
+
+function subjectFor(payload: CleanAccessPayload) {
+  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
+    return `New Entraphy team introduction: ${payload.helpArea || payload.referral || "Early Builder"} \u2014 ${payload.name}`;
+  }
+
+  return `New Entraphy partner request: ${payload.accessType} \u2014 ${payload.organization || payload.name}`;
 }
 
 async function sendAccessEmail(payload: CleanAccessPayload) {
@@ -140,9 +158,7 @@ async function sendAccessEmail(payload: CleanAccessPayload) {
       from,
       to,
       reply_to: payload.email,
-      subject: `New Entraphy ${payload.accessType === "Early Builder" ? "early builder introduction" : "private access request"}: ${
-        payload.organization || payload.name
-      }`,
+      subject: subjectFor(payload),
       text: formatEmailBody(payload)
     })
   });

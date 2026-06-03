@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { AccessIntakeForm } from "@/components/access-intake-form";
+import { ButtonLink } from "@/components/marketing-primitives";
 
 export const metadata: Metadata = {
-  title: "Request Access | Entraphy Systems",
-  description: "Request access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
+  title: "Choose Your Path | Entraphy Systems",
+  description: "Choose the right Entraphy request path.",
   alternates: {
     canonical: "https://www.entraphy.com/request-access"
   },
   openGraph: {
-    title: "Request Access | Entraphy Systems",
-    description: "Request access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
+    title: "Choose Your Path | Entraphy Systems",
+    description: "Choose the right Entraphy request path.",
     type: "website",
     url: "https://www.entraphy.com/request-access",
     siteName: "Entraphy Systems",
@@ -26,67 +27,54 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Request Access | Entraphy Systems",
-    description: "Request access to Entraphy briefing materials for selected partners, pilot candidates, advisors, and early builders.",
+    title: "Choose Your Path | Entraphy Systems",
+    description: "Choose the right Entraphy request path.",
     images: ["/brand/entraphy-og-image.png"]
   }
 };
+
+function targetFor(type?: string) {
+  if (type === "partner" || type === "pilot" || type === "advisor" || type === "other") {
+    return `/request-partner-access?type=${type}`;
+  }
+
+  if (type === "builder") {
+    return "/introduce-yourself";
+  }
+
+  return null;
+}
 
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">{children}</p>;
 }
 
 export default function RequestAccessPage({ searchParams }: { searchParams?: { type?: string } }) {
+  const target = targetFor(searchParams?.type);
+
+  if (target) {
+    redirect(target);
+  }
+
   return (
     <div className="bg-bg text-fg">
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,7,7),rgb(7,12,10)_58%,rgb(8,10,8))]" />
-        <div className="absolute -right-32 top-0 h-[28rem] w-[36rem] rounded-full border border-white/12 opacity-40" />
-        <div className="absolute right-2 top-20 h-72 w-72 rounded-full border border-signal/22 bg-signal/[0.035]" />
-        <div className="relative mx-auto grid w-full max-w-content gap-10 px-6 py-14 sm:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-20">
-          <div className="max-w-2xl space-y-6">
-            <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Request Access</h1>
-            <p className="text-base leading-8 text-muted sm:text-lg">
-              Entraphy reviews access requests manually for selected partners, pilot candidates, advisors, early builders, and careful inquiries.
+        <div className="absolute right-0 top-0 h-[24rem] w-[32rem] rounded-full border border-signal/12 opacity-45" />
+        <div className="relative mx-auto w-full max-w-content px-6 py-16 sm:py-20 lg:py-24">
+          <div className="max-w-3xl space-y-7">
+            <Eyebrow>Intent matters</Eyebrow>
+            <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Choose your path.</h1>
+            <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
+              Partner conversations and early-builder introductions are reviewed through different private paths.
             </p>
-            <p className="max-w-xl text-sm leading-7 text-muted">
-              Choose the path that best matches your context. Public details remain limited by design, and every request is reviewed manually.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-white/12">
-        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1.25fr_0.75fr] lg:py-16">
-          <div>
-            <div className="mb-6">
-              <Eyebrow>Controlled access desk</Eyebrow>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <ButtonLink href="/request-partner-access">Partner With Us</ButtonLink>
+              <ButtonLink href="/introduce-yourself" variant="secondary">
+                Introduce Yourself
+              </ButtonLink>
             </div>
-            <AccessIntakeForm initialType={searchParams?.type} />
           </div>
-          <aside className="border-t border-white/18 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-12">
-            <div className="space-y-6">
-              <span aria-hidden className="relative block h-16 w-16 text-signal">
-                <span className="absolute inset-x-2 top-0 h-14 rounded-b-[1.75rem] border border-current" />
-                <span className="absolute left-1/2 top-7 h-5 w-5 -translate-x-1/2 rounded-sm border border-current" />
-                <span className="absolute left-1/2 top-5 h-4 w-3 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
-                <span className="absolute left-1/2 top-10 h-2 w-px -translate-x-1/2 bg-current" />
-              </span>
-              <div className="space-y-4">
-                <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Confidentiality and expectations</h2>
-                <div className="h-px w-10 bg-signal" />
-                <p className="text-base leading-8 text-muted">
-                  Submitting a request does not guarantee access. Entraphy reviews requests manually and may require additional confidentiality steps
-                  before sharing deeper materials.
-                </p>
-              </div>
-              <div className="border-t border-white/14 pt-7">
-                <p className="text-base leading-8 text-muted">
-                  Private development. Selective access. <span className="text-signal">Patent pending.</span>
-                </p>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
     </div>

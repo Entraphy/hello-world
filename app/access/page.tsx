@@ -33,7 +33,17 @@ export const metadata: Metadata = {
   }
 };
 
-const knownRequestTypes = new Set(["partner", "pilot", "advisor", "builder", "other"]);
+function requestTarget(type?: string) {
+  if (type === "partner" || type === "pilot" || type === "advisor" || type === "other") {
+    return `/request-partner-access?type=${type}`;
+  }
+
+  if (type === "builder") {
+    return "/introduce-yourself";
+  }
+
+  return null;
+}
 
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">{children}</p>;
@@ -58,8 +68,10 @@ function AccessSeal() {
 }
 
 export default function PrivateAccessPage({ searchParams }: { searchParams?: { type?: string } }) {
-  if (searchParams?.type && knownRequestTypes.has(searchParams.type)) {
-    redirect(`/request-access?type=${searchParams.type}`);
+  const target = requestTarget(searchParams?.type);
+
+  if (target) {
+    redirect(target);
   }
 
   return (
@@ -74,10 +86,13 @@ export default function PrivateAccessPage({ searchParams }: { searchParams?: { t
               Approved briefing materials are available only to selected partners, pilot customers, advisors, and early builders.
             </p>
             <p className="max-w-xl text-sm leading-7 text-muted">
-              Sign-in access is not yet publicly open. If you have not been approved, request access for manual review.
+              Sign-in access is not yet publicly open. If you have not been approved, begin through the appropriate public path.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="/request-access">Request Access</ButtonLink>
+              <ButtonLink href="/partners">Partner With Us</ButtonLink>
+              <ButtonLink href="/team" variant="secondary">
+                Join the Team
+              </ButtonLink>
               <ButtonLink href="/" variant="secondary">
                 Return Home
               </ButtonLink>

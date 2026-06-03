@@ -121,8 +121,8 @@ export default function PartnersPage() {
                 Product details remain private. Qualified conversations begin through the request access path.
               </p>
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-                <ButtonLink href="/request-access?type=partner">Request Partner Access</ButtonLink>
-                <ButtonLink href="/request-access?type=pilot" variant="secondary">
+                <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
+                <ButtonLink href="/request-partner-access?type=pilot" variant="secondary">
                   Pilot Candidate Access
                 </ButtonLink>
               </div>
@@ -197,7 +197,7 @@ export default function PartnersPage() {
                 <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Begin a partner conversation.</h2>
                 <p className="mt-3 text-base leading-7 text-muted">Request access to start the process.</p>
               </div>
-              <ButtonLink href="/request-access?type=partner">Request Partner Access</ButtonLink>
+              <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
             </div>
           </div>
         </div>

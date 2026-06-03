@@ -51,7 +51,20 @@ const engagementTypes = [
   }
 ];
 
-const steps = ["Request access.", "Entraphy reviews manually.", "Qualified conversations may proceed to a private briefing."];
+const steps = [
+  {
+    title: "Request access.",
+    body: "Choose the path that best matches your context."
+  },
+  {
+    title: "Entraphy reviews manually.",
+    body: "Every request is reviewed with care and discretion."
+  },
+  {
+    title: "Qualified conversations may proceed.",
+    body: "Qualified organizations may be invited to a private briefing."
+  }
+];
 
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">{children}</p>;
@@ -162,15 +175,18 @@ export default function PartnersPage() {
           <div className="mb-8">
             <Eyebrow>How engagement begins</Eyebrow>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3">
             {steps.map((step, index) => (
-              <div key={step} className="space-y-6">
+              <div key={step.title} className="space-y-7">
                 <div className="flex items-center gap-5 text-signal">
-                  <p className="font-display text-4xl leading-none">0{index + 1}</p>
-                  <span className="h-px flex-1 bg-gradient-to-r from-white/28 via-white/18 to-transparent" />
-                  {index < steps.length - 1 ? <span className="h-1.5 w-1.5 rounded-full bg-signal/80" /> : null}
+                  <p className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-signal/52 font-display text-3xl leading-none">0{index + 1}</p>
+                  <span className="h-px flex-1 bg-gradient-to-r from-signal/75 via-signal/42 to-transparent" />
+                  {index < steps.length - 1 ? <span className="h-1.5 w-1.5 rounded-full bg-signal/85" /> : null}
                 </div>
-                <p className="max-w-xs text-base leading-7 text-muted">{step}</p>
+                <div className="max-w-xs space-y-3">
+                  <h2 className="font-display text-2xl leading-tight text-fg">{step.title}</h2>
+                  <p className="text-sm leading-7 text-muted">{step.body}</p>
+                </div>
               </div>
             ))}
           </div>

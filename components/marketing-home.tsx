@@ -126,12 +126,7 @@ export function HomePageContent() {
               <Eyebrow>Private development</Eyebrow>
               <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Our first product remains in private development.</h2>
               <p className="text-base leading-8 text-muted">Public details are limited by design.</p>
-              <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-                <ButtonLink href="/access?type=partner">Request Partner Access</ButtonLink>
-                <ButtonLink href="/access?type=pilot" variant="secondary">
-                  Pilot Candidate Access
-                </ButtonLink>
-              </div>
+              <p className="max-w-md text-sm leading-7 text-muted">Deeper materials remain available only through private access.</p>
             </div>
           </div>
         </div>

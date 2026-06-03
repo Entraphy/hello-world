@@ -14,16 +14,16 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-white/12 bg-black">
       <div className="mx-auto flex w-full max-w-content flex-col gap-4 px-6 py-7">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
-          <p className="shrink-0 font-display text-lg leading-6 text-fg">Entraphy Systems</p>
-          <p className="max-w-3xl text-sm leading-6 text-muted lg:max-w-none lg:flex-1 lg:whitespace-nowrap">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-2 text-center">
+          <p className="font-display text-lg leading-6 text-fg">Entraphy Systems</p>
+          <p className="text-sm leading-6 text-muted lg:whitespace-nowrap">
             {companyStatement}
           </p>
         </div>
-        <div className="flex flex-col gap-4 border-t border-white/10 pt-4 md:flex-row md:items-center md:justify-between md:gap-8">
+        <div className="flex flex-col items-center gap-4 border-t border-white/10 pt-4 text-center md:flex-row md:items-center md:justify-between md:gap-8 md:text-left">
           <p
             aria-label="Private Development · Patent Pending"
-            className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] leading-5 tracking-[0.18em] text-signal uppercase"
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-[10px] leading-5 tracking-[0.18em] text-signal uppercase md:justify-start"
           >
             <span className="whitespace-nowrap">Private Development</span>
             <span aria-hidden="true" className="text-signal/50">
@@ -33,7 +33,7 @@ export function SiteFooter() {
           </p>
           <nav
             aria-label="Footer"
-            className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[10px] tracking-[0.24em] text-fg uppercase md:flex-nowrap md:justify-end"
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[10px] tracking-[0.24em] text-fg uppercase md:flex-nowrap md:justify-end"
           >
             {footerLinks.map((link, index) => (
               <span key={link.href} className="inline-flex items-center gap-x-3 whitespace-nowrap">

@@ -25,10 +25,10 @@
 1. Confirm `https://www.entraphy.com/` returns `200`.
 2. Confirm `https://www.entraphy.com/sitemap.xml` returns `200`.
 3. Confirm `https://www.entraphy.com/robots.txt` returns `200`.
-4. Confirm old routes do not expose old content: `/products`, `/products/blacksmith`, `/docs`, `/demo`, `/contact`, `/briefing`, `/platform`, `/how-it-works`, and `/use-cases`.
+4. Confirm old product, demo, and documentation routes do not expose old content: `/products`, `/docs`, `/demo`, `/contact`, `/briefing`, `/platform`, `/how-it-works`, and `/use-cases`.
 
 ## Public leakage check
 
-1. Confirm `Blacksmith` is absent from production-facing public routes, metadata, sitemap, OpenGraph text, and JSON-LD.
+1. Confirm old named-product language is absent from production-facing public routes, metadata, sitemap, OpenGraph text, and JSON-LD.
 2. Confirm old product and demo language is absent from production-facing public routes.
 3. Confirm archive and backup paths are not indexed or submitted in the sitemap.

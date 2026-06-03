@@ -14,5 +14,5 @@ export function generateStaticParams() {
 }
 
 export default function MarketingRoutePage() {
-  permanentRedirect("/#access");
+  permanentRedirect("/access");
 }

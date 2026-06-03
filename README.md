@@ -9,3 +9,9 @@ The current public site is being migrated to Entraphy's stealth-safe positioning
 - Legacy product and named-product public routes have been neutralized or redirected to private access.
 - Public language is intentionally high-signal and low-mechanism.
 - Private portal, authentication, database, and document-room functionality are intentionally not implemented yet.
+
+## Private Access Intake
+
+The `/access` page contains a polished static-preview intake form. It validates inputs locally and clearly tells visitors that submissions are not transmitted yet.
+
+TODO: connect `/access` to durable private submission handling before opening intake. Preferred options are a Next.js route or server action backed by an existing email/form provider configured through environment variables, with no provider secrets exposed to the client.

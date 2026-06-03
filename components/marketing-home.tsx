@@ -51,7 +51,7 @@ export function HomePageContent() {
             </p>
             <Eyebrow>Private development. Selective access. Patent pending.</Eyebrow>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-              <ButtonLink href="#access">Request Private Access -&gt;</ButtonLink>
+              <ButtonLink href="/access">Request Private Access -&gt;</ButtonLink>
               <ButtonLink href="#team" variant="secondary">
                 Join the Early Team -&gt;
               </ButtonLink>
@@ -120,7 +120,7 @@ export function HomePageContent() {
               Entraphy is currently engaging selected partners, pilot customers, advisors, and early builders.
             </h2>
             <p className="max-w-md text-sm leading-7 text-muted">Deeper materials are available only through the private briefing room.</p>
-            <ButtonLink href="/briefing">Request Private Access -&gt;</ButtonLink>
+            <ButtonLink href="/access">Request Private Access -&gt;</ButtonLink>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {accessPaths.map((path, index) => (
@@ -144,7 +144,7 @@ export function HomePageContent() {
             <h2 className="max-w-3xl font-display text-3xl leading-tight text-fg sm:text-4xl">
               Entraphy is assembling a small early team for work at the edge of AI, infrastructure, systems trust, and trusted autonomy.
             </h2>
-            <ButtonLink href="/briefing" variant="secondary">
+            <ButtonLink href="/access" variant="secondary">
               Introduce Yourself -&gt;
             </ButtonLink>
           </div>

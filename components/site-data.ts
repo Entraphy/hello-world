@@ -8,9 +8,9 @@ export const site = {
       { label: "Thesis", href: "/#thesis" },
       { label: "Partners", href: "/#partners" },
       { label: "Team", href: "/#team" },
-      { label: "Access", href: "/#access" }
+      { label: "Access", href: "/access" }
     ],
-    cta: { label: "Request Private Access", href: "/#access" }
+    cta: { label: "Request Private Access", href: "/access" }
   },
   pages: {
     home: {

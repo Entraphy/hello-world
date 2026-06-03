@@ -5,52 +5,52 @@ const nextConfig = {
     return [
       {
         source: "/briefing",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/demo",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/contact",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/products",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/products/:path*",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/docs",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/docs/:path*",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/platform",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/how-it-works",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {
         source: "/use-cases",
-        destination: "/#access",
+        destination: "/access",
         permanent: true
       },
       {

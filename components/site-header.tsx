@@ -37,6 +37,10 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  function isActiveNavItem(href: string, index: number) {
+    return href === "/access" ? pathname === "/access" : pathname === "/" && index === 0;
+  }
+
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
@@ -51,7 +55,7 @@ export function SiteHeader() {
 
           <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex">
             {site.nav.primary.map((item, index) => (
-              <NavLink key={item.href} href={item.href} active={index === 0}>
+              <NavLink key={item.href} href={item.href} active={isActiveNavItem(item.href, index)}>
                 {item.label}
               </NavLink>
             ))}
@@ -73,8 +77,14 @@ export function SiteHeader() {
                 className="menu-panel absolute right-0 top-full z-50 mt-3 max-h-[calc(100vh-6rem)] w-[min(92vw,20rem)] overflow-y-auto overscroll-contain border border-white/15 bg-[rgb(6,9,8)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.52)]"
               >
                 <div className="flex flex-col gap-1">
-                  {site.nav.primary.map((item) => (
-                    <NavLink key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className="block w-full px-3 py-2.5 after:hidden">
+                  {site.nav.primary.map((item, index) => (
+                    <NavLink
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block w-full px-3 py-2.5 after:hidden"
+                      active={isActiveNavItem(item.href, index)}
+                    >
                       {item.label}
                     </NavLink>
                   ))}

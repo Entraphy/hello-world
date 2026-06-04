@@ -10,33 +10,35 @@ The current public site is being migrated to Entraphy's stealth-safe positioning
 - Public language is intentionally high-signal and low-mechanism.
 - Private portal, authentication, database, and document-room functionality are intentionally not implemented yet.
 
-## Private Access Intake
+## Public Intake Forms
 
-The `/access` page contains a lightweight private-access intake form backed by `POST /api/access`.
+The `/request-partner-access` and `/signal` pages contain lightweight intake forms backed by `POST /api/access`.
 
-The API route validates submissions server-side, applies a hidden honeypot field, and sends a concise email notification through the Resend HTTP API using server-only environment variables. No access portal, authentication, CRM, analytics, database, or local browser storage is implemented.
+The API route validates submissions server-side, applies a hidden honeypot field, and sends a concise internal email notification through the Resend HTTP API using server-only environment variables. Optional submitter confirmations can be enabled explicitly. No access portal, authentication, CRM, analytics, database, or local browser storage is implemented.
 
 Required environment variables:
 
 - `RESEND_API_KEY`
+- `ENTRAPHY_NOTIFICATION_TO`
+- `ENTRAPHY_NOTIFICATION_FROM`
+
+Recommended deployment values:
+
+- `ENTRAPHY_NOTIFICATION_TO=<private internal recipient>`
+- `ENTRAPHY_NOTIFICATION_FROM=Entraphy Systems <no-reply@entraphy.com>`
+- `ENTRAPHY_PUBLIC_FROM=Entraphy Systems <no-reply@entraphy.com>`
+- `ENTRAPHY_SEND_CONFIRMATION=false`
+
+`ENTRAPHY_NOTIFICATION_FROM` and `ENTRAPHY_PUBLIC_FROM` must use sender addresses or domains verified in Resend. Submitter-facing confirmations, when enabled, must use `ENTRAPHY_PUBLIC_FROM` and must not expose a private recipient address.
+
+Backward-compatible environment variables:
+
 - `ENTRAPHY_ACCESS_INTAKE_TO`
 - `ENTRAPHY_ACCESS_INTAKE_FROM`
 
-Temporary deployment values:
+If both old and new variables are configured, the API prefers `ENTRAPHY_NOTIFICATION_TO` and `ENTRAPHY_NOTIFICATION_FROM`.
 
-- `ENTRAPHY_ACCESS_INTAKE_TO=jarvis.taylor@taylogictech.com`
-- `ENTRAPHY_ACCESS_INTAKE_FROM=jarvis.taylor@taylogictech.com`
-
-`ENTRAPHY_ACCESS_INTAKE_FROM` must be a sender address or domain verified in Resend. If `jarvis.taylor@taylogictech.com` or `taylogictech.com` is not verified in Resend, live delivery may fail.
-
-Intended future deployment values:
-
-- `ENTRAPHY_ACCESS_INTAKE_TO=jarvis.taylor@taylogictech.com`
-- `ENTRAPHY_ACCESS_INTAKE_FROM=access@entraphy.com` or `ENTRAPHY_ACCESS_INTAKE_FROM=no-reply@entraphy.com`
-
-Use `access@entraphy.com` or `no-reply@entraphy.com` only after `entraphy.com` is configured and verified for sending in Resend.
-
-If any required variable is missing, valid submissions fail gracefully with a user-facing retry message and no sensitive form content is logged. Local testing can verify validation and graceful configuration errors without email credentials; configure all three variables to send a real notification.
+If any required variable is missing, valid submissions fail gracefully with a user-facing retry message and no sensitive form content is logged. Local testing can verify validation, honeypot behavior, and graceful configuration errors without email credentials.
 
 Future hardening checkpoints:
 

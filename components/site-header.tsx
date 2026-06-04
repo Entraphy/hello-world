@@ -46,7 +46,7 @@ export function SiteHeader() {
       return true;
     }
 
-    if (href === "/team" && pathname === "/introduce-yourself") {
+    if (href === "/team" && (pathname === "/introduce-yourself" || pathname === "/signal")) {
       return true;
     }
 

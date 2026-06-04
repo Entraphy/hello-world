@@ -6,7 +6,7 @@ function requestTarget(type?: string) {
   }
 
   if (type === "builder") {
-    return "/introduce-yourself";
+    return "/signal";
   }
 
   return null;

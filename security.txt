@@ -1,7 +1,7 @@
 # Entraphy security.txt
 # See: https://securitytxt.org/
 
-Contact: mailto:jarvis.taylor@taylogitech.com
+Contact: mailto:no-reply@entraphy.com
 Policy: https://entraphy.com/security
 Hiring: https://entraphy.com/careers
 Preferred-Languages: en

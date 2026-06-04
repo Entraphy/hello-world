@@ -39,7 +39,7 @@ function targetFor(type?: string) {
   }
 
   if (type === "builder") {
-    return "/introduce-yourself";
+    return "/signal";
   }
 
   return null;
@@ -70,8 +70,8 @@ export default function RequestAccessPage({ searchParams }: { searchParams?: { t
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <ButtonLink href="/request-partner-access">Partner With Us</ButtonLink>
-              <ButtonLink href="/introduce-yourself" variant="secondary">
-                Introduce Yourself
+              <ButtonLink href="/signal" variant="secondary">
+                Send Us Your Signal
               </ButtonLink>
             </div>
           </div>

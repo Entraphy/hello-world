@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 const accessTypes = new Set(["Strategic Partner", "Pilot Candidate", "Advisor", "Early Builder", "Other"]);
 const maxBodyLength = 16_000;
 const resendEndpoint = "https://api.resend.com/emails";
+const defaultPublicFrom = "Entraphy Systems <no-reply@entraphy.com>";
 
 type AccessPayload = {
   name?: unknown;
@@ -65,6 +66,18 @@ function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function cleanHeaderValue(value: string | undefined, maxLength = 320) {
+  return value?.trim().replace(/[\r\n]/g, " ").slice(0, maxLength) ?? "";
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function confirmationEnabled() {
+  return process.env.ENTRAPHY_SEND_CONFIRMATION?.trim().toLowerCase() === "true";
+}
+
 function validatePayload(payload: AccessPayload) {
   const cleaned: CleanAccessPayload = {
     name: cleanString(payload.name, fieldLimits.name),
@@ -106,7 +119,7 @@ function validatePayload(payload: AccessPayload) {
 
 function formatEmailBody(payload: CleanAccessPayload) {
   return [
-    payload.requestCategory === "builder" ? "New Entraphy team introduction" : "New Entraphy partner request",
+    payload.requestCategory === "builder" ? "New Entraphy signal" : "New Entraphy partner request",
     "",
     `Name: ${payload.name}`,
     `Organization: ${payload.organization || "Not provided"}`,
@@ -132,19 +145,77 @@ function formatEmailBody(payload: CleanAccessPayload) {
 
 function subjectFor(payload: CleanAccessPayload) {
   if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
-    return `New Entraphy team introduction: ${payload.helpArea || payload.referral || "Early Builder"} \u2014 ${payload.name}`;
+    return `New Entraphy signal: ${payload.helpArea || payload.referral || "Early Builder"} \u2014 ${payload.name}`;
   }
 
   return `New Entraphy partner request: ${payload.accessType} \u2014 ${payload.organization || payload.name}`;
 }
 
-async function sendAccessEmail(payload: CleanAccessPayload) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.ENTRAPHY_ACCESS_INTAKE_TO;
-  const from = process.env.ENTRAPHY_ACCESS_INTAKE_FROM;
+function confirmationSubjectFor(payload: CleanAccessPayload) {
+  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
+    return "Entraphy signal received";
+  }
 
-  if (!apiKey || !to || !from) {
-    return { ok: false, status: 503, error: "Access intake email is not configured." };
+  return "Entraphy request received";
+}
+
+function confirmationBodyFor(payload: CleanAccessPayload) {
+  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
+    return [
+      "Your signal has been received.",
+      "",
+      "Entraphy reviews early-team introductions manually. If there may be alignment, we will follow up.",
+      "",
+      "Submitting a signal does not create an employment relationship or guarantee a response.",
+      "",
+      "Entraphy Systems"
+    ].join("\n");
+  }
+
+  return [
+    "Your request has been received.",
+    "",
+    "Entraphy reviews partner and pilot requests manually. If there may be alignment, we will follow up.",
+    "",
+    "Submitting a request does not guarantee access, partnership, or a response.",
+    "",
+    "Entraphy Systems"
+  ].join("\n");
+}
+
+function emailConfig() {
+  return {
+    apiKey: cleanHeaderValue(process.env.RESEND_API_KEY, 500),
+    notificationTo: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_TO ?? process.env.ENTRAPHY_ACCESS_INTAKE_TO),
+    notificationFrom: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_FROM ?? process.env.ENTRAPHY_ACCESS_INTAKE_FROM ?? defaultPublicFrom),
+    publicFrom: cleanHeaderValue(process.env.ENTRAPHY_PUBLIC_FROM ?? defaultPublicFrom)
+  };
+}
+
+async function sendResendEmail({
+  apiKey,
+  from,
+  to,
+  replyTo,
+  subject,
+  text
+}: {
+  apiKey: string;
+  from: string;
+  to: string;
+  replyTo?: string;
+  subject: string;
+  text: string;
+}) {
+  const body: Record<string, string> = {
+    from,
+    to,
+    subject,
+    text
+  };
+
+  if (replyTo && isValidEmail(replyTo)) {
+    body.reply_to = replyTo;
   }
 
   const response = await fetch(resendEndpoint, {
@@ -154,17 +225,54 @@ async function sendAccessEmail(payload: CleanAccessPayload) {
       "Content-Type": "application/json",
       "Idempotency-Key": randomUUID()
     },
-    body: JSON.stringify({
-      from,
-      to,
-      reply_to: payload.email,
-      subject: subjectFor(payload),
-      text: formatEmailBody(payload)
-    })
+    body: JSON.stringify(body)
   });
 
   if (!response.ok) {
-    return { ok: false, status: 502, error: "Access request email could not be sent." };
+    return { ok: false };
+  }
+
+  return { ok: true };
+}
+
+async function sendAccessEmail(payload: CleanAccessPayload) {
+  const config = emailConfig();
+
+  if (!config.apiKey || !config.notificationTo || !config.notificationFrom) {
+    return { ok: false, status: 503, error: "Intake email is not configured." };
+  }
+
+  const notification = await sendResendEmail({
+    apiKey: config.apiKey,
+    from: config.notificationFrom,
+    to: config.notificationTo,
+    replyTo: payload.email,
+    subject: subjectFor(payload),
+    text: formatEmailBody(payload)
+  });
+
+  if (!notification.ok) {
+    return { ok: false, status: 502, error: "Intake email could not be sent." };
+  }
+
+  if (!confirmationEnabled()) {
+    return { ok: true };
+  }
+
+  if (!config.publicFrom) {
+    return { ok: false, status: 503, error: "Confirmation email is not configured." };
+  }
+
+  const confirmation = await sendResendEmail({
+    apiKey: config.apiKey,
+    from: config.publicFrom,
+    to: payload.email,
+    subject: confirmationSubjectFor(payload),
+    text: confirmationBodyFor(payload)
+  });
+
+  if (!confirmation.ok) {
+    return { ok: false, status: 502, error: "Confirmation email could not be sent." };
   }
 
   return { ok: true };

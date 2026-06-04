@@ -114,7 +114,7 @@ function Eyebrow({ children }: { children: string }) {
 function SignalLink({ children }: { children: string }) {
   return (
     <Link
-      href="/introduce-yourself"
+      href="/signal"
       className="inline-flex min-h-12 items-center justify-center gap-5 border border-signal/78 bg-signal/[0.045] px-6 py-3 text-[0.68rem] font-semibold tracking-[0.24em] text-fg uppercase shadow-[0_0_0_1px_rgba(196,157,84,0.08)] transition hover:border-signal hover:bg-signal/[0.085] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
     >
       <span>{children}</span>

@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5
     },
     {
-      url: `${siteUrl}/introduce-yourself`,
+      url: `${siteUrl}/signal`,
       changeFrequency: "monthly",
       priority: 0.5
     },

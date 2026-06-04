@@ -20,7 +20,7 @@ type TeamFormState = {
   problem: string;
   strengths: string;
   contribution: string;
-  whyEntraphy: string;
+  insight: string;
   note: string;
   acknowledged: boolean;
   companyUrl: string;
@@ -32,7 +32,7 @@ const teamPaths: TeamPath[] = [
   {
     slug: "systems",
     title: "Systems Builder",
-    body: "For builders who can turn ambiguous, high-consequence ideas into secure, reliable, usable systems.",
+    body: "For people who can turn ambiguous, high-consequence ideas into secure, reliable, usable systems.",
     icon: "stack"
   },
   {
@@ -68,7 +68,7 @@ const teamPaths: TeamPath[] = [
 ];
 
 const defaultPath = teamPaths[0];
-const submissionError = "We could not submit the introduction. Please try again or contact Entraphy directly.";
+const submissionError = "We could not submit your signal. Please try again or contact Entraphy directly.";
 
 function initialForm(): TeamFormState {
   return {
@@ -82,7 +82,7 @@ function initialForm(): TeamFormState {
     problem: "",
     strengths: "",
     contribution: "",
-    whyEntraphy: "",
+    insight: "",
     note: "",
     acknowledged: false,
     companyUrl: ""
@@ -113,7 +113,7 @@ function FieldLabel({ htmlFor, children, required = false }: { htmlFor: string; 
 
 function fieldClass(error?: boolean) {
   return [
-    "mt-2 w-full border px-3.5 py-3 text-sm leading-5 text-fg caret-signal placeholder:text-muted/48 shadow-[inset_0_1px_0_rgba(242,239,230,0.045)] [color-scheme:dark]",
+    "mt-1.5 w-full border px-3.5 py-2.5 text-sm leading-5 text-fg caret-signal placeholder:text-muted/48 shadow-[inset_0_1px_0_rgba(242,239,230,0.045)] [color-scheme:dark]",
     "bg-[rgb(5,9,8)] bg-[linear-gradient(180deg,rgba(9,18,15,0.92),rgba(3,5,5,0.94))]",
     "transition hover:border-[rgb(242_239_230_/_0.32)] focus:border-[rgb(196_157_84_/_0.78)] focus:bg-[linear-gradient(180deg,rgba(11,23,18,0.96),rgba(4,7,6,0.96))] focus:outline-none focus:ring-1 focus:ring-[rgb(196_157_84_/_0.45)]",
     "disabled:cursor-not-allowed disabled:border-[rgb(242_239_230_/_0.12)] disabled:bg-black/30 disabled:text-muted/58",
@@ -185,36 +185,41 @@ function buildLine(label: string, value: string) {
   return `${label}\n${value.trim()}`;
 }
 
-function SectionHeading({ eyebrow, body }: { eyebrow: string; body?: string }) {
+function SectionHeading({ eyebrow, body, step }: { eyebrow: string; body?: string; step?: string }) {
   return (
-    <div className="space-y-3">
-      <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">{eyebrow}</p>
+    <div className="space-y-2">
+      <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">
+        {step ? `${step}. ` : null}
+        {eyebrow}
+      </p>
       {body ? <p className="max-w-2xl text-sm leading-7 text-muted">{body}</p> : null}
     </div>
   );
 }
 
-function SelectedChip({ value }: { value: string }) {
+function ReviewNote() {
   return (
-    <p className="inline-flex w-fit items-center gap-2 border border-signal/35 bg-signal/[0.055] px-3 py-1.5 font-mono text-[10px] tracking-[0.2em] text-fg/78 uppercase">
-      <span className="text-signal/80">Selected:</span>
-      <span>{value}</span>
+    <p className="inline-flex items-center gap-3 text-xs leading-5 text-muted">
+      <span aria-hidden className="relative block h-5 w-5 shrink-0 text-signal">
+        <span className="absolute bottom-0 left-1/2 h-3.5 w-4 -translate-x-1/2 border border-current" />
+        <span className="absolute left-1/2 top-0 h-4 w-3 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
+        <span className="absolute left-1/2 top-3 h-1.5 w-px -translate-x-1/2 bg-current" />
+      </span>
+      <span>Introductions are reviewed manually.</span>
     </p>
   );
 }
 
 export function TeamIntakeForm({
   initialType,
-  sourceBase = "/introduce-yourself",
-  showWhyEntraphy = false
+  sourceBase = "/signal"
 }: {
   initialType?: string;
   sourceBase?: string;
-  showWhyEntraphy?: boolean;
 }) {
   const initialPath = useMemo(() => pathFromType(initialType), [initialType]);
   const [selectedPath, setSelectedPath] = useState<TeamPath>(initialPath);
-  const [sourcePath, setSourcePath] = useState(sourceBase);
+  const [sourcePath, setSourcePath] = useState(() => sourcePathFor(initialPath, sourceBase));
   const [form, setForm] = useState<TeamFormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<FieldKey, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -256,8 +261,9 @@ export function TeamIntakeForm({
     if (!form.energy.trim()) nextErrors.energy = "Share what moves you.";
     if (!form.problem.trim()) nextErrors.problem = "Share the problem you cannot stop thinking about.";
     if (!form.strengths.trim()) nextErrors.strengths = "Share what you do better than most people you have worked with.";
-    if (!form.contribution.trim()) nextErrors.contribution = "Share what kind of work gives you energy.";
-    if (!form.acknowledged) nextErrors.acknowledged = "Please acknowledge the introduction expectations.";
+    if (!form.contribution.trim()) nextErrors.contribution = "Share how you would create leverage near the foundation.";
+    if (!form.insight.trim()) nextErrors.insight = "Share what you saw early.";
+    if (!form.acknowledged) nextErrors.acknowledged = "Please acknowledge the signal expectations.";
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
@@ -285,11 +291,11 @@ export function TeamIntakeForm({
           helpArea: selectedPath.title,
           problem: [buildLine("Selected area", selectedPath.title), buildLine("Proof of building", form.built)].join("\n\n"),
           why: [
-            buildLine("What moves you?", form.energy),
+            buildLine("What kind of work gives you energy?", form.energy),
             buildLine("What do you do better than most people you have worked with?", form.strengths),
-            buildLine("What kind of work gives you energy?", form.contribution),
             buildLine("What problem can you not stop thinking about?", form.problem),
-            showWhyEntraphy && form.whyEntraphy.trim() ? buildLine("Why Entraphy?", form.whyEntraphy) : ""
+            buildLine("How would you help an early company become more disciplined, more credible, or more capable?", form.contribution),
+            buildLine("What you saw early", form.insight)
           ]
             .filter(Boolean)
             .join("\n\n"),
@@ -321,7 +327,7 @@ export function TeamIntakeForm({
       setForm(initialForm());
       setErrors({});
       setStatus("success");
-      setStatusMessage("Introduction received. Entraphy reviews early-builder introductions manually.");
+      setStatusMessage("Signal received. Entraphy reviews early-team introductions manually.");
     } catch {
       setStatus("error");
       setStatusMessage(submissionError);
@@ -329,13 +335,10 @@ export function TeamIntakeForm({
   }
 
   return (
-    <div className="space-y-12">
-      <section className="space-y-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading eyebrow="Where could you help?" body="Select the area where you believe you can make the greatest impact." />
-          <SelectedChip value={selectedPath.title} />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <div className="space-y-8">
+      <section className="space-y-4">
+        <SectionHeading step="1" eyebrow="Where can you create leverage?" body="Select the area where you believe you could create the greatest impact." />
+        <div className="space-y-2">
           {teamPaths.map((path) => {
             const isSelected = path.slug === selectedPath.slug;
 
@@ -346,30 +349,36 @@ export function TeamIntakeForm({
                 onClick={() => selectPath(path)}
                 aria-pressed={isSelected}
                 className={[
-                  "relative min-h-52 border p-5 text-left shadow-[0_18px_50px_rgba(0,0,0,0.18)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70",
+                  "relative grid w-full grid-cols-[3rem_1fr_1.5rem] gap-3 border px-4 py-3 text-left shadow-[0_12px_34px_rgba(0,0,0,0.14)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 sm:grid-cols-[3rem_minmax(10rem,0.34fr)_1fr_1.75rem] sm:items-center",
                   isSelected
                     ? "border-signal/68 bg-[linear-gradient(180deg,rgba(18,34,28,0.7),rgba(5,8,7,0.84))]"
                     : "border-white/22 bg-black/18 hover:border-signal/45 hover:bg-white/[0.025]"
                 ].join(" ")}
               >
-                {isSelected ? (
-                  <span aria-hidden className="absolute right-4 top-4 grid h-5 w-5 place-items-center rounded-full bg-signal">
-                    <span className="h-2 w-3 rotate-[-45deg] border-b border-l border-black" />
-                  </span>
-                ) : null}
-                <TeamPathIcon type={path.icon} />
-                <span className="mt-6 block font-display text-2xl leading-tight text-fg">{path.title}</span>
-                <span className="mt-5 block text-sm leading-6 text-muted">{path.body}</span>
+                <span className="row-span-2 self-start sm:row-span-1 sm:self-auto">
+                  <TeamPathIcon type={path.icon} />
+                </span>
+                <span className="font-display text-xl leading-tight text-fg">{path.title}</span>
+                <span className="col-span-2 col-start-2 text-xs leading-5 text-muted sm:col-span-1 sm:col-start-auto sm:text-sm sm:leading-6">{path.body}</span>
+                <span
+                  aria-hidden
+                  className={[
+                    "grid h-5 w-5 place-items-center rounded-full justify-self-end",
+                    isSelected ? "bg-signal text-black" : "border border-white/16 text-transparent"
+                  ].join(" ")}
+                >
+                  <span className="h-2 w-3 rotate-[-45deg] border-b border-l border-current" />
+                </span>
               </button>
             );
           })}
         </div>
       </section>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-12">
-        <section className="space-y-6 border-t border-white/10 pt-8">
-          <SectionHeading eyebrow="About you" />
-          <div className="grid gap-5 sm:grid-cols-2">
+      <form onSubmit={handleSubmit} noValidate className="space-y-7">
+        <section className="space-y-3">
+          <SectionHeading step="2" eyebrow="Who you are" />
+          <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <FieldLabel htmlFor="team-name" required>
                 Full name
@@ -381,7 +390,7 @@ export function TeamIntakeForm({
                 value={form.name}
                 onChange={(event) => updateField("name", event.target.value)}
                 className={fieldClass(Boolean(errors.name))}
-                placeholder="Full name"
+                placeholder="Your full name"
                 aria-invalid={Boolean(errors.name)}
               />
               {errors.name ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.name}</p> : null}
@@ -399,7 +408,7 @@ export function TeamIntakeForm({
                 value={form.email}
                 onChange={(event) => updateField("email", event.target.value)}
                 className={fieldClass(Boolean(errors.email))}
-                placeholder="name@company.com"
+                placeholder="you@domain.com"
                 aria-invalid={Boolean(errors.email)}
               />
               {errors.email ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.email}</p> : null}
@@ -433,14 +442,14 @@ export function TeamIntakeForm({
                 value={form.role}
                 onChange={(event) => updateField("role", event.target.value)}
                 className={fieldClass(Boolean(errors.role))}
-                placeholder="Your role or background"
+                placeholder="Your current role or relevant background"
                 aria-invalid={Boolean(errors.role)}
               />
               {errors.role ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.role}</p> : null}
             </div>
 
-            <div>
-              <FieldLabel htmlFor="team-website">LinkedIn, GitHub, or portfolio</FieldLabel>
+            <div className="sm:col-span-2">
+              <FieldLabel htmlFor="team-website">LinkedIn, GitHub, portfolio, or relevant links</FieldLabel>
               <input
                 id="team-website"
                 name="website"
@@ -449,81 +458,69 @@ export function TeamIntakeForm({
                 value={form.website}
                 onChange={(event) => updateField("website", event.target.value)}
                 className={fieldClass()}
-                placeholder="https://linkedin.com/in/username or website"
+                placeholder="https://linkedin.com/in/you or https://github.com/you or https://yourwebsite.com"
               />
-            </div>
-
-            <div>
-              <FieldLabel htmlFor="team-built" required>
-                Proof of building
-              </FieldLabel>
-              <input
-                id="team-built"
-                name="built"
-                value={form.built}
-                onChange={(event) => updateField("built", event.target.value)}
-                className={fieldClass(Boolean(errors.built))}
-                placeholder="Links, summaries, or specific outcomes"
-                aria-invalid={Boolean(errors.built)}
-              />
-              {errors.built ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.built}</p> : null}
             </div>
           </div>
         </section>
 
-        <section className="space-y-6 border-t border-white/10 pt-8">
-          <SectionHeading eyebrow="Conversation context" />
-          <div>
-            <FieldLabel htmlFor="team-energy" required>
-              What moves you?
-            </FieldLabel>
-            <textarea
-              id="team-energy"
-              name="energy"
-              rows={3}
-              value={form.energy}
-              onChange={(event) => updateField("energy", event.target.value)}
-              className={fieldClass(Boolean(errors.energy))}
-              placeholder="Products, systems, companies, or work you are proud of..."
-              aria-invalid={Boolean(errors.energy)}
-            />
-            {errors.energy ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.energy}</p> : null}
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="team-strengths" required>
-              What do you do better than most people you have worked with?
-            </FieldLabel>
-            <textarea
-              id="team-strengths"
-              name="strengths"
-              rows={3}
-              value={form.strengths}
-              onChange={(event) => updateField("strengths", event.target.value)}
-              className={fieldClass(Boolean(errors.strengths))}
-              placeholder="Your unfair advantages, judgment, or unique strengths..."
-              aria-invalid={Boolean(errors.strengths)}
-            />
-            {errors.strengths ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.strengths}</p> : null}
-          </div>
-
-          <p className="font-mono text-[10px] leading-5 tracking-[0.22em] text-fg/70">Judgment and energy</p>
-          <div className={`grid gap-5 ${showWhyEntraphy ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"}`}>
+        <section className="space-y-3">
+          <SectionHeading step="3" eyebrow="What you have built" />
+          <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <FieldLabel htmlFor="team-contribution" required>
+              <FieldLabel htmlFor="team-built" required>
+                What have you built that you are proud of?
+              </FieldLabel>
+              <textarea
+                id="team-built"
+                name="built"
+                rows={3}
+                value={form.built}
+                onChange={(event) => updateField("built", event.target.value)}
+                className={fieldClass(Boolean(errors.built))}
+                placeholder="Share products, systems, companies, or work you are proud of."
+                aria-invalid={Boolean(errors.built)}
+              />
+              {errors.built ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.built}</p> : null}
+            </div>
+
+            <div>
+              <FieldLabel htmlFor="team-strengths" required>
+                What do you do better than most people you have worked with?
+              </FieldLabel>
+              <textarea
+                id="team-strengths"
+                name="strengths"
+                rows={3}
+                value={form.strengths}
+                onChange={(event) => updateField("strengths", event.target.value)}
+                className={fieldClass(Boolean(errors.strengths))}
+                placeholder="Your unfair advantages, judgment, or unique strengths."
+                aria-invalid={Boolean(errors.strengths)}
+              />
+              {errors.strengths ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.strengths}</p> : null}
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-3">
+          <SectionHeading step="4" eyebrow="How you think" />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div>
+              <FieldLabel htmlFor="team-energy" required>
                 What kind of work gives you energy?
               </FieldLabel>
               <textarea
-                id="team-contribution"
-                name="contribution"
+                id="team-energy"
+                name="energy"
                 rows={3}
-                value={form.contribution}
-                onChange={(event) => updateField("contribution", event.target.value)}
-                className={fieldClass(Boolean(errors.contribution))}
-                placeholder="The problems, environments, and work that energize you..."
-                aria-invalid={Boolean(errors.contribution)}
+                value={form.energy}
+                onChange={(event) => updateField("energy", event.target.value)}
+                className={fieldClass(Boolean(errors.energy))}
+                placeholder="The kind of problems, environments, and impact that energize you."
+                aria-invalid={Boolean(errors.energy)}
               />
-              {errors.contribution ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.contribution}</p> : null}
+              {errors.energy ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.energy}</p> : null}
             </div>
 
             <div>
@@ -537,31 +534,52 @@ export function TeamIntakeForm({
                 value={form.problem}
                 onChange={(event) => updateField("problem", event.target.value)}
                 className={fieldClass(Boolean(errors.problem))}
-                placeholder="The challenge you believe is worth your best years..."
+                placeholder="The challenge you believe is worth your best years."
                 aria-invalid={Boolean(errors.problem)}
               />
               {errors.problem ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.problem}</p> : null}
             </div>
-
-            {showWhyEntraphy ? (
-              <div>
-                <FieldLabel htmlFor="team-why-entraphy">Why Entraphy?</FieldLabel>
-                <textarea
-                  id="team-why-entraphy"
-                  name="whyEntraphy"
-                  rows={3}
-                  value={form.whyEntraphy}
-                  onChange={(event) => updateField("whyEntraphy", event.target.value)}
-                  className={fieldClass()}
-                  placeholder="Why this mission, this timing, and this team?"
-                />
-              </div>
-            ) : null}
+          </div>
+          <div>
+            <FieldLabel htmlFor="team-contribution" required>
+              How would you help an early company become more disciplined, more credible, or more capable?
+            </FieldLabel>
+            <textarea
+              id="team-contribution"
+              name="contribution"
+              rows={3}
+              value={form.contribution}
+              onChange={(event) => updateField("contribution", event.target.value)}
+              className={fieldClass(Boolean(errors.contribution))}
+              placeholder="Your perspective on what matters most in the earliest days."
+              aria-invalid={Boolean(errors.contribution)}
+            />
+            {errors.contribution ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.contribution}</p> : null}
           </div>
         </section>
 
-        <section className="space-y-6 border-t border-white/10 pt-8">
-          <SectionHeading eyebrow="Final note" />
+        <section className="space-y-3">
+          <SectionHeading step="5" eyebrow="What you saw early" />
+          <div>
+            <FieldLabel htmlFor="team-insight" required>
+              Tell us about a time you saw something before others did, and what you did with that insight.
+            </FieldLabel>
+            <textarea
+              id="team-insight"
+              name="insight"
+              rows={4}
+              value={form.insight}
+              onChange={(event) => updateField("insight", event.target.value)}
+              className={fieldClass(Boolean(errors.insight))}
+              placeholder="The context, the insight, the action you took, and the outcome."
+              aria-invalid={Boolean(errors.insight)}
+            />
+            {errors.insight ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.insight}</p> : null}
+          </div>
+        </section>
+
+        <section className="space-y-3">
+          <SectionHeading step="6" eyebrow="Final note" />
           <div>
             <FieldLabel htmlFor="team-note">Additional note</FieldLabel>
             <textarea
@@ -571,7 +589,7 @@ export function TeamIntakeForm({
               value={form.note}
               onChange={(event) => updateField("note", event.target.value)}
               className={fieldClass()}
-              placeholder="Anything else you would like us to know?"
+              placeholder="Share anything else that will help us understand you better."
             />
           </div>
 
@@ -583,7 +601,7 @@ export function TeamIntakeForm({
               className="mt-1 h-4 w-4 shrink-0 appearance-none border border-[rgb(242_239_230_/_0.22)] bg-[rgb(5,9,8)] bg-[linear-gradient(180deg,rgba(9,18,15,0.92),rgba(3,5,5,0.94))] shadow-[inset_0_1px_0_rgba(242,239,230,0.045)] checked:border-signal checked:bg-signal focus:outline-none focus:ring-1 focus:ring-[rgb(196_157_84_/_0.6)]"
               aria-invalid={Boolean(errors.acknowledged)}
             />
-            <span>I understand Entraphy reviews introductions manually and this does not create an employment relationship or guarantee a response.</span>
+            <span>I understand Entraphy reviews signals manually and this does not create an employment relationship or guarantee a response.</span>
           </label>
           {errors.acknowledged ? <p className="text-xs leading-5 text-red-200">{errors.acknowledged}</p> : null}
 
@@ -600,7 +618,18 @@ export function TeamIntakeForm({
             />
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="grid gap-4 sm:grid-cols-[minmax(10rem,14rem)_1fr] sm:items-center">
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="inline-flex min-h-12 items-center justify-center gap-5 border border-signal/75 bg-signal/[0.045] px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 disabled:cursor-not-allowed disabled:border-white/18 disabled:text-muted"
+            >
+              <span>{status === "submitting" ? "Sending..." : "Send Signal"}</span>
+              <span aria-hidden className="text-lg leading-none">
+                →
+              </span>
+            </button>
+            <ReviewNote />
             <div className="min-h-6">
               {statusMessage ? (
                 <p role="status" className={`text-sm leading-6 ${status === "error" ? "text-red-200" : "text-signal"}`}>
@@ -608,14 +637,6 @@ export function TeamIntakeForm({
                 </p>
               ) : null}
             </div>
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="inline-flex min-h-12 items-center justify-center gap-4 border border-signal/75 bg-transparent px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 disabled:cursor-not-allowed disabled:border-white/18 disabled:text-muted"
-            >
-              <span>{status === "submitting" ? "Submitting..." : "Introduce Yourself"}</span>
-              <span aria-hidden>→</span>
-            </button>
           </div>
         </section>
       </form>

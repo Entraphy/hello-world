@@ -1,19 +1,16 @@
-import Image from "next/image";
 import type { Metadata } from "next";
-
-import { ButtonLink } from "@/components/marketing-primitives";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Join the Team | Entraphy Systems",
-  description:
-    "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
+  description: "Entraphy is assembling a small early team for foundational work at the edge of technology, judgment, and consequence.",
   alternates: {
     canonical: "https://www.entraphy.com/team"
   },
   openGraph: {
     title: "Join the Team | Entraphy Systems",
-    description:
-      "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
+    description: "Entraphy is assembling a small early team for foundational work at the edge of technology, judgment, and consequence.",
     type: "website",
     url: "https://www.entraphy.com/team",
     siteName: "Entraphy Systems",
@@ -30,45 +27,120 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Join the Team | Entraphy Systems",
-    description:
-      "Entraphy is assembling a small early team to help build a patent-pending foundation for trusted autonomy in AI-native systems.",
+    description: "Entraphy is assembling a small early team for foundational work at the edge of technology, judgment, and consequence.",
     images: ["/brand/entraphy-og-image.png"]
   }
 };
 
-const archetypes = [
+const traits = [
+  "Think clearly in ambiguous environments.",
+  "Stay calm under complexity.",
+  "Are not intimidated by unsolved problems.",
+  "Move from abstract reasoning to practical execution.",
+  "Care about precision without hiding behind process.",
+  "Hold a long-term vision while doing the unglamorous work required to make something real."
+];
+
+const belongItems = [
+  "You are drawn to problems that do not fit neatly into existing categories.",
+  "You have a low tolerance for shallow thinking.",
+  "You have built things under pressure and learned that simplicity is usually earned, not assumed.",
+  "You are more interested in durable systems than temporary hype.",
+  "You want to work with people who take the mission seriously without taking themselves too seriously.",
+  "You are comfortable with confidentiality, trust, and disciplined communication.",
+  "You can operate without needing every answer upfront.",
+  "You are excited by the idea of helping shape something that may look obvious only after it exists."
+];
+
+const values = [
   {
-    title: "Systems Builders",
-    body: "For people who can turn ambiguity into secure, reliable, usable systems."
+    title: "Clear Thinking",
+    body: "We value people who can separate signal from noise, assumptions from facts, and urgency from panic."
   },
   {
-    title: "Design Engineers",
-    body: "For people who believe powerful technology should feel precise, restrained, and inevitable."
+    title: "Deep Ownership",
+    body: "We want people who pick up the whole problem, not just the assigned task."
   },
   {
-    title: "Strategic Operators",
-    body: "For people who can help shape early partnerships, confidential access, and disciplined market entry."
+    title: "Low Ego, High Standards",
+    body: "The work is hard enough without performance theater. We care about substance, judgment, and execution."
   },
   {
-    title: "Infrastructure Stewards",
-    body: "For people who understand that trust begins with operational discipline."
+    title: "Intellectual Honesty",
+    body: "We would rather face a hard truth early than preserve a comfortable story too long."
+  },
+  {
+    title: "Builder Energy",
+    body: "Ideas matter. Taste matters. Strategy matters. But the future only changes when someone builds."
+  },
+  {
+    title: "Discretion",
+    body: "We are in stealth for a reason. The ability to do serious work quietly is part of the work itself."
   }
 ];
 
-const principles = [
-  "Discretion over noise.",
-  "Judgment over credentials.",
-  "Precision over spectacle.",
-  "Foundation over hype.",
-  "Trust must be practiced before it is promised."
+const expectations = [
+  "You can expect hard problems.",
+  "You can expect high trust.",
+  "You can expect direct conversations.",
+  "You can expect to work with people who care about the quality of the thinking as much as the speed of execution.",
+  "You can expect ambiguity, but not chaos.",
+  "You can expect seriousness, but not bureaucracy.",
+  "You can expect to be close to the foundation."
 ];
 
 function Eyebrow({ children }: { children: string }) {
   return <p className="font-mono text-[10px] tracking-[0.28em] text-signal uppercase">{children}</p>;
 }
 
-function RuleIcon({ index }: { index: number }) {
-  if (index === 0) {
+function SignalLink({ children }: { children: string }) {
+  return (
+    <Link
+      href="/introduce-yourself"
+      className="inline-flex min-h-12 items-center justify-center gap-5 border border-signal/78 bg-signal/[0.045] px-6 py-3 text-[0.68rem] font-semibold tracking-[0.24em] text-fg uppercase shadow-[0_0_0_1px_rgba(196,157,84,0.08)] transition hover:border-signal hover:bg-signal/[0.085] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
+    >
+      <span>{children}</span>
+      <span aria-hidden className="text-lg leading-none">
+        →
+      </span>
+    </Link>
+  );
+}
+
+function LineIcon({ index }: { index: number }) {
+  const variant = index % 6;
+
+  if (variant === 0) {
+    return (
+      <span aria-hidden className="relative block h-10 w-10 text-signal">
+        <span className="absolute left-1/2 top-2 h-4 w-4 -translate-x-1/2 rounded-full border border-current" />
+        <span className="absolute bottom-2 left-1/2 h-5 w-7 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
+      </span>
+    );
+  }
+
+  if (variant === 1) {
+    return (
+      <span aria-hidden className="relative block h-10 w-10 text-signal">
+        <span className="absolute left-1 top-2 h-px w-8 bg-current" />
+        <span className="absolute left-1 top-5 h-px w-8 bg-current" />
+        <span className="absolute left-1 top-8 h-px w-8 bg-current" />
+      </span>
+    );
+  }
+
+  if (variant === 2) {
+    return (
+      <span aria-hidden className="relative block h-10 w-10 text-signal">
+        <span className="absolute left-1/2 top-1 h-8 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-1 top-1/2 h-px w-8 -translate-y-1/2 bg-current" />
+        <span className="absolute left-[0.45rem] top-[0.45rem] h-px w-7 rotate-45 bg-current" />
+        <span className="absolute bottom-[0.45rem] left-[0.45rem] h-px w-7 -rotate-45 bg-current" />
+      </span>
+    );
+  }
+
+  if (variant === 3) {
     return (
       <span aria-hidden className="relative block h-10 w-10 text-signal">
         <span className="absolute inset-2 border border-current" />
@@ -78,194 +150,257 @@ function RuleIcon({ index }: { index: number }) {
     );
   }
 
-  if (index === 1) {
+  if (variant === 4) {
     return (
       <span aria-hidden className="relative block h-10 w-10 text-signal">
-        <span className="absolute left-1/2 top-1 h-3 w-3 -translate-x-1/2 rounded-full border border-current" />
-        <span className="absolute bottom-1 left-1/2 h-5 w-7 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
-      </span>
-    );
-  }
-
-  if (index === 2) {
-    return (
-      <span aria-hidden className="relative block h-10 w-10 text-signal">
-        <span className="absolute left-1/2 top-1 h-8 w-8 -translate-x-1/2 rotate-45 border border-current" />
-        <span className="absolute left-1/2 top-4 h-3 w-3 -translate-x-1/2 rotate-45 border border-current" />
-      </span>
-    );
-  }
-
-  if (index === 3) {
-    return (
-      <span aria-hidden className="relative block h-10 w-10 text-signal">
-        <span className="absolute left-2 top-2 h-3 w-6 rotate-[-24deg] border border-current" />
-        <span className="absolute left-2 top-4 h-3 w-6 rotate-[-24deg] border border-current" />
-        <span className="absolute left-2 top-6 h-3 w-6 rotate-[-24deg] border border-current" />
+        <span className="absolute inset-2 rounded-full border border-current" />
+        <span className="absolute left-1/2 top-1 h-8 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-1 top-1/2 h-px w-8 -translate-y-1/2 bg-current" />
       </span>
     );
   }
 
   return (
     <span aria-hidden className="relative block h-10 w-10 text-signal">
-      <span className="absolute left-1/2 top-1 h-8 w-px -translate-x-1/2 bg-current" />
-      <span className="absolute left-1 top-1/2 h-px w-8 -translate-y-1/2 bg-current" />
-      <span className="absolute left-[0.45rem] top-[0.45rem] h-px w-7 rotate-45 bg-current" />
-      <span className="absolute bottom-[0.45rem] left-[0.45rem] h-px w-7 -rotate-45 bg-current" />
+      <span className="absolute left-2 top-6 h-4 w-7 border-b border-current" />
+      <span className="absolute left-3 top-3 h-5 w-px rotate-45 bg-current" />
+      <span className="absolute left-5 top-2 h-6 w-px bg-current" />
+      <span className="absolute right-3 top-4 h-4 w-px -rotate-45 bg-current" />
     </span>
   );
 }
 
-function ArchetypeIcon({ index }: { index: number }) {
-  if (index === 0) {
-    return (
-      <span aria-hidden className="relative block h-12 w-12 text-signal">
-        <span className="absolute left-3 top-1 h-5 w-7 rotate-[24deg] border border-current" />
-        <span className="absolute left-3 top-3 h-5 w-7 rotate-[24deg] border border-current" />
-        <span className="absolute left-3 top-5 h-5 w-7 rotate-[24deg] border border-current" />
-      </span>
-    );
-  }
-
-  if (index === 1) {
-    return (
-      <span aria-hidden className="relative block h-12 w-12 text-signal">
-        <span className="absolute inset-2 border border-current" />
-        <span className="absolute left-1 top-1 h-3 w-3 border-l border-t border-current" />
-        <span className="absolute right-1 top-1 h-3 w-3 border-r border-t border-current" />
-        <span className="absolute bottom-1 left-1 h-3 w-3 border-b border-l border-current" />
-        <span className="absolute bottom-1 right-1 h-3 w-3 border-b border-r border-current" />
-      </span>
-    );
-  }
-
-  if (index === 2) {
-    return (
-      <span aria-hidden className="relative block h-12 w-12 text-signal">
-        <span className="absolute left-2 top-2 h-8 w-8 rounded-full border border-current" />
-        <span className="absolute left-6 top-6 h-px w-5 rotate-[-42deg] bg-current" />
-        <span className="absolute left-5 top-4 h-3 w-3 rounded-full border border-current bg-bg" />
-      </span>
-    );
-  }
-
+function CheckMark() {
   return (
-    <span aria-hidden className="relative block h-12 w-12 text-signal">
-      <span className="absolute left-2 top-2 h-9 w-8 border-x border-b border-current" />
-      <span className="absolute left-2 top-2 h-px w-8 bg-current" />
-      <span className="absolute left-1/2 top-2 h-8 w-px -translate-x-1/2 bg-current" />
+    <span aria-hidden className="mt-1 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-signal/70 text-signal">
+      <span className="h-1.5 w-2.5 rotate-[-45deg] border-b border-l border-current" />
     </span>
   );
 }
 
-function ClosingMark() {
+function FrontierMark() {
   return (
-    <span aria-hidden className="block h-20 w-px bg-signal/80" />
+    <span aria-hidden className="relative block h-32 w-32 text-signal">
+      <span className="absolute inset-0 rounded-full border border-current opacity-18" />
+      <span className="absolute inset-5 rounded-full border border-current opacity-30" />
+      <span className="absolute inset-10 rounded-full border border-current opacity-55" />
+      <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current opacity-20" />
+      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current opacity-20" />
+    </span>
   );
 }
 
 export default function TeamPage() {
   return (
     <div className="bg-bg text-fg">
-      <section className="relative min-h-[38rem] overflow-hidden border-b border-white/12">
-        <Image src="/images/entraphy-signal-field.png" alt="" fill priority className="object-cover object-center opacity-28" sizes="100vw" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,5,5)_0%,rgba(4,5,5,0.96)_36%,rgba(4,5,5,0.58)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(196,157,84,0.12),transparent_32%),linear-gradient(180deg,rgba(4,5,5,0.06),rgba(4,5,5,0.68))]" />
-        <div className="relative mx-auto flex min-h-[38rem] w-full max-w-content items-center px-6 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-3xl space-y-7">
-            <Eyebrow>Join the early team</Eyebrow>
-            <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Build before the category has a name.</h1>
-            <div className="h-px w-10 bg-signal" />
-            <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              Entraphy is assembling a small early team to help turn a patent-pending foundation for trusted autonomy into a company worthy of the
-              systems it intends to serve.
+      <section className="relative overflow-hidden border-b border-white/12">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,7,7)_0%,rgba(4,9,8,0.94)_44%,rgba(4,7,7,0.68)_100%)]" />
+        <div className="absolute inset-y-0 right-0 w-full opacity-88 lg:w-[61%]">
+          <Image
+            src="/images/entraphy-signal-field.png"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 61vw, 100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_67%_45%,rgba(196,157,84,0.28),transparent_24%),linear-gradient(90deg,rgb(4,7,7)_0%,rgba(4,7,7,0.76)_32%,rgba(4,7,7,0.16)_66%,rgba(4,7,7,0.46)_100%)]" />
+        </div>
+
+        <div className="relative mx-auto grid min-h-[37rem] w-full max-w-content gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[minmax(0,0.62fr)_minmax(18rem,0.38fr)] lg:items-center lg:py-20">
+          <div className="max-w-3xl space-y-6">
+            <Eyebrow>Join Entraphy</Eyebrow>
+            <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">
+              Some work is too early to explain publicly.
+            </h1>
+            <div className="h-px w-11 bg-signal" />
+            <div className="max-w-2xl space-y-5 text-base leading-8 text-muted">
+              <p>
+                Entraphy is building in stealth. We are not ready to describe exactly what we are building, who it is for, or why the timing matters as
+                much as it does.
+              </p>
+              <p>
+                But we can say this: we are working on a foundational problem at the edge of technology, judgment, and consequence.
+              </p>
+            </div>
+            <SignalLink>Send Us Your Signal</SignalLink>
+          </div>
+
+          <div className="max-w-sm border-l border-signal/40 pl-7 text-base leading-8 text-fg/82">
+            <p>
+              It is difficult.
+              <br />
+              It is early.
+              <br />
+              It is not obvious to everyone yet.
             </p>
-            <p className="max-w-2xl text-base leading-8 text-muted">
-              We are looking for people with unusual judgment, discretion, and builder energy.
-            </p>
-            <ButtonLink href="/introduce-yourself">Introduce Yourself -&gt;</ButtonLink>
+            <div className="my-5 h-px w-10 bg-signal" />
+            <p>And for the right people, that is exactly the point.</p>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/12 bg-[rgb(8,10,10)]">
-        <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
-          <div className="border-l border-signal/80 py-1 pl-7">
-            <Eyebrow>Not a standard startup role</Eyebrow>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-muted">
-              This is early company-formation work. The first people in the room will help shape product direction, operating discipline, partner
-              posture, and the way Entraphy shows up in the world.
+      <section className="border-b border-white/12 bg-[linear-gradient(120deg,rgb(5,8,8),rgb(7,13,11)_60%,rgb(3,5,5))]">
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.28fr_0.42fr_0.3fr] lg:py-16">
+          <div>
+            <Eyebrow>Not a normal startup role</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">This is earlier than the playbook.</h2>
+          </div>
+          <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+            <p>
+              Most companies ask you to join after the category is clear, the language is polished, the market understands the need, and the path is
+              already visible.
             </p>
+            <p>Entraphy is earlier than that.</p>
+            <p>
+              We are still in the phase where judgment matters more than playbooks, where original thinking matters more than credentials, and where
+              the first principles are still close enough to touch.
+            </p>
+          </div>
+          <div className="border-l border-white/18 pl-7 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+            <p>
+              This kind of work is not for everyone. It is for people who want to help build the foundation, not just optimize the surface.
+            </p>
+            <p className="mt-5">It is for people who are comfortable working before the spotlight arrives.</p>
+            <p className="mt-5">It is for people who would rather help define the future than wait for a job description to summarize it.</p>
           </div>
         </div>
       </section>
 
       <section className="border-b border-white/12">
         <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
-          <div className="mb-6">
-            <Eyebrow>Who we&apos;re looking for</Eyebrow>
+          <div className="grid gap-8 lg:grid-cols-[0.24fr_1fr] lg:items-start">
+            <div>
+              <Eyebrow>The kind of people we want to meet</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">The title matters less than the wiring.</h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {traits.map((trait, index) => (
+                <div key={trait} className="border-l border-white/16 pl-5">
+                  <LineIcon index={index} />
+                  <p className="mt-4 text-sm leading-7 text-muted">{trait}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {archetypes.map((archetype, index) => (
-              <article key={archetype.title} className="min-h-72 border border-white/22 bg-black/18 p-6 transition hover:border-signal/48 hover:bg-white/[0.025]">
-                <ArchetypeIcon index={index} />
-                <h2 className="mt-6 font-display text-2xl leading-tight text-fg">{archetype.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-muted">{archetype.body}</p>
+          <p className="mt-10 max-w-5xl text-base leading-8 text-muted">
+            You may be an engineer, researcher, designer, operator, strategist, writer, security thinker, product builder, systems architect, or
+            founder-type generalist.
+          </p>
+          <p className="mt-2 text-base leading-8 text-signal">The title matters less than the wiring.</p>
+        </div>
+      </section>
+
+      <section className="border-b border-white/12 bg-[rgb(5,8,8)]">
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.34fr_0.66fr] lg:py-16">
+          <div>
+            <Eyebrow>You might belong here if</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">A selective filter.</h2>
+          </div>
+          <ul className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+            {belongItems.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-7 text-muted">
+                <CheckMark />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-b border-white/12 bg-[linear-gradient(120deg,rgb(5,8,8),rgb(7,13,11)_60%,rgb(3,5,5))]">
+        <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
+          <div className="mb-7">
+            <Eyebrow>What we value</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">Values that hold under pressure.</h2>
+          </div>
+          <div className="grid border border-white/12 md:grid-cols-2 xl:grid-cols-3">
+            {values.map((value, index) => (
+              <article key={value.title} className="min-h-56 border-b border-white/12 p-6 md:border-r xl:[&:nth-child(3n)]:border-r-0">
+                <LineIcon index={index + 4} />
+                <h3 className="mt-5 font-display text-2xl leading-tight text-fg">{value.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted">{value.body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/12 bg-[rgb(6,8,8)]">
-        <div className="mx-auto w-full max-w-content px-6 py-10 sm:py-12">
-          <div className="mb-6">
-            <Eyebrow>How we work</Eyebrow>
+      <section className="border-b border-white/12">
+        <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
+          <div className="max-w-4xl">
+            <Eyebrow>Why this is worth your attention</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">The frontier is quiet before it is obvious.</h2>
+            <div className="mt-6 space-y-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+              <p>Every so often, a small group of people gets to work on something before the rest of the world understands why it matters.</p>
+              <p>That phase is uncomfortable.</p>
+              <p>There are fewer maps. There is less applause. There is more ambiguity. There is more responsibility.</p>
+              <p>But there is also more room to shape the foundation.</p>
+              <p>That is where Entraphy is right now.</p>
+              <p className="text-signal">
+                We are not looking for everyone. We are looking for the people who recognize the feeling of a real frontier.
+              </p>
+            </div>
           </div>
-          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-5">
-            {principles.map((principle, index) => (
-              <div key={principle} className="border-white/18 lg:border-r lg:pr-7 lg:last:border-r-0">
-                <RuleIcon index={index} />
-                <p className="mt-2 max-w-40 text-sm leading-6 text-fg/82">{principle}</p>
-              </div>
-            ))}
+        </div>
+      </section>
+
+      <section className="border-b border-white/12 bg-[rgb(5,8,8)]">
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.34fr_0.66fr] lg:py-16">
+          <div>
+            <Eyebrow>What you can expect</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">What the work feels like from inside.</h2>
+          </div>
+          <div>
+            <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
+              {expectations.map((item, index) => (
+                <div key={item} className="grid grid-cols-[2.5rem_1fr] gap-4 text-sm leading-7 text-muted">
+                  <LineIcon index={index + 9} />
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 max-w-3xl text-base leading-8 text-muted">
+              And if this becomes what we believe it can become, you can expect to look back and know that you were there early, when the work was
+              still quiet and the shape of the future was still being formed.
+            </p>
           </div>
         </div>
       </section>
 
       <section className="relative overflow-hidden border-b border-white/12">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5,7,7),rgb(8,12,11))]" />
-        <div className="relative mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.52fr_0.48fr] lg:items-stretch lg:py-16">
-          <div className="max-w-xl space-y-6">
-            <Eyebrow>What to expect</Eyebrow>
-            <p className="text-base leading-8 text-muted">Small team. High trust. Real consequence.</p>
-            <p className="text-base leading-8 text-muted">
-              You won&apos;t find big titles or public roadmaps here. You will find meaningful problems, careful execution, and the chance to help build a
-              category-defining company.
-            </p>
-            <p className="text-base leading-8 text-muted">We move slowly in public so we can move decisively in private.</p>
-          </div>
-          <div className="relative min-h-[18rem] overflow-hidden">
-            <Image src="/images/entraphy-threshold-doorway.png" alt="" fill className="object-cover object-center opacity-70" sizes="(min-width: 1024px) 48vw, 100vw" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,7,0.7),rgba(5,7,7,0.08),rgba(5,7,7,0.44))]" />
-          </div>
-
-          <div id="introduce" className="scroll-mt-24 border border-white/22 bg-black/18 p-7 sm:p-9 lg:col-span-2">
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="flex gap-7">
-                <ClosingMark />
-                <div>
-                  <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Help build what comes next.</h2>
-                  <p className="mt-4 max-w-xl text-base leading-8 text-muted">
-                    If you operate with judgment, discretion, and builder energy, we invite you to introduce yourself.
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <ButtonLink href="/introduce-yourself">Introduce Yourself -&gt;</ButtonLink>
-                <p className="text-xs leading-5 text-muted">For early builders&nbsp;&nbsp;/&nbsp;&nbsp;Introduce yourself</p>
-              </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5,8,8),rgb(8,12,11))]" />
+        <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 opacity-50 lg:block">
+          <FrontierMark />
+        </div>
+        <div className="relative mx-auto grid w-full max-w-content gap-8 px-6 py-10 lg:grid-cols-[0.34fr_0.3fr_0.22fr_auto] lg:items-center">
+          <div className="flex items-start gap-7">
+            <div className="hidden shrink-0 sm:block">
+              <FrontierMark />
             </div>
+            <div>
+              <Eyebrow>Send us your signal</Eyebrow>
+              <h2 className="mt-4 font-display text-3xl leading-tight text-fg sm:text-4xl">
+                We are not asking you to apply to a polished machine.
+              </h2>
+            </div>
+          </div>
+          <div className="text-sm leading-7 text-muted">
+            <p>
+              We are inviting you into an early room. If you are the kind of person who is drawn to foundational work, hard problems, disciplined
+              teams, and category-level ambition, we would like to hear from you.
+            </p>
+          </div>
+          <div className="text-sm leading-7 text-muted">
+            <p>
+              Tell us who you are, what you have built, and what kind of problems you cannot stop thinking about. Better yet, tell us about a time you
+              saw something before others did and what you did with that insight.
+            </p>
+          </div>
+          <div className="space-y-3 lg:justify-self-end">
+            <SignalLink>Send Us Your Signal</SignalLink>
+            <p className="text-xs leading-5 text-muted">Introductions are reviewed manually.</p>
           </div>
         </div>
       </section>

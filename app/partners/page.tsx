@@ -1,7 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
-
-import { ButtonLink } from "@/components/marketing-primitives";
 
 export const metadata: Metadata = {
   title: "Partner With Us | Entraphy Systems",
@@ -36,33 +35,41 @@ export const metadata: Metadata = {
 const engagementTypes = [
   {
     title: "Strategic Partners",
-    body: "For institutions and platforms shaping what trusted autonomy will require before scale.",
-    icon: "stack"
+    body: "Organizations shaping the infrastructure, platforms, and policies of tomorrow.",
+    icon: "spark"
   },
   {
     title: "Pilot Candidates",
-    body: "For high-consequence environments preparing for private evaluation.",
+    body: "Teams operating in high-consequence environments where trust must be proven, not assumed.",
     icon: "target"
   },
   {
     title: "Institutional Advisors",
-    body: "For selected experts who can sharpen category, posture, and careful company formation.",
-    icon: "person"
+    body: "Experienced leaders providing rare perspective, discipline, and long-term guidance.",
+    icon: "seal"
   }
 ];
 
-const steps = [
+const criteria = [
   {
-    title: "Request partner access.",
-    body: "Choose the path that best matches your context."
+    title: "Discretion",
+    body: "We value confidentiality and protect what is not yet public.",
+    icon: "lock"
   },
   {
-    title: "Manual review.",
-    body: "Entraphy reviews each request with care and discretion."
+    title: "Standards",
+    body: "We build for systems that must earn trust before they act.",
+    icon: "balance"
   },
   {
-    title: "Private briefing.",
-    body: "Qualified conversations may proceed under appropriate confidentiality."
+    title: "Impact",
+    body: "We focus on environments where integrity is non-negotiable.",
+    icon: "crosshair"
+  },
+  {
+    title: "Longevity",
+    body: "We build foundations that compound across generations.",
+    icon: "compass"
   }
 ];
 
@@ -91,11 +98,24 @@ function EngagementIcon({ type }: { type: string }) {
     );
   }
 
-  if (type === "person") {
+  if (type === "seal") {
     return (
-      <span aria-hidden className="relative block h-12 w-12 text-signal">
-        <span className="absolute left-1/2 top-2 h-4 w-4 -translate-x-1/2 rounded-full border border-current" />
-        <span className="absolute bottom-2 left-1/2 h-6 w-8 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
+      <span aria-hidden className="relative block h-11 w-11 text-signal">
+        <span className="absolute inset-1 rounded-b-[1rem] border border-current" />
+        <span className="absolute left-1/2 top-3 h-5 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 bg-current" />
+      </span>
+    );
+  }
+
+  if (type === "spark") {
+    return (
+      <span aria-hidden className="relative block h-11 w-11 text-signal">
+        <span className="absolute inset-1 border border-current" />
+        <span className="absolute left-1/2 top-2 h-7 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-2 top-1/2 h-px w-7 -translate-y-1/2 bg-current" />
+        <span className="absolute left-1/2 top-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-current" />
+        <span className="absolute left-1/2 top-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-current" />
       </span>
     );
   }
@@ -103,113 +123,181 @@ function EngagementIcon({ type }: { type: string }) {
   return <PartnerMark />;
 }
 
+function CriteriaIcon({ type }: { type: string }) {
+  if (type === "lock") {
+    return (
+      <span aria-hidden className="relative block h-11 w-11 text-signal">
+        <span className="absolute bottom-1 left-1/2 h-7 w-7 -translate-x-1/2 rounded-sm border border-current" />
+        <span className="absolute left-1/2 top-1 h-6 w-5 -translate-x-1/2 rounded-t-full border-x border-t border-current" />
+        <span className="absolute left-1/2 top-7 h-2 w-px -translate-x-1/2 bg-current" />
+      </span>
+    );
+  }
+
+  if (type === "balance") {
+    return (
+      <span aria-hidden className="relative block h-11 w-11 text-signal">
+        <span className="absolute left-1/2 top-2 h-8 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-2 right-2 top-4 h-px bg-current" />
+        <span className="absolute left-2 top-4 h-5 w-5 rotate-45 border-b border-r border-current" />
+        <span className="absolute right-2 top-4 h-5 w-5 rotate-45 border-b border-r border-current" />
+      </span>
+    );
+  }
+
+  if (type === "crosshair") {
+    return (
+      <span aria-hidden className="relative block h-11 w-11 text-signal">
+        <span className="absolute inset-2 rounded-full border border-current" />
+        <span className="absolute left-1/2 top-1 h-9 w-px -translate-x-1/2 bg-current" />
+        <span className="absolute left-1 top-1/2 h-px w-9 -translate-y-1/2 bg-current" />
+      </span>
+    );
+  }
+
+  return (
+    <span aria-hidden className="relative block h-11 w-11 text-signal">
+      <span className="absolute inset-2 rounded-full border border-current" />
+      <span className="absolute left-7 top-2 h-px w-5 rotate-[-38deg] bg-current" />
+      <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-current" />
+    </span>
+  );
+}
+
+function TempleMark() {
+  return (
+    <span aria-hidden className="relative block h-16 w-16 text-signal">
+      <span className="absolute left-2 top-5 h-px w-12 bg-current" />
+      <span className="absolute left-4 top-7 h-8 w-px bg-current" />
+      <span className="absolute left-8 top-7 h-8 w-px bg-current" />
+      <span className="absolute right-4 top-7 h-8 w-px bg-current" />
+      <span className="absolute left-3 top-4 h-8 w-10 border-x border-b border-current" />
+      <span className="absolute left-2 top-3 h-px w-12 bg-current" />
+      <span className="absolute left-1/2 top-0 h-5 w-10 -translate-x-1/2 rotate-[-8deg] border-t border-current" />
+    </span>
+  );
+}
+
+function RequestChoice({ href, title, body }: { href: string; title: string; body: string }) {
+  return (
+    <Link
+      href={href}
+      className="group grid min-h-20 grid-cols-[1fr_auto] items-center gap-5 border border-signal/70 bg-black/10 px-6 py-4 transition hover:border-signal hover:bg-signal/[0.055] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70"
+    >
+      <span>
+        <span className="block font-mono text-[10px] tracking-[0.24em] text-signal uppercase">{title}</span>
+        <span className="mt-1 block text-sm leading-5 text-muted">{body}</span>
+      </span>
+      <span className="text-2xl leading-none text-signal transition group-hover:translate-x-1" aria-hidden>
+        →
+      </span>
+    </Link>
+  );
+}
+
 export default function PartnersPage() {
   return (
     <div className="bg-bg text-fg">
       <section className="relative overflow-hidden border-b border-white/12">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,5,5)_0%,rgba(4,5,5,0.96)_42%,rgba(8,15,12,0.72)_100%)]" />
-        <div className="relative mx-auto grid w-full max-w-content lg:min-h-[39rem] lg:grid-cols-[0.58fr_0.42fr] lg:items-stretch">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,7,7)_0%,rgba(4,7,7,0.98)_39%,rgba(4,7,7,0.15)_100%)]" />
+        <div className="relative mx-auto grid w-full max-w-content lg:min-h-[40.5rem] lg:grid-cols-[0.45fr_0.55fr] lg:items-stretch">
           <div className="flex items-center px-6 py-16 sm:py-20 lg:py-24">
-            <div className="max-w-3xl space-y-6">
-              <Eyebrow>Selected conversations</Eyebrow>
+            <div className="max-w-xl space-y-7">
+              <Eyebrow>Partner with us</Eyebrow>
               <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Partner with us before the category is obvious.</h1>
-              <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
-                Entraphy is opening a small number of private conversations with strategic partners and pilot candidates operating where trusted
-                autonomy carries institutional consequence.
+              <div className="h-px w-12 bg-signal" />
+              <p className="max-w-lg text-base leading-8 text-muted sm:text-lg">
+                Entraphy is building the foundation for systems that must earn trust before they act.
               </p>
-              <p className="max-w-2xl text-base leading-8 text-muted">
-                Product details remain private. Qualified conversations begin through the request path.
+              <p className="max-w-lg text-base leading-8 text-muted sm:text-lg">
+                We work with institutions, pilots, and advisors who are helping define the standards that will matter.
               </p>
-              <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-                <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
-                <ButtonLink href="/request-partner-access?type=pilot" variant="secondary">
-                  Pilot Candidate Access
-                </ButtonLink>
-              </div>
             </div>
           </div>
-          <div className="relative min-h-[24rem] overflow-hidden border-t border-white/10 lg:border-t-0">
-            <Image src="/images/entraphy-threshold-doorway.png" alt="" fill priority className="object-cover object-center opacity-80" sizes="(min-width: 1024px) 42vw, 100vw" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,5,5,0.58),rgba(4,5,5,0.08)_42%,rgba(4,5,5,0.36)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,5,0.06),rgba(4,5,5,0.52))]" />
+          <div className="relative min-h-[30rem] overflow-hidden border-t border-white/10 lg:border-t-0">
+            <Image
+              src="/images/entraphy-partner-corridor.png"
+              alt="Bronze-lit private architectural corridor"
+              fill
+              priority
+              className="object-cover object-center opacity-88"
+              sizes="(min-width: 1024px) 55vw, 100vw"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,7,7,0.62),rgba(4,7,7,0.06)_34%,rgba(4,7,7,0.08)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,7,7,0.02),rgba(4,7,7,0.2)_58%,rgba(4,7,7,0.52))]" />
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/12 bg-[rgb(8,10,10)]">
-        <div className="mx-auto w-full max-w-content px-6 py-10 lg:py-12">
-          <div className="border-l border-signal/80 py-1 pl-7">
+      <section className="border-b border-white/12 bg-[linear-gradient(180deg,rgb(5,12,10),rgb(3,8,7))]">
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[1fr_19rem] lg:py-16 xl:grid-cols-[1fr_21rem]">
+          <div>
             <div className="max-w-3xl space-y-5">
-              <Eyebrow>Not a broad partner program</Eyebrow>
-              <p className="text-base leading-8 text-muted">
-                Entraphy is opening deliberately, not broadly. We are interested in disciplined conversations with organizations that understand the
-                importance of trust and institutional-grade adoption.
+              <Eyebrow>Who we work with</Eyebrow>
+              <p className="max-w-3xl text-base leading-8 text-muted">
+                We engage with a small number of organizations and individuals where the alignment is real and the impact can compound.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-white/12">
-        <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
-          <div className="mb-7">
-            <Eyebrow>Who should engage</Eyebrow>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {engagementTypes.map((item) => (
-              <article
-                key={item.title}
-                className="min-h-72 border border-white/22 bg-[linear-gradient(180deg,rgba(18,34,28,0.5),rgba(4,7,6,0.78))] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.24)]"
-              >
-                <EngagementIcon type={item.icon} />
-                <h2 className="mt-7 font-display text-3xl leading-tight text-fg">{item.title}</h2>
-                <p className="mt-5 text-sm leading-7 text-muted">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-white/12 bg-[linear-gradient(180deg,rgb(6,8,8),rgb(4,9,8))]">
-        <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
-          <div className="mb-9">
-            <Eyebrow>How conversations begin</Eyebrow>
-          </div>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {steps.map((step, index) => (
-              <article
-                key={step.title}
-                className="relative min-h-64 overflow-hidden border border-white/16 bg-[linear-gradient(180deg,rgba(18,34,28,0.48),rgba(4,7,6,0.82))] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.24)]"
-              >
-                <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
-                <div className="flex items-center gap-5">
-                  <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-signal/55 bg-black/22 font-display text-3xl leading-none text-signal">
-                    0{index + 1}
-                  </div>
-                  <div className="flex min-w-0 flex-1 items-center gap-3">
-                    <span className="h-px flex-1 bg-gradient-to-r from-signal/58 via-signal/24 to-transparent" />
-                    {index < steps.length - 1 ? <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal/70" /> : null}
-                  </div>
-                </div>
-                <div className="mt-8 max-w-sm space-y-4">
-                  <h2 className="font-display text-3xl leading-tight text-fg">{step.title}</h2>
-                  <p className="text-sm leading-7 text-muted">{step.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-7 text-muted/62">
-            Additional confidentiality steps may be required before deeper materials are shared.
-          </p>
-          <div className="mt-8 border border-white/22 bg-black/18 p-7 sm:p-9">
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="border-l border-signal/80 pl-7">
-                <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Begin a partner conversation.</h2>
-                <p className="mt-3 text-base leading-7 text-muted">Begin through the partner request path.</p>
-              </div>
-              <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {engagementTypes.map((item) => (
+                <article
+                  key={item.title}
+                  className="min-h-64 border border-white/14 bg-[linear-gradient(180deg,rgba(10,24,19,0.56),rgba(3,7,6,0.78))] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)]"
+                >
+                  <EngagementIcon type={item.icon} />
+                  <h2 className="mt-8 font-display text-2xl leading-tight text-fg sm:text-3xl">{item.title}</h2>
+                  <div className="mt-4 h-px w-9 bg-signal" />
+                  <p className="mt-4 text-sm leading-7 text-muted">{item.body}</p>
+                </article>
+              ))}
             </div>
           </div>
+          <aside className="relative border border-signal/55 bg-[linear-gradient(180deg,rgba(10,24,19,0.68),rgba(3,6,6,0.84))] p-7 shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
+            <TempleMark />
+            <h2 className="mt-7 font-display text-3xl leading-tight text-fg">Private by design.</h2>
+            <div className="mt-5 h-px w-11 bg-signal" />
+            <div className="mt-6 space-y-5 text-sm leading-7 text-muted">
+              <p>Our work is early, sensitive, and protected. We do not share details publicly.</p>
+              <p>Qualified conversations begin through our request path.</p>
+            </div>
+            <p className="mt-7 border-t border-white/12 pt-6 text-sm leading-7 text-muted">Confidentiality may precede any deeper exchange.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section className="border-b border-white/12 bg-[linear-gradient(180deg,rgb(3,8,7),rgb(4,9,8))]">
+        <div className="mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[0.58fr_0.42fr] lg:py-16">
+          <div>
+            <div className="max-w-xl space-y-5">
+              <Eyebrow>What aligned partnership looks like</Eyebrow>
+              <p className="text-base leading-8 text-muted">We move slowly for a reason. The right alignment creates leverage that lasts.</p>
+            </div>
+            <div className="mt-8 divide-y divide-white/10">
+              {criteria.map((item) => (
+                <article key={item.title} className="grid gap-5 py-5 sm:grid-cols-[4rem_8rem_1fr] sm:items-center">
+                  <div className="grid h-12 w-12 place-items-center border border-signal/58 bg-black/12">
+                    <CriteriaIcon type={item.icon} />
+                  </div>
+                  <h2 className="font-display text-2xl leading-tight text-fg">{item.title}</h2>
+                  <p className="text-sm leading-7 text-muted">{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside className="border border-white/14 bg-[linear-gradient(180deg,rgba(8,22,17,0.62),rgba(3,6,6,0.78))] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.24)] lg:self-start">
+            <Eyebrow>Begin a private conversation</Eyebrow>
+            <p className="mt-5 max-w-md text-base leading-8 text-muted">
+              Tell us about your organization, your role, and the context for a potential partnership.
+            </p>
+            <div className="mt-7 space-y-4">
+              <RequestChoice href="/request-partner-access?type=partner" title="Request Partner Access" body="For strategic partners and advisors" />
+              <RequestChoice href="/request-partner-access?type=pilot" title="Pilot Candidate Access" body="For teams exploring a pilot" />
+            </div>
+            <p className="mt-7 text-sm leading-7 text-muted">
+              Submitting a request does not guarantee access. Additional confidentiality steps may be required before deeper materials are shared.
+            </p>
+          </aside>
         </div>
       </section>
     </div>

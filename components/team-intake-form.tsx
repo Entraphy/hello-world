@@ -20,6 +20,7 @@ type TeamFormState = {
   problem: string;
   strengths: string;
   contribution: string;
+  whyEntraphy: string;
   note: string;
   acknowledged: boolean;
   companyUrl: string;
@@ -81,6 +82,7 @@ function initialForm(): TeamFormState {
     problem: "",
     strengths: "",
     contribution: "",
+    whyEntraphy: "",
     note: "",
     acknowledged: false,
     companyUrl: ""
@@ -91,13 +93,13 @@ function pathFromType(type?: string) {
   return teamPaths.find((path) => path.slug === type) ?? defaultPath;
 }
 
-function sourcePathFor(path: TeamPath) {
-  return `/introduce-yourself?type=${path.slug}`;
+function sourcePathFor(path: TeamPath, sourceBase: string) {
+  return `${sourceBase}?type=${path.slug}`;
 }
 
-function updateUrl(path: TeamPath) {
+function updateUrl(path: TeamPath, sourceBase: string) {
   if (typeof window === "undefined") return;
-  window.history.replaceState(null, "", sourcePathFor(path));
+  window.history.replaceState(null, "", sourcePathFor(path, sourceBase));
 }
 
 function FieldLabel({ htmlFor, children, required = false }: { htmlFor: string; children: string; required?: boolean }) {
@@ -201,10 +203,18 @@ function SelectedChip({ value }: { value: string }) {
   );
 }
 
-export function TeamIntakeForm({ initialType }: { initialType?: string }) {
+export function TeamIntakeForm({
+  initialType,
+  sourceBase = "/introduce-yourself",
+  showWhyEntraphy = false
+}: {
+  initialType?: string;
+  sourceBase?: string;
+  showWhyEntraphy?: boolean;
+}) {
   const initialPath = useMemo(() => pathFromType(initialType), [initialType]);
   const [selectedPath, setSelectedPath] = useState<TeamPath>(initialPath);
-  const [sourcePath, setSourcePath] = useState("/introduce-yourself");
+  const [sourcePath, setSourcePath] = useState(sourceBase);
   const [form, setForm] = useState<TeamFormState>(() => initialForm());
   const [errors, setErrors] = useState<Partial<Record<FieldKey, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -217,10 +227,10 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
 
   function selectPath(path: TeamPath) {
     setSelectedPath(path);
-    setSourcePath("/introduce-yourself");
+    setSourcePath(sourcePathFor(path, sourceBase));
     setErrors({});
     resetFeedback();
-    updateUrl(path);
+    updateUrl(path, sourceBase);
   }
 
   function updateField(field: keyof TeamFormState, value: string | boolean) {
@@ -243,10 +253,10 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
     if (!form.location.trim()) nextErrors.location = "Location is required.";
     if (!form.role.trim()) nextErrors.role = "Current role or background is required.";
     if (!form.built.trim()) nextErrors.built = "Share what you have built.";
-    if (!form.energy.trim()) nextErrors.energy = "Share what kind of work gives you energy.";
+    if (!form.energy.trim()) nextErrors.energy = "Share what moves you.";
     if (!form.problem.trim()) nextErrors.problem = "Share the problem you cannot stop thinking about.";
     if (!form.strengths.trim()) nextErrors.strengths = "Share what you do better than most people you have worked with.";
-    if (!form.contribution.trim()) nextErrors.contribution = "Share where you could create leverage.";
+    if (!form.contribution.trim()) nextErrors.contribution = "Share what kind of work gives you energy.";
     if (!form.acknowledged) nextErrors.acknowledged = "Please acknowledge the introduction expectations.";
 
     if (Object.keys(nextErrors).length > 0) {
@@ -273,13 +283,16 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
           accessType: "Early Builder",
           requestCategory: "builder",
           helpArea: selectedPath.title,
-          problem: [buildLine("Selected area", selectedPath.title), buildLine("What have you built?", form.built)].join("\n\n"),
+          problem: [buildLine("Selected area", selectedPath.title), buildLine("Proof of building", form.built)].join("\n\n"),
           why: [
-            buildLine("What kind of work gives you energy?", form.energy),
-            buildLine("What problem can you not stop thinking about?", form.problem),
+            buildLine("What moves you?", form.energy),
             buildLine("What do you do better than most people you have worked with?", form.strengths),
-            buildLine("How would you help an early company become more disciplined, more credible, or more capable?", form.contribution)
-          ].join("\n\n"),
+            buildLine("What kind of work gives you energy?", form.contribution),
+            buildLine("What problem can you not stop thinking about?", form.problem),
+            showWhyEntraphy && form.whyEntraphy.trim() ? buildLine("Why Entraphy?", form.whyEntraphy) : ""
+          ]
+            .filter(Boolean)
+            .join("\n\n"),
           website: form.website,
           note: [buildLine("Location", form.location), form.note.trim() ? buildLine("Additional note", form.note) : ""].filter(Boolean).join("\n\n"),
           referral: selectedPath.title,
@@ -356,7 +369,7 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
       <form onSubmit={handleSubmit} noValidate className="space-y-12">
         <section className="space-y-6 border-t border-white/10 pt-8">
           <SectionHeading eyebrow="About you" />
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <FieldLabel htmlFor="team-name" required>
                 Full name
@@ -394,7 +407,7 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
 
             <div>
               <FieldLabel htmlFor="team-location" required>
-                Location
+                Location (city, state, or country)
               </FieldLabel>
               <input
                 id="team-location"
@@ -408,9 +421,7 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
               />
               {errors.location ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.location}</p> : null}
             </div>
-          </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <FieldLabel htmlFor="team-role" required>
                 Current role or background
@@ -441,26 +452,42 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
                 placeholder="https://linkedin.com/in/username or website"
               />
             </div>
+
+            <div>
+              <FieldLabel htmlFor="team-built" required>
+                Proof of building
+              </FieldLabel>
+              <input
+                id="team-built"
+                name="built"
+                value={form.built}
+                onChange={(event) => updateField("built", event.target.value)}
+                className={fieldClass(Boolean(errors.built))}
+                placeholder="Links, summaries, or specific outcomes"
+                aria-invalid={Boolean(errors.built)}
+              />
+              {errors.built ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.built}</p> : null}
+            </div>
           </div>
         </section>
 
         <section className="space-y-6 border-t border-white/10 pt-8">
-          <SectionHeading eyebrow="Proof of building" />
+          <SectionHeading eyebrow="Conversation context" />
           <div>
-            <FieldLabel htmlFor="team-built" required>
-              What have you built?
+            <FieldLabel htmlFor="team-energy" required>
+              What moves you?
             </FieldLabel>
             <textarea
-              id="team-built"
-              name="built"
+              id="team-energy"
+              name="energy"
               rows={3}
-              value={form.built}
-              onChange={(event) => updateField("built", event.target.value)}
-              className={fieldClass(Boolean(errors.built))}
-              placeholder="Products, systems, companies, or work you are proud of."
-              aria-invalid={Boolean(errors.built)}
+              value={form.energy}
+              onChange={(event) => updateField("energy", event.target.value)}
+              className={fieldClass(Boolean(errors.energy))}
+              placeholder="Products, systems, companies, or work you are proud of..."
+              aria-invalid={Boolean(errors.energy)}
             />
-            {errors.built ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.built}</p> : null}
+            {errors.energy ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.energy}</p> : null}
           </div>
 
           <div>
@@ -474,31 +501,29 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
               value={form.strengths}
               onChange={(event) => updateField("strengths", event.target.value)}
               className={fieldClass(Boolean(errors.strengths))}
-              placeholder="Your unfair advantages, judgment, or unique strengths."
+              placeholder="Your unfair advantages, judgment, or unique strengths..."
               aria-invalid={Boolean(errors.strengths)}
             />
             {errors.strengths ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.strengths}</p> : null}
           </div>
-        </section>
 
-        <section className="space-y-6 border-t border-white/10 pt-8">
-          <SectionHeading eyebrow="Judgment and energy" />
-          <div className="grid gap-5 sm:grid-cols-2">
+          <p className="font-mono text-[10px] leading-5 tracking-[0.22em] text-fg/70">Judgment and energy</p>
+          <div className={`grid gap-5 ${showWhyEntraphy ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"}`}>
             <div>
-              <FieldLabel htmlFor="team-energy" required>
+              <FieldLabel htmlFor="team-contribution" required>
                 What kind of work gives you energy?
               </FieldLabel>
               <textarea
-                id="team-energy"
-                name="energy"
+                id="team-contribution"
+                name="contribution"
                 rows={3}
-                value={form.energy}
-                onChange={(event) => updateField("energy", event.target.value)}
-                className={fieldClass(Boolean(errors.energy))}
-                placeholder="The problems, environments, and work that energize you."
-                aria-invalid={Boolean(errors.energy)}
+                value={form.contribution}
+                onChange={(event) => updateField("contribution", event.target.value)}
+                className={fieldClass(Boolean(errors.contribution))}
+                placeholder="The problems, environments, and work that energize you..."
+                aria-invalid={Boolean(errors.contribution)}
               />
-              {errors.energy ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.energy}</p> : null}
+              {errors.contribution ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.contribution}</p> : null}
             </div>
 
             <div>
@@ -512,27 +537,26 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
                 value={form.problem}
                 onChange={(event) => updateField("problem", event.target.value)}
                 className={fieldClass(Boolean(errors.problem))}
-                placeholder="The challenge you believe is worth your best years."
+                placeholder="The challenge you believe is worth your best years..."
                 aria-invalid={Boolean(errors.problem)}
               />
               {errors.problem ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.problem}</p> : null}
             </div>
-          </div>
-          <div>
-            <FieldLabel htmlFor="team-contribution" required>
-              How would you help an early company become more disciplined, more credible, or more capable?
-            </FieldLabel>
-            <textarea
-              id="team-contribution"
-              name="contribution"
-              rows={4}
-              value={form.contribution}
-              onChange={(event) => updateField("contribution", event.target.value)}
-              className={fieldClass(Boolean(errors.contribution))}
-              placeholder="Where you can create leverage in an early environment."
-              aria-invalid={Boolean(errors.contribution)}
-            />
-            {errors.contribution ? <p className="mt-2 text-xs leading-5 text-red-200">{errors.contribution}</p> : null}
+
+            {showWhyEntraphy ? (
+              <div>
+                <FieldLabel htmlFor="team-why-entraphy">Why Entraphy?</FieldLabel>
+                <textarea
+                  id="team-why-entraphy"
+                  name="whyEntraphy"
+                  rows={3}
+                  value={form.whyEntraphy}
+                  onChange={(event) => updateField("whyEntraphy", event.target.value)}
+                  className={fieldClass()}
+                  placeholder="Why this mission, this timing, and this team?"
+                />
+              </div>
+            ) : null}
           </div>
         </section>
 
@@ -576,19 +600,22 @@ export function TeamIntakeForm({ initialType }: { initialType?: string }) {
             />
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-h-6">
+              {statusMessage ? (
+                <p role="status" className={`text-sm leading-6 ${status === "error" ? "text-red-200" : "text-signal"}`}>
+                  {statusMessage}
+                </p>
+              ) : null}
+            </div>
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex min-h-12 items-center justify-center border border-signal/75 bg-transparent px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 disabled:cursor-not-allowed disabled:border-white/18 disabled:text-muted"
+              className="inline-flex min-h-12 items-center justify-center gap-4 border border-signal/75 bg-transparent px-6 py-3 text-[0.68rem] font-semibold tracking-[0.22em] text-fg uppercase transition hover:border-signal hover:bg-signal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/70 disabled:cursor-not-allowed disabled:border-white/18 disabled:text-muted"
             >
-              {status === "submitting" ? "Submitting..." : "Introduce Yourself"}
+              <span>{status === "submitting" ? "Submitting..." : "Introduce Yourself"}</span>
+              <span aria-hidden>→</span>
             </button>
-            {statusMessage ? (
-              <p role="status" className={`text-sm leading-6 ${status === "error" ? "text-red-200" : "text-signal"}`}>
-                {statusMessage}
-              </p>
-            ) : null}
           </div>
         </section>
       </form>

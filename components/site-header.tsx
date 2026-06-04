@@ -42,6 +42,14 @@ export function SiteHeader() {
       return pathname === "/" && index === 0;
     }
 
+    if (href === "/partners" && pathname === "/request-partner-access") {
+      return true;
+    }
+
+    if (href === "/team" && pathname === "/introduce-yourself") {
+      return true;
+    }
+
     return pathname === href;
   }
 

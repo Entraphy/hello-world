@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const companyStatement = "Entraphy is building a patent-pending foundation for the systems that must earn trust before they act.";
+const companyStatement = "Building a patent-pending foundation for the systems that must earn trust before they act.";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -21,7 +21,7 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col items-center gap-4 border-t border-white/10 pt-4 text-center md:flex-row md:items-center md:justify-between md:gap-8 md:text-left">
           <p
-            aria-label="Private Development · Patent Pending"
+            aria-label="Private Development · Patent Pending · Selective Partnerships"
             className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-[10px] leading-5 tracking-[0.18em] text-signal uppercase md:justify-start"
           >
             <span className="whitespace-nowrap">Private Development</span>
@@ -29,6 +29,10 @@ export function SiteFooter() {
               ·
             </span>
             <span className="whitespace-nowrap">Patent Pending</span>
+            <span aria-hidden="true" className="text-signal/50">
+              ·
+            </span>
+            <span className="whitespace-nowrap">Selective Partnerships</span>
           </p>
           <nav
             aria-label="Footer"

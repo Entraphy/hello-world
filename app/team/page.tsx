@@ -33,12 +33,30 @@ export const metadata: Metadata = {
 };
 
 const traits = [
-  "Think clearly in ambiguous environments.",
-  "Stay calm under complexity.",
-  "Are not intimidated by unsolved problems.",
-  "Move from abstract reasoning to practical execution.",
-  "Care about precision without hiding behind process.",
-  "Hold a long-term vision while doing the unglamorous work required to make something real."
+  {
+    label: "Clear in ambiguity",
+    body: "Think clearly when the shape of the problem is still forming."
+  },
+  {
+    label: "Calm under complexity",
+    body: "Stay steady when there are many moving parts and few shortcuts."
+  },
+  {
+    label: "Unafraid of unsolved problems",
+    body: "Move toward difficult questions before they have names."
+  },
+  {
+    label: "Abstract to practical",
+    body: "Translate first-principles thinking into useful execution."
+  },
+  {
+    label: "Precision without theater",
+    body: "Care about rigor without hiding behind process."
+  },
+  {
+    label: "Long vision, hard work",
+    body: "Hold the horizon while doing the unglamorous work."
+  }
 ];
 
 const belongItems = [
@@ -227,16 +245,15 @@ export default function TeamPage() {
             <SignalLink>Send Us Your Signal</SignalLink>
           </div>
 
-          <div className="max-w-sm border-l border-signal/40 pl-7 text-base leading-8 text-fg/82">
-            <p>
-              It is difficult.
-              <br />
-              It is early.
-              <br />
-              It is not obvious to everyone yet.
-            </p>
-            <div className="my-5 h-px w-10 bg-signal" />
-            <p>And for the right people, that is exactly the point.</p>
+          <div className="relative max-w-sm border border-white/12 bg-black/24 p-7 shadow-[0_24px_80px_rgba(0,0,0,0.28)]">
+            <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/50 to-transparent" />
+            <div className="space-y-3 font-display text-2xl leading-tight text-fg sm:text-3xl">
+              <p>It is difficult.</p>
+              <p>It is early.</p>
+              <p>It is not obvious to everyone yet.</p>
+            </div>
+            <div className="my-6 h-px w-11 bg-signal" />
+            <p className="text-base leading-8 text-muted">And for the right people, that is exactly the point.</p>
           </div>
         </div>
       </section>
@@ -277,9 +294,10 @@ export default function TeamPage() {
             </div>
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {traits.map((trait, index) => (
-                <div key={trait} className="border-l border-white/16 pl-5">
+                <div key={trait.label} className="border-l border-white/16 pl-5">
                   <LineIcon index={index} />
-                  <p className="mt-4 text-sm leading-7 text-muted">{trait}</p>
+                  <h3 className="mt-4 font-display text-2xl leading-tight text-fg">{trait.label}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted">{trait.body}</p>
                 </div>
               ))}
             </div>
@@ -298,7 +316,7 @@ export default function TeamPage() {
             <Eyebrow>You might belong here if</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-tight text-fg sm:text-5xl">A selective filter.</h2>
           </div>
-          <ul className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+          <ul className="grid gap-x-10 gap-y-5 md:grid-cols-2">
             {belongItems.map((item) => (
               <li key={item} className="flex gap-3 text-sm leading-7 text-muted">
                 <CheckMark />
@@ -317,7 +335,7 @@ export default function TeamPage() {
           </div>
           <div className="grid border border-white/12 md:grid-cols-2 xl:grid-cols-3">
             {values.map((value, index) => (
-              <article key={value.title} className="min-h-56 border-b border-white/12 p-6 md:border-r xl:[&:nth-child(3n)]:border-r-0">
+              <article key={value.title} className="min-h-60 border-b border-white/12 p-7 md:border-r xl:[&:nth-child(3n)]:border-r-0">
                 <LineIcon index={index + 4} />
                 <h3 className="mt-5 font-display text-2xl leading-tight text-fg">{value.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-muted">{value.body}</p>
@@ -374,29 +392,24 @@ export default function TeamPage() {
         <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 opacity-50 lg:block">
           <FrontierMark />
         </div>
-        <div className="relative mx-auto grid w-full max-w-content gap-8 px-6 py-10 lg:grid-cols-[0.34fr_0.3fr_0.22fr_auto] lg:items-center">
-          <div className="flex items-start gap-7">
+        <div className="relative mx-auto grid w-full max-w-content gap-8 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:py-14">
+          <div className="flex max-w-5xl items-start gap-7">
             <div className="hidden shrink-0 sm:block">
               <FrontierMark />
             </div>
-            <div>
+            <div className="space-y-6">
               <Eyebrow>Send us your signal</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl leading-tight text-fg sm:text-4xl">
+              <h2 className="max-w-3xl font-display text-4xl leading-tight text-fg sm:text-5xl">
                 We are not asking you to apply to a polished machine.
               </h2>
+              <div className="max-w-4xl space-y-4 text-base leading-8 text-muted">
+                <p>
+                  We are inviting you into an early room. If you are the kind of person drawn to foundational work, hard problems, disciplined teams,
+                  and category-level ambition, we would like to hear from you.
+                </p>
+                <p>Tell us who you are, what you have built, and what kind of problems you cannot stop thinking about.</p>
+              </div>
             </div>
-          </div>
-          <div className="text-sm leading-7 text-muted">
-            <p>
-              We are inviting you into an early room. If you are the kind of person who is drawn to foundational work, hard problems, disciplined
-              teams, and category-level ambition, we would like to hear from you.
-            </p>
-          </div>
-          <div className="text-sm leading-7 text-muted">
-            <p>
-              Tell us who you are, what you have built, and what kind of problems you cannot stop thinking about. Better yet, tell us about a time you
-              saw something before others did and what you did with that insight.
-            </p>
           </div>
           <div className="space-y-3 lg:justify-self-end">
             <SignalLink>Send Us Your Signal</SignalLink>

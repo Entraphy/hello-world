@@ -68,7 +68,7 @@ const accessPaths: AccessPath[] = [
     slug: "advisor",
     accessType: "Advisor",
     title: "Advisor",
-    body: "For selected experts who can sharpen category, posture, and private development.",
+    body: "For selected experts who can sharpen category, posture, and careful company formation.",
     intro: "For selected experts who may be able to help Entraphy become more disciplined, credible, or precise.",
     questions: ["Where do you believe you could be most helpful?", "What relevant background should we understand?", "Why Entraphy?"]
   },
@@ -137,9 +137,13 @@ function FieldLabel({ htmlFor, children, required = false }: { htmlFor: string; 
 
 function fieldClass(error?: boolean) {
   return [
-    "mt-2 w-full border bg-black/18 px-3.5 py-3 text-sm leading-5 text-fg placeholder:text-muted/62",
-    "transition focus:border-signal focus:bg-black/32 focus:outline-none focus:ring-1 focus:ring-signal/55",
-    error ? "border-red-300/70" : "border-white/24 hover:border-white/36"
+    "mt-2 w-full border px-3.5 py-3 text-sm leading-5 text-fg caret-signal placeholder:text-muted/48 shadow-[inset_0_1px_0_rgba(242,239,230,0.045)] [color-scheme:dark]",
+    "bg-[rgb(5,9,8)] bg-[linear-gradient(180deg,rgba(9,18,15,0.92),rgba(3,5,5,0.94))]",
+    "transition hover:border-[rgb(242_239_230_/_0.32)] focus:border-[rgb(196_157_84_/_0.78)] focus:bg-[linear-gradient(180deg,rgba(11,23,18,0.96),rgba(4,7,6,0.96))] focus:outline-none focus:ring-1 focus:ring-[rgb(196_157_84_/_0.45)]",
+    "disabled:cursor-not-allowed disabled:border-[rgb(242_239_230_/_0.12)] disabled:bg-black/30 disabled:text-muted/58",
+    error
+      ? "border-[rgb(252_165_165_/_0.72)] focus:border-[rgb(254_202_202_/_0.85)] focus:ring-[rgb(252_165_165_/_0.35)]"
+      : "border-[rgb(242_239_230_/_0.18)]"
   ].join(" ");
 }
 
@@ -497,7 +501,7 @@ export function AccessIntakeForm({
                 name="accessType"
                 value={form.accessType}
                 onChange={(event) => updateField("accessType", event.target.value)}
-                className={`${fieldClass(Boolean(errors.accessType))} cursor-pointer bg-black/12 text-fg/82`}
+                className={`${fieldClass(Boolean(errors.accessType))} cursor-pointer text-fg/88`}
                 aria-invalid={Boolean(errors.accessType)}
               >
                 {availablePaths.map((path) => (

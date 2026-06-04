@@ -5,10 +5,9 @@ export const site = {
   },
   nav: {
     primary: [
-      { label: "Thesis", href: "/#thesis" },
+      { label: "Home", href: "/" },
       { label: "Partner With Us", href: "/partners" },
-      { label: "Join the Team", href: "/team" },
-      { label: "Private Access", href: "/access" }
+      { label: "Join the Team", href: "/team" }
     ],
     cta: { label: "Partner With Us", href: "/partners" }
   },

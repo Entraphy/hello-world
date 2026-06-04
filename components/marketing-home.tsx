@@ -73,8 +73,8 @@ export function HomePageContent() {
               <span className="absolute left-9 top-10 h-10 w-16 rotate-[-25deg] border border-current opacity-45" />
             </div>
             <div className="space-y-4">
-              <Eyebrow>Private development</Eyebrow>
-              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Our first product remains in private development.</h2>
+              <Eyebrow>Quiet category formation</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">The foundation is being built out of public view.</h2>
               <p className="text-base leading-8 text-muted">Public details are limited by design.</p>
               <p className="max-w-md text-sm leading-7 text-muted">Deeper materials remain available only through private access.</p>
               <ButtonLink href="/partners">Partner With Us</ButtonLink>

@@ -10,11 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1
     },
     {
-      url: `${siteUrl}/access`,
-      changeFrequency: "monthly",
-      priority: 0.7
-    },
-    {
       url: `${siteUrl}/request-access`,
       changeFrequency: "monthly",
       priority: 0.6

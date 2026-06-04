@@ -116,34 +116,36 @@ export default function TeamAccessPage({ searchParams }: { searchParams?: { type
 
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgb(4,7,7),rgb(7,15,12)_56%,rgb(3,5,5))]" />
-        <div className="absolute bottom-0 right-0 h-[34rem] w-[34rem] rounded-full border border-signal/10 opacity-50" />
-        <div className="absolute bottom-16 right-24 h-[24rem] w-[24rem] rounded-full border border-white/8 opacity-45" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(196,157,84,0.025)_58%,transparent)]" />
 
-        <div className="relative mx-auto grid w-full max-w-content gap-12 px-6 py-12 lg:grid-cols-[1.28fr_0.72fr] lg:py-16">
+        <div className="relative mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1.42fr)_minmax(19rem,0.58fr)] lg:py-16">
           <div>
             <TeamIntakeForm initialType={searchParams?.type} />
           </div>
 
-          <aside className="border-t border-white/10 pt-8 lg:border-t-0 lg:pl-10 lg:pt-0">
-            <div className="relative sticky top-28 space-y-8 border border-white/12 bg-black/18 p-7 shadow-[0_28px_80px_rgba(0,0,0,0.28)]">
-              <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
-              <div className="space-y-6">
+          <aside className="border-t border-white/10 pt-8 lg:border-t-0 lg:pl-4 lg:pt-0">
+            <div className="sticky top-28 space-y-5">
+              <div className="relative space-y-6 border border-white/12 bg-black/20 p-7 shadow-[0_28px_80px_rgba(0,0,0,0.28)]">
+                <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
                 <PeopleMark />
                 <div className="space-y-4">
                   <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">The first people in the room</h2>
                   <div className="h-px w-10 bg-signal" />
                 </div>
                 <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">
-                  We are looking for people who can operate with judgment before structure, discretion before visibility, and ownership before
-                  permission.
+                  We are looking for people who can operate before the lane is fully defined.
+                </p>
+                <p className="border-t border-white/12 pt-6 text-sm leading-7 text-muted">
+                  Submitting an introduction does not create an employment relationship or guarantee a response.
                 </p>
               </div>
 
-              <div className="border-t border-white/12 pt-7">
-                <ul className="space-y-5">
-                  {["Small team.", "High trust.", "Real consequence."].map((item, index) => (
-                    <li key={item} className="grid grid-cols-[1rem_2.5rem_1fr] items-center gap-4 text-sm leading-6 text-muted">
-                      <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+              <div className="relative border border-white/10 bg-black/16 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
+                <span aria-hidden className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-signal/35 to-transparent" />
+                <h2 className="font-display text-2xl leading-tight text-fg">What we value</h2>
+                <ul className="mt-5 space-y-4">
+                  {["Judgment before structure", "Discretion before visibility", "Ownership before permission"].map((item, index) => (
+                    <li key={item} className="grid grid-cols-[2.5rem_1fr] items-center gap-3 text-sm leading-6 text-muted">
                       <ExpectationIcon index={index} />
                       <span>{item}</span>
                     </li>
@@ -151,22 +153,9 @@ export default function TeamAccessPage({ searchParams }: { searchParams?: { type
                 </ul>
               </div>
 
-              <div className="border-t border-white/12 pt-7">
-                <div className="space-y-4">
-                  <h2 className="font-display text-3xl leading-tight text-fg">Expectations</h2>
-                  <div className="h-px w-10 bg-signal" />
-                </div>
-                <div className="mt-5 space-y-5 text-sm leading-7 text-muted">
-                  <p>Submitting an introduction does not create an employment relationship or guarantee a response.</p>
-                  <p>Entraphy reviews early-builder introductions manually. We move slowly in public so we can move decisively in private.</p>
-                </div>
-              </div>
-
-              <div className="border-t border-white/12 pt-7">
-                <p className="text-sm leading-7 text-muted">
-                  Private development. <span className="mx-5 text-white/30">Selective access.</span> <span className="text-signal">Patent pending.</span>
-                </p>
-              </div>
+              <p className="border border-white/10 bg-black/12 px-5 py-4 font-mono text-[10px] leading-5 tracking-[0.2em] text-signal/88 uppercase">
+                Small team. <span className="mx-3 text-white/28">High trust.</span> Real consequence.
+              </p>
             </div>
           </aside>
         </div>

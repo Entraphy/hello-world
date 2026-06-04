@@ -46,23 +46,23 @@ const engagementTypes = [
   },
   {
     title: "Institutional Advisors",
-    body: "For selected experts who can sharpen category, posture, and private development.",
+    body: "For selected experts who can sharpen category, posture, and careful company formation.",
     icon: "person"
   }
 ];
 
 const steps = [
   {
-    title: "Request access.",
+    title: "Request partner access.",
     body: "Choose the path that best matches your context."
   },
   {
-    title: "Entraphy reviews manually.",
-    body: "Every request is reviewed with care and discretion."
+    title: "Manual review.",
+    body: "Entraphy reviews each request with care and discretion."
   },
   {
-    title: "Qualified conversations may proceed.",
-    body: "Qualified organizations may be invited to a private briefing."
+    title: "Private briefing.",
+    body: "Qualified conversations may proceed under appropriate confidentiality."
   }
 ];
 
@@ -118,7 +118,7 @@ export default function PartnersPage() {
                 autonomy carries institutional consequence.
               </p>
               <p className="max-w-2xl text-base leading-8 text-muted">
-                Product details remain private. Qualified conversations begin through the request access path.
+                Product details remain private. Qualified conversations begin through the request path.
               </p>
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
                 <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
@@ -142,8 +142,8 @@ export default function PartnersPage() {
             <div className="max-w-3xl space-y-5">
               <Eyebrow>Not a broad partner program</Eyebrow>
               <p className="text-base leading-8 text-muted">
-                Entraphy is operating in private development. We are interested in disciplined conversations with organizations that understand the
-                importance of trust, discretion, and institutional-grade adoption.
+                Entraphy is opening deliberately, not broadly. We are interested in disciplined conversations with organizations that understand the
+                importance of trust and institutional-grade adoption.
               </p>
             </div>
           </div>
@@ -170,32 +170,42 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/12 bg-[rgb(6,8,8)]">
+      <section className="border-b border-white/12 bg-[linear-gradient(180deg,rgb(6,8,8),rgb(4,9,8))]">
         <div className="mx-auto w-full max-w-content px-6 py-12 lg:py-16">
-          <div className="mb-8">
-            <Eyebrow>How engagement begins</Eyebrow>
+          <div className="mb-9">
+            <Eyebrow>How conversations begin</Eyebrow>
           </div>
-          <div className="grid gap-10 md:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
             {steps.map((step, index) => (
-              <div key={step.title} className="space-y-7">
-                <div className="flex items-center gap-5 text-signal">
-                  <p className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-signal/52 font-display text-3xl leading-none">0{index + 1}</p>
-                  <span className="h-px flex-1 bg-gradient-to-r from-signal/75 via-signal/42 to-transparent" />
-                  {index < steps.length - 1 ? <span className="h-1.5 w-1.5 rounded-full bg-signal/85" /> : null}
+              <article
+                key={step.title}
+                className="relative min-h-64 overflow-hidden border border-white/16 bg-[linear-gradient(180deg,rgba(18,34,28,0.48),rgba(4,7,6,0.82))] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.24)]"
+              >
+                <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
+                <div className="flex items-center gap-5">
+                  <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-signal/55 bg-black/22 font-display text-3xl leading-none text-signal">
+                    0{index + 1}
+                  </div>
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <span className="h-px flex-1 bg-gradient-to-r from-signal/58 via-signal/24 to-transparent" />
+                    {index < steps.length - 1 ? <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal/70" /> : null}
+                  </div>
                 </div>
-                <div className="max-w-xs space-y-3">
-                  <h2 className="font-display text-2xl leading-tight text-fg">{step.title}</h2>
+                <div className="mt-8 max-w-sm space-y-4">
+                  <h2 className="font-display text-3xl leading-tight text-fg">{step.title}</h2>
                   <p className="text-sm leading-7 text-muted">{step.body}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-          <p className="mt-12 text-center text-sm leading-7 text-muted/72">Additional confidentiality steps may be required before deeper materials are shared.</p>
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-7 text-muted/62">
+            Additional confidentiality steps may be required before deeper materials are shared.
+          </p>
           <div className="mt-8 border border-white/22 bg-black/18 p-7 sm:p-9">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div className="border-l border-signal/80 pl-7">
                 <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Begin a partner conversation.</h2>
-                <p className="mt-3 text-base leading-7 text-muted">Request access to start the process.</p>
+                <p className="mt-3 text-base leading-7 text-muted">Begin through the partner request path.</p>
               </div>
               <ButtonLink href="/request-partner-access?type=partner">Request Partner Access</ButtonLink>
             </div>

@@ -3,10 +3,9 @@ import Link from "next/link";
 const companyStatement = "Entraphy is building a patent-pending foundation for the systems that must earn trust before they act.";
 
 const footerLinks = [
-  { label: "Thesis", href: "/#thesis" },
+  { label: "Home", href: "/" },
   { label: "Partner With Us", href: "/partners" },
   { label: "Join the Team", href: "/team" },
-  { label: "Private Access", href: "/access" },
   { label: "Legal", href: "/legal/privacy" }
 ];
 

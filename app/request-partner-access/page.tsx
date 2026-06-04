@@ -59,8 +59,8 @@ export default function PartnerAccessPage({ searchParams }: { searchParams?: { t
               <Eyebrow>Partner access</Eyebrow>
               <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Begin a private conversation.</h1>
               <div className="space-y-5 text-base leading-8 text-muted sm:text-lg">
-                <p>Entraphy reviews partner and pilot requests manually. Product details remain private while the foundation remains in development.</p>
-                <p>Choose the path that best matches your context. Qualified conversations may proceed to a private briefing.</p>
+                <p>Share the context for a strategic partner, pilot, advisor, or careful inquiry.</p>
+                <p>Additional confidentiality steps may be required before deeper materials are shared.</p>
               </div>
             </div>
           </div>
@@ -81,10 +81,9 @@ export default function PartnerAccessPage({ searchParams }: { searchParams?: { t
 
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgb(4,7,7),rgb(7,15,12)_56%,rgb(3,5,5))]" />
-        <div className="absolute bottom-0 right-0 h-[34rem] w-[34rem] rounded-full border border-signal/10 opacity-50" />
-        <div className="absolute bottom-16 right-24 h-[24rem] w-[24rem] rounded-full border border-white/8 opacity-45" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(196,157,84,0.025)_58%,transparent)]" />
 
-        <div className="relative mx-auto grid w-full max-w-content gap-12 px-6 py-12 lg:grid-cols-[1.28fr_0.72fr] lg:py-16">
+        <div className="relative mx-auto grid w-full max-w-content gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1.42fr)_minmax(19rem,0.58fr)] lg:py-16">
           <div>
             <AccessIntakeForm
               initialType={searchParams?.type}
@@ -98,26 +97,42 @@ export default function PartnerAccessPage({ searchParams }: { searchParams?: { t
             />
           </div>
 
-          <aside className="border-t border-white/10 pt-8 lg:border-t-0 lg:pl-10 lg:pt-0">
-            <div className="relative sticky top-28 space-y-7 border border-white/12 bg-black/18 p-7 shadow-[0_28px_80px_rgba(0,0,0,0.28)]">
-              <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
-              <ConfidentialityMark />
-              <div className="space-y-4">
-                <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Confidentiality and expectations</h2>
-                <div className="h-px w-10 bg-signal" />
+          <aside className="border-t border-white/10 pt-8 lg:border-t-0 lg:pl-4 lg:pt-0">
+            <div className="sticky top-28 space-y-5">
+              <div className="relative space-y-7 border border-white/12 bg-black/20 p-7 shadow-[0_28px_80px_rgba(0,0,0,0.28)]">
+                <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-signal/45 to-transparent" />
+                <ConfidentialityMark />
+                <div className="space-y-4">
+                  <h2 className="font-display text-3xl leading-tight text-fg sm:text-4xl">Confidentiality and expectations</h2>
+                  <div className="h-px w-10 bg-signal" />
+                </div>
+                <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+                  <p>
+                    Submitting a request does not guarantee access. Additional confidentiality steps may be required before deeper materials are shared.
+                  </p>
+                  <p>Qualified conversations proceed only when timing, context, and alignment are clear.</p>
+                </div>
+                <div className="border-t border-white/12 pt-7">
+                  <p className="text-sm leading-7 text-muted">Confidentiality may precede any deeper exchange.</p>
+                </div>
               </div>
-              <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
-                <p>
-                  Submitting a request does not guarantee access. Entraphy reviews requests manually and may require additional confidentiality steps
-                  before sharing deeper materials.
-                </p>
-                <p>We are intentionally selective about who we engage with while in private development.</p>
+
+              <div className="relative border border-white/10 bg-black/16 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
+                <span aria-hidden className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-signal/35 to-transparent" />
+                <h2 className="font-display text-2xl leading-tight text-fg">How conversations proceed</h2>
+                <ol className="mt-5 space-y-3 text-sm leading-6 text-muted">
+                  {["Request received", "Manual review", "Confidentiality if appropriate", "Private briefing if aligned"].map((item, index) => (
+                    <li key={item} className="grid grid-cols-[2rem_1fr] gap-3">
+                      <span className="font-mono text-[10px] tracking-[0.2em] text-signal">0{index + 1}</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <div className="border-t border-white/12 pt-7">
-                <p className="text-sm leading-7 text-muted">
-                  Private development. <span className="mx-5 text-white/30">Selective access.</span> <span className="text-signal">Patent pending.</span>
-                </p>
-              </div>
+
+              <p className="border border-white/10 bg-black/12 px-5 py-4 font-mono text-[10px] leading-5 tracking-[0.2em] text-signal/88 uppercase">
+                Private development. <span className="mx-3 text-white/28">Selective review.</span> Patent pending.
+              </p>
             </div>
           </aside>
         </div>

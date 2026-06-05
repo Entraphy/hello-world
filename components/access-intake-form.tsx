@@ -48,7 +48,7 @@ const accessPaths: AccessPath[] = [
     slug: "partner",
     accessType: "Strategic Partner",
     title: "Strategic Partner",
-    body: "For institutions and platforms shaping what trusted autonomy will require before scale.",
+    body: "For organizations shaping the environments where trusted autonomy will matter before scale.",
     intro: "For selected organizations exploring strategic alignment, confidential access, or early partnership posture.",
     questions: [
       "What problem are you trying to solve?",
@@ -60,9 +60,9 @@ const accessPaths: AccessPath[] = [
     slug: "pilot",
     accessType: "Pilot Candidate",
     title: "Pilot Candidate",
-    body: "For high-consequence environments preparing for private evaluation.",
-    intro: "For high-consequence environments considering whether a private evaluation would be useful.",
-    questions: ["What kind of environment are you preparing for?", "What would make a private evaluation useful?", "Why Entraphy?"]
+    body: "For high-consequence teams preparing for private evaluation.",
+    intro: "For high-consequence teams considering whether a private evaluation would be useful.",
+    questions: ["What kind of team or organization are you preparing for?", "What would make a private evaluation useful?", "Why Entraphy?"]
   },
   {
     slug: "advisor",

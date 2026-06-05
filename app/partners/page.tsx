@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Partner With Us | Entraphy Systems",
-  description: "Entraphy is opening selected conversations with strategic partners and pilot candidates preparing for trusted autonomy.",
+  description: "Entraphy is opening selected conversations with strategic partners, early evaluation partners, and advisors operating where trusted autonomy carries institutional consequence.",
   alternates: {
     canonical: "https://www.entraphy.com/partners"
   },
   openGraph: {
     title: "Partner With Us | Entraphy Systems",
-    description: "Entraphy is opening selected conversations with strategic partners and pilot candidates preparing for trusted autonomy.",
+    description: "Entraphy is opening selected conversations with strategic partners, early evaluation partners, and advisors operating where trusted autonomy carries institutional consequence.",
     type: "website",
     url: "https://www.entraphy.com/partners",
     siteName: "Entraphy Systems",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Partner With Us | Entraphy Systems",
-    description: "Entraphy is opening selected conversations with strategic partners and pilot candidates preparing for trusted autonomy.",
+    description: "Entraphy is opening selected conversations with strategic partners, early evaluation partners, and advisors operating where trusted autonomy carries institutional consequence.",
     images: ["/brand/entraphy-og-image.png"]
   }
 };
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
 const engagementTypes = [
   {
     title: "Strategic Partners",
-    body: "Organizations shaping the infrastructure, platforms, and policies of tomorrow.",
+    body: "For organizations shaping the environments where trusted autonomy will matter before scale.",
     icon: "spark"
   },
   {
     title: "Pilot Candidates",
-    body: "Teams operating in high-consequence environments where trust must be proven, not assumed.",
+    body: "For high-consequence teams preparing for private evaluation.",
     icon: "target"
   },
   {
     title: "Institutional Advisors",
-    body: "Experienced leaders providing rare perspective, discipline, and long-term guidance.",
+    body: "For selected experts who can sharpen category, posture, and private development.",
     icon: "seal"
   }
 ];
@@ -207,10 +207,10 @@ export default function PartnersPage() {
               <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Partner with us before the category is obvious.</h1>
               <div className="h-px w-12 bg-signal" />
               <p className="max-w-lg text-base leading-8 text-muted sm:text-lg">
-                Entraphy is building the foundation for systems that must earn trust before they act.
+                Entraphy is opening a small number of private conversations with strategic partners and early evaluation partners operating where trusted autonomy carries institutional consequence.
               </p>
               <p className="max-w-lg text-base leading-8 text-muted sm:text-lg">
-                We work with institutions, pilots, and advisors who are helping define the standards that will matter.
+                Product details remain private. Qualified conversations begin through the request path.
               </p>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function PartnersPage() {
             <div className="max-w-3xl space-y-5">
               <Eyebrow>Who we work with</Eyebrow>
               <p className="max-w-3xl text-base leading-8 text-muted">
-                We engage with a small number of organizations and individuals where the alignment is real and the impact can compound.
+                We work with institutions, early evaluation partners, and advisors operating where the standards will matter.
               </p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -292,7 +292,7 @@ export default function PartnersPage() {
             </p>
             <div className="mt-7 space-y-4">
               <RequestChoice href="/request-partner-access?type=partner" title="Request Partner Access" body="For strategic partners and advisors" />
-              <RequestChoice href="/request-partner-access?type=pilot" title="Pilot Candidate Access" body="For teams exploring a pilot" />
+              <RequestChoice href="/request-partner-access?type=pilot" title="Pilot Candidate Access" body="For high-consequence teams preparing for private evaluation." />
             </div>
             <p className="mt-7 text-sm leading-7 text-muted">
               Submitting a request does not guarantee access. Additional confidentiality steps may be required before deeper materials are shared.

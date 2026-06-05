@@ -175,7 +175,7 @@ function confirmationBodyFor(payload: CleanAccessPayload) {
   return [
     "Your request has been received.",
     "",
-    "Entraphy reviews partner and pilot requests manually. If there may be alignment, we will follow up.",
+    "Entraphy reviews partner and pilot-candidate requests manually. If there may be alignment, we will follow up.",
     "",
     "Submitting a request does not guarantee access, partnership, or a response.",
     "",

@@ -5,13 +5,13 @@ import { AccessIntakeForm } from "@/components/access-intake-form";
 
 export const metadata: Metadata = {
   title: "Request Partner Access | Entraphy Systems",
-  description: "Request a private Entraphy partner, pilot, or advisor conversation.",
+  description: "Request a private conversation for strategic partners, early evaluation teams, or advisors.",
   alternates: {
     canonical: "https://www.entraphy.com/request-partner-access"
   },
   openGraph: {
     title: "Request Partner Access | Entraphy Systems",
-    description: "Request a private Entraphy partner, pilot, or advisor conversation.",
+    description: "Request a private conversation for strategic partners, early evaluation teams, or advisors.",
     type: "website",
     url: "https://www.entraphy.com/request-partner-access",
     siteName: "Entraphy Systems",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Partner Access | Entraphy Systems",
-    description: "Request a private Entraphy partner, pilot, or advisor conversation.",
+    description: "Request a private conversation for strategic partners, early evaluation teams, or advisors.",
     images: ["/brand/entraphy-og-image.png"]
   }
 };
@@ -71,7 +71,7 @@ export default function PartnerAccessPage({ searchParams }: { searchParams?: { t
               <Eyebrow>Partner access</Eyebrow>
               <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-7xl">Begin a private conversation.</h1>
               <div className="space-y-5 text-base leading-8 text-muted sm:text-lg">
-                <p>Share the context for a strategic partner, pilot, advisor, or careful inquiry.</p>
+                <p>Share the context for a strategic partner organization, a high-consequence team preparing for private evaluation, an advisor, or a careful inquiry.</p>
                 <p>Additional confidentiality steps may be required before deeper materials are shared.</p>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function PartnerAccessPage({ searchParams }: { searchParams?: { t
               scope="partners"
               sourceBasePath="/request-partner-access"
               pathsEyebrow="Choose your context"
-              intro="Select the path that best matches your role and the conversation you are looking to have with Entraphy."
+              intro="Select the path that best matches your organization and the conversation you are looking to have with Entraphy."
               detailsEyebrow="Conversation context"
               submitLabel="Request Partner Access"
               requireOrganizationAndRole

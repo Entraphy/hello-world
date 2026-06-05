@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -214,21 +213,41 @@ function SignalTraceMark() {
   );
 }
 
+function SignalNoteVisual() {
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden bg-[linear-gradient(135deg,rgb(4,7,7),rgb(8,13,11)_48%,rgb(3,4,4))]">
+      <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(196,157,84,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(196,157,84,0.16)_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_34%,rgba(196,157,84,0.14),transparent_28%),linear-gradient(90deg,rgba(4,7,7,0.72),transparent_42%,rgba(0,0,0,0.22))]" />
+      <div className="absolute right-[11%] top-[12%] h-[82%] w-[54%] rotate-[10deg] border border-signal/28 bg-[linear-gradient(145deg,rgb(22,22,19),rgb(6,6,5))] shadow-[0_30px_90px_rgba(0,0,0,0.45)]" />
+      <div className="absolute right-[18%] top-[2%] h-16 w-10 rotate-[10deg] rounded-t-2xl border border-signal/45 bg-black/45" />
+      <div className="absolute right-[23%] top-[1%] h-12 w-8 rotate-[10deg] rounded-t-2xl border border-signal/38 bg-black/42" />
+      <div className="absolute right-[15%] top-[9%] h-5 w-20 rotate-[10deg] bg-black/55" />
+      <div className="absolute right-[22%] top-[38%] flex rotate-[10deg] items-center gap-6">
+        <span aria-hidden className="relative block h-[4.5rem] w-[4.5rem]">
+          <span className="absolute inset-0 rounded-full border border-signal/18" />
+          <span className="absolute inset-[0.55rem] rounded-full border border-signal/28" />
+          <span className="absolute inset-[1.05rem] rounded-full border border-signal/38" />
+          <span className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal/75" />
+        </span>
+        <div className="space-y-2 font-display text-2xl italic leading-tight text-signal/76">
+          <p>Signal received.</p>
+          <p>We listen for builders.</p>
+        </div>
+      </div>
+      <div className="absolute right-[18%] top-[62%] h-px w-[38%] rotate-[10deg] bg-signal/24" />
+      <div className="absolute right-[21%] top-[68%] h-px w-[29%] rotate-[10deg] bg-white/10" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),transparent_26%,rgba(0,0,0,0.38))]" />
+    </div>
+  );
+}
+
 export default function TeamPage() {
   return (
     <div className="bg-bg text-fg">
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,7,7)_0%,rgba(4,9,8,0.94)_44%,rgba(4,7,7,0.68)_100%)]" />
         <div className="absolute inset-y-0 right-0 w-full opacity-88 lg:w-[61%]">
-          <Image
-            src="/images/entraphy-signal-field.png"
-            alt=""
-            fill
-            priority
-            sizes="(min-width: 1024px) 61vw, 100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_67%_45%,rgba(196,157,84,0.28),transparent_24%),linear-gradient(90deg,rgb(4,7,7)_0%,rgba(4,7,7,0.76)_32%,rgba(4,7,7,0.16)_66%,rgba(4,7,7,0.46)_100%)]" />
+          <SignalNoteVisual />
         </div>
 
         <div className="relative mx-auto grid min-h-[37rem] w-full max-w-content gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[minmax(0,0.62fr)_minmax(18rem,0.38fr)] lg:items-center lg:py-20">

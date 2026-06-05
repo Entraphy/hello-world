@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import { TeamIntakeForm } from "@/components/team-intake-form";
 
@@ -74,53 +73,25 @@ function ValueMark({ index }: { index: number }) {
 
 const strongSignals = ["Specific work.", "Clear thinking.", "Evidence of ownership.", "Discretion.", "A point of view."];
 
-function SignalNoteVisual() {
-  return (
-    <div aria-hidden className="relative min-h-[18rem] overflow-hidden bg-[linear-gradient(135deg,rgb(4,7,7),rgb(8,13,11)_48%,rgb(3,4,4))] sm:min-h-[22rem] lg:min-h-full">
-      <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(196,157,84,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(196,157,84,0.16)_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_34%,rgba(196,157,84,0.14),transparent_28%),linear-gradient(90deg,rgba(4,7,7,0.72),transparent_42%,rgba(0,0,0,0.22))]" />
-      <div className="absolute right-[11%] top-[12%] h-[82%] w-[54%] rotate-[10deg] border border-signal/28 bg-[linear-gradient(145deg,rgb(22,22,19),rgb(6,6,5))] shadow-[0_30px_90px_rgba(0,0,0,0.45)]" />
-      <div className="absolute right-[18%] top-[2%] h-16 w-10 rotate-[10deg] rounded-t-2xl border border-signal/45 bg-black/45" />
-      <div className="absolute right-[23%] top-[1%] h-12 w-8 rotate-[10deg] rounded-t-2xl border border-signal/38 bg-black/42" />
-      <div className="absolute right-[15%] top-[9%] h-5 w-20 rotate-[10deg] bg-black/55" />
-      <div className="absolute right-[22%] top-[38%] flex rotate-[10deg] items-center gap-6">
-        <Image src="/brand/entraphy-logo-mark.png" alt="" width={72} height={72} className="opacity-80" />
-        <div className="space-y-2 font-display text-2xl italic leading-tight text-signal/76">
-          <p>Signal received.</p>
-          <p>We listen for builders.</p>
-        </div>
-      </div>
-      <div className="absolute right-[18%] top-[62%] h-px w-[38%] rotate-[10deg] bg-signal/24" />
-      <div className="absolute right-[21%] top-[68%] h-px w-[29%] rotate-[10deg] bg-white/10" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),transparent_26%,rgba(0,0,0,0.38))]" />
-    </div>
-  );
-}
-
 export default function SignalPage({ searchParams }: { searchParams?: { type?: string } }) {
   return (
     <div className="bg-bg text-fg">
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(4,7,7)_0%,rgba(5,12,10,0.98)_52%,rgb(4,6,6)_100%)]" />
-        <div className="relative mx-auto grid w-full max-w-content gap-0 lg:min-h-[29rem] lg:grid-cols-[0.52fr_0.48fr] lg:items-stretch">
-          <div className="flex items-center px-6 py-14 sm:py-16 lg:py-18">
-            <div className="max-w-2xl space-y-7">
-              <Eyebrow>Join Entraphy</Eyebrow>
-              <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-[4.65rem]">Send Us Your Signal.</h1>
-              <div className="space-y-5 text-base leading-8 text-muted sm:text-lg">
-                <p>For people who read the letter and recognized the feeling.</p>
-                <p>
-                  Entraphy is building in stealth, so this is not a conventional application. We are looking for enough signal to understand how you
-                  think, what you have built, and where you might create leverage near the foundation.
-                </p>
-              </div>
-              <p className="font-mono text-[10px] leading-5 tracking-[0.22em] text-signal uppercase">
-                If there may be alignment, we will follow up manually.
+        <div className="relative mx-auto flex w-full max-w-content items-center px-6 py-14 sm:py-16 lg:min-h-[29rem] lg:py-18">
+          <div className="max-w-2xl space-y-7">
+            <Eyebrow>Join Entraphy</Eyebrow>
+            <h1 className="font-display text-5xl leading-[0.98] text-fg sm:text-6xl lg:text-[4.65rem]">Send Us Your Signal.</h1>
+            <div className="space-y-5 text-base leading-8 text-muted sm:text-lg">
+              <p>For people who read the letter and recognized the feeling.</p>
+              <p>
+                Entraphy is building in stealth, so this is not a conventional application. We are looking for enough signal to understand how you
+                think, what you have built, and where you might create leverage near the foundation.
               </p>
             </div>
-          </div>
-          <div className="relative min-h-[20rem] overflow-hidden border-t border-white/10 lg:border-t-0">
-            <SignalNoteVisual />
+            <p className="font-mono text-[10px] leading-5 tracking-[0.22em] text-signal uppercase">
+              If there may be alignment, we will follow up manually.
+            </p>
           </div>
         </div>
       </section>

@@ -196,15 +196,20 @@ function CheckMark() {
   );
 }
 
-function FrontierMark() {
+function SignalTraceMark() {
   return (
     <span aria-hidden className="relative block h-32 w-32 text-signal">
-      <span className="absolute inset-0 rounded-full border border-current opacity-18" />
-      <span className="absolute inset-5 rounded-full border border-current opacity-30" />
-      <span className="absolute inset-10 rounded-full border border-current opacity-55" />
-      <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current opacity-20" />
-      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current opacity-20" />
+      <span className="absolute left-7 top-7 h-[4.5rem] w-16 rounded-[1.15rem] border border-white/10 bg-[linear-gradient(180deg,rgba(10,15,13,0.24),rgba(4,6,5,0.62))]" />
+      <span className="absolute left-8 top-8 h-16 w-14 rounded-[1rem] border border-signal/16" />
+      <span className="absolute left-10 top-[3.4rem] h-px w-10 bg-gradient-to-r from-transparent via-signal/55 to-transparent opacity-40" />
+      <span className="absolute left-10 top-[4.25rem] h-px w-14 bg-white/10" />
+      <span className="absolute left-10 top-[5.15rem] h-px w-8 bg-white/8" />
+      <span className="absolute left-[6.45rem] top-[3.2rem] h-1.5 w-1.5 rounded-full bg-signal/70 shadow-[0_0_18px_rgba(196,157,84,0.26)]" />
+      <span className="absolute left-[7.15rem] top-[4.15rem] h-1.5 w-1.5 rounded-full bg-signal/45" />
+      <span className="absolute left-[6.1rem] top-[5.05rem] h-1 w-1 rounded-full bg-signal/32" />
+      <span className="absolute left-[4.35rem] top-[2.25rem] h-16 w-px bg-gradient-to-b from-transparent via-signal/30 to-transparent opacity-40" />
+      <span className="absolute left-[5rem] top-[2.75rem] h-px w-8 bg-white/8" />
+      <span className="absolute left-[4.05rem] top-[7.25rem] h-px w-16 bg-gradient-to-r from-transparent via-[rgb(196,157,84)]/18 to-transparent opacity-20" />
     </span>
   );
 }
@@ -390,12 +395,12 @@ export default function TeamPage() {
       <section className="relative overflow-hidden border-b border-white/12">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5,8,8),rgb(8,12,11))]" />
         <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 opacity-50 lg:block">
-          <FrontierMark />
+          <SignalTraceMark />
         </div>
         <div className="relative mx-auto grid w-full max-w-content gap-8 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:py-14">
           <div className="flex max-w-5xl items-start gap-7">
             <div className="hidden shrink-0 sm:block">
-              <FrontierMark />
+              <SignalTraceMark />
             </div>
             <div className="space-y-6">
               <Eyebrow>Send us your signal</Eyebrow>

@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "node:crypto";
 
 const accessTypes = new Set(["Strategic Partner", "Pilot Candidate", "Advisor", "Early Builder", "Other"]);
 const maxBodyLength = 16_000;
-const resendEndpoint = "https://api.resend.com/emails";
 const defaultPublicFrom = "Entraphy Systems <no-reply@entraphy.com>";
+const defaultNotificationTo = "support@entraphy.com";
+const graphScope = "https://graph.microsoft.com/.default";
+const graphBaseUrl = "https://graph.microsoft.com/v1.0";
 
 type AccessPayload = {
   name?: unknown;
@@ -58,7 +59,7 @@ const fieldLimits: Record<Exclude<keyof AccessPayload, "companyUrl">, number> = 
   helpArea: 120
 };
 
-function isObject(value: unknown): value is AccessPayload {
+function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
@@ -68,6 +69,11 @@ function cleanString(value: unknown, maxLength: number) {
 
 function cleanHeaderValue(value: string | undefined, maxLength = 320) {
   return value?.trim().replace(/[\r\n]/g, " ").slice(0, maxLength) ?? "";
+}
+
+function extractEmailAddress(value: string) {
+  const bracketedAddress = value.match(/<([^<>]+)>/);
+  return (bracketedAddress?.[1] ?? value).trim();
 }
 
 function isValidEmail(value: string) {
@@ -185,65 +191,123 @@ function confirmationBodyFor(payload: CleanAccessPayload) {
 
 function emailConfig() {
   return {
-    apiKey: cleanHeaderValue(process.env.RESEND_API_KEY, 500),
-    notificationTo: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_TO ?? process.env.ENTRAPHY_ACCESS_INTAKE_TO),
+    tenantId: cleanHeaderValue(process.env.MICROSOFT_GRAPH_TENANT_ID, 120),
+    clientId: cleanHeaderValue(process.env.MICROSOFT_GRAPH_CLIENT_ID, 120),
+    clientSecret: cleanHeaderValue(process.env.MICROSOFT_GRAPH_CLIENT_SECRET, 800),
+    notificationTo: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_TO ?? process.env.ENTRAPHY_ACCESS_INTAKE_TO ?? defaultNotificationTo),
     notificationFrom: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_FROM ?? process.env.ENTRAPHY_ACCESS_INTAKE_FROM ?? defaultPublicFrom),
     publicFrom: cleanHeaderValue(process.env.ENTRAPHY_PUBLIC_FROM ?? defaultPublicFrom)
   };
 }
 
-async function sendResendEmail({
-  apiKey,
+async function getMicrosoftGraphAccessToken({
+  tenantId,
+  clientId,
+  clientSecret
+}: {
+  tenantId: string;
+  clientId: string;
+  clientSecret: string;
+}) {
+  const tokenResponse = await fetch(`https://login.microsoftonline.com/${encodeURIComponent(tenantId)}/oauth2/v2.0/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      grant_type: "client_credentials",
+      scope: graphScope
+    })
+  });
+
+  if (!tokenResponse.ok) {
+    return null;
+  }
+
+  const tokenBody: unknown = await tokenResponse.json();
+
+  if (!isObject(tokenBody) || typeof tokenBody.access_token !== "string") {
+    return null;
+  }
+
+  return tokenBody.access_token;
+}
+
+async function sendMicrosoftGraphEmail({
+  accessToken,
   from,
   to,
   replyTo,
   subject,
   text
 }: {
-  apiKey: string;
+  accessToken: string;
   from: string;
   to: string;
   replyTo?: string;
   subject: string;
   text: string;
 }) {
-  const body: Record<string, string> = {
-    from,
-    to,
-    subject,
-    text
-  };
+  const sender = extractEmailAddress(from).toLowerCase();
+  const recipients = to
+    .split(/[;,]/)
+    .map((recipient) => extractEmailAddress(recipient).toLowerCase())
+    .filter(isValidEmail)
+    .map((address) => ({ emailAddress: { address } }));
 
-  if (replyTo && isValidEmail(replyTo)) {
-    body.reply_to = replyTo;
-  }
-
-  const response = await fetch(resendEndpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      "Idempotency-Key": randomUUID()
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!response.ok) {
+  if (!isValidEmail(sender) || recipients.length === 0) {
     return { ok: false };
   }
 
-  return { ok: true };
+  const message: Record<string, unknown> = {
+    subject,
+    body: {
+      contentType: "Text",
+      content: text
+    },
+    toRecipients: recipients
+  };
+
+  if (replyTo && isValidEmail(replyTo)) {
+    message.replyTo = [{ emailAddress: { address: replyTo } }];
+  }
+
+  const response = await fetch(`${graphBaseUrl}/users/${encodeURIComponent(sender)}/sendMail`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message,
+      saveToSentItems: false
+    })
+  });
+
+  return { ok: response.ok };
 }
 
 async function sendAccessEmail(payload: CleanAccessPayload) {
   const config = emailConfig();
 
-  if (!config.apiKey || !config.notificationTo || !config.notificationFrom) {
+  if (!config.tenantId || !config.clientId || !config.clientSecret || !config.notificationTo || !config.notificationFrom) {
     return { ok: false, status: 503, error: "Intake email is not configured." };
   }
 
-  const notification = await sendResendEmail({
-    apiKey: config.apiKey,
+  const accessToken = await getMicrosoftGraphAccessToken({
+    tenantId: config.tenantId,
+    clientId: config.clientId,
+    clientSecret: config.clientSecret
+  });
+
+  if (!accessToken) {
+    return { ok: false, status: 502, error: "Intake email service could not be authorized." };
+  }
+
+  const notification = await sendMicrosoftGraphEmail({
+    accessToken,
     from: config.notificationFrom,
     to: config.notificationTo,
     replyTo: payload.email,
@@ -263,8 +327,8 @@ async function sendAccessEmail(payload: CleanAccessPayload) {
     return { ok: false, status: 503, error: "Confirmation email is not configured." };
   }
 
-  const confirmation = await sendResendEmail({
-    apiKey: config.apiKey,
+  const confirmation = await sendMicrosoftGraphEmail({
+    accessToken,
     from: config.publicFrom,
     to: payload.email,
     subject: confirmationSubjectFor(payload),

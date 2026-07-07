@@ -14,22 +14,32 @@ The current public site is being migrated to Entraphy's stealth-safe positioning
 
 The `/request-partner-access` and `/signal` pages contain lightweight intake forms backed by `POST /api/access`.
 
-The API route validates submissions server-side, applies a hidden honeypot field, and sends a concise internal email notification through the Resend HTTP API using server-only environment variables. Optional submitter confirmations can be enabled explicitly. No access portal, authentication, CRM, analytics, database, or local browser storage is implemented.
+The API route validates submissions server-side, applies a hidden honeypot field, and sends a concise internal email notification through Microsoft Graph using server-only environment variables. Optional submitter confirmations can be enabled explicitly. No access portal, authentication, CRM, analytics, database, or local browser storage is implemented.
 
 Required environment variables:
 
-- `RESEND_API_KEY`
-- `ENTRAPHY_NOTIFICATION_TO`
+- `MICROSOFT_GRAPH_TENANT_ID`
+- `MICROSOFT_GRAPH_CLIENT_ID`
+- `MICROSOFT_GRAPH_CLIENT_SECRET`
 - `ENTRAPHY_NOTIFICATION_FROM`
 
 Recommended deployment values:
 
-- `ENTRAPHY_NOTIFICATION_TO=<private internal recipient>`
+- `ENTRAPHY_NOTIFICATION_TO=support@entraphy.com`
 - `ENTRAPHY_NOTIFICATION_FROM=Entraphy Systems <no-reply@entraphy.com>`
 - `ENTRAPHY_PUBLIC_FROM=Entraphy Systems <no-reply@entraphy.com>`
 - `ENTRAPHY_SEND_CONFIRMATION=false`
 
-`ENTRAPHY_NOTIFICATION_FROM` and `ENTRAPHY_PUBLIC_FROM` must use sender addresses or domains verified in Resend. Submitter-facing confirmations, when enabled, must use `ENTRAPHY_PUBLIC_FROM` and must not expose a private recipient address.
+`ENTRAPHY_NOTIFICATION_FROM` and `ENTRAPHY_PUBLIC_FROM` must use Microsoft 365 mailboxes or sender addresses the Graph app is allowed to send as. Submitter-facing confirmations, when enabled, must use `ENTRAPHY_PUBLIC_FROM` and must not expose a private recipient address.
+
+Microsoft 365 setup:
+
+- Register an app in Microsoft Entra ID.
+- Add Microsoft Graph application permission `Mail.Send`.
+- Grant admin consent.
+- Create a client secret.
+- Add the tenant ID, client ID, and client secret to the Vercel project environment.
+- Ensure `no-reply@entraphy.com` exists as a mailbox or shared mailbox and is allowed for app-based sending.
 
 Backward-compatible environment variables:
 

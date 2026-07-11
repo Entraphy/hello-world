@@ -6,6 +6,26 @@ const defaultPublicFrom = "Entraphy Systems <no-reply@entraphy.com>";
 const defaultNotificationTo = "support@entraphy.com";
 const graphScope = "https://graph.microsoft.com/.default";
 const graphBaseUrl = "https://graph.microsoft.com/v1.0";
+const defaultSignalConfirmationSubject = "Entraphy signal received";
+const defaultRequestConfirmationSubject = "Entraphy request received";
+const defaultSignalConfirmationBody = [
+  "Your signal has been received.",
+  "",
+  "Entraphy reviews early-team introductions manually. If there may be alignment, we will follow up.",
+  "",
+  "Submitting a signal does not create an employment relationship or guarantee a response.",
+  "",
+  "Entraphy Systems"
+].join("\n");
+const defaultRequestConfirmationBody = [
+  "Your request has been received.",
+  "",
+  "Entraphy reviews partner and pilot-candidate requests manually. If there may be alignment, we will follow up.",
+  "",
+  "Submitting a request does not guarantee access, partnership, or a response.",
+  "",
+  "Entraphy Systems"
+].join("\n");
 
 type AccessPayload = {
   name?: unknown;
@@ -69,6 +89,10 @@ function cleanString(value: unknown, maxLength: number) {
 
 function cleanHeaderValue(value: string | undefined, maxLength = 320) {
   return value?.trim().replace(/[\r\n]/g, " ").slice(0, maxLength) ?? "";
+}
+
+function cleanMessageValue(value: string | undefined, maxLength = 4_000) {
+  return value?.trim().replace(/\r\n/g, "\n").replace(/\r/g, "\n").replace(/\\n/g, "\n").slice(0, maxLength) ?? "";
 }
 
 function extractEmailAddress(value: string) {
@@ -157,36 +181,24 @@ function subjectFor(payload: CleanAccessPayload) {
   return `New Entraphy partner request: ${payload.accessType} \u2014 ${payload.organization || payload.name}`;
 }
 
-function confirmationSubjectFor(payload: CleanAccessPayload) {
-  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
-    return "Entraphy signal received";
-  }
-
-  return "Entraphy request received";
+function isBuilderRequest(payload: CleanAccessPayload) {
+  return payload.requestCategory === "builder" || payload.accessType === "Early Builder";
 }
 
-function confirmationBodyFor(payload: CleanAccessPayload) {
-  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
-    return [
-      "Your signal has been received.",
-      "",
-      "Entraphy reviews early-team introductions manually. If there may be alignment, we will follow up.",
-      "",
-      "Submitting a signal does not create an employment relationship or guarantee a response.",
-      "",
-      "Entraphy Systems"
-    ].join("\n");
+function confirmationSubjectFor(payload: CleanAccessPayload, config: ReturnType<typeof emailConfig>) {
+  if (isBuilderRequest(payload)) {
+    return config.signalConfirmationSubject || defaultSignalConfirmationSubject;
   }
 
-  return [
-    "Your request has been received.",
-    "",
-    "Entraphy reviews partner and pilot-candidate requests manually. If there may be alignment, we will follow up.",
-    "",
-    "Submitting a request does not guarantee access, partnership, or a response.",
-    "",
-    "Entraphy Systems"
-  ].join("\n");
+  return config.requestConfirmationSubject || defaultRequestConfirmationSubject;
+}
+
+function confirmationBodyFor(payload: CleanAccessPayload, config: ReturnType<typeof emailConfig>) {
+  if (payload.requestCategory === "builder" || payload.accessType === "Early Builder") {
+    return config.signalConfirmationBody || defaultSignalConfirmationBody;
+  }
+
+  return config.requestConfirmationBody || defaultRequestConfirmationBody;
 }
 
 function emailConfig() {
@@ -196,7 +208,11 @@ function emailConfig() {
     clientSecret: cleanHeaderValue(process.env.MICROSOFT_GRAPH_CLIENT_SECRET, 800),
     notificationTo: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_TO ?? process.env.ENTRAPHY_ACCESS_INTAKE_TO ?? defaultNotificationTo),
     notificationFrom: cleanHeaderValue(process.env.ENTRAPHY_NOTIFICATION_FROM ?? process.env.ENTRAPHY_ACCESS_INTAKE_FROM ?? defaultPublicFrom),
-    publicFrom: cleanHeaderValue(process.env.ENTRAPHY_PUBLIC_FROM ?? defaultPublicFrom)
+    publicFrom: cleanHeaderValue(process.env.ENTRAPHY_PUBLIC_FROM ?? defaultPublicFrom),
+    signalConfirmationSubject: cleanHeaderValue(process.env.ENTRAPHY_SIGNAL_CONFIRMATION_SUBJECT, 160),
+    signalConfirmationBody: cleanMessageValue(process.env.ENTRAPHY_SIGNAL_CONFIRMATION_BODY),
+    requestConfirmationSubject: cleanHeaderValue(process.env.ENTRAPHY_REQUEST_CONFIRMATION_SUBJECT, 160),
+    requestConfirmationBody: cleanMessageValue(process.env.ENTRAPHY_REQUEST_CONFIRMATION_BODY)
   };
 }
 
@@ -282,7 +298,7 @@ async function sendMicrosoftGraphEmail({
     },
     body: JSON.stringify({
       message,
-      saveToSentItems: false
+      saveToSentItems: true
     })
   });
 
@@ -331,8 +347,8 @@ async function sendAccessEmail(payload: CleanAccessPayload) {
     accessToken,
     from: config.publicFrom,
     to: payload.email,
-    subject: confirmationSubjectFor(payload),
-    text: confirmationBodyFor(payload)
+    subject: confirmationSubjectFor(payload, config),
+    text: confirmationBodyFor(payload, config)
   });
 
   if (!confirmation.ok) {

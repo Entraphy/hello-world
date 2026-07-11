@@ -28,9 +28,18 @@ Recommended deployment values:
 - `ENTRAPHY_NOTIFICATION_TO=support@entraphy.com`
 - `ENTRAPHY_NOTIFICATION_FROM=Entraphy Systems <no-reply@entraphy.com>`
 - `ENTRAPHY_PUBLIC_FROM=Entraphy Systems <no-reply@entraphy.com>`
-- `ENTRAPHY_SEND_CONFIRMATION=false`
+- `ENTRAPHY_SEND_CONFIRMATION=true`
 
 `ENTRAPHY_NOTIFICATION_FROM` and `ENTRAPHY_PUBLIC_FROM` must use Microsoft 365 mailboxes or sender addresses the Graph app is allowed to send as. Submitter-facing confirmations, when enabled, must use `ENTRAPHY_PUBLIC_FROM` and must not expose a private recipient address.
+
+Optional confirmation email copy overrides:
+
+- `ENTRAPHY_SIGNAL_CONFIRMATION_SUBJECT`
+- `ENTRAPHY_SIGNAL_CONFIRMATION_BODY`
+- `ENTRAPHY_REQUEST_CONFIRMATION_SUBJECT`
+- `ENTRAPHY_REQUEST_CONFIRMATION_BODY`
+
+Use `\n` in Vercel values for line breaks if entering a single-line environment value.
 
 Microsoft 365 setup:
 

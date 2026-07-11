@@ -1,7 +1,7 @@
 # Entraphy security.txt
 # See: https://securitytxt.org/
 
-Contact: mailto:support@entraphy.com
+Contact: https://entraphy.com/request-access?type=other
 Policy: https://entraphy.com/legal/privacy
 Hiring: https://entraphy.com/team
 Preferred-Languages: en

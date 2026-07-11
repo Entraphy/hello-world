@@ -53,9 +53,9 @@ export default function PrivacyPage() {
       <Section title="Retention And Choices">
         <p>
           We keep submissions for as long as reasonably useful for review, business records, security, and legal purposes. To request
-          deletion or correction of information you submitted, contact us at{" "}
-          <a href="mailto:support@entraphy.com" className="text-signal hover:text-fg">
-            support@entraphy.com
+          deletion or correction of information you submitted, use the{" "}
+          <a href="/request-access?type=other" className="text-signal hover:text-fg">
+            private request form
           </a>
           .
         </p>

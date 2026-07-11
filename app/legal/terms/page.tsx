@@ -68,9 +68,9 @@ export default function TermsPage() {
 
       <Section title="Contact">
         <p>
-          Questions about these terms can be sent to{" "}
-          <a href="mailto:support@entraphy.com" className="text-signal hover:text-fg">
-            support@entraphy.com
+          Questions about these terms can be sent through the{" "}
+          <a href="/request-access?type=other" className="text-signal hover:text-fg">
+            private request form
           </a>
           .
         </p>

@@ -6,7 +6,7 @@ const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Partner With Us", href: "/partners" },
   { label: "Join the Team", href: "/team" },
-  { label: "Legal", href: "/legal/privacy" }
+  { label: "Legal", href: "/legal" }
 ];
 
 export function SiteFooter() {

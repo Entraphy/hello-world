@@ -35,6 +35,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5
     },
     {
+      url: `${siteUrl}/legal`,
+      changeFrequency: "yearly",
+      priority: 0.2
+    },
+    {
       url: `${siteUrl}/legal/privacy`,
       changeFrequency: "yearly",
       priority: 0.2
